@@ -1,0 +1,130 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+}
+.showmenu{
+    display: none;
+}
+.links-parent{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  
+}
+.close{
+    display: none;
+}
+li{
+    list-style-type: none;
+    position: relative;
+   color: var(--dark-text);
+   cursor: pointer;
+}
+li a {
+    text-decoration: none;
+    color: var(--dark-text);
+    display: block;
+    font-size: 16px;
+}
+li a:hover{
+    color: var(--secondary-color);
+}
+.dropdown{
+    display: block;
+    /* border: 1px solid blue; */
+    position: absolute;
+    top: 20px;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    z-index: 10;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px 2px #eeeeee;
+}
+.dropdown li{
+    margin-bottom: 10px;
+}
+.dropdown li a{
+    font-size: 14px;
+}
+.inner-dropdown{
+    /* border: 1px solid black; */
+    display: block;
+    margin-left: 16px;
+    margin-top: 10px;
+}
+.login-btn{
+ 
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn button a{
+    display: block;
+    padding: 6px 8px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 4px;
+}
+.login-btn button a:hover{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px){
+
+    .showmenu{
+        display: block;
+        font-size: 26px;
+    }
+    .logo{
+        font-size: 24px;
+    }
+    .links-parent{
+        display: none;
+    }
+    .links-parent.mobile{
+        display: block;
+        width: 100%;
+        /* border: 1px solid red; */
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        z-index: 10;
+        background-color: #eee;
+        padding: 20px;
+    }
+    .links-parent.mobile li{
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+    .links-parent.mobile .dropdown li a{
+        font-size: 18px;
+    }
+    .links-parent.mobile .dropdown{
+        margin-top: 10px;
+    }
+    .links-parent.mobile .dropdown li {
+        font-size: 20px;
+    }
+    .links-parent.mobile li a{
+        font-size: 26px;
+    }
+    .close{
+        display: block;
+        font-size: 26px;
+        color: red;
+        width: 100%;
+        text-align: right;
+    }
+
+}
