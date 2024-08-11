@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import './navbar.css';
 import '../../../app/globals.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown,faClose} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -26,14 +28,14 @@ const Navbar = () => {
       <ul className={`links-parent ${mobileNav ? 'mobile' : ''}`}>
         <div className="close" onClick={()=>{
           setMobileNav(false)
-        }}>X</div>
+        }}><FontAwesomeIcon icon={faClose}/></div>
         <li><a href="">Home</a></li>
         <li
           onMouseEnter={handleDropdown}
           onMouseLeave={() => setDropdown(false)}
           onClick={handleDropdown}
         >
-          Tools <span>↓</span>
+          Tools <span><FontAwesomeIcon icon={faCaretDown}/></span>
           {dropdown && (
             <ul className="dropdown">
               <li><a href="">Dashboard</a></li>
@@ -49,7 +51,7 @@ const Navbar = () => {
                  setInnerDropdown(!innerDropdown)
                 }}
               >
-                Skills and Career Development <span>↓</span>
+                Skills and Career Development <span><FontAwesomeIcon icon={faCaretDown}/></span>
                 {innerDropdown && (
                   <ul className='inner-dropdown'>
                     <li><a href="">Academic Resources</a></li>
