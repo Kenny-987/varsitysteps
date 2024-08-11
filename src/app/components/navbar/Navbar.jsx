@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const handleDropdown = () => {
     setDropdown(!dropdown);
-    setInnerDropdown(false); // Close inner dropdown when main dropdown toggles
+    setInnerDropdown(false);
   };
 
   const handleInnerDropdown = () => {
