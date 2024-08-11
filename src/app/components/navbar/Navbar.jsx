@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './navbar.css';
 import '../../../app/globals.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown,faClose} from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown,faClose,faBars} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav>
       <div className="logo">VarsitySteps</div>
       <button className='showmenu' onClick={() => setMobileNav(!mobileNav)}>
-        ☰
+        <FontAwesomeIcon icon={faBars}/>
       </button>
       <ul className={`links-parent ${mobileNav ? 'mobile' : ''}`}>
         <div className="close" onClick={()=>{
