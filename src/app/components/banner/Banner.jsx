@@ -6,11 +6,11 @@ import { faCaretDown,faClose,faBars} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 const Banner = () => {
   return (
-    <section class="banner">
-    <div class="banner-content">
-      <h1 class="headline">Empower Your Academic Journey with VarsitySteps</h1>
-      <p class="subheadline">Discover resources, career opportunities, and support to enhance your educational experience.</p>
-      <a href="#explore" class="cta-button">Explore Now</a>
+    <section className="banner">
+    <div className="banner-content">
+      <h1 className="headline">Empower Your Academic Journey with VarsitySteps</h1>
+      <p className="subheadline">Discover resources, career opportunities, and support to enhance your educational experience.</p>
+      <a href="#explore" className="cta-button">Explore Now</a>
     </div>
     </section>
   )
