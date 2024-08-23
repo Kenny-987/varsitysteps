@@ -6,8 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle,faClose} from '@fortawesome/free-solid-svg-icons'
 // import { faGoogle,faApple} from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
-import { useSession,signIn } from 'next-auth/react'
-import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/navigation';
 
 const Signup = () => {
