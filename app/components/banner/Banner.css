@@ -3,7 +3,7 @@
     display: flex;
     align-self: center;
     justify-content: center;
-    background-image: url('../../../../public/Sprinkle.svg');
+    background-image: url('../../../public/Sprinkle.svg');
     padding: 50px 20px;
     text-align: center;
     height: 500px;

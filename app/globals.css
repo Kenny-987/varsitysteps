@@ -18,6 +18,9 @@
 body{
   background-color: var(--neutral);
 }
+html{
+  scroll-behavior: smooth;
+}
 button{
   border: none;
 }
@@ -25,7 +28,7 @@ a{
   text-decoration: none;
 }
 h1,h2,h3{
-  color: var(--primary-color);
+  color: var(--dark-text);
 }
 p{
   color: var(--dark-text);

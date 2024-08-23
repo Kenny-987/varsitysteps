@@ -1,0 +1,186 @@
+.sign-up-form {
+    width: 30%;
+    padding: 1em;
+    background: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .sign-up-form.tutors{
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: translate(0);    
+  }
+.form-page{
+  background-image: url("../../public/Sprinkle_2.svg");
+  min-height: calc(100vh - 69px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:  20px 0;
+}
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .tutor-info h1{
+    margin-bottom: 0;
+  }
+ 
+  .form-group {
+    margin-bottom: 1em;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 4px;
+    color: #333;
+  }
+  .sign-up-form p{
+    text-align: center;
+    color: #444;
+  }
+  input {
+    border: 1px solid #ccc;
+    padding: 4px;
+    font-size: 1em;
+    width: 100%;
+    border-radius: 6px;
+    color: var(--dark-text);
+  }
+   input:focus{
+   outline: none;
+   border: 1px solid #007bff77;
+   }
+
+   .sign-up-form button {
+    padding: 4px;
+    font-size: 16px;
+    border: none;
+    color: #fff;
+    background: var(--primary-color);
+    cursor: pointer;
+    width: 100%;
+    margin-top: 4px;
+    border-radius: 4px;
+  }
+
+  .sign-up-form button:hover {
+    background: #0056b3;
+    color: #fff;
+  }
+
+  .social-login {
+    margin-top: 4px;
+  }
+
+  .social-login button {
+    background: #ddd;
+    color: #333;
+    font-weight: 500;
+  }
+  .redirect{
+    margin-top: 4px;
+  }
+  .redirect p{
+    text-align: center;
+    font-weight: 500;
+  }
+  .redirect p a{
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+  .policylink{
+    margin-top: 20px;
+    font-weight: 100;
+    font-size: 12px;
+  }
+  .policylink a{
+    text-decoration: underline;
+  }
+
+
+  .tutor-info{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: var(--neutral);
+  }
+  .tutor-info .info{
+    width: 50%;
+  }
+  .tutor-info .info p {
+    margin-bottom: 10px;
+  }
+  .tutor-info .info span{
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  .tutors{
+    width: 50%;
+  }
+  
+  .authmessage{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:red ;
+    padding: 4px;
+    margin-top: 4px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .authmessage p {
+    color: #fff;
+  }
+
+  .showpassword{
+    display: flex;
+    /* border: 1px solid red; */
+    align-items:center;
+    justify-content:flex-start ;
+    padding: 0;
+    gap: 4px;
+  }
+  .showpassword input{
+    font-size: 1em;
+    width: auto;
+    padding: 0;
+   
+  }
+  .loading{
+    padding: 4px;
+    font-size: 16px;
+    color: #fff;
+    background: var(--primary-color);
+    text-align: center;
+    margin-top: 4px;
+    border-radius: 4px;
+  }
+  @media (max-width: 768px){
+    .sign-up-form {
+      width: 90%;
+    }  
+    /* .form-page{
+      height: calc(100vh - 69px);
+    } */
+    .formnav{
+      width: 90%;
+    }
+    .tutor-info{
+      flex-direction: column-reverse;
+      width: 90%;
+    }
+    .tutor-info .sign-up-form{
+      width: 100%;
+    }
+    .tutor-info .info{
+      width: 90%;
+      margin-top: 6px;
+    }
+  }
