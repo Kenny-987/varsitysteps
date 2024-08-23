@@ -2,7 +2,7 @@ import React from 'react'
 import '../pages.css'
 import Footer from '../components/footer/Footer'
 
-const about = () => {
+const About = () => {
   return (
       <section className="about-page ">
          <h1>Welcome to VarsitySteps</h1>
@@ -31,4 +31,4 @@ const about = () => {
   )
 }
 
-export default about 
+export default About 

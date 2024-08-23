@@ -8,7 +8,7 @@ import { faGoogle,faApple} from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const tutorsignup = () => {
+const Tutorsignup = () => {
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
   const [confirmPassword,setconfirmPassword]=useState('')
@@ -123,4 +123,4 @@ const tutorsignup = () => {
       )
 }
 
-export default tutorsignup
+export default Tutorsignup

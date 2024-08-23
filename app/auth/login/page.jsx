@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle,faClose} from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation';
 
-const login = () => {
+const Login = () => {
   const [showMessage, setShowMessage] = useState(false)
   const [showPassword, setShowPassord] = useState(false)
   const [email,setEmail]=useState('')
@@ -18,7 +18,7 @@ const login = () => {
   const router = useRouter()
 
 const api = 'http://localhost:3000/auth/login'
-  const Login= async(e)=>{
+  const login= async(e)=>{
     setLoading(true)
     e.preventDefault();
     try {
@@ -52,7 +52,7 @@ const api = 'http://localhost:3000/auth/login'
         <section className="signup form-page">
       <div className="sign-up-form">
           <h1>Login</h1>
-          <form onSubmit={Login}>
+          <form onSubmit={login}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input type="email" 
@@ -97,4 +97,4 @@ const api = 'http://localhost:3000/auth/login'
       )
 }
 
-export default login
+export default Login

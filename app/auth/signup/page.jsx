@@ -10,7 +10,7 @@ import { useSession,signIn } from 'next-auth/react'
 import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/navigation';
 
-const signup = () => {
+const Signup = () => {
   const router = useRouter()
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
@@ -130,4 +130,4 @@ const signup = () => {
   )
 }
 
-export default signup
+export default Signup
