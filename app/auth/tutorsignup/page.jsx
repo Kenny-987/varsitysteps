@@ -3,8 +3,6 @@ import React,{useState} from 'react'
 import '../../globals.css';
 import '../form.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons'
-import { faGoogle,faApple} from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
