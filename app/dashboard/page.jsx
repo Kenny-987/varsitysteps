@@ -23,6 +23,14 @@ const Dashboard = () => {
  const [tutor_id,setTutor_id]=useState(null)
  const [showChats,setShowChats] = useState(false)
 
+ if(loading){
+  return <div className='page-loader'></div>
+ }
+
+ if (!isAuthenticated || !userData) {
+  return null; 
+}
+
     useEffect(() => {
       if (loading) return;
       console.log('useffect runnng')
@@ -37,13 +45,7 @@ const Dashboard = () => {
       
     }, [isAuthenticated,  loading, router, userData]);
 
- if(loading){
-  return <div className='page-loader'></div>
- }
-
- if (!isAuthenticated || !userData) {
-  return null; 
-}
+ 
 
 
  const logout = async()=>{
