@@ -152,7 +152,7 @@ const Post = () => {
             <p>{post.description}</p>
             <div className="images-grid">
               {post.image_urls.map((img,index)=>{
-                return <div className="grid-item" key={index}>
+                return <div className="grid-item" key={img}>
                 <img src={img} alt="" onClick={() => openModal(post.image_urls, index)} />
               </div>
               })}

@@ -21,7 +21,10 @@ const TutorDashboard = ()=>{
     const [showChats,setShowChats] = useState(false)
     const [requests,setRequests] = useState([])
    
-
+    if (!isAuthenticated || !userData) {
+      return null; 
+    }
+  
     //checking authentication status
     useEffect(() => {
       if (loading) return;
@@ -33,10 +36,7 @@ const TutorDashboard = ()=>{
       }
     }, [isAuthenticated, userData, loading, router]);
   
-    if (!isAuthenticated || !userData) {
-      return null; 
-    }
-  
+    
     
    if(loading){
     return <div>...loading</div>
