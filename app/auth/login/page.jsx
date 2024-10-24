@@ -1,12 +1,13 @@
 
 'use client'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import '../../globals.css';
 import '../form.css'
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle,faClose} from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation';
+import { useContextUser } from '../../hooks/Context';
 
 const Login = () => {
   const [showMessage, setShowMessage] = useState(false)
@@ -16,10 +17,23 @@ const Login = () => {
   const [message, setMessage] = useState('')
   const [loading,setLoading]=useState(false)
   const router = useRouter()
+  const {isAuthenticated,setIsAuthenticated}=useContextUser()
 
-const api = 'http://localhost:3000/auth/login'
+  useEffect(()=>{
+    if(isAuthenticated){
+      console.log('you are logged in')
+      router.push('/')
+    }
+  },[])
+
+  if(isAuthenticated){
+    return null;
+  }
+
+  const api = 'http://10.1.10.89:3000/auth/login'
   const login= async(e)=>{
     setLoading(true)
+    console.log('logging in')
     e.preventDefault();
     try {
       const response = await fetch(api, {
@@ -30,14 +44,24 @@ const api = 'http://localhost:3000/auth/login'
         body: JSON.stringify({email, password }),
         credentials: 'include', 
       });
-      const data = await response.json();
-      localStorage.setItem('userData',JSON.stringify(data))
       if (response.ok) {
+        const roles = await response.json()
+        setIsAuthenticated(true)
         setLoading(false)
-        router.push('/dashboard')
+        console.log(roles);
+        
+        if(roles.includes('student')){
+          window.location.href='/dashboard'
+        }else if(roles.includes('tutor')){
+           window.location.href='/tutordashboard'
+        }else if(roles.includes('student') && roles.includes('tutor')){
+          window.location.href='/dashboard'
+        }
+      
       } else {
+        const  errMsg = await response.json()
         setShowMessage(true)
-        setMessage(data.message || 'Login failed');
+        setMessage(errMsg.message);
         setLoading(false)
       }
     } catch (error) {
@@ -78,7 +102,7 @@ const api = 'http://localhost:3000/auth/login'
             <label htmlFor="showpassword">Show Password</label>
             </div>
 
-            {loading?<div className='loading'>...loading</div>:<button type="submit">Login</button>}
+            {loading?<div className='btn-loader'></div>:<button type="submit">Login</button>}
           </form>
 
           <div className="redirect">

@@ -3,43 +3,73 @@ import React,{useState} from 'react'
 import '../../globals.css';
 import '../form.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faInfoCircle,faClose} from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useContextUser } from '../../hooks/Context';
 
 const Tutorsignup = () => {
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
   const [confirmPassword,setconfirmPassword]=useState('')
   const [email,setEmail]=useState('')
-  const [message, setMessage] = useState('message')
+  const [message, setMessage] = useState('')
   const [showMessage, setShowMessage] = useState(false)
   const [showPassword, setShowPassord] = useState(false)
+  const [loading,setLoading]=useState(false)
+  const {isAuthenticated,setIsAuthenticated}=useContextUser()
   const router = useRouter()
   const role ='tutor'
 
   const signUp= async(e)=>{
+    setLoading(true)
     e.preventDefault();
+    if(username.trim()===""){
+      setShowMessage(true)
+      setLoading(false)
+      setMessage('Enter valid name');
+      setLoading(false)
+      return;
+    }
 
     if (password !== confirmPassword) {
       setShowMessage(true)
       setMessage('Passwords do not match');
+      setLoading(false)
       return;
     }
-    const response = await fetch('http://localhost:3000/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, email, role, password }),
-      credentials: 'include', 
-    });
-    const data = await response.json();
-
-    if (response.ok) {
-      router.push('/dashboard')
-    } else {
+    try {
+      const response = await fetch('http://10.1.10.89:3000/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, role, password }),
+        credentials: 'include', 
+      });
+      // const data = await response.json();
+  
+      if (response.ok) {
+        const roles = await response.json();
+        setIsAuthenticated(true)
+        setLoading(false)
+        if(roles.includes('tutor')){
+          window.location.href='/tutordashboard'
+        }else if(roles.includes('student')){
+           window.location.href='/dashboard'
+        }else if(roles.includes('student') && roles.includes('tutor')){
+          window.location.href='/dashboard'
+        }
+      } else {
+        setShowMessage(true)
+        // setMessage(message.message ||'Signup failed');
+        setLoading(false)
+      }
+    } catch (error) {
+      setLoading(false)
       setShowMessage(true)
-      setMessage(data.message || 'Signup failed');
+      setMessage('Signup failed');
+      console.error(error)
     }
   }
 
@@ -102,7 +132,7 @@ const Tutorsignup = () => {
           <input type="checkbox" name="showpassword" id="showpassword" onClick={()=>setShowPassord(!showPassword)} />
           <label htmlFor="showpassword">Show Password</label>
         </div>
-        <button type="submit">Sign Up</button>
+        {loading?<div className='btn-loader'></div>:<button type="submit">Sign Up</button>}
       </form>
           <div className="redirect">
             <p><Link href="/auth/signup">Sign up for Regular Account</Link></p>

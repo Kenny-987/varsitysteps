@@ -1,15 +1,30 @@
 .aboutus,.features{
     width: 80%;
     margin: auto;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 .aboutus h2{
     text-align: center;
     margin-top: 20px;
 }
+.aboutus p{
+  text-align: center;
+}
+.cta_btn{
+  text-align: center;
+  margin-top: 6px;
+}
+.cta_btn button{
+  background-color: var(--primary-color);
+  padding: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 2px;
+}
 .features h2{
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .features {
     padding: 50px 20px;
@@ -26,7 +41,7 @@
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   }
   
   .feature-card img {

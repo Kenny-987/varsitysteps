@@ -1,0 +1,102 @@
+
+.editor-page{
+    /* border: 1px solid red; */
+    position: relative;
+    margin-bottom: 60px;
+  }
+  
+  .editor-page .header{
+  /* border: 1px solid red; */
+  height: 100px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  /* border-radius: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+  .editor-page .header h3{
+    color: #fff;
+  }
+  .editor-page .header p{
+  font-weight: 600;
+  color: #fff;
+  }
+  .tabs-nav{
+    /* border: 1px solid red; */
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+  }
+  .tabs-nav p{
+    padding-bottom: 4px;
+    border-bottom: 2px solid #C850C0;
+  }
+  .panel-content{
+    padding: 10px;
+    margin-bottom: 60px;
+    /* position: relative; */
+  }
+  .content-type-options{
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    z-index: 10;
+    justify-content: center;
+    background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+  }
+  .content-options{
+    /* border: 1px solid red; */
+    width: 90%;
+    height: fit-content;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 4px;
+    position: relative;
+    text-align: center;
+  }
+  .close-options{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .content-option{
+    display: flex;
+    justify-content: space-between;
+  }
+  .option-select{
+    text-align: center;
+    border: 1px solid #C850C0;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px;
+  }
+  .option-select button{
+    background-color: #C850C0;
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .add-post{
+    margin-top: 10px;
+    background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+    color:#fff;
+  }
+  
+  

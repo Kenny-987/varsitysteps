@@ -1,0 +1,614 @@
+ 
+ /* --------------------------------------------------------
+ -----------------css for the dashboard container----------
+ ----------------------------------------------------------*/
+ .dash-container {
+    display: flex;
+    min-height:100vh;
+    /* margin-top: 10px; */
+    background-color: var(--neutral-bg);
+    width: 100%;
+    gap: 20px;
+    border-top: 1px solid #ccc;
+  }
+  .dash-content{
+    margin-bottom: 60px;
+    width: 80%;
+    /* border: 1px solid red; */
+    background-color: #fff;
+    /* overflow:hidden; */
+ }
+  .username{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .close-dashlinks{
+font-size: 20px;
+display: none;
+  }
+  .nav-list {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0; 
+    height: 100vh;
+    border-radius: 4px;
+    /* border: 1px solid red; */
+  }
+  .logout{
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .logout-options{
+    display: flex;
+    gap: 8px;
+    width: 50%;
+    flex-direction: column;
+  }
+  .logout-options button{
+    background-color: var(--primary-color);
+    font-size: 16px;
+    padding: 4px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .navitem {
+    margin-bottom: 20px;
+    font-weight: 700;
+    /* border: 1px solid #ccc; */
+    font-size: 15px;
+  }
+  .navitem span{
+    color: red;
+  }
+
+  .navitem.delete-account{
+ color: crimson;
+ border-radius: 2px;
+  }
+  .navitem.delete-account:hover{
+    color: red;
+
+  }
+  .navitem:hover{
+    color: var(--primary-color);
+  }
+
+/* ---------------------------------------------------------------------------
+--------------------creative signup modal ------------------------------------
+------------------------------------------------------------------------------ */
+.creative-signup{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #333333b9;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.creative-info{
+  padding: 20px;
+  background-color: #fff;
+  width: 80%;
+  height: fit-content;
+  /* margin-top: 150px; */
+  border-radius: 4px;
+  position: relative;
+}
+.creative-info h3{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.basic-creator-info{
+  /* border: 1px solid red; */
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  min-height: 100%;
+  border-radius: 4px;
+  padding: 10px;
+}.basic-creator-info h3{
+  width: 50%;
+  margin: auto;
+}
+.basic-creator-info form{
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+}
+.basic-creator-info form div button{
+  width: fit-content;
+  margin-left: 0;
+  background-color: #333;
+}
+.basic-creator-info form label{
+  font-weight: 500;
+}
+.basic-creator-info form input::placeholder{
+color: #3333336e;
+font-size: 12px;
+}
+.basic-creator-info form button{
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+.edit-btn .creatives{
+  background-color: var(--primary-color);
+  margin-top: 20px;
+}
+
+/* ---------------------------------------------------------------------------
+--------------------creative signup modal ------------------------------------
+------------------------------------------------------------------------------ */
+
+
+/* --------------------------------------------------------------------
+--------------------the profile page in dashboard-----------------------
+----------------------------------------------------------------------- */
+.profile-header .background img{
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  /* border: 1px solid red; */
+}
+.profile{
+  position: relative;
+  
+}
+
+.profile-img-name{
+  /* border: 1px solid blue; */
+  position: absolute;
+  top: 30px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.profile-img-name img{
+  border: 2px solid #fff;
+}
+
+.currentImage{  
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 10px;
+  position: relative;
+}
+.profile-img .icons,.currentImage .icons{
+  /* text-align: center; */
+  /* margin: auto; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  background-color: var(--neutral-bg);
+  width: 120px;
+  height: 120px;
+ /* border: 1px solid red; */
+ padding: 20px;
+ border-radius: 50%;
+}
+.currentImage .icons{
+  width: 300px;
+  height: 300px;
+}
+.profile-img .icons .icon,.currentImage .icons .icon{
+  font-size: 80px;
+}
+.profile-img .edit-profileImage-icon{
+  position: absolute;
+  top: 80%;
+  color: var(--dark-text);
+  left:80px;
+  font-size: 24px;
+  /* border: 1px solid red; */
+}
+.profile-img img{
+object-fit:cover ;
+border-radius: 50%;
+}
+.profile-content{
+  /* border: 1px solid red; */
+  margin-top: 40px;
+  padding: 20px;
+}
+.profile-username{
+  margin-top: 10px;
+}
+.profile-username p{
+  font-size: 18px !important;
+ font-weight: 600 !important;
+}
+
+.edit-btn{
+  /* border: 1px solid blue; */
+  display: flex;
+  /* flex-wrap: wrap; */
+ gap: 4px;
+ margin-top: 10px;
+  margin-bottom: 10px;
+}
+.edit-btn button{
+  padding: 4px;
+  font-size: 14px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.edit-btn .creative{
+  background-color: #4158D0;
+background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 46%);
+} 
+.edit-btn .tutor{
+  background-color: #4158D0;
+}
+.user-details{
+  /* border: 1px solid red; */
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2,1fr);
+  margin-top: 20px;
+}
+.user-detail{
+  /* border: 1px solid black; */
+  border-radius: 6px;
+  padding: 4px;
+  width: 100%;
+  background-color: var(--neutral-bg);
+  margin: auto;
+  font-size: 14px;
+} 
+.user-detail li{
+  font-weight: 500;
+  font-size: 16px;
+}
+.user-detail p{
+  font-size: 16px;
+}
+.user-detail button{
+  background-color: var(--primary-color);
+  padding: 2px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 4px;
+}
+.user-detail p{
+  margin-bottom: 4px
+}
+
+
+/*----------------------------------------------------------
+-------------------tutor dashboard--------------------------
+------------------------------------------------------------ */
+.tutor-subjects{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.tutor-subject{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  background-color: #fff;
+  color: var(--dark-text);
+  border-radius: 4px;
+}
+.remove-item{
+  color: red;
+}
+.tutor-subject small{
+  font-size: 14px;
+}
+
+
+/* notification css */
+.notifications{
+  margin-top: 10px;
+}
+.notify_date{
+  font-size: 14px;
+  font-weight: 500;
+}
+.notifications li{
+  border-bottom: 1px solid #ccc;
+}
+
+/* -----------------------------------------------------
+--------------------requests css------------------------
+-------------------------------------------------------- */
+.requests{
+  width: 90%;
+  margin: auto;
+}
+.requests ul{
+  margin-top: 10px;
+}
+.requests li{
+  display: flex;
+  /* border: 1px solid black; */
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.options{
+  display: flex;
+  /* border: 1px solid black; */
+  align-items: center;
+}
+.options button{
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1px 4px;
+  cursor: pointer;
+}
+.requests li p{
+  /* border: 1px solid black; */
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+}
+.requests li p a{
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+
+/*---------------------------------------------------------------
+------- this is css for a list of people, tutors or students------
+----------------------------------------------------------------- */
+.people-list{
+  /* border: 1px solid red; */
+  width: 80%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+.people-list .back,.requests .back{
+  display: none;
+}
+.people{
+  /* border: 1px solid black; */
+  margin-top: 10px;
+    gap: 20px;
+    font-size: 14px;
+}
+.person{
+  /* border-radius: 6px; */
+  padding: 4px;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+.person-name{
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.person-image{
+  /* height: 200px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  /* border: 1px solid red; */
+}
+.person-icon{
+  font-size: 150px;
+  color: var(--primary-color);
+}
+.person img{
+  width: 50px;
+  height: 50px;
+  /* border: 1px solid green; */
+  object-fit: cover;
+  border-radius: 4px;
+  border-radius: 50%;
+}
+.person p{
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 4px;
+  /* color: var(--primary-color); */
+}
+.person .actions{
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center ;
+  justify-content: space-evenly;
+  gap: 20px;
+  
+}
+.actions button{
+  cursor: pointer;
+  padding: 0;
+  padding: 4px 8px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  color: #fff;
+  font-size: 14px;
+}
+.actions button a{
+  color: #fff;
+
+}
+@media (min-width: 768px) and (max-width:1024px){
+  .edit-profile form{
+    width: 70%;
+    margin: auto;
+  }
+  .user-detail{
+    width: 70%;
+    /* background-color:#fff; */
+  
+  }
+}
+
+
+  @media (max-width: 768px){
+    .nav-list{
+      display: none;
+    }
+    .nav-list.mobile-dash {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80%;
+      height: 100%;
+      z-index: 1000;
+    }
+    .close-dashlinks{
+      display: block;
+        }
+        .edit-btn{
+          display: flex;
+          gap: 20px;
+        }
+    .dash-content{
+      padding: 0px; 
+      width: 100%;
+      /* height: 100vh;
+      overflow-y: auto; */
+      transform: translateX(0);
+      /* border: 1px solid red; */
+   }
+   .navitem{
+    font-size: 18px;
+   }
+   /* ---------------------------------------------------------------------
+   ----------------user profile dashboard---------------------------------
+   ----------------------------------------------------------------------- */
+   .profile{
+    margin-bottom: 60px;
+   }
+   .profile-header{
+     height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+   }
+   .profile-header .background img{
+   display: none;
+  }
+  .profile-img .edit-profileImage-icon{
+    color: #fff;
+  }
+  .profile-img-name{
+    /* border: 1px solid blue; */
+    position: absolute;
+    top: 50px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+  }
+  .profile-img-name img{
+    border: 2px solid #fff;
+  }
+  .profile-content{
+    /* border: 1px solid red; */
+    margin-top: 0px;
+    padding: 20px;
+  }
+  .profile-username{
+    margin-top: 0px;
+  }
+  .profile-username p{
+    font-size: 18px !important;
+   font-weight: 600 !important;
+  }
+   .profile p {
+    /* font-size: 18px; */
+    font-weight: 400;
+  }
+  .user-details{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .requests li{
+    display: block;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+   padding-bottom: 8px;
+  }
+  .options button{
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1px 4px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .people-list{
+    width: 90%;
+    margin: auto;
+  }
+  .people-list .back,.requests .back{
+    display: inline-block;
+ 
+  }
+  .people{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .person{
+    /* border-radius: 6px; */
+    padding: 4px;
+    width: 100%;
+  }
+
+  .person .actions {
+  gap: 4px;
+}
+  .person img{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+  }
+  
+  .creative-info{
+    width: 90%;
+    margin-top: 50px;
+
+  }
+.creative-info p{
+  font-size: 14px;
+  font-weight: 300;
+}
+.basic-creator-info form{
+  width: 90%;
+  margin: auto;
+  margin-top: 10px;
+}
+.basic-creator-info form button{
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+  }

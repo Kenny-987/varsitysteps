@@ -4,9 +4,9 @@ import "./globals.css";
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Navbar from "./components/navbar/Navbar";
-import { DashContextProvider } from "./context/dashContext";
+import { ContextProvider } from "./hooks/Context";
 import React, {useState} from 'react'
-// import { SessionProvider } from "next-auth/react";
+import { SocketProvider } from "./hooks/SocketContext";
 
 
 config.autoAddCss = false;
@@ -28,11 +28,13 @@ export default function RootLayout({ children }) {
         <title>VarsitySteps</title>
         <meta name="description" content="Empowering your academic journey" />
       </head>
-      <body className={inter.className}>
-       <DashContextProvider>
+      <body >
+        <SocketProvider>
+       <ContextProvider>
       <Navbar/>
         {children}
-        </DashContextProvider>
+        </ContextProvider>
+        </SocketProvider>
         </body>
     </html>
   );

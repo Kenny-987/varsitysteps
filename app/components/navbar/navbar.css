@@ -5,6 +5,8 @@ nav{
     padding: 20px;
     width: 80%;
     margin: auto;
+    position: relative;
+    /* border: 1px solid red; */
 }
 .showmenu{
     display: none;
@@ -84,16 +86,121 @@ li a:hover{
     color: var(--primary-color);
 }
 .showdash-widescreen{
+    background-color: transparent;
     font-size: 20px;
-    
 }
 .showdash-widescreen a {
     color: #333;
 }
 .showdash{
     display: none;
+    background-color: transparent;
 }
-@media (max-width: 768px){
+.notification-icon{
+    background-color: transparent;
+    font-size: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: #333;
+}
+.notification-container{
+    position:absolute;
+    width: 400px;
+    right: 10px;
+    top: 50px;
+    z-index: 100;
+}
+.mobile-notification{
+    display: none;
+}
+.count{
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    font-size: 12px;
+    color: red;
+    font-weight: 500;
+}
+
+/* ----------------------------------------------------------------
+==================bottom navbar css===============================
+================================================================== */
+.bottom-navbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .bottom-nav-links {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 10px;
+    /* border: 1px solid red; */
+  }
+  .bottom-nav-links button{
+    background-color: transparent;
+  }
+  .bottom-nav-links li {
+    list-style: none;
+    text-align: center;
+  }
+  
+  .bottom-nav-links a, .bottom-nav-links button, .mobile-tools {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .bottom-nav-links a:hover, .bottom-nav-links button:hover {
+    color: #0070f3;
+  }
+  
+  .bottom-nav-links svg {
+    font-size: 20px;
+  }
+.mobile-tools .dropdown{
+    display: block;
+    /* border: 1px solid blue; */
+    position: absolute;
+    /* top: -50px; */
+    bottom: 100%;
+    transform: translateY(-160px);
+    width: 200px;
+    height: fit-content;
+}
+.mobile-tools .dropdown li{
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: left;
+    display: flex;
+}
+.dropdown li a{
+    font-size: 14px;
+}
+.mobile-notifications{
+border: 1px solid #ccc;
+position:fixed;
+top: 0;
+left: 0;
+width: 100%;
+max-height: 500px;
+overflow-y: auto;
+}
+@media (max-width: 700px){
 
     .showmenu{
         display: block;
@@ -124,14 +231,8 @@ li a:hover{
         margin-bottom: 20px;
         font-size: 26px;
     }
-    .links-parent.mobile .dropdown li a{
-        font-size: 18px;
-    }
-    .links-parent.mobile .dropdown{
-        margin-top: 20px;
-    }
-    .links-parent.mobile .dropdown li {
-        font-size: 18px;
+    .tools-list{
+        display: none;
     }
   
     .links-parent.mobile li a{
@@ -169,11 +270,29 @@ li a:hover{
     .showdash a{
         color: #333;
     }
+    .mobile{
+        border: 1px solid blue;
+    }
     .mobile-menu-icons{
         display: flex;
-        gap: 20px;
+        gap: 10px;
     }
     .mobile-menu-icons button{
         font-size: 20px;
+    }
+  
+    .bottom-navbar{
+        display: flex;
+        z-index: 100;
+    }
+    .notification-icon{
+        display: none;
+    }
+}
+
+@media (min-width:701px) and (max-width:900px){
+    nav{
+        width: 100%;
+        /* border: 1px solid red; */
     }
 }
