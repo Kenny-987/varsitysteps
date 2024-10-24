@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook, faLocationDot, faUniversity, faUser } from '@fortawesome/free-solid-svg-icons'
 
-const studentProfile = () => {
+const StudentProfile = () => {
     const {studentID} = useParams()
     const [student,setStudent] = useState({})
     console.log(studentID)
@@ -58,4 +58,4 @@ const studentProfile = () => {
   )
 }
 
-export default studentProfile
+export default StudentProfile

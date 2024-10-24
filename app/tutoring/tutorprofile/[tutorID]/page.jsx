@@ -9,7 +9,7 @@ import { faArrowAltCircleLeft, faUser,faClose } from "@fortawesome/free-solid-sv
 import Link from "next/link"
 import Messages from "../../../dashboard/messages"
 
-const tutorProfile =()=>{
+const TutorProfile =()=>{
 const [tutor,setTutor] = useState({})
 const {userData,isAuthenticated} = useContextUser()
 const {tutorID} = useParams()
@@ -212,4 +212,4 @@ return <section className='tutor-profile-container'>
     {showChats &&  <Messages setShowChats={setShowChats} chatStatus={chatStatus} receiver={tutor}/>}    
 </section>
 }
-export default tutorProfile
+export default TutorProfile
