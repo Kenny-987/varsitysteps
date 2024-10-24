@@ -343,7 +343,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
         <div className="post-tags">
           <ul className="current-tags">
             {tags.map((tag,index)=>{
-              return <li>#{tag}<FontAwesomeIcon icon={faClose} onClick={()=>{removeTag(index)}}/></li>
+              return <li key={index}>#{tag}<FontAwesomeIcon icon={faClose} onClick={()=>{removeTag(index)}}/></li>
             })}
           </ul>
         <input

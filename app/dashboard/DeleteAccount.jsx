@@ -1,6 +1,8 @@
+'use client'
 import React, {useState} from 'react'
 import './dashboadcss/edit.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle,faClose } from '@fortawesome/free-solid-svg-icons'
 
 
 const DeleteAccount = () => {
