@@ -147,12 +147,12 @@ const Post = () => {
             </div>
           </div>
           <h3 className='post-title'>{post && post.title}</h3>
-          {post.type === 'text'?<EditorContent editor={editor} className='editor' /> :
+          {post.type === 'text'?<EditorContent key={post.tiptap_content} editor={editor} className='editor' /> :
           <div className="images-post">
             <p>{post.description}</p>
             <div className="images-grid">
               {post.image_urls.map((img,index)=>{
-                return <div className="grid-item" key={img}>
+                return <div key={index} className="grid-item">
                 <img src={img} alt="" onClick={() => openModal(post.image_urls, index)} />
               </div>
               })}
