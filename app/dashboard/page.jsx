@@ -23,20 +23,11 @@ const Dashboard = () => {
  const [tutor_id,setTutor_id]=useState(null)
  const [showChats,setShowChats] = useState(false)
 
- if(loading){
-  return <div className='page-loader'></div>
- }
-
- if (!isAuthenticated || !userData) {
-  return null; 
-}
-
-    useEffect(() => {
+   useEffect(() => {
       console.log('useffect runnng')
       if (!isAuthenticated || !userData) {
         router.push('/auth/login');
       } else if (isAuthenticated && !userData.role_name.includes('student')) {
-        console.log('1')
         router.push('/tutordashboard');
       }else{
         setIsEffectCompleted(true);
@@ -45,25 +36,6 @@ const Dashboard = () => {
     }, [isAuthenticated,  loading, router, userData]);
 
  
-
-
- const logout = async()=>{
-try {
- const response = await fetch(`http://10.1.10.89:3000/auth/logout`,{
-  method:'POST',
-  credentials:'include'
- })
-  if(response.ok){
-    window.location.href='/'
-  }else{
-    console.log('cant log out');
-    
-  }
-} catch (error) {
-  console.error(error)
-}
- }
-
 //check if student has a tutor or tutors
 useEffect(()=>{
   const getTutors = async()=>{
@@ -83,6 +55,35 @@ useEffect(()=>{
   }
   getTutors()
 },[])
+
+ const logout = async()=>{
+try {
+ const response = await fetch(`http://10.1.10.89:3000/auth/logout`,{
+  method:'POST',
+  credentials:'include'
+ })
+  if(response.ok){
+    window.location.href='/'
+  }else{
+    console.log('cant log out');
+    
+  }
+} catch (error) {
+  console.error(error)
+}
+ }
+
+
+
+if(loading){
+  return <div className='page-loader'></div>
+ }
+
+ if (!isAuthenticated || !userData) {
+  return null; 
+}
+
+ 
 // console.log(myTutors)
   return (
     <section className="dash-container">

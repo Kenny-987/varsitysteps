@@ -21,10 +21,7 @@ const TutorDashboard = ()=>{
     const [showChats,setShowChats] = useState(false)
     const [requests,setRequests] = useState([])
    
-    if (!isAuthenticated || !userData) {
-      return null; 
-    }
-  
+    
     //checking authentication status
     useEffect(() => {
       if (loading) return;
@@ -37,10 +34,6 @@ const TutorDashboard = ()=>{
     }, [isAuthenticated, userData, loading, router]);
   
     
-    
-   if(loading){
-    return <div>...loading</div>
-   }
   
   
   const userId = userData.id
@@ -68,6 +61,13 @@ const TutorDashboard = ()=>{
     fetchRequests()
 },[])
 
+if (!isAuthenticated || !userData) {
+  return null; 
+}
+
+if(loading){
+  return <div>...loading</div>
+ }
 const logout = async()=>{
   try {
    const response = await fetch(`http://10.1.10.89:3000/auth/logout`,{
