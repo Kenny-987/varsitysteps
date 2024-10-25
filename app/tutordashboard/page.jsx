@@ -41,7 +41,7 @@ const TutorDashboard = ()=>{
   useEffect(()=>{
     const fetchRequests = async()=>{
         try {
-            const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/api/requests/${userId}`,{
+            const response = await fetch(`https://varsitysteps-server.onrender.com/api/requests/${userId}`,{
                 credentials:'include'
             })
             if(response.ok){
@@ -70,7 +70,7 @@ if(loading){
  }
 const logout = async()=>{
   try {
-   const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/auth/logout`,{
+   const response = await fetch(`https://varsitysteps-server.onrender.com/auth/logout`,{
     method:'POST',
     credentials:'include'
    })

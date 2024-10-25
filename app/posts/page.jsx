@@ -20,7 +20,7 @@ const Posts = () => {
 useEffect(()=>{
   const fetchPosts = async()=>{
     try {
-      const response = await fetch('http://https://varsitysteps-server.onrender.com:3000/posts/allposts')
+      const response = await fetch('https://varsitysteps-server.onrender.com/posts/allposts')
       if(response.ok){
         const data = await response.json()
         setPosts(data)

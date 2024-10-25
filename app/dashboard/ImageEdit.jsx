@@ -31,7 +31,7 @@ setLoading(true)
   formData.append('profilePicture', image);
   formData.append('userId', userId);
 try {
-  const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/user/profile-picture`,{
+  const response = await fetch(`https://varsitysteps-server.onrender.com/user/profile-picture`,{
     method:'POST',
     credentials:'include',
     body:formData
@@ -67,7 +67,7 @@ const deleteImage = async ()=>{
   console.log(userId)
   setLoading(true)
   try {
-    const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/user/delete-picture/${userId}`,{
+    const response = await fetch(`https://varsitysteps-server.onrender.com/user/delete-picture/${userId}`,{
       method:'DELETE',
       credentials:'include',
     })

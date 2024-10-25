@@ -15,7 +15,7 @@ const StudentProfile = () => {
     useEffect(()=>{
         const fetchStudent = async ()=>{
             try {
-                const response  = await fetch(`http://https://varsitysteps-server.onrender.com:3000/user/studentprofile/${studentID}`)
+                const response  = await fetch(`https://varsitysteps-server.onrender.com/user/studentprofile/${studentID}`)
                 const data = await response.json()
                 if (response.ok){
                     console.log('this is user profile: ',data)

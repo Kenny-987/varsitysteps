@@ -18,7 +18,7 @@ const [receiver,setReceiver]=useState(null)
     useEffect(()=>{
         const fetchStudents = async()=>{
             try {
-                const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/user/mystudents`,{
+                const response = await fetch(`https://varsitysteps-server.onrender.com/user/mystudents`,{
                     credentials:'include'
                 })
                 if(response.ok){
@@ -41,7 +41,7 @@ fetchStudents()
     useEffect(()=>{
         const checkChatStatus = async()=>{
              try {
-                const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/messages/chats?user1=${userData.id}&user2=${student_id}`,{
+                const response = await fetch(`https://varsitysteps-server.onrender.com/messages/chats?user1=${userData.id}&user2=${student_id}`,{
                     credentials:'include'
                 })
                 if(response){

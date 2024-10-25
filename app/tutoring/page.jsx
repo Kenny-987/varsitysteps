@@ -16,7 +16,7 @@ const [citySearch,setCitySearch]=useState(false)
 useEffect(()=>{
   const fetchTutors = async()=>{
     try{
-      const response = await fetch('http://https://varsitysteps-server.onrender.com:3000/tutors')
+      const response = await fetch('https://varsitysteps-server.onrender.com/tutors')
       const data =  await response.json()
       if(response.ok){
         setTutors(data.tutors)
@@ -37,7 +37,7 @@ const searchBySubject = async(e)=>{
 
   if(query.trim()!==''){
     try {
-      const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/tutors/search?query=${query}`)
+      const response = await fetch(`https://varsitysteps-server.onrender.com/tutors/search?query=${query}`)
       if(response.ok){
         const data = await response.json()
         console.log(data);
