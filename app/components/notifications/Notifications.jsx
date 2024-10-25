@@ -11,7 +11,7 @@ const {notifications,setNotificationCount} = useContextUser()
 const markAsRead = async(id)=>{
     console.log('click')
     try {
-        const response = await fetch(`http://10.1.10.89:3000/api/markread`,{
+        const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/api/markread`,{
             method:'PATCH',
             credentials:'include',
             headers: {

@@ -30,7 +30,7 @@ const Login = () => {
     return null;
   }
 
-  const api = 'http://10.1.10.89:3000/auth/login'
+  const api = 'http://https://varsitysteps-server.onrender.com:3000/auth/login'
   const login= async(e)=>{
     setLoading(true)
     console.log('logging in')

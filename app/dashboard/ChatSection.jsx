@@ -56,7 +56,7 @@ if(currentChat.user_1==user_id){
       useEffect(()=>{
         const fetchMessages = async()=>{
           try {
-            const response = await fetch(`http://10.1.10.89:3000/messages/conversation/${chat_id}`,{
+            const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/messages/conversation/${chat_id}`,{
               credentials:'include'
             })
             if (response.ok){

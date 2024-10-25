@@ -88,7 +88,7 @@ const handleImageUpload = (e) => {
       formData.append('existingImages', imageUrl); // Keep these in the post without overriding
     });
       try {
-        const response = await fetch(`http://10.1.10.89:3000/posts/editpost`,{
+        const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/posts/editpost`,{
           method:'PATCH',
           credentials:'include',
           body:formData
@@ -115,7 +115,7 @@ const handleImageUpload = (e) => {
       }
     }else{
       try {
-        const response = await fetch('http://10.1.10.89:3000/posts/savepost', {
+        const response = await fetch('http://https://varsitysteps-server.onrender.com:3000/posts/savepost', {
           method: 'POST',
           credentials:'include',
           body: formData, 

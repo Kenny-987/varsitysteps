@@ -20,7 +20,7 @@ const MyTutors = ({myTutors,setContent}) => {
     useEffect(()=>{
       const checkChatStatus = async()=>{
            try {
-              const response = await fetch(`http://10.1.10.89:3000/messages/chats?user1=${userData.id}&user2=${tutor_id}`,{
+              const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/messages/chats?user1=${userData.id}&user2=${tutor_id}`,{
                   credentials:'include'
               })
               if(response){

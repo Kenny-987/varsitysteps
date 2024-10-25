@@ -24,7 +24,7 @@ const router = useRouter()
 useEffect(()=>{
     const fetchTutor = async ()=>{
         try {
-            const response  = await fetch(`http://10.1.10.89:3000/tutors/tutorprofile/${tutorID}`)
+            const response  = await fetch(`http://https://varsitysteps-server.onrender.com:3000/tutors/tutorprofile/${tutorID}`)
             const data = await response.json()
             if (response.ok){
                 // console.log('this is user profile: ',data)
@@ -46,7 +46,7 @@ if(isAuthenticated){
     console.log('sending request')
     setLoading(true)
     try {
-        const response = await fetch(`http://10.1.10.89:3000/api/connectionrequest`, {
+        const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/api/connectionrequest`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ useEffect(()=>{
 if(isAuthenticated){
     const checkConnection = async()=>{
         try {
-            const response = await fetch( 'http://10.1.10.89:3000/api/connectionstatus',{
+            const response = await fetch( 'http://https://varsitysteps-server.onrender.com:3000/api/connectionstatus',{
                 method:'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ useEffect(()=>{
     if(isAuthenticated){
         const checkChatStatus = async()=>{
             try {
-               const response = await fetch(`http://10.1.10.89:3000/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
+               const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
                    credentials:'include'
                })
                if(response){

@@ -24,7 +24,7 @@ const socket = useSocket()
 //function to fetch chats
 useEffect(()=>{
 const fetchChats = async ()=>{
-const response = await fetch(`http://10.1.10.89:3000/messages/chats`,{
+const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/messages/chats`,{
   credentials:'include'
 })
 if(response.ok){

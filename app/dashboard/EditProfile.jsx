@@ -98,7 +98,7 @@ try {
     return setMessage('Update at least 1 field'); 
   }
   
-  const response = await fetch(`http://10.1.10.89:3000/user/update/${userId}`,{
+  const response = await fetch(`http://https://varsitysteps-server.onrender.com:3000/user/update/${userId}`,{
     method:'PATCH',
     headers: {
       'Content-Type': 'application/json',
