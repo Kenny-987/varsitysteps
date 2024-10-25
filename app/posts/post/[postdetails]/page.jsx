@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faCaretLeft, faCaretRight, faClose, faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-
+import Images from 'next/image'
 
 const Post = () => {
     const {postdetails} = useParams()
@@ -137,7 +137,7 @@ const Post = () => {
         <div className="post-info">
             <div className="post-author">
             <div className="author-img">
-            { post.profile_image ?<img src={post.profile_image} alt="profile_image" />:
+            { post.profile_image ?<Images src={post.profile_image} alt="profile_image" />:
             <FontAwesomeIcon icon={faUser}/>
             }
             </div>
@@ -153,7 +153,7 @@ const Post = () => {
             <div className="images-grid">
               {post.image_urls.map((img,index)=>{
                 return <div key={index} className="grid-item">
-                <img src={img} alt="" onClick={() => openModal(post.image_urls, index)} />
+                <Images src={img} alt="" onClick={() => openModal(post.image_urls, index)} />
               </div>
               })}
             </div>
@@ -173,7 +173,7 @@ const Post = () => {
           <div className="modal-overlay" onClick={closeModal}></div> {/* Background close */}
           <div className="modal-content">
             <button className="prev" onClick={prevImage}>&#10094;</button>
-            <img src={currentImages[currentIndex]} alt={`Image ${currentIndex + 1}`} />
+            <Images src={currentImages[currentIndex]} alt={`Image ${currentIndex + 1}`} />
             <button className="next" onClick={nextImage}>&#10095;</button>
           </div>
           <button className="close" onClick={closeModal}>&times;</button> {/* Close button outside modal content */}
