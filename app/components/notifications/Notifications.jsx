@@ -8,29 +8,30 @@ import { useContextUser } from '../../hooks/Context'
 const Notifications = ({setShowNotifications}) => {
 const {notifications,setNotificationCount} = useContextUser()
 
-const markAsRead = async(id)=>{
-    console.log('click')
-    try {
-        const response = await fetch(`https://varsitysteps-server.onrender.com/api/markread`,{
-            method:'PATCH',
-            credentials:'include',
-            headers: {
-                'Content-Type': 'application/json',
-              },
-            body:JSON.stringify({status:true,id})
-        })
-        if(response.ok){
-            const result = await response.json()
-            const unread = result.filter(notification=>notification.is_read==false)
-            setNotificationCount(unread.length);
-            console.log(result);
-            
+useEffect(()=>{
+    const markAsRead = async()=>{
+        console.log('click')
+        try {
+            const response = await fetch(`https://varsitysteps-server.onrender.com/api/markread`,{
+                method:'PATCH',
+                credentials:'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body:JSON.stringify({status:true})
+            })
+            if(response.ok){
+            console.log('ok');
+            setNotificationCount(0)
+            }
+        } catch (error) {
+            console.error()
         }
-    } catch (error) {
-        console.error()
     }
-}
-console.log(notifications);
+    markAsRead()
+},[])
+
+console.log('mounted');
 
   return (
     <div className='notifications'>

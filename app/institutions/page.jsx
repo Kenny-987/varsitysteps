@@ -14,7 +14,7 @@ const Institutions = () => {
   const [query, setQuery] = useState([])
   const [searchResult, setSearchResult] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 10 
+  const itemsPerPage = 20 
   const totalPages = Math.ceil(institutions.length/itemsPerPage)
  // console.log(totalPages)
   

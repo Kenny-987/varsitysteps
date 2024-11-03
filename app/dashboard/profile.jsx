@@ -2,11 +2,12 @@
 import React,{useState} from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPhone,faBookOpen,faUniversity,faLocationDot,faUser,faCamera, faInfo, faInfoCircle, faEdit, faUserEdit, faStar, faClose, faL, faBriefcase, faGears, faChalkboardTeacher} from '@fortawesome/free-solid-svg-icons';
+import {faPhone,faBookOpen,faUniversity,faLocationDot,faUser,faCamera, faInfo, faInfoCircle, faEdit, faUserEdit, faStar, faClose, faL, faBriefcase, faGears, faChalkboardTeacher, faEllipsis} from '@fortawesome/free-solid-svg-icons';
 import EditProfile from './EditProfile';
 import EditImage from './ImageEdit';
 import CreativeForm from './CreativeForm';
 import TutorForm from './TutorForm';
+import Link from 'next/link';
 
 const Profile = ({userData,creatorData,setContent}) => {
 const [showEditForm,setShowEditForm] = useState(false)
@@ -16,8 +17,8 @@ const [loadingImage,setLoadingImage]=useState(false)
 const [showCreative,setShowCreative]=useState(false)
 const [showTutorModal,setShowTutorModal]=useState(false)
 const [showSubmitForm,setShowSubmitForm]=useState(false)
+const [tutorOption,setTutorOption]=useState(false)
 
-console.log(userData)
 
 
   return (
@@ -42,19 +43,19 @@ console.log(userData)
     {/* modal for creative signup */}
 
 {/* modal for tutor signup */}
-{/* {showTutorModal && <div className="creative-signup">
+{showTutorModal && <div className="creative-signup">
       <div className="creative-info"> 
-        <h3>Become a tutor <FontAwesomeIcon icon={faClose} onClick={()=>setShowTutorModal(false)}/></h3>
+        <h3>Become a tutor <FontAwesomeIcon icon={faClose} onClick={()=>{setShowTutorModal(false);setTutorOption(false)}}/></h3>
         <p>Are you ready to share your knowledge and help others succeed? The VarsitySteps Tutor Program allows you to turn your skills into valuable lessons for students eager to learn. Whether you're passionate about a particular subject, a skill, or an area of expertise, becoming a tutor gives you the opportunity to make a real difference. Connect with learners, build your reputation, and earn as you teach. Take the next step in your journey by becoming a tutor and inspiring others today.</p>
         <div className="edit-btn ">
         <button className='creatives'onClick={()=> setShowSubmitForm(true)}>Get Started</button>
-        <button className='creatives' onClick={()=> setShowTutorModal(false)}>Maybe Later</button>
+        <button className='creatives' onClick={()=> {setShowTutorModal(false);setTutorOption(false)}}>Maybe Later</button>
         </div>
         {showSubmitForm && <div className="basic-creator-info">
-          <TutorForm setShowTutorModal={setShowTutorModal}/>
+          <TutorForm setShowTutorModal={setShowTutorModal} />
         </div> }
       </div>
-    </div>} */}
+    </div>}
     {/* modal for tutor signup */}
 
   {/* this modal is for editing profile image */}
@@ -94,7 +95,12 @@ console.log(userData)
         <div className="edit-btn">
         <button onClick={()=> setShowEditForm(true)}><FontAwesomeIcon icon={faUserEdit}/> Edit Profile</button>
         {!creatorData ? <button onClick={()=> setShowCreative(true)} className="creative"><FontAwesomeIcon icon={faStar}/> Showcase your talent</button>:<button onClick={()=> setContent('Creator')} className="creative"><FontAwesomeIcon icon={faStar}/> Creator Panel</button>}
-        {/* <button onClick={()=> setShowTutorModal(true)} className='tutor'><FontAwesomeIcon icon={faChalkboardTeacher}/> Become a tutor</button> */}
+        {!userData.role_name.includes('tutor') ?
+        <div className="tutor-option">
+        <button style={{borderRadius:"50%"}} onClick={()=>{setTutorOption(!tutorOption)}}><FontAwesomeIcon icon={faEllipsis}/></button>
+        {tutorOption &&<button onClick={()=> setShowTutorModal(true)} className='tutor'>Become a tutor</button> }
+        </div> : <p><Link href='/tutordashboard'>Tutor Dashboard</Link></p>}
+        
       </div>
 
       <div className="user-detail">

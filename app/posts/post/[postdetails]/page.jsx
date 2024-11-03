@@ -135,9 +135,10 @@ const Post = () => {
       </div>
         {post && 
         <div className="post-info">
-            <div className="post-author">
+          <Link href={`/studentprofile/${post.user_id}`}>
+          <div className="post-author">
             <div className="author-img">
-            { post.profile_image ?<Images src={post.profile_image} alt="profile_image" />:
+            { post.profile_image ?<Images src={post.profile_image} alt="profile_image" width={50} height={50} />:
             <FontAwesomeIcon icon={faUser}/>
             }
             </div>
@@ -145,7 +146,8 @@ const Post = () => {
             <p>{post.username}</p>
             <p className='post-time'>{formatDate(post.created_at)}</p>
             </div>
-          </div>
+          </div></Link>
+           
           <h3 className='post-title'>{post && post.title}</h3>
           {post.type === 'text'?<EditorContent key={post.tiptap_content} editor={editor} className='editor' /> :
           <div className="images-post">
@@ -153,7 +155,7 @@ const Post = () => {
             <div className="images-grid">
               {post.image_urls.map((img,index)=>{
                 return <div key={index} className="grid-item">
-                <Images src={img} alt="" onClick={() => openModal(post.image_urls, index)} />
+                <img src={img} alt="" onClick={() => openModal(post.image_urls, index)} />
               </div>
               })}
             </div>
@@ -173,7 +175,7 @@ const Post = () => {
           <div className="modal-overlay" onClick={closeModal}></div> {/* Background close */}
           <div className="modal-content">
             <button className="prev" onClick={prevImage}>&#10094;</button>
-            <Images src={currentImages[currentIndex]} alt={`Image ${currentIndex + 1}`} />
+            <img src={currentImages[currentIndex]} alt={`Image ${currentIndex + 1}`}/>
             <button className="next" onClick={nextImage}>&#10095;</button>
           </div>
           <button className="close" onClick={closeModal}>&times;</button> {/* Close button outside modal content */}

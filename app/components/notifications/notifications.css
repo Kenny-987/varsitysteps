@@ -14,8 +14,11 @@
     justify-content: space-between;
 }
 .notification{
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     border-radius: 4px;
+}
+.notification-div{
+    margin-top: 10px;
 }
 .notification button{
     font-size: 14px;

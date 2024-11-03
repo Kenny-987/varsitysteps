@@ -114,10 +114,10 @@ try {
       console.log(data.creator);
       
       const updatedData = {...userData,...data.user}
-      const updatedCreatorData = {...creatorData,...data.creator}
       setUserData(updatedData)
       
-      if(updatedCreatorData!==null ){
+      if(data.creator ){
+        const updatedCreatorData = {...creatorData,...data.creator}
         setCreatorData(updatedCreatorData)
       }
     }

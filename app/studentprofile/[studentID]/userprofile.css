@@ -1,5 +1,5 @@
 .profile{
-    width: 90%;
+    width: 100%;
     /* border: 1px solid red; */
     margin: auto;
 }
@@ -7,7 +7,26 @@
     display: flex;
     justify-content: center;
    align-items: center; 
+   flex-direction: column;
    margin-bottom: 20px;
+   /* border: 1px solid red; */
+   height: 250px;
+   background-color: #4158D0;
+   background-image: linear-gradient(to top, #4158D0 0%,#bec8f6 );
+}
+.profile .image h3,.profile .image p{
+    color: #fff;
+
+}
+.profile .image img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile .details{
+    width: 90%;
+    margin: auto;
 }
 .profile .user-detail{
     border-radius: 6px;
@@ -15,20 +34,17 @@
     width: 100%;
     background-color: var(--neutral-bg);
     margin: auto;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0px 10px 20px #4159d08d,
+    -5px -10px 60px #ffffff;
   } 
   .profile .user-detail h3{
     text-align: center;
 }
 .profile .user-detail .name{
       margin-top: 10px;
-
   }
-.profile .image img{
-    object-fit: fill;
-    border-radius: 4px;
 
-}
 @media (min-width:1024px){
     .profile{
         width: 80%;

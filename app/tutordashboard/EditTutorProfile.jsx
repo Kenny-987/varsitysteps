@@ -92,10 +92,9 @@ try {
   if(response.status == 200){
     const data = await response.json()
     if(data){
-    console.log()
       const updatedData = {...userData,...data.user}
       setUserData(updatedData)
-     setShowEditForm(false)
+     window.location.reload()
     }
     setLoading(false)
   }else{
@@ -165,11 +164,11 @@ try {
         </div>
         <div className="form-group">
           <label htmlFor="phone">Phone</label>
-          <input type='text'
+          <input type='tel'
            id="phone" 
            name="phone"
            value={phone}
-           placeholder ={user.phone}
+           placeholder ={user.phone||'0712345678'}
           onChange={(e) => setPhone(e.target.value)} 
             />
         </div>

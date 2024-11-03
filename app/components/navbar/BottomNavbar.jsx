@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 import './navbar.css';
 import '../../globals.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faCaretUp, faCaretDown, faBell, faUser,faGears, faSignIn, faInfo, faInfoCircle, faArchive } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCaretUp, faCaretDown, faBell, faUser,faGears, faSignIn, faInfo, faInfoCircle, faArchive, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useContextUser } from '../../hooks/Context';
 import Notifications from '../notifications/Notifications';
@@ -46,8 +46,8 @@ const BottomNavbar = () => {
           )}
         </li>
         <li>
-        <Link href='/posts'>
-          <FontAwesomeIcon icon={faArchive} />
+        <Link href='/posts' onClick={() => setDropdown(false)}>
+          <FontAwesomeIcon icon={faLayerGroup} />
           <span>Explore</span>
         </Link>
       </li>

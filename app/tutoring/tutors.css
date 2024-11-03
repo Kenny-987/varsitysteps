@@ -93,6 +93,7 @@
     /* border: 1px solid red; */
     padding: 10px;
 }
+
 .tutor-details .name{
     display: flex;
     justify-content:space-between ;
@@ -160,7 +161,7 @@
     justify-content: center;
 }
 .tutor-basic-info .tutor-image .tutor-profile-icon .placeholder{
-    font-size: 100px;
+    height: 70px;
 }
 .tutor-basic-info .tutor-image img{
     height: 100%;
@@ -178,7 +179,7 @@ margin-bottom: 4px;
 .basic-info p span{
     color: var(--primary-color);
 }
-.basic-info button{
+ .basic-info-btn{
     display: block;
     width: 50%;
     margin: auto;
@@ -245,33 +246,66 @@ margin-bottom: 4px;
     font-weight: 600;
 }
 .close-prompt{
-    /* border: 1px solid red; */
     text-align: right;
     margin-bottom: 20px;
     font-size: 18px;
 }
-
-
+.rating{
+    display: flex;
+    gap: 10px;
+}
 .star-rating {
-    /* border: 1px solid red; */
-    direction: rtl;
-    font-size: 2rem;
+    display: inline-block;
+    font-size: 1.5em; /* Adjust size as needed */
+    color: gold; /* Color for filled stars */
+}
+
+.star {
+    margin-right: 2px; /* Spacing between stars */
+}
+
+.star.filled {
+    color: gold; /* Color for filled stars */
+}
+
+.star:not(.filled) {
+    color: lightgray; /* Color for unfilled stars */
+}
+.rate-options{
+    display: flex;
     width: fit-content;
-  }
-  
-  .star-rating input[type="radio"] {
-    display: none;
-  }
-  
-  .star {
-    color: #ccc;
+    margin: auto;
+    gap: 20px;
+    margin-top: 10px;
+}
+.rate-tutor .basic-info-btn{
+    width: fit-content;
+    margin: 0;
+    font-size: 16px;
+    padding: 6px;
+    background-color: var(--secondary-color);
+}
+.stars{
+    display: flex;
+    gap: 10px;
+    margin: auto;
+    width: fit-content;
+}
+.rate-btn span {
+    background-color: #fff;
+    border: none;
+}
+.rate-btn {
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
   }
-  
-  .star:hover,
-  .star:hover ~ .star,
-  .star-rating input[type="radio"]:checked ~ .star {
-    color: #f5c518;
+  .on {
+    color: #ffd900;
+  }
+  .off {
+    color: #ffd90073;
   }
 @media (max-width: 700px){
     .tutors-intro{

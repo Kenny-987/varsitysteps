@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import { useContextUser } from "../../../hooks/Context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowAltCircleLeft, faUser,faClose } from "@fortawesome/free-solid-svg-icons"
+import { faArrowAltCircleLeft, faUser,faClose, faStar, faStarHalf, faCircle } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import Messages from "../../../dashboard/messages"
 
@@ -15,21 +15,25 @@ const {userData,isAuthenticated} = useContextUser()
 const {tutorID} = useParams()
 const [connectonStatus,setConnectionStatus] = useState(null)
 const [notSignedInWarning,setNotSignedInWarning] = useState(false)
-const [studentCount,setStudentCount]= useState(0)
 const [chatStatus,setChatStatus]= useState(null)
 const [loading,setLoading] = useState(false)
 const [showChats,setShowChats] = useState(false)
+const [rateScore,setRateScore]=useState(0)
+const [hover, setHover] = useState(0);
+const [showRating,setShowRating]=useState(false)
+const [hasRated,setHasRated]=useState(false)
 const router = useRouter()
+
 //fuction to fetch tutor profile details
 useEffect(()=>{
     const fetchTutor = async ()=>{
+        // setLoading(true)
         try {
             const response  = await fetch(`https://varsitysteps-server.onrender.com/tutors/tutorprofile/${tutorID}`)
             const data = await response.json()
             if (response.ok){
-                // console.log('this is user profile: ',data)
-                setTutor(data.tutor)
-                setStudentCount(data.studentCount)
+                console.log('this is user profile: ',data)
+                setTutor(data)
             }else{
                 console.log('error fetching profile')
             }
@@ -39,6 +43,7 @@ useEffect(()=>{
     }
     fetchTutor()
 },[])
+console.log(tutor);
 
 //function to request a connection with a tutor
 const requestConnection =async()=>{
@@ -71,8 +76,6 @@ if(isAuthenticated){
 }
 
 //function to check if user is connected
-useEffect(()=>{
-if(isAuthenticated){
     const checkConnection = async()=>{
         try {
             const response = await fetch( 'https://varsitysteps-server.onrender.com/api/connectionstatus',{
@@ -94,40 +97,78 @@ if(isAuthenticated){
             console.error(error)
         }
     }
-checkConnection()
-}
-},[])
-
-
 //function to check for existing chats between tutor and student
+    const checkChatStatus = async()=>{
+        try {
+           const response = await fetch(`https://varsitysteps-server.onrender.com/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
+               credentials:'include'
+           })
+           if(response){
+               const data = await response.json()
+               setChatStatus(data)
+               console.log('chats status in tutor page', data);
+               
+           }else{
+               console.log('cant check status')
+           }
+       } catch (error) {
+           console.error(error)
+       }
+   }
+//function to check if user has rated 
+    const checkHasRated = async () => {
+        try {
+            const response = await fetch(`https://varsitysteps-server.onrender.com/tutors/checkrate/${tutorID}`,{
+                credentials:'include'
+            })
+            if(response.ok){
+                const data = await response.json()
+                setHasRated(data)
+            }else{
+                console.log('oops');
+                
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
 useEffect(()=>{
     if(isAuthenticated){
-        const checkChatStatus = async()=>{
-            try {
-               const response = await fetch(`https://varsitysteps-server.onrender.com/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
-                   credentials:'include'
-               })
-               if(response){
-                   const data = await response.json()
-                   setChatStatus(data)
-                   console.log('chats status in tutor page', data);
-                   
-               }else{
-                   console.log('cant check status')
-               }
-           } catch (error) {
-               console.error(error)
-           }
-       }
-          
-   checkChatStatus()
+        checkChatStatus()
+        checkConnection()
+        checkHasRated()
     }
-  
 },[])
 
+
+//function to rate a tutor
+const rateTutor = async (tutor_id,rater_id) => {
+    try {
+        const response = await fetch(`https://varsitysteps-server.onrender.com/tutors/rate`,{
+            method:'POST',
+            credentials:'include',
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify({rateScore,tutor_id,rater_id})
+        })
+        if(response.ok){
+            setShowRating(false)
+            setHasRated(true)
+            window.location.reload()
+        }else{
+            console.log('oops');
+             setShowRating(false)
+        }
+    } catch (error) {
+        console.error(error)
+    }
+    
+}
 return <section className='tutor-profile-container'>
     <div className="route"> 
-            <p onClick={()=>router.back()}><FontAwesomeIcon icon={faArrowAltCircleLeft}/>Tutors</p>
+            <p onClick={()=>router.back()}><FontAwesomeIcon icon={faArrowAltCircleLeft}/>back</p>
         </div>
     <div className="profile-wrapper">
         {/* This div will align to left on desktop view and shows basic info */}
@@ -138,39 +179,67 @@ return <section className='tutor-profile-container'>
           </div>
           <div className="basic-info">
             <p>{tutor.username}</p>
-            <p>{studentCount} Student(s)</p>
-            {/* <div className="rating">
+            <p>{tutor.student_count} Student(s)</p>
+            <div className="rating">
                 <p>Rating:</p>
-                <div class="star-rating">
-                <input type="radio" id="5-stars" name="rating" value="5" />
-                <label for="5-stars" class="star">&#9733;</label>
+                <div className="rating-stars">
+                {[...Array(5)].map((_, index) => {
 
-                <input type="radio" id="4-stars" name="rating" value="4" />
-                <label for="4-stars" class="star">&#9733;</label>
-  
-                <input type="radio" id="3-stars" name="rating" value="3" />
-                <label for="3-stars" class="star">&#9733;</label>
-  
-                <input type="radio" id="2-stars" name="rating" value="2" />
-                <label for="2-stars" class="star">&#9733;</label>
-  
-                <input type="radio" id="1-star" name="rating" value="1" />
-                <label for="1-star" class="star">&#9733;</label>
+                const ratingValue = Number(tutor.average_rating);
+                const fullStars = Math.floor(ratingValue);
+                const hasHalfStar = ratingValue % 1 >= 0.5;
+
+                if (index < fullStars) {
+                    return <span key={index} className="star filled"><FontAwesomeIcon icon={faStar}/></span>;
+                } else if (index === fullStars && hasHalfStar) {
+                    return <span key={index} className="star half"><FontAwesomeIcon icon={faStarHalf}/></span>;
+                } else {
+                    return <span key={index} className="star"><FontAwesomeIcon icon={faStar}/></span>;
+                }
+                })}
+                </div>
+                <span>{Math.round(Number(tutor.average_rating)* 10)/10} ({tutor.total_ratings} ratings)</span>
             </div>
-            </div> */}
             <p>Minimum Fee: <span>${tutor.base_charge}/month</span></p>
-            {loading ? <div className='btn-loader'></div> :<> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button onClick={()=>setShowChats(true)}>Chat</button> : connectonStatus === 'pending' ?<button>Pending</button> : <button onClick={requestConnection}>Connect</button> }</> }
-            
+            {tutor.phone  &&
+            <p>Phone: {tutor.phone}</p>
+            }
+            {loading ? <div className='btn-loader'></div> :<> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn" onClick={()=>setShowChats(true)}>Chat</button> : connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
+            {/* --------------div to rate tutor--------------- */}
+            {connectonStatus==='connected' && !hasRated && <p style={{textAlign:'center',marginTop:'10px'}} onClick={()=>setShowRating(!showRating)}>Click here to rate tutor</p>}
+            {showRating && <div className="rate-tutor">
+                <div className="stars">
+                    {[...Array(5)].map((star,index)=>{
+                        index +=1;
+                        return <button key={index}
+                        className="rate-btn"
+                        onClick={()=>setRateScore(index)}
+                        onMouseEnter={() => setHover(index)}
+                        onMouseLeave={() => setHover(rateScore)}
+                        >
+                        <span><FontAwesomeIcon className={index <= (hover || rateScore) ? "on" : "off"} icon={faStar}/></span>
+                        </button>
+                    })}
+                </div>
+                <div className="rate-options">
+                <button className="basic-info-btn" onClick={()=>rateTutor(tutorID,userData.id)}>submit</button>
+                <button className="basic-info-btn" onClick={()=>{setShowRating(false)}}>cancel</button>
+                </div>
+            </div>}
+            {/* --------------div to rate tutor--------------- */}
           </div>
         </div>
 
+       
+
+        
         {/*--------------------------------------------------------------
          modal to show warning if user wants to connect without signing in
          ----------------------------------------------------------- */}
         {notSignedInWarning && <div className="warning-modal">
             <div className="prompt">
                 <div className="close-prompt"><FontAwesomeIcon onClick={()=>{setNotSignedInWarning(!notSignedInWarning)}} icon={faClose}/></div>
-            <p><Link href='/auth/login'>Login</Link> to send a connection request to a tutor</p>
+            <p><Link href={`/auth/login?redirect=${`/tutoring/tutorprofile/${tutor.id}`}`}>Login</Link> to connect with tutor</p>
             </div>
             {/*--------------------------------------------------------------
          modal to show warning if user wants to connect without signing in
@@ -187,7 +256,7 @@ return <section className='tutor-profile-container'>
                 <h3>Qualifications/Education</h3>
                 <ul className="list">
                 {Array.isArray(tutor.qualifications) && tutor.qualifications.length > 0?tutor.qualifications.map((qualy,index)=>{
-                    return <li key={index}>-{qualy}</li>   
+                    return <li key={index}><FontAwesomeIcon icon={faCircle} style={{fontSize:'8px'}}/> {qualy}</li>   
                 }):"Nothing to show yet"}
                 </ul>
                 
@@ -196,7 +265,7 @@ return <section className='tutor-profile-container'>
                 <h3>Teaches</h3>
                 <ul className="list">
                 {Array.isArray(tutor.teaches) && tutor.teaches.length > 0 ?tutor.teaches.map((subject,index)=>{
-                    return <li key={index}>-{subject}</li>   
+                    return <li key={index}><FontAwesomeIcon icon={faCircle} style={{fontSize:'8px'}}/> {subject}</li>   
                 }):"Nothing to show yet"}
                 </ul>
                 

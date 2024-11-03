@@ -14,7 +14,7 @@ import {faCaretDown, faCaretUp,faEnvelope,faLink,faLock,faPeopleGroup,faSignOut,
 import StudentsList from './StudentsList';
 
 const TutorDashboard = ()=>{
-    const {userData,isAuthenticated,loading,showDash, setShowDash} = useContextUser()
+    const {userData,isAuthenticated,loading,showDash, setShowDash,tutoringData} = useContextUser()
     const[content,setContent]=useState("Profile")
     const router = useRouter()
     const [showLogoutOptions,setShowLogoutOptions] = useState(false)
@@ -24,8 +24,6 @@ const TutorDashboard = ()=>{
     
     //checking authentication status
     useEffect(() => {
-      if (loading) return;
-  
       if (!isAuthenticated || !userData) {
         router.push('/auth/login');
       } else if (isAuthenticated && !userData.role_name.includes('tutor')) {
@@ -33,13 +31,19 @@ const TutorDashboard = ()=>{
       }
     }, [isAuthenticated, userData, loading, router]);
   
-    
+
   
+  let user
+  if(userData.role_name.includes('tutor') && userData.role_name.includes('student')){
+    user = {...userData,...tutoringData}
+  }else{
+    user = userData
+  }
+
   
-  const userId = userData.id
-    //fuction to fetch requests
-  useEffect(()=>{
-    const fetchRequests = async()=>{
+    useEffect(()=>{
+      const fetchRequests = async()=>{
+      const userId = userData.id
         try {
             const response = await fetch(`https://varsitysteps-server.onrender.com/api/requests/${userId}`,{
                 credentials:'include'
@@ -58,8 +62,11 @@ const TutorDashboard = ()=>{
         }
 
     }
-    fetchRequests()
-},[])
+    if(isAuthenticated && userData){
+
+      fetchRequests()
+    }
+},[userData,isAuthenticated])
 
 if (!isAuthenticated || !userData) {
   return null; 
@@ -109,7 +116,7 @@ const logout = async()=>{
           </ul>
         
      <div className="dash-content">
-      {content === 'Profile' && <TutorProfile user={userData}/>}
+      {content === 'Profile' && <TutorProfile user={user}/>}
       {content === 'Password' && <PasswordSettings userData={userData} setContent={setContent}/>}
       {/* {content === 'Messages' && <Messages userData={userData} newChat={newChat} receiver_id={0}/>} */}
       {content === 'Students' && <StudentsList setContent={setContent}/>}

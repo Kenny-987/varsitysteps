@@ -24,7 +24,6 @@ const ChatSection = ({chat_id,user_id,currentChat,setCurrentChat}) => {
     }
   }, [message]);
 
-console.log(currentChat);
 
 //getting reciver id
 let receiver_id
@@ -61,12 +60,10 @@ if(currentChat.user_1==user_id){
             })
             if (response.ok){
               const data = await response.json()
-              // console.log('message data',data)
               setMessages(data)
               setTimeout(scrollToBottom, 100);
             }else{
               console.log('could not fetch messages');
-              
             }
           } catch (error) {
             console.error(error)
@@ -86,7 +83,6 @@ if(currentChat.user_1==user_id){
       }, [socket,user_id]);
       useEffect(()=>{
         const handleIncomingMessage = (data) => {
-          console.log('incoming', data);
           if (data.chat_id === chat_id) {
             setMessages((prevMessages) => [...prevMessages, data]);
           }
@@ -101,8 +97,6 @@ if(currentChat.user_1==user_id){
 useEffect(() => {
   scrollToBottom();
 }, [messages]);
-
-console.log(messages);
 
 
 const formatDate = (timestamp) => {

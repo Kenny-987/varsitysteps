@@ -14,32 +14,44 @@ const MyTutors = ({myTutors,setContent}) => {
   const {userData} = useContextUser()
   const [chatStatus,setChatStatus]= useState(null)
   const [showChats,setShowChats] = useState(false)
+  const [chatStatuses, setChatStatuses] = useState({})
     // console.log(myTutors)
 
     //fuction to check status
-    useEffect(()=>{
-      const checkChatStatus = async()=>{
-           try {
-              const response = await fetch(`https://varsitysteps-server.onrender.com/messages/chats?user1=${userData.id}&user2=${tutor_id}`,{
-                  credentials:'include'
-              })
-              if(response){
-                  const data = await response.json()
-                  setChatStatus(data)    
-              }else{
-                  console.log('cant check status')
-              }
-          } catch (error) {
-              console.error(error)
+  // Function to check chat status for each student 
+useEffect(() => {
+    const checkChatStatuses = async () => {
+      try {
+        // Create an array of promises for each student's chat status check
+        const studentPromises = students.map(async (student) => {
+          const response = await fetch(
+            `https://varsitysteps-server.onrender.com/messages/checkchats?user1=${userData.id}&user2=${student.user_id}`,
+            { credentials: 'include' }
+          );
+  
+          if (response.ok) {
+            const data = await response.json();
+            return { [student.user_id]: data }; // Return object with student ID as key
+          } else {
+            console.log('Failed to check chat status for student', student.user_id);
+            return { [student.user_id]: null }; // Handle errors gracefully
           }
-      } 
-      if(tutor_id){
-          checkChatStatus()
-      }      
-  },[tutor_id])
-
-
-
+        });
+  
+        // Wait for all promises to resolve and merge into a single object
+        const resolvedStatuses = await Promise.all(studentPromises);
+        setChatStatuses(Object.assign({}, ...resolvedStatuses)); // Merge statuses into one object
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    // Check only when students change
+    if (students.length > 0) {
+      checkChatStatuses();
+    }
+  }, [myTutors]);
+  
 
   return (
     <section className="people-list">
@@ -47,13 +59,20 @@ const MyTutors = ({myTutors,setContent}) => {
     <div className='people'>
         {myTutors.map((tutor)=>{
             return   <div className='person' key={tutor.user_id}>
-                    <div className="person-image">
+                <Link href= {`/tutoring/tutorprofile/${tutor.user_id}`}>
+                <div className="person-name">
+                <div className="person-image">
                        {tutor.profile_image ? <Image alt='person-image' src={tutor.profile_image} width={150} height={200}/> : <FontAwesomeIcon className='person-icon' icon={faUser}/>} 
                     </div>
                     <p>{tutor.username}</p>
+                    </div>
+                </Link>
                     <div className="actions">
-                        <button onClick={()=>{setTutorId(tutor.user_id),setShowChats(true),setReceiver(tutor)}}>Message</button>
-                        <button><Link href= {`/tutoring/tutorprofile/${tutor.user_id}`}>View Profile</Link></button>
+                        <button onClick={()=>{setTutorId(tutor.user_id),
+                            setShowChats(true),
+                            setReceiver(tutor),
+                            setChatStatus(chatStatuses[tutor.user_id])
+                            }}>Message</button>
                     </div>
                 </div>
         })}

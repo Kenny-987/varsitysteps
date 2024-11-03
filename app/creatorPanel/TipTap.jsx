@@ -318,12 +318,6 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     "Travel Writing",
   ];
   
-  // const addToTags = (tag)=>{
-  //   if(tag){
-  //     setTags((prevtags)=>[...prevtags,tag])
-  //   }
-  // }
-  // console.log(tags);
   
   return(
     <div className='text-editor'>

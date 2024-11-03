@@ -270,9 +270,9 @@ overflow-y: auto;
     .showdash a{
         color: #333;
     }
-    .mobile{
+    /* .mobile{
         border: 1px solid blue;
-    }
+    } */
     .mobile-menu-icons{
         display: flex;
         gap: 10px;

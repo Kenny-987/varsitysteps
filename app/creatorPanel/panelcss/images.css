@@ -16,7 +16,7 @@
  
 .caption{
     /* border: 1px solid red; */
-    width: 300px;
+    width: 100%;
 }
 .caption input{
     border: none;
@@ -96,5 +96,8 @@
         flex-direction: column; 
         gap: 10px;
     }
-    
+    .caption{
+        /* border: 1px solid red; */
+        width: 100%;
+    }
 }

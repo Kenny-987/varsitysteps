@@ -256,7 +256,13 @@ border-radius: 50%;
   background-color: #4158D0;
 background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 46%);
 } 
+.tutor-option{
+  position: relative;
+}
 .edit-btn .tutor{
+  position: absolute;
+  top: 30px;
+  left: 0;
   background-color: #4158D0;
 }
 .user-details{
@@ -415,7 +421,7 @@ background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 46%);
   /* border: 1px solid red; */
 }
 .person-icon{
-  font-size: 150px;
+  font-size: 30px;
   color: var(--primary-color);
 }
 .person img{

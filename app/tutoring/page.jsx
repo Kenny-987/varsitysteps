@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 import '../globals.css'
 import './tutors.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faStar, faUser} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,6 +19,8 @@ useEffect(()=>{
       const response = await fetch('https://varsitysteps-server.onrender.com/tutors')
       const data =  await response.json()
       if(response.ok){
+        console.log(data);
+        
         setTutors(data.tutors)
         setFilteredTutors(data.tutors)
       }else{
@@ -112,6 +114,7 @@ const cityFilterFunc = (city)=>{
           </div>
           <div className="tutor-details">
            <p className='name'>{tutor.username}<span>{tutor.location?tutor.location:""}</span></p>
+           <p><FontAwesomeIcon className='star filled' icon={faStar}/>{Math.round(Number(tutor.average_rating)* 10)/10} ({tutor.total_ratings} ratings)</p>
            <p className='charge'>{tutor.base_charge?`$${tutor.base_charge}/month`:""}</p>
           <p>{tutor.bio?tutor.bio.substring(0,50)+'...':'No bio'}</p>
           <div className="categoty">

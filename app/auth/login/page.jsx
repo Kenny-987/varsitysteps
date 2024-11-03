@@ -6,7 +6,7 @@ import '../form.css'
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle,faClose} from '@fortawesome/free-solid-svg-icons'
-import { useRouter } from 'next/navigation';
+import { useRouter,useSearchParams } from 'next/navigation';
 import { useContextUser } from '../../hooks/Context';
 
 const Login = () => {
@@ -17,8 +17,10 @@ const Login = () => {
   const [message, setMessage] = useState('')
   const [loading,setLoading]=useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams();
   const {isAuthenticated,setIsAuthenticated}=useContextUser()
 
+  const redirectUrl = searchParams.get("redirect") || "/dashboard";
   useEffect(()=>{
     if(isAuthenticated){
       console.log('you are logged in')
@@ -51,11 +53,11 @@ const Login = () => {
         console.log(roles);
         
         if(roles.includes('student')){
-          window.location.href='/dashboard'
+          window.location.href=redirectUrl
         }else if(roles.includes('tutor')){
            window.location.href='/tutordashboard'
         }else if(roles.includes('student') && roles.includes('tutor')){
-          window.location.href='/dashboard'
+          window.location.href=redirectUrl
         }
       
       } else {
@@ -107,6 +109,7 @@ const Login = () => {
 
           <div className="redirect">
             <p>No Account yet? <span><Link href="/auth/signup">Sign up here</Link></span></p>
+            {/* <p>Forgot Password</p> */}
             <p className="policylink">By logging in you accept our <span><Link href="">policy, terms & conditions</Link></span></p>
           </div>
 

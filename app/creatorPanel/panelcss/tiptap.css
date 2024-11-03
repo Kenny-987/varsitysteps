@@ -332,6 +332,10 @@ button.is-active{
       padding: 10px;
       padding-bottom: 60px;
   }
+  .caption{
+    /* border: 1px solid red; */
+    width: 100%;
+  }
 
 .button-group{
   /* border: 1px solid black; */

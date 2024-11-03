@@ -6,6 +6,7 @@ const useFetchUser =  () => {
     const [error,setError]= useState(null)
     const [isAuthenticated,setIsAuthenticated]=useState(false)
     const [creatorData,setCreatorData]=useState(null)
+    const [tutoringData,setTutoringData]=useState(null)
     const [notificationCount,setNotificationCount] = useState(0)
     const [notifications,setNotifications]=useState([])
     useEffect(()=>{
@@ -18,6 +19,7 @@ const useFetchUser =  () => {
                     const data = await response.json()
                     setUserData(data.user)
                     setCreatorData(data.creative)
+                    setTutoringData(data.tutoring)
                     console.log(data);
                     
                     setIsAuthenticated(true)
@@ -41,6 +43,8 @@ const useFetchUser =  () => {
                 })
                 if(response.ok){
                     const data = await response.json()
+                    console.log(data);
+                    
                     setNotifications(data)
                     const unread = data.filter(notification=>notification.is_read==false)
                     setNotificationCount(unread.length);
@@ -49,14 +53,13 @@ const useFetchUser =  () => {
                 console.error(error)
             }  
         }
-        if(isAuthenticated){
-            fetchNotifications()
-        }
-        fetchUser()
+        fetchUser().then(() => {
+            fetchNotifications();
+        });
     },[])
 
     
-  return {userData,setUserData,creatorData,setCreatorData,isAuthenticated,setIsAuthenticated,loading,error,notifications,notificationCount,setNotificationCount}
+  return {userData,setUserData,creatorData,setCreatorData,tutoringData,isAuthenticated,setIsAuthenticated,loading,error,notifications,notificationCount,setNotificationCount}
 }
 
 export default useFetchUser

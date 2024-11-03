@@ -94,7 +94,7 @@ const Navbar = () => {
         {userData.role_name.includes("student")?<Link href="/dashboard"><FontAwesomeIcon icon={faUser}/></Link>:<Link href="/tutordashboard"><FontAwesomeIcon icon={faUser}/></Link>}
       </button>
 
-      {isAuthenticated == true && userData && <button onClick={()=>setShowNotifications(true)} className='notification-icon'><FontAwesomeIcon icon={faBell}/></button>}
+      {isAuthenticated == true && userData && <button onClick={()=>setShowNotifications(true)} className='notification-icon'><FontAwesomeIcon icon={faBell}/><span>{notificationCount>0?notificationCount:''}</span></button>}
 
         </div> : <div className="login-btn">
           <button><Link href="/auth/login" onClick={() => setMobileNav(!mobileNav)}>Login</Link></button>

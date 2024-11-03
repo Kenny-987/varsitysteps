@@ -15,8 +15,9 @@ const [loading,setLoading] = useState(false)
   const [showMessage,setShowMessage]=useState(false)
   const [message,setMessage] =useState("")
   const [cancelOptions,setCancelOptions]=useState(false)
-
-
+  const [tags, setTags] = useState(selectedPost?.tags || [])
+  const [tempTag,setTempTag]=useState('')
+  const [showTagList,setShowTagList]=useState(false)
 
 const handleImageUpload = (e) => {
     const files = Array.from(e.target.files); 
@@ -138,7 +139,97 @@ const handleImageUpload = (e) => {
     }
     
   }
+  const addTags=(tag)=>{
+    let updatedTags
+    if(tag){
+      updatedTags = [...tags,tag]
+    }else{
+      updatedTags = [...tags,tempTag]
+    }
+    setTags(updatedTags)
+  }
+  const removeTag=(index)=>{
+    const updatedTags = [...tags]
+    updatedTags.splice(index,1)
+    setTags(updatedTags)
+  }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (tempTag.trim() !== "") { 
+        addTags();
+        setShowTagList(false)
+        setTempTag("");
+      }
+    }
+  };
+
+  const tagList = [
+    "Art",
+    "Film",
+    "Animation",
+    "Crafts",
+    "Education",
+    "Health",
+    "Technology",
+    "Business",
+    "Science",
+    "Lifestyle",
+    "Travel",
+    "Food",
+    "Environment",
+    "Finance",
+    "Entertainment",
+    "Sports",
+    "Fashion",
+    "Painting",
+    "Sculpture",
+    "Photography",
+    "Digital Art",
+    "DIY Projects",
+    "Sewing",
+    "Woodworking",
+    "Jewelry Making",
+    "Study Tips",
+    "Learning Resources",
+    "Educational Technology",
+    "Nutrition",
+    "Fitness",
+    "Mental Health",
+    "Software Development",
+    "Gadgets",
+    "Cybersecurity",
+    "Marketing",
+    "Entrepreneurship",
+    "E-commerce",
+    "Biology",
+    "Physics",
+    "Environmental Science",
+    "Personal Development",
+    "Home Decor",
+    "Recipes",
+    "Food Reviews",
+    "Cooking Techniques",
+    "Sustainability",
+    "Conservation",
+    "Climate Change",
+    "Investing",
+    "Budgeting",
+    "Music",
+    "Books",
+    "Team Sports",
+    "Fashion Tips",
+    "Sustainable Fashion",
+    "Destination Analysis",
+    "Sustainable Practices",
+    "Event Management",
+    "Tourism Marketing",
+    "Data Analytics",
+    "Cultural Tourism",
+    "Travel Writing",
+  ];
+  
   return (
     <div className='image-upload'>
         {/* <h3 className='images-title'>Showcase your masterpiece</h3> */}
@@ -152,6 +243,29 @@ const handleImageUpload = (e) => {
             placeholder='Title or Caption'
             onChange={(e)=>{setTitle(e.target.value)}}
             />
+            <div className="post-tags">
+          <ul className="current-tags">
+            {tags.map((tag,index)=>{
+              return <li key={index}>#{tag}<FontAwesomeIcon icon={faClose} onClick={()=>{removeTag(index)}}/></li>
+            })}
+          </ul>
+        <input
+                    type="text"
+                    value={tempTag} 
+                    placeholder='Add tags'
+                    onChange={(e)=>setTempTag(e.target.value)}
+                    onKeyDown={(e)=>{handleKeyDown(e)}}
+                    onFocus={()=>setShowTagList(true)}
+                    onBlur={() => setTimeout(() => setShowTagList(false), 100)}
+                />
+                {showTagList && 
+                <ul className="tag-list">
+                {tagList.map((tag,index)=>{
+                  return <li key={index} onClick={()=>{addTags(tag),setShowTagList(false)}}>{tag}</li>
+                })}
+              </ul>}
+                
+        </div>
             </div>
             <div className="image-select">
             {images.length > 0 &&

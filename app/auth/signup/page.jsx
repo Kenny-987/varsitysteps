@@ -91,6 +91,7 @@ const Signup = () => {
     <section className="signup form-page">
   <div className="sign-up-form">
       <h1>Sign Up</h1>
+      <p><Link href="/auth/tutorsignup">Sign Up for a Tutor Account</Link></p>
       <form onSubmit={signUp}>
       <div className="form-group">
           <label htmlFor="name">Fullname</label>
@@ -147,7 +148,6 @@ const Signup = () => {
         {loading?<div className='btn-loader'></div>:<button type="submit">Sign Up</button>}
       </form>
       <div className="redirect">
-        <p><Link href="/auth/tutorsignup">Sign Up for a Tutor Account</Link></p>
         <p>Already have an Account? <span><Link href="/auth/login">Login</Link></span></p>
         <p className="policylink">By signing up you accept our <span><Link href="">policy, terms & conditions</Link></span></p>
       </div>

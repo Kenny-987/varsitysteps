@@ -146,9 +146,11 @@ const formatDate = (timestamp) => {
           </div>
           }
           <div className="tags">
-            {post.tags.map((tag,index)=>{
+            {post.tags &&<> {post.tags.map((tag,index)=>{
               return <li key={index}>#{tag}</li>
             })}
+            </>}
+            
           </div>
           {/* <div className="metrics">
             <div className="metric likes">

@@ -1,16 +1,18 @@
 'use client'
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPhone,faEnvelope,faBookOpen,faLocationDot, faUserAlt, faGraduationCap, faInfoCircle,faChalkboardTeacher,faDollarSign,faUser, faCamera,faClose, faDotCircle, faMinus} from '@fortawesome/free-solid-svg-icons';
+import {faPhone,faEnvelope,faBookOpen,faLocationDot, faUserAlt, faGraduationCap, faInfoCircle,faChalkboardTeacher,faDollarSign,faUser, faCamera,faClose, faDotCircle, faMinus, faListSquares, faCaretRight, faCircle} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image'
 import EditTutorProfile from './EditTutorProfile';
 import EditImage from '../dashboard/ImageEdit';
+import Link from 'next/link';
+
 
 
 const TutorProfile = ({user}) => {
     const [showEditForm,setShowEditForm] = useState(false)
     const [editImage,setEditImage]=useState(false)
-    
+    console.log(user);
   return (
     <section className="profile">
          {/* code for the header section of profile page */}
@@ -45,6 +47,7 @@ const TutorProfile = ({user}) => {
 
       <div className="edit-btn">
         <button onClick={()=> setShowEditForm(true)}>Edit Profile</button>
+        {user.role_name.includes('student') && <button><Link href={'/dashboard'} style={{color:'#fff'}}>Back to student dashboard</Link></button> }
       </div>
       
         <div>
@@ -79,7 +82,7 @@ const TutorProfile = ({user}) => {
       {user.teaches&& user.teaches.length>0?user.teaches.map((sub,index)=>{
         return <div key={index}>
           <ul>
-            <li>-{sub}</li>
+            <li><FontAwesomeIcon icon={faCircle} style={{fontSize:'8px'}}/> {sub}</li>
           </ul>
         </div>
       }):<button onClick={()=> setShowEditForm(true)}>Edit Subjects</button>}
@@ -89,7 +92,7 @@ const TutorProfile = ({user}) => {
         {user.qualifications && user.qualifications.length>0?user.qualifications.map((qualy,index)=>{
           return <div key={index}>
           <ul>
-            <li>-{qualy}</li>
+            <li><FontAwesomeIcon icon={faCircle} style={{fontSize:'8px'}}/> {qualy}</li>
           </ul>
         </div>
         }):<button onClick={()=> setShowEditForm(true)}>Edit Qualifications</button>}
