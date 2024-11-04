@@ -18,7 +18,7 @@ const CreatorPanel = () => {
     setfetching(true)
     const fetchPosts = async ()=>{
   try {
-    const response = await fetch(`https://varsitysteps-server.onrender.com/posts/post`,{
+    const response = await fetch(`http://localhost:3000/posts/post`,{
       credentials:'include'
     })
     if(response.ok){
