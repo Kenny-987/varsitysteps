@@ -16,7 +16,7 @@ const Requests = ({requests,setContent}) => {
         console.log(status)
         console.log(requestId)
         try {
-          const response = await  fetch(`http://localhost:3000/api/connectionresponse/${requestId}`,{
+          const response = await  fetch(`https://varsitysteps-server.onrender.com/api/connectionresponse/${requestId}`,{
             method:'POST',
             headers: {
               'Content-Type': 'application/json',
