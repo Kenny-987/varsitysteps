@@ -71,7 +71,7 @@ const Posts = ({posts,setPosts,setPanelContent,setSelectedPost}) => {
     const deletePost = async (post_id)=>{
       setLoading(true)
       try {
-        const response = await fetch(`https://early-flowers-shave.loca.lt/posts/deletepost/${post_id}`,{
+        const response = await fetch(`https://varsitysteps-server.onrender.com/posts/deletepost/${post_id}`,{
           method:'DELETE',
           credentials:'include'
         })

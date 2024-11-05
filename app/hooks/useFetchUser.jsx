@@ -12,7 +12,7 @@ const useFetchUser =  () => {
     useEffect(()=>{
         const fetchUser=async()=>{
             try {
-                const response = await fetch('https://early-flowers-shave.loca.lt/user/info',{
+                const response = await fetch('https://varsitysteps-server.onrender.com/user/info',{
                     credentials:'include'
                 })
                 if(response.ok){
@@ -38,7 +38,7 @@ const useFetchUser =  () => {
         }
         const fetchNotifications = async()=>{
             try {
-                const response = await fetch(`https://early-flowers-shave.loca.lt/api/notifications`,{
+                const response = await fetch(`https://varsitysteps-server.onrender.com/api/notifications`,{
                     credentials:'include'
                 })
                 if(response.ok){

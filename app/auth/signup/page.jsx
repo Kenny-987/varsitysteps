@@ -48,7 +48,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await fetch('https://early-flowers-shave.loca.lt/auth/register', {
+      const response = await fetch('https://varsitysteps-server.onrender.com/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

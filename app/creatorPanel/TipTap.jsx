@@ -196,7 +196,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     setLoading(true)
     if(selectedPost){
       try {
-        const response = await fetch(`https://early-flowers-shave.loca.lt/posts/editpost`,{
+        const response = await fetch(`https://varsitysteps-server.onrender.com/posts/editpost`,{
           method:'PATCH',
           credentials:'include',
           headers: {
@@ -226,7 +226,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     } else{
       try {
         const type ='text'
-        const response = await fetch(`https://early-flowers-shave.loca.lt/posts/savepost`,{
+        const response = await fetch(`https://varsitysteps-server.onrender.com/posts/savepost`,{
           method:'POST',
           credentials:'include',
           headers: {

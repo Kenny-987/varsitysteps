@@ -38,7 +38,7 @@ const TutorForm = ({setShowTutorModal}) => {
         e.preventDefault()
         setLoading(true)
       try {
-        const response = await fetch(`https://early-flowers-shave.loca.lt/user/tutor-account`,{
+        const response = await fetch(`https://varsitysteps-server.onrender.com/user/tutor-account`,{
           method:'POST',
           credentials:'include',
           headers: {

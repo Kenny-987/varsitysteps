@@ -81,7 +81,7 @@ try {
     return setMessage('Update at least 1 field'); 
   }
 
-  const response = await fetch(`https://early-flowers-shave.loca.lt/user/update/${userId}`,{
+  const response = await fetch(`https://varsitysteps-server.onrender.com/user/update/${userId}`,{
     method:'PATCH',
     headers: {
       'Content-Type': 'application/json',
