@@ -40,7 +40,7 @@ const Dashboard = () => {
 useEffect(()=>{
   const getTutors = async()=>{
     try {
-    const response = await fetch(`http://localhost:3000/user/mytutors`,{
+    const response = await fetch(`https://early-flowers-shave.loca.lt/user/mytutors`,{
       credentials:'include'
     })
     if(response.ok){
@@ -58,7 +58,7 @@ useEffect(()=>{
 
  const logout = async()=>{
 try {
- const response = await fetch(`http://localhost:3000/auth/logout`,{
+ const response = await fetch(`https://early-flowers-shave.loca.lt/auth/logout`,{
   method:'POST',
   credentials:'include'
  })

@@ -18,7 +18,7 @@ const CreatorPanel = () => {
     setfetching(true)
     const fetchPosts = async ()=>{
   try {
-    const response = await fetch(`http://localhost:3000/posts/post`,{
+    const response = await fetch(`https://early-flowers-shave.loca.lt/posts/post`,{
       credentials:'include'
     })
     if(response.ok){

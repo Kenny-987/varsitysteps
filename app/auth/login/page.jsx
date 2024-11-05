@@ -32,7 +32,7 @@ const Login = () => {
     return null;
   }
 
-  const api = 'http://localhost:3000/auth/login'
+  const api = 'https://early-flowers-shave.loca.lt/auth/login'
   const login= async(e)=>{
     setLoading(true)
     console.log('logging in')

@@ -89,7 +89,7 @@ const handleImageUpload = (e) => {
       formData.append('existingImages', imageUrl); // Keep these in the post without overriding
     });
       try {
-        const response = await fetch(`http://localhost:3000/posts/editpost`,{
+        const response = await fetch(`https://early-flowers-shave.loca.lt/posts/editpost`,{
           method:'PATCH',
           credentials:'include',
           body:formData
@@ -116,7 +116,7 @@ const handleImageUpload = (e) => {
       }
     }else{
       try {
-        const response = await fetch('http://localhost:3000/posts/savepost', {
+        const response = await fetch('https://early-flowers-shave.loca.lt/posts/savepost', {
           method: 'POST',
           credentials:'include',
           body: formData, 

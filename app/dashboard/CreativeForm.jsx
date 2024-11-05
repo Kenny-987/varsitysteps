@@ -45,7 +45,7 @@ const createCreative= async(e)=>{
     setLoading(true)
     // console
   try {
-    const response = await fetch(`http://localhost:3000/user/creator-account`,{
+    const response = await fetch(`https://early-flowers-shave.loca.lt/user/creator-account`,{
       method:'POST',
       credentials:'include',
       headers: {

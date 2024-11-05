@@ -45,7 +45,7 @@ const TutorDashboard = ()=>{
       const fetchRequests = async()=>{
       const userId = userData.id
         try {
-            const response = await fetch(`http://localhost:3000/api/requests/${userId}`,{
+            const response = await fetch(`https://early-flowers-shave.loca.lt/api/requests/${userId}`,{
                 credentials:'include'
             })
             if(response.ok){
@@ -77,7 +77,7 @@ if(loading){
  }
 const logout = async()=>{
   try {
-   const response = await fetch(`http://localhost:3000/auth/logout`,{
+   const response = await fetch(`https://early-flowers-shave.loca.lt/auth/logout`,{
     method:'POST',
     credentials:'include'
    })

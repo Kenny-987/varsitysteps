@@ -16,7 +16,7 @@ const [citySearch,setCitySearch]=useState(false)
 useEffect(()=>{
   const fetchTutors = async()=>{
     try{
-      const response = await fetch('http://localhost:3000/tutors')
+      const response = await fetch('https://early-flowers-shave.loca.lt/tutors')
       const data =  await response.json()
       if(response.ok){
         console.log(data);
@@ -39,7 +39,7 @@ const searchBySubject = async(e)=>{
 
   if(query.trim()!==''){
     try {
-      const response = await fetch(`http://localhost:3000/tutors/search?query=${query}`)
+      const response = await fetch(`https://early-flowers-shave.loca.lt/tutors/search?query=${query}`)
       if(response.ok){
         const data = await response.json()
         console.log(data);

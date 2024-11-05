@@ -24,7 +24,7 @@ const socket = useSocket()
 //function to fetch chats
 useEffect(()=>{
 const fetchChats = async ()=>{
-const response = await fetch(`http://localhost:3000/messages/chats`,{
+const response = await fetch(`https://early-flowers-shave.loca.lt/messages/chats`,{
   credentials:'include'
 })
 if(response.ok){
