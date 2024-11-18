@@ -7,6 +7,7 @@ import Navbar from "./components/navbar/Navbar";
 import { ContextProvider } from "./hooks/Context";
 import React, {useState} from 'react'
 import { SocketProvider } from "./hooks/SocketContext";
+import Footer from "./components/footer/Footer";
 
 
 config.autoAddCss = false;
