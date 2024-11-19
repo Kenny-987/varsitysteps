@@ -45,7 +45,6 @@ const Navbar = () => {
           setMobileNav(false)
         }}><FontAwesomeIcon icon={faClose}/></div>
         <li><Link href="/" onClick={() => setMobileNav(!mobileNav)}>Home</Link></li>
-        {/* <li><Link href="" onClick={() => setMobileNav(!mobileNav)}>Creative Hub</Link></li>  */}
         <li><Link href='/posts'>Explore</Link></li>
         <li
           onMouseEnter={handleDropdown}
@@ -77,7 +76,7 @@ const Navbar = () => {
                     {/* <li><Link href="">Academic Resources</Link></li> */}
                     <li><Link href="/institutions" onClick={() => setMobileNav(!mobileNav)}>College and University Listings</Link></li>
                     {/* <li><Link href="">Internships</Link></li> */}
-                    <li><Link href="">Career Guidance</Link></li>
+                    <li><Link href="/careers">Career Guidance</Link></li>
                     {/* <li><Link href="">Mental-Health Resources</Link></li> */}
                   </ul>
                 )}
@@ -86,8 +85,8 @@ const Navbar = () => {
           )}
         </li>
         <li><Link href="/about" onClick={() => setMobileNav(!mobileNav)}>About</Link></li>
-        <li><Link href="/support" onClick={() => setMobileNav(!mobileNav)}>Support Us</Link></li>
-        <li><Link href="" onClick={() => setMobileNav(!mobileNav)}>Contact</Link></li>
+        {/* <li><Link href="/support" onClick={() => setMobileNav(!mobileNav)}>Support Us</Link></li>s */}
+        <li><Link href="/contact" onClick={() => setMobileNav(!mobileNav)}>Contact</Link></li>
         
         {isAuthenticated == true && userData ? <div className="dashIcon">
         <button className="showdash-widescreen" onClick={()=>setShowDash(!showDash)} >

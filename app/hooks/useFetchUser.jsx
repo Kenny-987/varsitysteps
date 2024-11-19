@@ -9,6 +9,10 @@ const useFetchUser =  () => {
     const [tutoringData,setTutoringData]=useState(null)
     const [notificationCount,setNotificationCount] = useState(0)
     const [notifications,setNotifications]=useState([])
+
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+
+    
     useEffect(()=>{
         const fetchUser=async()=>{
             try {

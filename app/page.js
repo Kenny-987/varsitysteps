@@ -64,7 +64,7 @@ export default function Home() {
             <li><FontAwesomeIcon icon={faCircle}/> Share your work.</li>
           </ul>
           <div className="feature-cta">
-            <button><Link href='/institutions'>Get Started</Link></button>
+            <button><Link href='/auth/login'>Get Started</Link></button>
           </div>
           </div>
           {/* feature card */}
@@ -82,8 +82,9 @@ export default function Home() {
       </section>
       <section className="explore">
         <h2>Explore</h2>
-        <p>At VarsitySteps, we celebrate the talent, innovation, and hard work of our community. Explore a diverse range of projects, ideas, and creations shared by students just like you. From creative content to practical skills, our platform is a showcase of student brilliance waiting to inspire and amaze.</p>
-        <Link href='/posts'>Explore</Link>
+        <p>Explore a diverse range of projects, ideas, and creations shared by fellow users.</p>
+        <Link href='/posts'>
+        <button>Explore</button></Link>
       </section>
 {/* <Contact/> */}
 {/* <Footer/> */}

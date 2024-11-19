@@ -40,7 +40,7 @@ const BottomNavbar = () => {
               {/* <li><Link href="">Library</Link></li> */}
               <li><Link href="/institutions" >College and University Listings</Link></li>
                {/* <li><Link href="">Internships</Link></li> */}
-              <li><Link href="">Career Guidance</Link></li>
+              <li><Link href="/careers">Career Guidance</Link></li>
                {/* <li><Link href="">Mental-Health Resources</Link></li> */}
             </ul>
           )}

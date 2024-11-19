@@ -2,7 +2,7 @@ section{
   padding: 20px;
     /* width: 80%; */
     margin: auto;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     /* border: 1px solid red; */
 }
 section h2{
@@ -85,6 +85,7 @@ color: var(--primary-color);
 }
 .brief-intro{
     width: 80%;
+    text-align: center;
     margin: auto;
 }
 .brief-intro a{
@@ -104,12 +105,46 @@ color: var(--primary-color);
 .explore{
   width:80%;
   margin: auto;
+  text-align: center;
+}
+.explore button{
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  padding: 4px;
+  color: #fff;
+}
+@media (max-width: 768px){
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 50px 20px;
+    width:100%;
+  
+  }
+  .feature-cta button{
+    padding: 8px;
+    font-size: 14px;
+  }
+  .brief-intro{
+    width: 100%;
+    padding: 20px;
+}
+.brief-intro button{
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
 }
 
-@media (max-width: 768px){
-    .aboutus,.features{
-        width: 90%;
-        margin: auto;
-        margin-top: 50px;
-    }
+.explore{
+  width:100%;
+}
+.explore button{
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+}
 }
