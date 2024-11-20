@@ -180,12 +180,15 @@
       width: 100%;
       padding: 10px;
   }
+  .all-posts{
+    padding: 0px;
+}
   }
   @media (min-width: 768px){
     .all-posts{
       width: 100%;
       margin: auto;
-      padding: 0;
+      padding: 20px;
   }
   }
   @media (max-width: 480px) {
