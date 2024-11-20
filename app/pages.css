@@ -114,6 +114,9 @@ color: var(--primary-color);
   color: #fff;
 }
 @media (max-width: 768px){
+  section{
+    padding: 0px;
+  }
   .features {
     display: flex;
     flex-direction: column;
