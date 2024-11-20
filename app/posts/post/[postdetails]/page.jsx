@@ -7,7 +7,7 @@ import { EditorContent,useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faCaretLeft, faCaretRight, faClose, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft, faArrowLeft, faCaretLeft, faCaretRight, faClose, faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Images from 'next/image'
@@ -131,7 +131,7 @@ const Post = () => {
   return (
     <section className="post-details">
       <div className="back">
-        <FontAwesomeIcon  icon={faArrowLeft} onClick={()=>router.back()}/>
+        <FontAwesomeIcon  icon={faArrowCircleLeft} onClick={()=>router.back()}/>
       </div>
         {post && 
         <div className="post-info">

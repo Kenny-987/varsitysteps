@@ -178,7 +178,7 @@ li a:hover{
     position: absolute;
     /* top: -50px; */
     bottom: 100%;
-    transform: translateY(-160px);
+    transform: translateY(-130px);
     width: 200px;
     height: fit-content;
 }
@@ -238,7 +238,7 @@ overflow-y: auto;
     .links-parent.mobile li a{
         font-size: 26px;
     }
-    .close{
+    .link-close{
         display: block;
         font-size: 26px;
         color: red;

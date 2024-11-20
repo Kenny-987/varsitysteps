@@ -176,10 +176,14 @@
     .grid-item {
       flex: 1 0 45%;             
     }
+    .post-details{
+      width: 100%;
+      padding: 10px;
+  }
   }
   @media (min-width: 768px){
     .all-posts{
-      width: 80%;
+      width: 100%;
       margin: auto;
       padding: 20px;
   }

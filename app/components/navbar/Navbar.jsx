@@ -41,7 +41,7 @@ const Navbar = () => {
       
       
       <ul className={`links-parent ${mobileNav ? 'mobile' : ''}`}>
-        <div className="close" onClick={()=>{
+        <div className="link-close" onClick={()=>{
           setMobileNav(false)
         }}><FontAwesomeIcon icon={faClose}/></div>
         <li><Link href="/" onClick={() => setMobileNav(!mobileNav)}>Home</Link></li>
@@ -76,7 +76,7 @@ const Navbar = () => {
                     {/* <li><Link href="">Academic Resources</Link></li> */}
                     <li><Link href="/institutions" onClick={() => setMobileNav(!mobileNav)}>College and University Listings</Link></li>
                     {/* <li><Link href="">Internships</Link></li> */}
-                    <li><Link href="/careers">Career Guidance</Link></li>
+                    {/* <li><Link href="/careers">Career Guidance</Link></li> */}
                     {/* <li><Link href="">Mental-Health Resources</Link></li> */}
                   </ul>
                 )}

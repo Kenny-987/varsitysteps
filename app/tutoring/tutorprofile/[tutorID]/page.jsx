@@ -168,7 +168,7 @@ const rateTutor = async (tutor_id,rater_id) => {
 }
 return <section className='tutor-profile-container'>
     <div className="route"> 
-            <p onClick={()=>router.back()}><FontAwesomeIcon icon={faArrowAltCircleLeft}/>back</p>
+            <p onClick={()=>router.back()}><FontAwesomeIcon icon={faArrowAltCircleLeft}/></p>
         </div>
     <div className="profile-wrapper">
         {/* This div will align to left on desktop view and shows basic info */}

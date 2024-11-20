@@ -10,7 +10,6 @@ import Notifications from '../notifications/Notifications';
 
 
 const BottomNavbar = () => {
-    const [mobileNav, setMobileNav] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const [innerDropdown, setInnerDropdown] = useState(false);
    const {userData,isAuthenticated,setShowDash,showDash,notificationCount} = useContextUser()
@@ -40,7 +39,7 @@ const BottomNavbar = () => {
               {/* <li><Link href="">Library</Link></li> */}
               <li><Link href="/institutions" >College and University Listings</Link></li>
                {/* <li><Link href="">Internships</Link></li> */}
-              <li><Link href="/careers">Career Guidance</Link></li>
+              {/* <li><Link href="/careers">Career Guidance</Link></li> */}
                {/* <li><Link href="">Mental-Health Resources</Link></li> */}
             </ul>
           )}

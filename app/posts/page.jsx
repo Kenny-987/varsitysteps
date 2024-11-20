@@ -13,7 +13,6 @@ import Link from 'next/link'
 
 const Posts = () => {
   const [posts,setPosts]=useState([])
- console.log(posts);
  
 
 //function to get all posts
@@ -107,7 +106,7 @@ const formatDate = (timestamp) => {
 
   return (
     <section className="all-posts">
-      <h3>Discover Talented Work By Students</h3>
+      <h3>Discover Talented Work</h3>
       <div className="post-filters">
 
       </div>
