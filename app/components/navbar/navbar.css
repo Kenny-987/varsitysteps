@@ -200,6 +200,11 @@ width: 100%;
 max-height: 500px;
 overflow-y: auto;
 }
+.link-close{
+    display: none;
+
+}
+
 @media (max-width: 700px){
 
     .showmenu{
