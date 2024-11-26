@@ -53,7 +53,7 @@ export default function Home() {
           </div>
           {/* feature card */}
           {/* feature card */}
-          <div className="feature-card">
+          {/* <div className="feature-card">
           <div className="feature-img">
             <Image src='/images/collegecampus-bro.svg' width={150} height={150}/>
           </div>
@@ -66,7 +66,7 @@ export default function Home() {
           <div className="feature-cta">
             <button><Link href='/auth/login'>Get Started</Link></button>
           </div>
-          </div>
+          </div> */}
           {/* feature card */}
         </div>
       </section>
@@ -74,18 +74,18 @@ export default function Home() {
       <h2>About VarsitySteps</h2>
       <p>VarsitySteps is a platform designed for students and tutors to connect and help each other grow academically and financailly.</p>
       <p>It is also a place for prospective students to explore different career paths and discover institutions across the country to help them realize their career goals and ambitions</p>
-      <p>The platform also serves as an Outlet for students and graduates to apply practical skills in their respective disciplines and sharing them on VarsitySteps. </p>
-      <p>This can help in creating a portfolio and also going the extra mile, beyond what college and university curriculumns cover.</p>
+      {/* <p>The platform also serves as an Outlet for students and graduates to apply practical skills in their respective disciplines and sharing them on VarsitySteps. </p>
+      <p>This can help in creating a portfolio and also going the extra mile, beyond what college and university curriculumns cover.</p> */}
       <Link href='/about'>
       <button>Learn More</button>
       </Link>
       </section>
-      <section className="explore">
+      {/* <section className="explore">
         <h2>Explore</h2>
         <p>Explore a diverse range of projects, ideas, and creations shared by fellow users.</p>
         <Link href='/posts'>
         <button>Explore</button></Link>
-      </section>
+      </section> */}
 {/* <Contact/> */}
 {/* <Footer/> */}
     </main>

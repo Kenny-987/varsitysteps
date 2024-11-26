@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 import './navbar.css';
 import '../../globals.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faCaretUp, faCaretDown, faBell, faUser,faGears, faSignIn, faInfo, faInfoCircle, faArchive, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCaretUp, faCaretDown, faBell, faUser,faGears, faSignIn, faInfo, faInfoCircle, faArchive, faLayerGroup, faChalkboardTeacher, faUniversity } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useContextUser } from '../../hooks/Context';
 import Notifications from '../notifications/Notifications';
@@ -24,32 +24,43 @@ const BottomNavbar = () => {
             <span>Home</span>
           </Link>
         </li>
-        <li className='mobile-tools' onClick={() => setDropdown(!dropdown)}>
-        {/* //   onClick={handleDropdown} */}
+        <li>
+          <Link href="/tutoring" onClick={() => setDropdown(false)}>
+            <FontAwesomeIcon icon={faChalkboardTeacher} />
+            <span>Tutors</span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/institutions" onClick={() => setDropdown(false)}>
+            <FontAwesomeIcon icon={faUniversity} />
+            <span>Institutions</span>
+          </Link>
+        </li>
+        {/* <li className='mobile-tools' onClick={() => setDropdown(!dropdown)}>
         <button>
             <FontAwesomeIcon icon={faGears} />
             <span>Tools</span>
           </button>
           {dropdown && (
             <ul className="dropdown">
-              {/* <li><Link href="/finance">Financial Services</Link></li> */}
+              <li><Link href="/finance">Financial Services</Link></li>
               <li><Link href="/tutoring">Tutoring</Link></li> 
-              {/* <li><Link href="">Accomodation</Link></li>
-              <li><Link href="">Events and Activities</Link></li> */}
-              {/* <li><Link href="">Library</Link></li> */}
+              <li><Link href="">Accomodation</Link></li>
+              <li><Link href="">Events and Activities</Link></li>
+              <li><Link href="">Library</Link></li>
               <li><Link href="/institutions" >College and University Listings</Link></li>
-               {/* <li><Link href="">Internships</Link></li> */}
-              {/* <li><Link href="/careers">Career Guidance</Link></li> */}
-               {/* <li><Link href="">Mental-Health Resources</Link></li> */}
+               <li><Link href="">Internships</Link></li>
+              <li><Link href="/careers">Career Guidance</Link></li>
+               <li><Link href="">Mental-Health Resources</Link></li>
             </ul>
           )}
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
         <Link href='/posts' onClick={() => setDropdown(false)}>
           <FontAwesomeIcon icon={faLayerGroup} />
           <span>Explore</span>
         </Link>
-      </li>
+      </li> */}
         {userData && isAuthenticated ? <>
         <li>
         <button onClick={() => setShowNotifications(!showNotifications)}>
@@ -71,7 +82,7 @@ const BottomNavbar = () => {
         <>
         
       <li>
-        <Link href='/'>
+        <Link href='/about'>
           <FontAwesomeIcon icon={faInfoCircle} />
           <span>About</span>
         </Link>

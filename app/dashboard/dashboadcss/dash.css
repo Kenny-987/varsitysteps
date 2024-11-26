@@ -9,7 +9,11 @@
     background-color: var(--neutral-bg);
     width: 100%;
     gap: 20px;
+    padding: 0;
     border-top: 1px solid #ccc;
+  } 
+  .dash-container section{
+    padding: 0;
   }
   .dash-content{
     margin-bottom: 60px;
@@ -236,6 +240,11 @@ border-radius: 50%;
  font-weight: 600 !important;
 }
 
+.verify-email a{
+  text-decoration: none;
+  color: #777;
+  font-size: 14px;
+}
 .edit-btn{
   /* border: 1px solid blue; */
   display: flex;
@@ -253,8 +262,9 @@ border-radius: 50%;
   cursor: pointer;
 }
 .edit-btn .creative{
-  background-color: #4158D0;
-background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 46%);
+  /* background-color: #4158D0;
+background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 46%); */
+background-color: var(--primary-color);
 } 
 .tutor-option{
   position: relative;

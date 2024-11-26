@@ -45,8 +45,10 @@ const Navbar = () => {
           setMobileNav(false)
         }}><FontAwesomeIcon icon={faClose}/></div>
         <li><Link href="/" onClick={() => setMobileNav(!mobileNav)}>Home</Link></li>
-        <li><Link href='/posts'>Explore</Link></li>
-        <li
+        {/* <li><Link href='/posts'>Explore</Link></li> */}
+        <li><Link href='/tutoring'>Tutors</Link></li>
+        <li><Link href='/institutions'>Institutions</Link></li>
+        {/* <li
           onMouseEnter={handleDropdown}
           onMouseLeave={() => setDropdown(false)}
           onClick={handleDropdown}
@@ -57,11 +59,11 @@ const Navbar = () => {
             <ul className="dropdown">
               
               
-              {/* <li><Link href="/finance">Financial Services</Link></li> */}
+              <li><Link href="/finance">Financial Services</Link></li>
               <li><Link href="/tutoring" onClick={() => setMobileNav(!mobileNav)}>Tutoring</Link></li> 
               
-              {/* <li><Link href="">Accomodation</Link></li>
-              <li><Link href="">Events and Activities</Link></li> */}
+              <li><Link href="">Accomodation</Link></li>
+              <li><Link href="">Events and Activities</Link></li>
               <li
                 onMouseEnter={handleInnerDropdown}
                 onMouseLeave={() => setInnerDropdown(false)}
@@ -73,17 +75,17 @@ const Navbar = () => {
                 Skills and Career Development <span><FontAwesomeIcon icon={faCaretDown}/></span>
                 {innerDropdown && (
                   <ul className='inner-dropdown'>
-                    {/* <li><Link href="">Academic Resources</Link></li> */}
+                    <li><Link href="">Academic Resources</Link></li>
                     <li><Link href="/institutions" onClick={() => setMobileNav(!mobileNav)}>College and University Listings</Link></li>
-                    {/* <li><Link href="">Internships</Link></li> */}
-                    {/* <li><Link href="/careers">Career Guidance</Link></li> */}
-                    {/* <li><Link href="">Mental-Health Resources</Link></li> */}
+                    <li><Link href="">Internships</Link></li>
+                    <li><Link href="/careers">Career Guidance</Link></li>
+                    <li><Link href="">Mental-Health Resources</Link></li>
                   </ul>
                 )}
               </li>
             </ul>
           )}
-        </li>
+        </li> */}
         <li><Link href="/about" onClick={() => setMobileNav(!mobileNav)}>About</Link></li>
         {/* <li><Link href="/support" onClick={() => setMobileNav(!mobileNav)}>Support Us</Link></li>s */}
         <li><Link href="/contact" onClick={() => setMobileNav(!mobileNav)}>Contact</Link></li>

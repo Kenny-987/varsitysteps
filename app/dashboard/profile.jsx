@@ -2,7 +2,7 @@
 import React,{useState} from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPhone,faBookOpen,faUniversity,faLocationDot,faUser,faCamera, faInfo, faInfoCircle, faEdit, faUserEdit, faStar, faClose, faL, faBriefcase, faGears, faChalkboardTeacher, faEllipsis} from '@fortawesome/free-solid-svg-icons';
+import {faPhone,faBookOpen,faUniversity,faLocationDot,faUser,faCamera, faInfo, faInfoCircle, faEdit, faUserEdit, faStar, faClose, faL, faBriefcase, faGears, faChalkboardTeacher, faEllipsis, faCheckCircle, faPen} from '@fortawesome/free-solid-svg-icons';
 import EditProfile from './EditProfile';
 import EditImage from './ImageEdit';
 import CreativeForm from './CreativeForm';
@@ -89,17 +89,18 @@ const [tutorOption,setTutorOption]=useState(false)
         <div className="profile-content">
         <div className="profile-username">
            <p>{userData.username}</p>
-           <p>{userData.email}</p>
+           {/* <p>{userData.email} <span className='verify-email'><Link href=''>verify your email <FontAwesomeIcon icon={faCheckCircle}/></Link></span></p> */}
       </div>
 
         <div className="edit-btn">
         <button onClick={()=> setShowEditForm(true)}><FontAwesomeIcon icon={faUserEdit}/> Edit Profile</button>
-        {!creatorData ? <button onClick={()=> setShowCreative(true)} className="creative"><FontAwesomeIcon icon={faStar}/> Showcase your talent</button>:<button onClick={()=> setContent('Creator')} className="creative"><FontAwesomeIcon icon={faStar}/> Creator Panel</button>}
+        <button onClick={()=> setShowTutorModal(true)} className="creative"><FontAwesomeIcon icon={faPen}/> Become a tutor</button>
+        {/* {!creatorData ? <button onClick={()=> setShowCreative(true)} className="creative"><FontAwesomeIcon icon={faStar}/> Showcase your talent</button>:<button onClick={()=> setContent('Creator')} className="creative"><FontAwesomeIcon icon={faStar}/> Creator Panel</button>}
         {!userData.role_name.includes('tutor') ?
         <div className="tutor-option">
         <button style={{borderRadius:"50%"}} onClick={()=>{setTutorOption(!tutorOption)}}><FontAwesomeIcon icon={faEllipsis}/></button>
         {tutorOption &&<button onClick={()=> setShowTutorModal(true)} className='tutor'>Become a tutor</button> }
-        </div> : <p><Link href='/tutordashboard'>Tutor Dashboard</Link></p>}
+        </div> : <p><Link href='/tutordashboard'>Tutor Dashboard</Link></p>} */}
         
       </div>
 
@@ -129,7 +130,7 @@ const [tutorOption,setTutorOption]=useState(false)
       </div>
           </div>
           {/* creator data section */}
-        {creatorData && 
+        {/* {creatorData && 
         <>
         <h3>Creator Info</h3>
         <div className="user-details">
@@ -160,7 +161,7 @@ const [tutorOption,setTutorOption]=useState(false)
   
           </div>
         </>
-        }
+        } */}
       {showEditForm && <EditProfile setShowEditForm={setShowEditForm} creatorData={creatorData} user={userData}/> }
         </div>
     </section>

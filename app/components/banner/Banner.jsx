@@ -11,8 +11,12 @@ const Banner = () => {
     <section className="banner">
     <div className="banner-content">
       <h1 className="headline">Empower Your Academic Journey with VarsitySteps</h1>
-      <p className="subheadline">Discover resources, career opportunities, and support to enhance your educational experience.</p>
-      {isAuthenticated?<Link href="/dashboard" className="cta-button">Dashboard</Link>:<Link href="/auth/login" className="cta-button">Join Us</Link>}
+      <p className="subheadline">Discover an array of tutors to help you with your academic journey.</p>
+      {/* {isAuthenticated?<Link href="/dashboard" className="cta-button">Dashboard</Link>:<Link href="/auth/login" className="cta-button">Join Us</Link>} */}
+      <div className="banner-cta">
+      <Link href="/tutoring" className="cta-button">Find Tutors</Link>
+      <Link href="/auth/tutorsignup" className="cta-button">Become a tutor</Link>
+      </div>
       
     </div>
     </section>

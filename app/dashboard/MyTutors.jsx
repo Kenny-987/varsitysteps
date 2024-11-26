@@ -47,7 +47,7 @@ useEffect(() => {
     };
   
     // Check only when students change
-    if (students.length > 0) {
+    if (myTutors.length > 0) {
       checkChatStatuses();
     }
   }, [myTutors]);

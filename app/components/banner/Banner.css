@@ -26,7 +26,12 @@
     margin-bottom: 20px;
     color: var(--dark-text);
   }
-  
+  .banner-cta{
+    display: flex;
+    gap: 4px;
+    width: fit-content;
+    margin: auto;
+  }
   .cta-button {
     background-color: var(--primary-color);
     color: #fff;
@@ -47,5 +52,9 @@
         color: var(--primary-color);
         font-weight: bold;
         margin-bottom: 10px;
+      }
+      .banner-cta{
+        display: flex;
+        gap: 8px;
       }
   }

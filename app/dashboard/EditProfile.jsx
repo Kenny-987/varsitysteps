@@ -224,7 +224,7 @@ try {
            />
         </div>
 
-        {creatorData && 
+        {/* {creatorData && 
           <div className="form-group">
           <label htmlFor="field">Field</label>
           <input 
@@ -236,9 +236,9 @@ try {
           onChange={(e) => setField(e.target.value)}
            />
         </div>
-        }
+        } */}
 
-{creatorData &&  <div className='form-group list-parent'>
+{/* {creatorData &&  <div className='form-group list-parent'>
               <label htmlFor="">Specializations</label>
               <input type="text"
               placeholder='Web Dev, Photoshop, UI, Portraits  ... etc'
@@ -257,9 +257,9 @@ try {
               </div>
             })}
            </div>
-            </div>}
+            </div>} */}
 
-          {creatorData && <div className='form-group'>
+          {/* {creatorData && <div className='form-group'>
               <label htmlFor="">Your Skills</label>
               <input type="text"
               placeholder='Java, Adobe, creative writing ... etc'
@@ -275,7 +275,7 @@ try {
               </div>
             })}
            </div>
-            </div>}
+            </div>} */}
         {loading?<div className='btn-loader'></div>:<div className='form-btns'>
           <button >Save</button>
           <button onClick={()=>setShowEditForm(false)}>Cancel</button>
