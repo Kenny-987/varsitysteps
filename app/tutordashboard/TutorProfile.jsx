@@ -1,18 +1,22 @@
 'use client'
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPhone,faEnvelope,faBookOpen,faLocationDot, faUserAlt, faGraduationCap, faInfoCircle,faChalkboardTeacher,faDollarSign,faUser, faCamera,faClose, faDotCircle, faMinus, faListSquares, faCaretRight, faCircle} from '@fortawesome/free-solid-svg-icons';
+import {faPhone,faEnvelope,faBookOpen,faLocationDot, faUserAlt, faGraduationCap, faInfoCircle,faChalkboardTeacher,faDollarSign,faUser, faCamera,faClose, faDotCircle, faMinus, faListSquares, faCaretRight, faCircle, faGlobe, faRibbon, faCircleCheck} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image'
 import EditTutorProfile from './EditTutorProfile';
 import EditImage from '../dashboard/ImageEdit';
 import Link from 'next/link';
+import PremiumModal from './PremiumModal';
 
 
 
 const TutorProfile = ({user}) => {
     const [showEditForm,setShowEditForm] = useState(false)
     const [editImage,setEditImage]=useState(false)
+    const [showPremiumModal,setShowPremiumModal]=useState(false)
     console.log(user);
+    
+
   return (
     <section className="profile">
          {/* code for the header section of profile page */}
@@ -41,15 +45,23 @@ const TutorProfile = ({user}) => {
         
         <div className="profile-content">
         <div className="profile-username">
-      <p>{user.username}</p>
+      <p>{user.username} </p>
       <p>{user.email}</p>
       </div>
+
+      {/* {user.is_verified ?<span className='verified-email'>email verified<FontAwesomeIcon icon={faCircleCheck}/></span>:<Link href='/auth/verify-email' className='verify-email-link'>verify email<FontAwesomeIcon icon={faCircleCheck}/></Link>} */}
 
       <div className="edit-btn">
         <button onClick={()=> setShowEditForm(true)}>Edit Profile</button>
         {user.role_name.includes('student') && <button><Link href={'/dashboard'} style={{color:'#fff'}}>Back to student dashboard</Link></button> }
       </div>
       
+      <div>
+      {/* <div className="badge">
+          <FontAwesomeIcon icon={faRibbon}/>
+      </div> */}
+        <p>Your average rating</p>
+      </div>
         <div>
         <p><FontAwesomeIcon icon={faInfoCircle}/> Bio</p>
         <div className="user-detail">
@@ -104,10 +116,27 @@ const TutorProfile = ({user}) => {
         {user.teaching_method?<p>{user.teaching_method}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Method</button>}
         
       </div>
+      {/* here is an option for premium users to add direct links to their social media */}
+      {/* <div className="user-detail">
+        <p><FontAwesomeIcon icon={faGlobe}/> Social Media Links</p>
+        {user.teaching_method?<p>{user.teaching_method}</p>:<button onClick={()=> setShowEditForm(true)}>Add Links</button>}
+        
+      </div> */}
       </div>
+      {/* <div className="premium-cta">
+      <p><span>Become a Premium Member</span></p>
+      <ul>
+        <li>Boost your profile</li>
+        <li>Priority Listing & Increased Visibility</li>
+        <li>Exclusive Advertising</li>
+        <li>Share social media links</li>
+        <li>Unlock detailed analysis</li>
+      </ul>
+      <button onClick={()=>setShowPremiumModal(true)}>Get Premium</button>
+      </div> */}
         </div>
       
-      
+      {showPremiumModal && <PremiumModal/>}
       {showEditForm && <EditTutorProfile setShowEditForm={setShowEditForm} user={user}/> }
     </section>
   )

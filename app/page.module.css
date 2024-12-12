@@ -1,6 +1,6 @@
-.main{
+/* .main{
   margin-bottom: 70px;
-}
+} */
 .aboutus,.features{
     width: 80%;
     margin: auto;
@@ -61,5 +61,8 @@
         width: 90%;
         margin: auto;
         margin-top: 50px;
+    }
+    .main{
+      margin-bottom: 70px;
     }
 }

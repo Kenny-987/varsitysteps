@@ -1,5 +1,18 @@
 .careers{
     border: 1px solid red;
     width: 80%;
+    margin: auto;
     padding: 20px;
+    margin-bottom: 50px;
+}
+.career-categories li{
+border-bottom: 1px solid #3333335c;
+margin-bottom: 10px;
+}
+.careers-list{
+    border: 1px solid red;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    margin-bottom: 50px;
 }

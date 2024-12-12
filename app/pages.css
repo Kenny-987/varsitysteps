@@ -22,16 +22,20 @@ color: var(--primary-color);
 }
   
   .features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
     gap: 20px;
     padding: 50px 20px;
     width: 80%;
     margin: auto;
     text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     /* border: 1px solid red; */
   }
-  .feature-card li, .feature-card p{
+  .feature-card{
+    width: 48%;
+  }
+   .feature-card p{
     font-size: 14px;
   }
   .feature-card li{
@@ -71,6 +75,7 @@ color: var(--primary-color);
   }
 .feature-cta{
   /* border: 1px solid red; */
+  margin: auto;
   width: fit-content;
 }
 .feature-cta button{
@@ -121,9 +126,11 @@ color: var(--primary-color);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 50px 20px;
+    /* padding: 50px 20px; */
     width:100%;
-  
+  }
+  .feature-card{
+    width: 100%;
   }
   .feature-cta button{
     padding: 8px;

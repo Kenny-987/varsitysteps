@@ -13,10 +13,11 @@ import Link from 'next/link'
 
 const Posts = () => {
   const [posts,setPosts]=useState([])
- 
+  const [likeStatus,setLikeStatus]=useState(null)
+  const [likes,setLikes]=useState(0)
 
-//function to get all posts
-useEffect(()=>{
+  useEffect(()=>{
+  //function to get all posts
   const fetchPosts = async()=>{
     try {
       const response = await fetch('https://varsitysteps-server.onrender.com/posts/allposts')
@@ -102,6 +103,22 @@ const formatDate = (timestamp) => {
   }
 };
 
+///functionality for liking a post 
+const likeAction =async(post_id)=>{
+  try {
+    const response = await fetch(`https://varsitysteps-server.onrender.com/posts/like/${post_id}`,{
+      credentials:'include',
+      method:'POST'
+    })
+    if(response.ok){
+      console.log('liked suksesfully')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+ 
+
+}
 
 
   return (
@@ -151,17 +168,17 @@ const formatDate = (timestamp) => {
             </>}
             
           </div>
-          {/* <div className="metrics">
+          </Link>
+          <div className="metrics">
             <div className="metric likes">
-              <FontAwesomeIcon icon={faThumbsUp}/>
-              <span>300</span>
+              <FontAwesomeIcon icon={faThumbsUp} onClick={()=>likeAction(post.post_id)}/> <span>{likes}</span>
             </div>
-            <div className="metric views">
+            {/* <div className="metric views">
               <FontAwesomeIcon icon={faEye}/>
               <span>366</span>
-            </div>
-          </div> */}
-           </Link>
+            </div> */}
+          </div>
+          
         </div>
       })}
       </div>:

@@ -7,7 +7,7 @@ import { EditorContent,useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleLeft, faArrowLeft, faCaretLeft, faCaretRight, faClose, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft, faThumbsUp, faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Images from 'next/image'
@@ -160,6 +160,16 @@ const Post = () => {
               })}
             </div>
           </div> }
+          <div className="metrics">
+            <div className="metric likes">
+              <FontAwesomeIcon icon={faThumbsUp}/>
+              <span>0</span>
+            </div>
+            {/* <div className="metric views">
+              <FontAwesomeIcon icon={faEye}/>
+              <span>366</span>
+            </div> */}
+          </div>
         </div>
         }
       

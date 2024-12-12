@@ -2,6 +2,7 @@
     width: 100%;
     /* border: 1px solid red; */
     margin: auto;
+    margin-bottom: 70px;
 }
 .profile .image{
     display: flex;
@@ -23,6 +24,10 @@
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
+}
+.profile .icons{
+    font-size: 50px;
+    color: var(--primary-color);
 }
 .profile .details{
     width: 90%;

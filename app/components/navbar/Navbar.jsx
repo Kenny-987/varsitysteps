@@ -25,7 +25,7 @@ const Navbar = () => {
   };
   return (
     <nav className='navigation'>
-      <div className="logo">VarsitySteps</div>
+      <div className="logo"><Link href='/'>varsitysteps</Link></div>
       <div className="mobile-menu-icons">
 
       <button className='showmenu' onClick={()=>{ setMobileNav(!mobileNav);setShowDash(false) }}>
@@ -48,6 +48,7 @@ const Navbar = () => {
         {/* <li><Link href='/posts'>Explore</Link></li> */}
         <li><Link href='/tutoring'>Tutors</Link></li>
         <li><Link href='/institutions'>Institutions</Link></li>
+        {/* <li><Link href='/careers'>Careers</Link></li> */}
         {/* <li
           onMouseEnter={handleDropdown}
           onMouseLeave={() => setDropdown(false)}

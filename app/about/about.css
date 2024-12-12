@@ -13,12 +13,38 @@
     text-align: center;
     color: var(--primary-color);
 }
+.about-page h4{
+    text-align: center;
+}
+.teamgrid{
+    /* border: 1px solid red; */
+    display: flex;
+}
+.team-member{
+    /* border: 1px solid red; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+}
+.team-member .member-img img{
+border-radius: 4px;
+object-fit: cover;
+}
+.member-socials{
+    /* border: 1px solid red; */
+    width: fit-content;
+    display: flex;
+    gap: 20px;
+    margin: auto;
+}
+.member-socials a{
+    color: #333;
+}
 @media (max-width: 700px){
     .about-page{
         /* border: 1px solid red; */
         width: 100%;
         margin: auto;
         padding: 20px;
-        margin-bottom: 70px;
+       
     }
 }

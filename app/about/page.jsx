@@ -1,6 +1,10 @@
 import React from 'react'
 import './about.css'
 import Footer from '../components/footer/Footer'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 const About = () => {
   return (
@@ -33,9 +37,19 @@ const About = () => {
          <div className="teamgrid">
           <div className="team-member">
             <h4>Kenneth Madondo</h4>
+            <div className="member-img">
+              <Image alt="img" src='/images/kenny.jpg' width={150} height={150}/>
+            </div>
             <p>Founder, Developer</p>
+            <div className="member-socials">
+              <Link href='https://wa.me/+263789644097' target='_blank'><FontAwesomeIcon icon={faWhatsapp}/></Link>
+              <Link href='https://www.instagram.com.kennethmadondo3' target='_blank'><FontAwesomeIcon icon={faInstagram}/></Link>
+              <Link href='https://facebook.com/Kennethmadondo2' target='_blank'><FontAwesomeIcon icon={faFacebook}/></Link>
+              <Link href='https://wwww.linkedin.com/in/kenneth-madondo-099b26287' target='_blank'><FontAwesomeIcon icon={faLinkedin}/></Link>
+            </div>
           </div>
          </div>
+         <p>If you'd like to be part of varsitysteps, don't hesitate to contact me</p>
          </section>
     
   )

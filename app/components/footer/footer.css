@@ -34,8 +34,14 @@ footer li a{
     font-size: 30px;
     color: #333;
 }
+.secondary-links a{
+color: white;
+}
 @media (max-width: 768px){
     .quicklinks{
         gap: 20px;
+    }
+    footer{
+        margin-bottom: 70px;
     }
 }

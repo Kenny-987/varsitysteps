@@ -54,12 +54,15 @@
   /* border: 1px solid red; */
 }
 .metrics{
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
   color: #222;
   padding: 10px;
   gap: 10px;
   font-size: 14px;
+}
+.metrics svg{
+  
 }
 .post-title{
     margin: 10px 0;

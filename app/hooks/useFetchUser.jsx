@@ -33,8 +33,8 @@ const useFetchUser =  () => {
                 }
                 
             } catch (error) {
-                setError(error.message)
-                console.log(error.message)
+                // setError(error.message)
+                // console.log(error.message)
                 setLoading(false)
             }finally{
                 setLoading(false)

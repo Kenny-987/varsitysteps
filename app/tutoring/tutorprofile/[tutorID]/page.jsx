@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import { useContextUser } from "../../../hooks/Context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowAltCircleLeft, faUser,faClose, faStar, faStarHalf, faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faArrowAltCircleLeft, faUser,faClose, faStar, faStarHalf, faCircle, faShareFromSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import Messages from "../../../dashboard/messages"
 
@@ -178,7 +178,8 @@ return <section className='tutor-profile-container'>
           
           </div>
           <div className="basic-info">
-            <p>{tutor.username}</p>
+            <p>{tutor.username} </p>
+            <p>{tutor.location}</p>
             <p>{tutor.student_count} Student(s)</p>
             <div className="rating">
                 <p>Rating:</p>

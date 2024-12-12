@@ -240,10 +240,15 @@ border-radius: 50%;
  font-weight: 600 !important;
 }
 
-.verify-email a{
+.verify-email-link{
   text-decoration: none;
-  color: #777;
+  color: var(--primary-color);
   font-size: 14px;
+  text-decoration: underline;
+  border-radius: 4px;
+}
+.verified-email{
+  color: #00ff08;
 }
 .edit-btn{
   /* border: 1px solid blue; */
@@ -471,6 +476,29 @@ background-color: var(--primary-color);
   color: #fff;
 
 }
+.premium-cta{
+  /* border: 1px solid red; */
+  /* text-align: center; */
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+.premium-cta p span{
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+}
+.premium-cta li{
+  color: #fff;
+  font-size: 14px;
+}
+.premium-cta button{
+  margin-top: 8px;
+  padding: 4px;
+  font-size: 16px;
+  border-radius: 4px;
+}
 @media (min-width: 768px) and (max-width:1024px){
   .edit-profile form{
     width: 70%;
@@ -490,7 +518,7 @@ background-color: var(--primary-color);
     }
     .nav-list.mobile-dash {
       display: block;
-      position: absolute;
+      position: fixed;
       top: 0;
       right: 0;
       width: 80%;

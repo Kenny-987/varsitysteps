@@ -94,7 +94,7 @@ if(loading){
         <FontAwesomeIcon icon={faClose} className='close-dashlinks' onClick={()=>setShowDash(!showDash)}/>
       </div>
           <li className="navitem" onClick={()=>{setContent("Profile");setShowDash(!showDash)}}><FontAwesomeIcon icon={faUser}/> Profile</li>
-          {creatorData && <li className="navitem" onClick={()=>{setContent("Creator");setShowDash(!showDash)}}><FontAwesomeIcon icon={faArtstation}/> Creator Panel</li>}
+          {/* {creatorData && <li className="navitem" onClick={()=>{setContent("Creator");setShowDash(!showDash)}}><FontAwesomeIcon icon={faArtstation}/> Creator Panel</li>} */}
           <li className="navitem" onClick={()=>{setShowChats(true),setShowDash(!showDash)}}><FontAwesomeIcon icon={faEnvelope}/> Messages</li>
           <li className="navitem" onClick={()=>{setContent("Password");setShowDash(!showDash)}}><FontAwesomeIcon icon={faLock}/> Change Password</li>
           {myTutors.length > 0 && <li className="navitem" onClick={()=>{setContent('Tutors'),setShowDash(!showDash)}}> <FontAwesomeIcon icon={faChalkboardTeacher}/> My Tutors</li>}

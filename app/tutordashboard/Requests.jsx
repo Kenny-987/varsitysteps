@@ -13,8 +13,6 @@ const Requests = ({requests,setContent}) => {
     const status= 'connected'
 
     const requestResponse =async(requestId)=>{
-        console.log(status)
-        console.log(requestId)
         try {
           const response = await  fetch(`https://varsitysteps-server.onrender.com/api/connectionresponse/${requestId}`,{
             method:'POST',
