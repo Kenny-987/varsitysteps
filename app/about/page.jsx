@@ -10,7 +10,7 @@ const About = () => {
   return (
       <section className="about-page ">
          <h1>Welcome to VarsitySteps</h1>
-         <p>At VarsitySteps we are dedicated to empowering students in Zimbabwe by providing the resources and support they need to succeed in their academic and career journeys. Our platform is designed to address common challenges faced by college and university students including prospective students as well, offering a comprehensive suite of tools and information to help them navigate their educational and professional paths with confidence.</p> <br />
+         <p>At VarsitySteps we are dedicated to empowering students in Zimbabwe by providing the resources and support they need to succeed in their academic and career journeys. Our platform is designed to address common challenges faced by students of all levels, from primary up to varsity,by offering a comprehensive suite of tools and information to help them navigate their educational and professional paths with confidence. The initial plan is to provide a tutoring platofrm to help both student and tutor get the best result from VarsitySteps.</p> <br />
          <p>From career guidance to a network of tutors and other information, VarsitySteps is your go-to destinaton for everything you need to make informed decisions and achieve your goals. Join us as we strive to create a brighter future for students across Zimbabwe, one step at a time.</p><br />
          <h3>Our Story</h3>
          <p>VarsitySteps was developed by students, who had a vision to bridge the gap between students and the resources they need to excel. As students passionate about education and student success, we recognized the challenges faced by students in Zimbabwe- challenges that often hinder their academic and career ambitions.</p><br/>
@@ -43,7 +43,7 @@ const About = () => {
             <p>Founder, Developer</p>
             <div className="member-socials">
               <Link href='https://wa.me/+263789644097' target='_blank'><FontAwesomeIcon icon={faWhatsapp}/></Link>
-              <Link href='https://www.instagram.com.kennethmadondo3' target='_blank'><FontAwesomeIcon icon={faInstagram}/></Link>
+              <Link href='https://www.instagram.com/kennethmadondo3' target='_blank'><FontAwesomeIcon icon={faInstagram}/></Link>
               <Link href='https://facebook.com/Kennethmadondo2' target='_blank'><FontAwesomeIcon icon={faFacebook}/></Link>
               <Link href='https://wwww.linkedin.com/in/kenneth-madondo-099b26287' target='_blank'><FontAwesomeIcon icon={faLinkedin}/></Link>
             </div>

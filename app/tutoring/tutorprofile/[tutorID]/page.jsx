@@ -173,9 +173,10 @@ return <section className='tutor-profile-container'>
     <div className="profile-wrapper">
         {/* This div will align to left on desktop view and shows basic info */}
         <div className="tutor-basic-info">
+        {tutor.is_premium  &&<p className='feature-icon'>Featured</p>}
             <div className="tutor-image">
                 {tutor.profile_image ? <Image alt="profile-image" src={tutor.profile_image} priority={true} width={200} height={200}/> : <div className="tutor-profile-icon"><FontAwesomeIcon className='placeholder' icon={faUser}/></div> }
-          
+                
           </div>
           <div className="basic-info">
             <p>{tutor.username} </p>

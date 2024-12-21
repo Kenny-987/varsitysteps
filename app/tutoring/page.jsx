@@ -3,26 +3,25 @@ import React,{useState,useEffect} from 'react'
 import '../globals.css'
 import './tutors.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faStar, faUser} from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faGrinTongueWink, faSearch, faStar, faUser} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Tutors = () => {
 const [tutors,setTutors] = useState([])
-const [filteredTutors,setFilteredTutors]=useState([])
 const [query,setQuery]=useState('')
-const [cityQuery,setCityQuery]=useState('')
-const [citySearch,setCitySearch]=useState(false)
+
+
+//function to fetch premium or featured tutors who will be displayed in main tutors page
 useEffect(()=>{
   const fetchTutors = async()=>{
     try{
       const response = await fetch('https://varsitysteps-server.onrender.com/tutors')
       const data =  await response.json()
       if(response.ok){
-        console.log(data);
-        
         setTutors(data.tutors)
-        setFilteredTutors(data.tutors)
+        console.log(data.tutors);
+        
       }else{
         console.log('error getting tutors')
       }
@@ -36,32 +35,9 @@ useEffect(()=>{
  
 const searchBySubject = async(e)=>{
   e.preventDefault()
-
-  if(query.trim()!==''){
-    try {
-      const response = await fetch(`https://varsitysteps-server.onrender.com/tutors/search?query=${query}`)
-      if(response.ok){
-        const data = await response.json()
-        console.log(data);
-        setFilteredTutors(data)
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-     
+window.location.href = `/tutoring/tutors/${query}`   
 }
 
-
-const cityFilterFunc = (city)=>{
-  if(city!==''){
-    const filtered = tutors.filter((tutor)=>tutor.location?.toLowerCase() == city)
-    console.log(filtered)
-    setFilteredTutors(filtered)
-  }else{
-    setFilteredTutors(tutors)
-  }
-}
 
 // console.log('these are tutors coming from server ', tutors)
   return (
@@ -75,42 +51,23 @@ const cityFilterFunc = (city)=>{
             <input type="text" 
             value={query}
             onChange={(e)=>setQuery(e.target.value)}
-            placeholder = 'Maths, English, C++, Chemistry'
+            placeholder = 'Maths, English, Programming, Chemistry'
             />
             <FontAwesomeIcon onClick={searchBySubject} className='search-icon' icon={faSearch}/>
             </div>
           </form>
-          {citySearch &&<div className="city-filter">
-            <form>
-            <div className="search-bar">
-            <input type="text" 
-            value={cityQuery}
-            onChange={(e)=>setCityQuery(e.target.value)}
-            placeholder = 'Enter city'
-            />
-            <FontAwesomeIcon onClick={()=>cityFilterFunc(cityQuery)} className='search-icon' icon={faSearch}/>
-            </div>
-          </form>
-            </div> }
           </div>
-          
-          <div className="filter">
-            {citySearch ? 
-            <button onClick={()=>{setCitySearch(false),cityFilterFunc(''),setCityQuery('')}}>Cancel</button>:
-            <button onClick={()=>setCitySearch(!citySearch)}>Filter by city</button>}
-           
-            
-            </div>
         </div>
         </div>
     
     <div className="tutor-list">
       {/* tutor */}
-      {filteredTutors.length > 0 ?filteredTutors.map((tutor)=>{
+      {tutors.length > 0 ?tutors.map((tutor)=>{
         return <div className="tutor" key={tutor.id}>
           <Link href= {`/tutoring/tutorprofile/${tutor.id}`}>
           <div className="tutor-image">
           {tutor.profile_image ? <Image alt="profile-image" src={tutor.profile_image} priority={true} width={200} height={200}/>: <div className="tutor-profile-icon"><FontAwesomeIcon className='placeholder' icon={faUser}/></div>  }
+          {tutor.is_premium &&<p className='feature-icon'>Featured</p>}
           </div>
           <div className="tutor-details">
            <p className='name'>{tutor.username}<span>{tutor.location?tutor.location:""}</span></p>

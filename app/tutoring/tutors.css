@@ -45,8 +45,37 @@
     background-color: var(--primary-color);
     border-radius: 4px;
 }
-.city-filter{
+.filters-div{
    margin-top: 10px;
+   box-shadow: 0px 0px 10px 1px #333;
+   position: fixed;
+   width: 50%;
+   right: 0;
+   top: 120px;
+   z-index: 1000;
+   background-color: #fff;
+   padding: 20px;
+}
+ .filter-btns{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    gap: 8px;
+}
+.filters-div .sort{
+    /* border: 1px solid red; */
+    margin-top: 10px;
+}
+.filters-div .sort input{
+    margin:4px;
+    border:1px solid red;
+}
+.filter-btns button{
+    padding: 4px;
+    color:#fff;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    width: 50%;
 }
 .tutor{
     box-shadow: 0px 0px 10px 2px #ccc;
@@ -69,6 +98,10 @@
 .tutor-image{
    /* border: 1px solid  #4158D0; */
    border-radius: 50%;
+}
+.feature-icon{
+    color: #ffd900;
+    font-weight: 600!important;
 }
 .tutor-profile-icon{
     width: 150px;
@@ -333,6 +366,17 @@ margin-bottom: 4px;
     /* border: 1px solid red; */
     grid-template-columns: repeat(1,1fr);
 }
+.filters-div{
+    margin-top: 10px;
+    box-shadow: 0px 0px 10px 1px #333;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 50px;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 20px;
+ }
 .tutor a{
     display: flex;
     align-items: center;

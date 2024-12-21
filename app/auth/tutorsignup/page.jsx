@@ -62,7 +62,7 @@ const Tutorsignup = () => {
         }
       } else {
         setShowMessage(true)
-        // setMessage(message.message ||'Signup failed');
+        setMessage(message.message ||'Signup failed');
         setLoading(false)
       }
     } catch (error) {
@@ -80,7 +80,7 @@ const Tutorsignup = () => {
                 <div className="info">
                     <h1>Join our team of tutors and set your own rates for helping students succeed.</h1>
                     <p>Build your profile to showcase your tutoring expertise and attract clients. <span>It's Free</span></p>
-                    <p>All negotiations and agreements are directly between you and your students. VarsitySteps serves solely as a platform and is not responsible for any issues that arise..</p>
+                    {/* <p>All negotiations and agreements are directly between you and your students. VarsitySteps serves solely as a platform and is not responsible for any issues that arise..</p> */}
                     <p></p>
                 </div>
             <div className="sign-up-form tutors">

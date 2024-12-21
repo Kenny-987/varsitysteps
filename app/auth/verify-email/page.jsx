@@ -8,8 +8,8 @@ const VerifyEmail = () => {
 const {userData,isAuthenticated} = useContextUser() 
 const router = useRouter()
 const [otp,setOtp]=useState('')
-const [step1,setStep1] = useState(false)
-const [step2,setStep2]=useState(true)
+const [step1,setStep1] = useState(true)
+const [step2,setStep2]=useState(false)
 
 if(!isAuthenticated){
     router.push('/auth/login');
@@ -29,7 +29,6 @@ try {
           body:JSON.stringify({email})
     })
     if(response.ok){
-        console.log('verified')
         setStep1(false)
         setStep2(true)
     }else{
@@ -59,7 +58,7 @@ const checkOtp = async()=>{
 
   return (
     <section className='verify'>
-        <h3>Verify your email: {userData.email} to confirm your identity and strengthen you account security.</h3>
+        <h3>Verify your email: {userData.email} to confirm your identity and strengthen you account security, and recieve email notifications.</h3>
         {step1 &&<button onClick={verifyEmail}>Click here to verify</button> }
         {step2 && <div>
             <p>A code was sent to your email inbox: Enter the code in the field below</p>

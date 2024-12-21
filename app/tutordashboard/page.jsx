@@ -50,7 +50,6 @@ const TutorDashboard = ()=>{
             })
             if(response.ok){
                 const data = await response.json()
-                console.log(data)
                 setRequests(data)
 
             }else{
