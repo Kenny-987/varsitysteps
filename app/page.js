@@ -7,7 +7,7 @@ import Footer from "./components/footer/Footer";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faDotCircle } from "@fortawesome/free-solid-svg-icons";
-import FeaturedTutors from "./tutoring/FeaturedTutors";
+// import FeaturedTutors from "./tutoring/FeaturedTutors";
 
 
 export default function Home() {
@@ -67,6 +67,19 @@ export default function Home() {
           <p>Get personalized career guidance and recommendations on the steps to achieve your goals.</p>
           <div className="feature-cta">
             <button><Link href='/careers'>Explore Careers</Link></button>
+          </div>
+          </div> */}
+          {/* feature card */}
+          {/* feature card */}
+          {/* <div className="feature-card">
+          <div className="feature-img">
+            <Image alt='feature-img' src='/images/worker.svg' width={150} height={150}/>
+          </div>
+          <h4>Turor Recommendations</h4>
+          <p>Need help finding a tutor for yourself or your child?</p>
+          <p>Let VarsitySteps offer tailored recommendations based on your needs.</p>
+          <div className="feature-cta">
+            <button><Link href='/careers'>Get recommendations</Link></button>
           </div>
           </div> */}
           {/* feature card */}
