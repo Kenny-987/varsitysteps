@@ -179,7 +179,7 @@ return <section className='tutor-profile-container'>
                 
           </div>
           <div className="basic-info">
-            <p>{tutor.username} </p>
+            <p>{tutor.username}</p>
             <p>{tutor.location}</p>
             <p>{tutor.student_count} Student(s)</p>
             <div className="rating">
