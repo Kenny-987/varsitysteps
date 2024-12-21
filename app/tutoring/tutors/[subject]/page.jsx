@@ -2,6 +2,7 @@
 import React,{useState,useEffect} from 'react'
 import '../../tutors.css'
 import '../../../globals.css'
+import Image from 'next/image'
 import { useParams } from "next/navigation"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser,faStar } from '@fortawesome/free-solid-svg-icons'
