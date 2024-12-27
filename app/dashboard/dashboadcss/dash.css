@@ -71,7 +71,7 @@ display: none;
     color: red;
   }
 
-  .navitem.delete-account{
+  .navitem.delete-account-link{
  color: crimson;
  border-radius: 2px;
   }
@@ -434,7 +434,7 @@ background-color: var(--primary-color);
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 .person-icon{
   font-size: 30px;

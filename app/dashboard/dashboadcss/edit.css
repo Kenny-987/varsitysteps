@@ -108,31 +108,36 @@ input {
 
    .showpassword{
     display: flex;
-    /* border: 1px solid red; */
     align-items:center;
     justify-content:flex-start ;
     padding: 0;
     gap: 4px;
   }
+  .showpassword label{
+    margin: 0;
+  }
   .showpassword input{
-    font-size: 1em;
     width: auto;
     margin: 0;
     padding: 0;
   }
-
+  .delete-account{
+    padding:20px;
+  }
   .delete-accbtn{
     background-color: red;
     color: #fff;
   }
-  .delete-account .warning-text{
-    background-color: var(--neutral);
+  .delete-account .form-group{
     width: 50%;
-    margin: auto;
-    padding: 10px;
   }
-  .delete-account p{
-    text-align: center;
+  .delete-account button{
+    display: block;
+    margin-top: 10px;
+    padding: 8px;
+    color: #fff;
+    font-size: 16px;
+    background-color: red;
   }
   .form-group button{
     width: fit-content;
@@ -358,6 +363,16 @@ input {
     }
     .authmessage{
         width: 90%;
+      }
+      .delete-account .form-group{
+        /* border: 1px solid red; */
+        width: 80%;
+        margin: auto;
+      }
+      .delete-account button{
+        margin: auto;
+        margin-top: 10px;
+        width: 100px;
       }
       .delete-account .warning-text{
         background-color: var(--neutral);

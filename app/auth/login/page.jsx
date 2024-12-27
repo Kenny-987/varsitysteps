@@ -35,7 +35,6 @@ const Login = () => {
   const api = 'https://varsitysteps-server.onrender.com/auth/login'
   const login= async(e)=>{
     setLoading(true)
-    console.log('logging in')
     e.preventDefault();
     try {
       const response = await fetch(api, {
@@ -50,8 +49,7 @@ const Login = () => {
         const roles = await response.json()
         setIsAuthenticated(true)
         setLoading(false)
-        console.log(roles);
-        
+    
         if(roles.includes('student')){
           window.location.href=redirectUrl
         }else if(roles.includes('tutor')){

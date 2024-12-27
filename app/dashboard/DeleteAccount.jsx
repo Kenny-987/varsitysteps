@@ -3,14 +3,47 @@ import React, {useState} from 'react'
 import './dashboadcss/edit.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle,faClose } from '@fortawesome/free-solid-svg-icons'
-
+import { useRouter } from 'next/navigation'
 
 const DeleteAccount = () => {
   const [showPassword, setShowPassord] = useState(false)
-  const [password,setPassword]=useState()
-  const [loading,setLoading]=useState('')
+  const [password,setPassword]=useState('')
+  const [loading,setLoading]=useState(false)
   const [showMessage, setShowMessage] = useState(false)
+  const [message,setMessage] = useState('')
+  const router = useRouter()
 
+  const deleteAccount = async()=>{
+    if(password.trim()==''){
+      setMessage('Please enter your password')
+      return setShowMessage(true)
+    }
+    setLoading(true)
+    try {
+      const response = await fetch('https://varsitysteps-server.onrender.com/auth/delete-account',{
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({password }),
+        credentials:'include'
+      })
+      if(response.ok){
+        console.log('account deleted');
+        window.location.href = '/auth/login'
+      }else{
+        const  errMsg = await response.json()
+        setShowMessage(true)
+        setLoading(false)
+        setMessage(errMsg.message)
+      }
+    } catch (error) {
+      setLoading(false)
+      setShowMessage(true)
+      console.error(error)
+      setMessage('Server error')
+    }
+  }
 
   return (
     <div className='delete-account'>
@@ -21,7 +54,6 @@ const DeleteAccount = () => {
       <p>If you're sure please confirm below</p>
       </div>
 
-      <form >
       <div className="form-group">
           <label htmlFor="Password">Password</label>
           <input 
@@ -29,16 +61,17 @@ const DeleteAccount = () => {
           id="Password" 
           name="Password"
           value={password}
+          required
           onChange={(e) => setPassword(e.target.value)} 
            />
-        </div>
-
-        <div className="showpassword">
+           <div className="showpassword">
           <input type="checkbox" name="showpassword" id="showpassword" onClick={()=>setShowPassord(!showPassword)} />
             <label htmlFor="showpassword">Show Password</label>
             </div>
-        {loading?<div className='loading'>...loading</div>:<button type="submit" style={{backgroundColor: 'red'}}>Delete</button>}
-      </form>
+        </div>
+
+        
+        {loading?<div className='btn-loader'></div>:<button onClick={deleteAccount}>Delete</button>}
       {showMessage && <div className='authmessage'>
         <FontAwesomeIcon icon={faInfoCircle}/>
         <p>{message}</p>
