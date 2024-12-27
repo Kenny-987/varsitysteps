@@ -111,7 +111,7 @@ const logout = async()=>{
               <button className="logout-cancel" onClick={()=>setShowLogoutOptions(false)}>Cancel</button>
             </div> }
           </div>
-          <li className="navitem delete-account" onClick={()=>{setContent("Delete");setShowDash(!showDash)}}><FontAwesomeIcon icon={faWarning}/> Delete Account</li>
+          <li className="navitem delete-account-link" onClick={()=>{setContent("Delete");setShowDash(!showDash)}}><FontAwesomeIcon icon={faWarning}/> Delete Account</li>
           </ul>
         
      <div className="dash-content">
