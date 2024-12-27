@@ -117,7 +117,6 @@ const logout = async()=>{
      <div className="dash-content">
       {content === 'Profile' && <TutorProfile user={user}/>}
       {content === 'Password' && <PasswordSettings userData={userData} setContent={setContent}/>}
-      {/* {content === 'Messages' && <Messages userData={userData} newChat={newChat} receiver_id={0}/>} */}
       {content === 'Students' && <StudentsList setContent={setContent}/>}
       {content === 'Requests' && <Requests requests={requests} setContent={setContent}/>}
       {content === 'Delete' && <DeleteAccount/>}
