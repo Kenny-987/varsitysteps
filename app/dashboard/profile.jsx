@@ -2,7 +2,7 @@
 import React,{useState} from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPhone,faBookOpen,faUniversity,faLocationDot,faUser,faCamera, faInfo, faInfoCircle, faEdit, faUserEdit, faStar, faClose, faL, faBriefcase, faGears, faChalkboardTeacher, faEllipsis, faCheckCircle, faPen} from '@fortawesome/free-solid-svg-icons';
+import {faPhone,faBookOpen,faUniversity,faLocationDot,faUser,faCamera, faInfoCircle, faCircleCheck,faUserEdit, faClose,  faPen} from '@fortawesome/free-solid-svg-icons';
 import EditProfile from './EditProfile';
 import EditImage from './ImageEdit';
 import CreativeForm from './CreativeForm';
@@ -89,7 +89,7 @@ const [tutorOption,setTutorOption]=useState(false)
         <div className="profile-content">
         <div className="profile-username">
            <p>{userData.username}</p>
-           {/* <p>{userData.email} <span className='verify-email'><Link href=''>verify your email <FontAwesomeIcon icon={faCheckCircle}/></Link></span></p> */}
+           <p>{userData.email} {userData.is_verified ?<span className='verified-email'>email verified <FontAwesomeIcon icon={faCircleCheck}/></span>:<Link href='/auth/verify-email' className='verify-email-link'>verify email <FontAwesomeIcon icon={faCircleCheck}/></Link>}</p>
       </div>
 
         <div className="edit-btn">

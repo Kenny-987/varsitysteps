@@ -4,6 +4,10 @@
     padding: 20px;
     min-height: 80vh;
 }
+.verify div{
+    width: 50%;
+    margin: auto;
+}
 .verify h3{
     word-wrap: break-word;
 }
@@ -16,11 +20,48 @@
     font-size: 16px;
     cursor: pointer;
 }
+.authmessage{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:red ;
+    padding: 4px;
+    margin-top: 4px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .authmessage p {
+    color: #fff;
+  }
+  .verify input{
+        border: 1px solid #ccc;
+        padding: 14px;
+        font-size: 1em;
+        width: 100%;
+        border-radius: 6px;
+        color: var(--dark-text);
+  }
+.verify input:focus{
+    outline: none;
+    border: 1px solid #007bff77;
+    }
+.email{
+    color: var(--primary-color);
+}
+.message-sent{
+    font-size: 18px;
+    margin-top: 20px;
+}
 @media (max-width: 768px){
     .verify{
         width: 100%;
         margin: auto;
         padding: 20px;
         min-height: 80vh;
+    }
+    .verify div{
+        width: 100%;
     }
 }

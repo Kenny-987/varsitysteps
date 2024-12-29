@@ -249,6 +249,7 @@ border-radius: 50%;
 }
 .verified-email{
   color: #00ff08;
+  font-size: 14px;
 }
 .edit-btn{
   /* border: 1px solid blue; */
@@ -434,7 +435,6 @@ background-color: var(--primary-color);
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 1px solid red;
 }
 .person-icon{
   font-size: 30px;

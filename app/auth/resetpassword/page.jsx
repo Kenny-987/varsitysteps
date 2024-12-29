@@ -4,7 +4,7 @@ import '../../globals.css';
 import '../form.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle,faClose } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation";
+
 
 const ResetPassword =()=>{
     const [email,setEmail]=useState('')
@@ -18,7 +18,7 @@ const ResetPassword =()=>{
     const [confirmPassword,setConfirmPassword] = useState('')
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState('')
-    const router = useRouter()
+
 
     const checkEmail = async(e)=>{
         e.preventDefault()
@@ -63,7 +63,7 @@ const ResetPassword =()=>{
                 headers:{
                     'Content-Type':'application/json'
                 },
-                body:JSON.stringify({otp})
+                body:JSON.stringify({otp,flag:'resetPassword'})
             })
             if(response.ok){
                 setShowStep3(true)

@@ -46,10 +46,10 @@ const TutorProfile = ({user}) => {
         <div className="profile-content">
         <div className="profile-username">
       <p>{user.username} </p>
-      <p>{user.email}</p>
+      <p>{user.email} {user.is_verified ?<span className='verified-email'>email verified <FontAwesomeIcon icon={faCircleCheck}/></span>:<Link href='/auth/verify-email' className='verify-email-link'>verify email <FontAwesomeIcon icon={faCircleCheck}/></Link>}</p>
       </div>
 
-      {/* {user.is_verified ?<span className='verified-email'>email verified<FontAwesomeIcon icon={faCircleCheck}/></span>:<Link href='/auth/verify-email' className='verify-email-link'>verify email<FontAwesomeIcon icon={faCircleCheck}/></Link>} */}
+      
 
       <div className="edit-btn">
         <button onClick={()=> setShowEditForm(true)}>Edit Profile</button>
@@ -60,7 +60,7 @@ const TutorProfile = ({user}) => {
       {/* <div className="badge">
           <FontAwesomeIcon icon={faRibbon}/>
       </div> */}
-        <p>Your average rating</p>
+        {/* <p>Your average rating</p> */}
       </div>
         <div>
         <p><FontAwesomeIcon icon={faInfoCircle}/> Bio</p>

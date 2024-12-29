@@ -31,7 +31,7 @@ const StudentProfile = () => {
     },[])
 
   return (
-    <section className="profile">
+    <section className=" user-profile">
         <div className="image">
             {student.profile_image?<img alt="profile image" src={student.profile_image} />:<div className="icons">
           <FontAwesomeIcon onClick={()=>setEditImage(true)} className="icon" icon={faUser}/>
