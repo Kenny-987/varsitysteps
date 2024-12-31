@@ -27,7 +27,9 @@ export default function RootLayout({ children }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>VarsitySteps</title>
-        <meta name="description" content="Empowering your academic journey" />
+        <meta name="description" content="VarsitySteps - Empowering your academic journey" />
+        <meta name="keywords" content="Tutors, Zimbabwean Tutors, online learning education, tutors in zimbabwe"/>
+        <meta name="google-site-verification" content="jUKToN8lga2gYvjqneGTHsgltCGD1A-8NZGp5NcznCE" />
       </head>
       <body >
         <SocketProvider>
