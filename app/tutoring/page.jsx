@@ -16,7 +16,7 @@ const [query,setQuery]=useState('')
 useEffect(()=>{
   const fetchTutors = async()=>{
     try{
-      const response = await fetch('http://13.48.59.51:3000/tutors')
+      const response = await fetch('https://varsitysteps-server.onrender.com/tutors')
       const data =  await response.json()
       if(response.ok){
         setTutors(data.tutors)
