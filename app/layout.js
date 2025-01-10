@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
        <ContextProvider>
       <Navbar/>
         {children}
+        <Footer/>
         </ContextProvider>
         </SocketProvider>
         </body>

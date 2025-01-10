@@ -19,22 +19,11 @@ const Footer = () => {
         <li><Link href="">Terms and Policies</Link></li>
         {/* <li><Link href="">FAQ</Link></li> */}
         {/* <li><Link href="">Blog</Link></li> */}
-        <li><Link href="">Advertise</Link></li>
-                </ul>
-            </div>
-            <div className="primary-links">
-                <ul>
-                <li><Link href="/dashboard">Dashboard</Link></li>
-              {/* <li><Link href="/finance">Financial Services</Link></li> */}
-              <li><Link href="/tutoring">Tutoring</Link></li>
-              <li><Link href="/institutions">Institutions</Link></li>
-              <li><Link href="/institutions">Explore Careers</Link></li>
-              {/* <li><Link href="">Accomodation</Link></li> */}
-              {/* <li><Link href="">Events and Activities</Link></li> */}
+        {/* <li><Link href="">Advertise</Link></li> */}
                 </ul>
             </div>
             <div className="secondary-links">
-                <p><FontAwesomeIcon icon={faPhone}/> <Link href='tel:+263789644097'>+263789644097</Link></p>
+                <p>Call us <Link href='tel:+263789644097'>: +263789644097</Link></p>
                 <p><FontAwesomeIcon icon={faEnvelope}/> <Link href='mailto:varsitysteps@gmail.com'>varsitysteps@gmail.com</Link></p>
             </div>
         </div>

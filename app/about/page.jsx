@@ -49,7 +49,6 @@ const About = () => {
             </div>
           </div>
          </div>
-         <p>If you'd like to be part of varsitysteps, don't hesitate to contact me</p>
          </section>
     
   )

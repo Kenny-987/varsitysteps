@@ -14,10 +14,13 @@ footer li a{
 }
 .quicklinks{
     /* border: 1px solid wheat; */
-    display: flex;
-    flex-wrap: wrap;
-    width: fit-content;
     gap: 100px;
+    margin: auto;
+}
+.primary-links ul{
+    display: flex;
+    gap:  30px;
+    width: fit-content;
     margin: auto;
 }
 .copyright{
@@ -32,7 +35,16 @@ footer li a{
 }
 .socials a{
     font-size: 30px;
-    color: #333;
+    color: #fff;
+}
+.secondary-links{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin:20px auto;
+}
+.secondary-links p{
+    color: #fff;
 }
 .secondary-links a{
 color: white;
@@ -43,5 +55,9 @@ color: white;
     }
     footer{
         margin-bottom: 70px;
+        background-color: var(--primary-color);
+        padding: 10px 20px;
+        color: #fff;
+         width: 100%;
     }
 }

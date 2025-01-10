@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faDotCircle } from "@fortawesome/free-solid-svg-icons";
+import Faq from "./components/faq/Faq";
 // import FeaturedTutors from "./tutoring/FeaturedTutors";
 
 
@@ -95,6 +96,9 @@ export default function Home() {
         <Link href='/posts'>
         <button>Explore</button></Link>
       </section> */}
+
+      {/* section for faq */}
+        <Faq/>
 {/* <Contact/> */}
     </main>
   );

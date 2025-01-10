@@ -6,27 +6,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faGrinTongueWink, faSearch, faStar, faUser} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import Head from 'next/head';
 const Tutors = () => {
 const [tutors,setTutors] = useState([])
 const [query,setQuery]=useState('')
-
+const [loading,setLoading] = useState(false)
 
 //function to fetch premium or featured tutors who will be displayed in main tutors page
 useEffect(()=>{
   const fetchTutors = async()=>{
+    setLoading(true)
     try{
       const response = await fetch('https://varsitysteps-server.onrender.com/tutors')
       const data =  await response.json()
       if(response.ok){
         setTutors(data.tutors)
-        console.log(data.tutors);
-        
+        setLoading(false)
       }else{
         console.log('error getting tutors')
+        setLoading(false)
       }
     }catch(error){
       console.error(error)
+      setLoading(false)
     }
     
   }
@@ -42,6 +44,11 @@ window.location.href = `/tutoring/tutors/${query}`
 // console.log('these are tutors coming from server ', tutors)
   return (
     <section className="tutors">
+      <Head>
+      <title>Tutors</title>
+        <meta name="description" content="Explore tutors from all accross the country" />
+        <meta name="keywords" content="zimbabwean tutors, online tutors in zimbabwe, online tutors" />
+      </Head>
         <div className="tutor-nav">
         <h2>Find a Tutor</h2>
         <div className="tutor-search-filter">
@@ -62,7 +69,8 @@ window.location.href = `/tutoring/tutors/${query}`
     
     <div className="tutor-list">
       {/* tutor */}
-      {tutors.length > 0 ?tutors.map((tutor)=>{
+  
+      {loading?<div className='btn-loader'></div>:<>{tutors.length > 0 ?tutors.map((tutor)=>{
         return <div className="tutor" key={tutor.id}>
           <Link href= {`/tutoring/tutorprofile/${tutor.id}`}>
           <div className="tutor-image">
@@ -84,7 +92,9 @@ window.location.href = `/tutoring/tutors/${query}`
           </div>
           </Link>
         </div>
-      }) : <p>No tutors found</p>}
+      }) : <p>No tutors found</p>}</>}
+      
+      
       {/* tutor */}
     
     
