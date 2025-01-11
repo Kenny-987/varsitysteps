@@ -17,36 +17,9 @@ const Contact = () => {
 
       <p>Phone: <span>+263 78 964 4097</span></p>
       <p>Prefer to speak with someone? Call us and our team will assist you promptly</p><br />
-
-      <h3>Follow us</h3>
-      <p>Stay updated with the latest features, news, and events by following us on our social media channels:</p>
-      <div className="contact-socials">
-        <Link href='https://wa.me/+263789644097'>
-        <div className="social-link">
-          <FontAwesomeIcon icon={faWhatsappSquare}/>
-          <p>WhatsApp</p>
-        </div>
-        </Link>
-        <Link href='https://web.facebook.com/profile.php?id=61569642848335'>
-        <div className="social-link">
-          <FontAwesomeIcon icon={faFacebookSquare}/>
-          <p>Facebook</p>
-        </div>
-        </Link>
-    <Link href='https://www.instagram.com/varsitysteps/'>
-    <div className="social-link">
-          <FontAwesomeIcon icon={faInstagramSquare}/>
-          <p>Instagram</p>
-        </div>
-    </Link>
-    <Link href='https://www.instagram.com/varsitysteps/'>
-    <div className="social-link">
-          <FontAwesomeIcon icon={faXTwitter}/>
-          <p>X</p>
-        </div>
-    </Link>
-      </div>
-        {/* <div className="contact-form">
+    {/* feedback form */}
+    
+    {/* <div className="contact-form">
       <p>Send feedback or ask questions and get in touch</p>
       <form >
         <div>
@@ -86,6 +59,38 @@ const Contact = () => {
         <button type="submit">Send</button>
       </form>
     </div> */}
+    {/* feedback form */}
+
+    
+      <h3>Follow us</h3>
+      <p>Stay updated with the latest features, news, and events by following us on our social media channels:</p>
+      <div className="contact-socials">
+        <Link href='https://wa.me/+263789644097'>
+        <div className="social-link">
+          <FontAwesomeIcon icon={faWhatsappSquare}/>
+          <p>WhatsApp</p>
+        </div>
+        </Link>
+        <Link href='https://web.facebook.com/profile.php?id=61569642848335'>
+        <div className="social-link">
+          <FontAwesomeIcon icon={faFacebookSquare}/>
+          <p>Facebook</p>
+        </div>
+        </Link>
+    <Link href='https://www.instagram.com/varsitysteps/'>
+    <div className="social-link">
+          <FontAwesomeIcon icon={faInstagramSquare}/>
+          <p>Instagram</p>
+        </div>
+    </Link>
+    <Link href='https://www.instagram.com/varsitysteps/'>
+    <div className="social-link">
+          <FontAwesomeIcon icon={faXTwitter}/>
+          <p>X</p>
+        </div>
+    </Link>
+      </div>
+        
     </section>
   )
 }

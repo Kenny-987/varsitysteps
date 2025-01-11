@@ -109,7 +109,7 @@ const Login = () => {
             <p>No Account yet? <span><Link href="/auth/signup">Sign up here</Link></span></p>
             <p><span><Link href='/auth/resetpassword'>Forgot Password</Link></span></p>
             
-            <p className="policylink">By logging in you accept our <span><Link href="">policy, terms & conditions</Link></span></p>
+            <p className="policylink">By logging in you accept our <span><Link href="/terms-and-conditions">policy, terms & conditions</Link></span></p>
           </div>
 
           {showMessage && <div className='authmessage'>

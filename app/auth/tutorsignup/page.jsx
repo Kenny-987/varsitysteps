@@ -137,7 +137,7 @@ const Tutorsignup = () => {
           <div className="redirect">
             <p><Link href="/auth/signup">Sign up for a student account</Link></p>
             <p>Already have an Account? <span><Link href="/auth/login">Login</Link></span></p>
-            <p className="policylink">By signing up you accept our <span><Link href="">policy, terms & conditions</Link></span></p>
+            <p className="policylink">By signing up you accept our <span><Link href="/terms-and-conditions">policy, terms & conditions</Link></span></p>
           </div>
           {showMessage && <div className='authmessage'>
         <FontAwesomeIcon icon={faInfoCircle}/>

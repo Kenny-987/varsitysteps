@@ -1,0 +1,16 @@
+.terms{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+.terms h4, .terms h1, .terms h2{
+    color: var(--primary-color);
+}
+.terms ul li{
+    list-style-type: disc;
+    font-size: 16px;
+
+}
+.terms h4{
+    margin-top: 10px;
+}

@@ -149,7 +149,7 @@ const Signup = () => {
       </form>
       <div className="redirect">
         <p>Already have an Account? <span><Link href="/auth/login">Login</Link></span></p>
-        <p className="policylink">By signing up you accept our <span><Link href="">policy, terms & conditions</Link></span></p>
+        <p className="policylink">By signing up you accept our <span><Link href="/terms-and-conditions">policy, terms & conditions</Link></span></p>
       </div>
       </div>
     </section>
