@@ -23,7 +23,7 @@ useEffect(() => {
     const checkChatStatuses = async () => {
       try {
         // Create an array of promises for each student's chat status check
-        const studentPromises = students.map(async (student) => {
+        const studentPromises = myTutors.map(async (student) => {
           const response = await fetch(
             `https://varsitysteps-server.onrender.com/messages/checkchats?user1=${userData.id}&user2=${student.user_id}`,
             { credentials: 'include' }

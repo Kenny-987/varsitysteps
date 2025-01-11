@@ -13,8 +13,7 @@ const ImageEdit = ({Id,profile_image,setEditImage,setProfileImage}) => {
   const {setUserData,userData} = useContextUser()
   const userId = Id
 
-console.log(image)
-console.log(previewImage)
+
 const handleFileChange = (e) => {
   const file = e.target.files[0]; // Get the selected file
   if (file) {
@@ -25,7 +24,7 @@ const handleFileChange = (e) => {
 
 const editImage=async (e)=>{
   if (!image) return;
-console.log('updating',image)
+
 setLoading(true)
   const formData = new FormData();
   formData.append('profilePicture', image);
@@ -38,10 +37,8 @@ try {
   })
   if(response.ok){
     const data = await response.json(); 
-    console.log(data);
     const updatedData = {...userData,...data.user}
     setUserData(updatedData)
-    console.log('image sent')
     setEditImage(false)
     setImage(null)
     setLoading(false)
@@ -64,7 +61,7 @@ try {
 }
 
 const deleteImage = async ()=>{
-  console.log(userId)
+
   setLoading(true)
   try {
     const response = await fetch(`https://varsitysteps-server.onrender.com/user/delete-picture/${userId}`,{
@@ -72,7 +69,9 @@ const deleteImage = async ()=>{
       credentials:'include',
     })
     if(response.ok){
-      console.log('image gone')
+      const data = await response.json(); 
+    const updatedData = {...userData,...data.user}
+    setUserData(updatedData)
       setLoading(false)
       setEditImage(false)
     }else{
@@ -117,7 +116,7 @@ const deleteImage = async ()=>{
         <button onClick={()=>{setImage(null),setPreviewImage(null)}}>cancel</button>
         </div>
       </div>}
-      {profile_image && <button onClick={deleteImage} className="upload-button"> <FontAwesomeIcon icon={faTrash}/> Delete image</button>}
+      {profile_image && <label onClick={deleteImage}  className="upload-button"> <FontAwesomeIcon icon={faTrash}/> Delete Image</label>}
       
       </div>
  

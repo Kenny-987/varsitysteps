@@ -51,6 +51,8 @@ useEffect(() => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
+          
           return { [student.user_id]: data }; // Return object with student ID as key
         } else {
           console.log('Failed to check chat status for student', student.user_id);
