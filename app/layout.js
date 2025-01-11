@@ -8,7 +8,7 @@ import { ContextProvider } from "./hooks/Context";
 import React, {useState} from 'react'
 import { SocketProvider } from "./hooks/SocketContext";
 import Footer from "./components/footer/Footer";
-
+import Script from "next/script";
 
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
@@ -20,18 +20,27 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 export default function RootLayout({ children }) {
-  const [showDash,setShowdash] = useState(false)
+  
   return (
     <html lang="en">
        <head>
-       {/* <!-- Google tag (gtag.js) --> */}
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KTMXPXCGYV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)}
-  gtag('js', new Date());
-  gtag('config', 'G-KTMXPXCGYV');
-</script>
+         {/* Add Google Analytics */}
+         <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-KTMXPXCGYV`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KTMXPXCGYV', { page_path: window.location.pathname });
+            `,
+          }}
+        />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>VarsitySteps</title>
