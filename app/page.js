@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <h4>Institutions</h4>
           <p>Navigate your educational and professional journey with ease.</p>
-            <p> Discover universities and colleges and the programms they offer to help further advance your academic journey.</p>
+            <p> Discover universities and colleges and the programs they offer to help further advance your academic journey.</p>
           <div className="feature-cta">
             <button><Link href='/institutions'>Discover Institutions</Link></button>
           </div>
