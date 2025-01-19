@@ -24,8 +24,8 @@ const Faq = () => {
           answer: "The platform offers free resources, but certain services may come with a fee such as premium membership for tutors.",
         },
         {
-            question: "What are the benefits of a premium membership?",
-            answer: "Premium tutors get priority listings, enhanced profile, marketing support,exclusive student leads and many more benefits not received by regular members.",
+            question: "Why is my profile not showing in the search results?",
+            answer: "Ensure you add the subjects you teach as the system uses searched subjects to display tutor profiles.",
           },
       
       ];
