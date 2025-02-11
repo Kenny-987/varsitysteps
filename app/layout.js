@@ -9,7 +9,7 @@ import React, {useState} from 'react'
 import { SocketProvider } from "./hooks/SocketContext";
 import Footer from "./components/footer/Footer";
 import Script from "next/script";
-import AchievementPopup from "./components/achievement/page";
+// import AchievementPopup from "./components/achievement/page";
 import { useContextUser } from "./hooks/Context";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
@@ -65,12 +65,12 @@ export default function RootLayout({ children }) {
 }
 
 function ContentWrapper({ children }) {
-  const { showAchPopup} = useContextUser();
+  // const { showAchPopup} = useContextUser();
 
   return (
     <>
       <Navbar />
-      {showAchPopup && <AchievementPopup />}
+      {/* {showAchPopup && <AchievementPopup />} */}
       {children}
       <Footer />
     </>
