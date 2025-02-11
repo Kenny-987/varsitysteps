@@ -9,7 +9,8 @@ import React, {useState} from 'react'
 import { SocketProvider } from "./hooks/SocketContext";
 import Footer from "./components/footer/Footer";
 import Script from "next/script";
-
+import AchievementPopup from "./components/achievement/page";
+import { useContextUser } from "./hooks/Context";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }) {
         <title>VarsitySteps</title>
         <meta name="description" content="VarsitySteps - Empowering your academic journey" />
         <meta name="keywords" content="Tutors, Zimbabwean Tutors, online learning education, tutors in zimbabwe"/>
+        <meta name="google-site-verification" content="fMW3BqKc0Ey8Fkh-h3XYLIII87T08fonaxx6L3LBrXE" />
         <meta name="google-site-verification" content="jUKToN8lga2gYvjqneGTHsgltCGD1A-8NZGp5NcznCE" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -55,12 +57,23 @@ export default function RootLayout({ children }) {
       <body >
         <SocketProvider>
        <ContextProvider>
-      <Navbar/>
-        {children}
-        <Footer/>
+      <ContentWrapper>{children}</ContentWrapper>
         </ContextProvider>
         </SocketProvider>
         </body>
     </html>
+  );
+}
+
+function ContentWrapper({ children }) {
+  // const { showAchPopup} = useContextUser();
+
+  return (
+    <>
+      <Navbar />
+      {/* {showAchPopup && <AchievementPopup />} */}
+      {children}
+      <Footer />
+    </>
   );
 }
