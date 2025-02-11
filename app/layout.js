@@ -48,7 +48,6 @@ export default function RootLayout({ children }) {
         <meta name="description" content="VarsitySteps - Empowering your academic journey" />
         <meta name="keywords" content="Tutors, Zimbabwean Tutors, online learning education, tutors in zimbabwe"/>
         <meta name="google-site-verification" content="fMW3BqKc0Ey8Fkh-h3XYLIII87T08fonaxx6L3LBrXE" />
-        <meta name="google-site-verification" content="jUKToN8lga2gYvjqneGTHsgltCGD1A-8NZGp5NcznCE" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
