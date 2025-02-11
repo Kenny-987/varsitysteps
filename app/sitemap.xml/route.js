@@ -10,8 +10,7 @@ export async function GET() {
     { loc: `${baseUrl}/institutions`, lastmod: new Date().toISOString(), priority: 0.5 },
     { loc: `${baseUrl}/about`, lastmod: new Date().toISOString(), priority: 0.5 },
   ];
-
- 
+   
   const urls = [...staticUrls, ...dynamicUrls];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
