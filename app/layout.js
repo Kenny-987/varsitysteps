@@ -65,12 +65,12 @@ export default function RootLayout({ children }) {
 }
 
 function ContentWrapper({ children }) {
-  // const { showAchPopup} = useContextUser();
+  const { showAchPopup} = useContextUser();
 
   return (
     <>
       <Navbar />
-      {/* {showAchPopup && <AchievementPopup />} */}
+      {showAchPopup && <AchievementPopup />}
       {children}
       <Footer />
     </>
