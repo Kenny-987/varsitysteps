@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const baseUrl = 'https://varsitysteps.co.zw'; // Change this to your actual domain
+  const baseUrl = 'https://www.varsitysteps.co.zw'; // Change this to your actual domain
 
   // Manually add static URLs
   const staticUrls = [
@@ -11,13 +11,7 @@ export async function GET() {
     { loc: `${baseUrl}/about`, lastmod: new Date().toISOString(), priority: 0.5 },
   ];
 
-  // Add dynamic tutor profiles
-  const dynamicUrls = tutors.map((tutor) => ({
-    loc: `${baseUrl}/tutoring/tutorprofile/${tutor.id}`,
-    lastmod: new Date().toISOString(),
-    priority: 0.7,
-  }));
-
+ 
   const urls = [...staticUrls, ...dynamicUrls];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
