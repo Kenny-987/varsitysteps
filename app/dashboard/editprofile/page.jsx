@@ -8,7 +8,7 @@ import { useContextUser } from '../../hooks/Context';
 import { useRouter } from 'next/navigation';
 
 const EditProfile = () => {
-    const {setUserData,userData,setCreatorData} = useContextUser()
+    const {setUserData,userData} = useContextUser()
     const [username,setUsername]=useState('')
     const [bio,setBio]=useState(userData.bio||'')
     const [location,setLocation]=useState('') 
@@ -20,41 +20,23 @@ const EditProfile = () => {
     const [message, setMessage] = useState('')
     const [showMessage, setShowMessage] = useState(false)
     const userId = userData.id
-    const router = useRouter()
-    // const [field,setField]=useState('')
-    // const [specializations,setSpecialization]=useState(creatorData?.specializations||[])
-    // const [skills,setSkills]=useState(creatorData?.skills||[])
-    // const [tempSpecialization,setTempSpecialization] = useState('')
-    // const [tempSkills,setTempSkills]=useState('')
- 
-    
 
+ 
+  
+    useEffect(() => {
+      if (!isAuthenticated) {
+        router.push('/auth/login');
+      }
+    }, [isAuthenticated]);
+    
+    if (!isAuthenticated) {
+      return null
+    }
 
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
      
-    // const addSpecializations=()=>{
-    //   const updatedSpecialization = [...specializations,tempSpecialization]
-    //   setSpecialization(updatedSpecialization)
-    //   setTempSpecialization("")
-    // }
-    // const removeFromList=(index)=>{
-    //   const updatedSpecialization = [...specializations]
-    //   updatedSpecialization.splice(index,1)
-    //   setSpecialization(updatedSpecialization)
-    // }
-    
-    // const addSkills=()=>{
-    //   const updatedSkills = [...skills,tempSkills]
-    //   setSkills(updatedSkills)
-    //   setTempSkills("")
-    // }
-    // const removeSkill=(index)=>{
-    //   const updatedSkills = [...skills]
-    //   updatedSkills.splice(index,1)
-    //   setSkills(updatedSkills)
-    // }
 
     
     
@@ -228,58 +210,7 @@ try {
            />
         </div>
 
-        {/* {creatorData && 
-          <div className="form-group">
-          <label htmlFor="field">Field</label>
-          <input 
-          type="field" 
-          id="field" 
-          name="field" 
-          value={field}
-          placeholder ={creatorData.field}
-          onChange={(e) => setField(e.target.value)}
-           />
-        </div>
-        } */}
-
-{/* {creatorData &&  <div className='form-group list-parent'>
-              <label htmlFor="">Specializations</label>
-              <input type="text"
-              placeholder='Web Dev, Photoshop, UI, Portraits  ... etc'
-              value={tempSpecialization}
-              onChange={(e)=> setTempSpecialization(e.target.value)}
-              onKeyDown={(e)=>
-                e.key==='Enter'?addSpecializations:''
-              }
-              />
-              {tempSpecialization!=='' &&<button type='button' onClick={addSpecializations}>Add</button> }
-              <div className="form-list">
-            {specializations.map((spec,index)=>{
-              return <div className="item" key={index}>
-              <small>{spec}</small>
-              <FontAwesomeIcon icon={faClose} className='remove-item' onClick={()=>removeFromList(index)}/>
-              </div>
-            })}
-           </div>
-            </div>} */}
-
-          {/* {creatorData && <div className='form-group'>
-              <label htmlFor="">Your Skills</label>
-              <input type="text"
-              placeholder='Java, Adobe, creative writing ... etc'
-              value={tempSkills}
-              onChange={(e)=>{setTempSkills(e.target.value)}}
-              />
-              {tempSkills!=='' &&<button type='button' onClick={addSkills}>Add</button> }
-              <div className="form-list">
-            {skills.map((skill,index)=>{
-              return <div className="item" key={index}>
-              <small>{skill}</small>
-              <FontAwesomeIcon icon={faClose} className='remove-item' onClick={()=>removeSkill(index)}/>
-              </div>
-            })}
-           </div>
-            </div>} */}
+        
         {loading?<div className='btn-loader'></div>:<div className='form-btns'>
           <button >Save</button>
           <button onClick={()=>router.back()}>Cancel</button>
