@@ -21,9 +21,11 @@ const MyArena = () => {
   const router = useRouter()
 
 
-  if(!isAuthenticated){
-    return router.push('/auth/login') 
-  }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/auth/login');
+    }
+  }, [isAuthenticated]);
 
   //function to fetch data
   useEffect(()=>{
@@ -70,7 +72,9 @@ useEffect(()=>{
   fetchAchievements()
 },[isAuthenticated])
 
-
+if (!isAuthenticated) {
+  return null; 
+}
 ////prop data
 const setProps = (achievement) => {
   if (achievement.type === 'tier' && tierProgress.length > 0) {

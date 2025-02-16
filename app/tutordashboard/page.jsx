@@ -3,7 +3,6 @@ import React, {useState,useEffect } from 'react';
 import '../dashboard/dashboadcss/dash.css'
 import { useContextUser} from '../hooks/Context';
 import { useRouter } from 'next/navigation';
-import Help from '../dashboard/help'
 import Messages from '../dashboard/messages';
 import TutorProfile from './TutorProfile';
 import DeleteAccount from '../dashboard/DeleteAccount';

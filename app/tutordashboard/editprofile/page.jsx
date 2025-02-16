@@ -12,11 +12,6 @@ import 'react-phone-input-2/lib/style.css'
 const EditTutorProfile = () => {
     const {setUserData,userData,isAuthenticated} = useContextUser()
     const router= useRouter()
-
-    if(!isAuthenticated){
-      return router.push('/auth/login') 
-    }
-
     const [username,setUsername]=useState('')
     const [location,setLocation]=useState('')
     const [email,setEmail]=useState('')
@@ -35,13 +30,16 @@ const EditTutorProfile = () => {
     const [upgrade,setUpgrade]=useState(false)
     const userId =userData.id
    
-
-    if(!isAuthenticated){
-      return router.push('/auth/login') 
+    useEffect(() => {
+      if (!isAuthenticated) {
+        router.push('/auth/login');
+      }
+    }, [isAuthenticated]);
+    
+    if (!isAuthenticated) {
+      return null
     }
-
 //function to add data in array format
-console.log(tempSubject.length);
 
 const addtolist=()=>{
   if(userData.is_premium == false){

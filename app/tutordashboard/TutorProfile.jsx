@@ -141,8 +141,6 @@ const TutorProfile = ({user}) => {
       <button><Link href='/tutordashboard/premium-checkout'>Get Premium for $4/month</Link></button>
       </div>}
         </div>
-      
-      {showEditForm && <EditTutorProfile setShowEditForm={setShowEditForm} user={user}/> }
     </section>
   )
 }
