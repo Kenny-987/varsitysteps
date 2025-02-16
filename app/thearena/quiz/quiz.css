@@ -171,14 +171,18 @@ border: 1px solid var(--primary-color);
 .login_to_play{
    display: block;
    margin: auto;
+   margin-top: 10px; 
    padding: 4px;
    border-radius: 4px;
-   margin-top: 10px;
-   background-color: green;
 }
-
+.login_to_play p{
+    margin: 6px auto;
+}
 .login_to_play a{
+    background-color: green;
     color:#fff;
+    padding: 4px;
+   border-radius: 4px;
 }
 .quiz_complete{
     min-height: 60vh;

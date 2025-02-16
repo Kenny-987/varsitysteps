@@ -23,7 +23,6 @@ const Login = () => {
   
   useEffect(()=>{
     if(isAuthenticated){
-      console.log('you are logged in')
       router.push('/')
     }
   },[])
@@ -57,7 +56,7 @@ const Login = () => {
           const redirectUrl = searchParams.get("redirect") || "/tutordashboard";
            window.location.href=redirectUrl
         }else if(roles.includes('student') && roles.includes('tutor')){
-          window.location.href=redirectUrl
+          window.location.href='/dashboard'
         }
       
       } else {

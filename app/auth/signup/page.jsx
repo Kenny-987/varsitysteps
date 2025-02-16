@@ -5,7 +5,7 @@ import '../form.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle,faClose} from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter,useSearchParams } from 'next/navigation';
 import { useContextUser } from '../../hooks/Context';
 
 const Signup = () => {
@@ -18,6 +18,7 @@ const Signup = () => {
   const [showMessage, setShowMessage] = useState(false)
   const [showPassword, setShowPassord] = useState(false)
   const [loading,setLoading]=useState(false)
+  const searchParams = useSearchParams();
   const role ='student'
   const {isAuthenticated,setIsAuthenticated}=useContextUser()
  
@@ -63,8 +64,11 @@ const Signup = () => {
         setIsAuthenticated(true)
         setLoading(false)
         if(roles.includes('student')){
-          window.location.href='/dashboard'
+          const redirectUrl = searchParams.get("redirect") || "/dashboard";
+          window.location.href=redirectUrl
         }else if(roles.includes('tutor')){
+          const redirectUrl = searchParams.get("redirect") || "/tutordashboard";
+           window.location.href=redirectUrl
            window.location.href='/tutordashboard'
         }else if(roles.includes('student') && roles.includes('tutor')){
           window.location.href='/dashboard'

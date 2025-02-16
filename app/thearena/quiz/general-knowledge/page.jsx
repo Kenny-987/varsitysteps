@@ -36,7 +36,9 @@ const startGame =()=>{
         <button className='quiz-start-btn' onClick={startGame}>Start Quiz</button>
         {loginPrompt && 
           <button className='login_to_play'>
-          <Link href={`/auth/login?redirect=${`/thearena/quiz/general-knowledge`}`}>Login to start playing</Link>
+          <Link href={`/auth/login?redirect=${`/thearena/quiz/general-knowledge`}`}>Login</Link>
+          <p>-or-</p>
+          <Link href={`/auth/signup?redirect=${`/thearena/quiz/general-knowledge`}`}>Sign up to start playing</Link>
           </button> }   
     </section>
   )
