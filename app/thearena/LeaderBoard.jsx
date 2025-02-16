@@ -118,7 +118,7 @@ if(loading){
           <div className="position-name">
           <p className="position">{board.position<10?`${'0'}${board.position}`:board.position}</p>
           <div className="name-image">
-          {board.profile_image?<Image src='/images/kenny.jpg' alt='image' width={70} height={70}/>:<div className='placeholder-image'>
+          {board.profile_image?<Image src={userPosition.profile_image}alt='image' width={70} height={70}/>:<div className='placeholder-image'>
           {board.username.slice(0,1)}</div>}
           <p className='name'>{board.username} {board.id==userData.id?'(You)':''}</p>
           </div>
