@@ -44,4 +44,8 @@
     background-color: red;
     color: #fff;
   }
-  
+  @media (min-width:768px){
+    .announcements{
+      width: 50%;
+    }
+  }
