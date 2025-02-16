@@ -8,7 +8,7 @@ import { useContextUser } from '../../hooks/Context';
 import { useRouter } from 'next/navigation';
 
 const EditProfile = () => {
-    const {setUserData,userData} = useContextUser()
+    const {setUserData,userData,isAuthenticated} = useContextUser()
     const [username,setUsername]=useState('')
     const [bio,setBio]=useState(userData.bio||'')
     const [location,setLocation]=useState('') 
@@ -29,16 +29,16 @@ const EditProfile = () => {
       }
     }, [isAuthenticated]);
     
-    if (!isAuthenticated) {
-      return null
-    }
+    
 
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
      
 
-    
+    if (!isAuthenticated) {
+      return null
+    }
     
 const updateInfo = async(e)=>{
   e.preventDefault();
@@ -102,10 +102,6 @@ try {
       const updatedData = {...userData,...data.user}
       setUserData(updatedData)
       
-      // if(data.creator ){
-      //   const updatedCreatorData = {...creatorData,...data.creator}
-      //   setCreatorData(updatedCreatorData)
-      // }
     }
     setLoading(false)
     window.location.href = '/dashboard'
