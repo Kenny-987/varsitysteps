@@ -26,10 +26,14 @@ const Terms = () => {
             <li>Any direct, indirect, incidental, or consequential damages arising from your use of the platform. It is up to the user to practice caution and to ensure their safety.</li>
             <li>Any disputes between users, including tutors and clients.</li>
         </ul>
+       
         <h2>2. Privacy Policy</h2>
         <h4>2.1 User Data</h4>
         <p>VarsitySteps stores and has access to supplied user information including username, email, location, phone, except for the user pasword which is encrypted.</p>
         <p>We do not share user information with anyone it is strictly confindential unless required to do so by the law.</p>
+
+        <h2>3. Refund policy</h2>
+        <p>We have a strict no refund policy on premium subscriptions, this is to prevent abuse and ill treatment of the platform. However we are will to go above and beyond to solve any issues you may be facing.</p>
     </section>
   )
 }

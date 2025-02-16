@@ -20,7 +20,7 @@ const Login = () => {
   const searchParams = useSearchParams();
   const {isAuthenticated,setIsAuthenticated}=useContextUser()
 
-  const redirectUrl = searchParams.get("redirect") || "/dashboard";
+  
   useEffect(()=>{
     if(isAuthenticated){
       console.log('you are logged in')
@@ -49,11 +49,13 @@ const Login = () => {
         const roles = await response.json()
         setIsAuthenticated(true)
         setLoading(false)
-    
+        
         if(roles.includes('student')){
+          const redirectUrl = searchParams.get("redirect") || "/dashboard";
           window.location.href=redirectUrl
         }else if(roles.includes('tutor')){
-           window.location.href='/tutordashboard'
+          const redirectUrl = searchParams.get("redirect") || "/tutordashboard";
+           window.location.href=redirectUrl
         }else if(roles.includes('student') && roles.includes('tutor')){
           window.location.href=redirectUrl
         }

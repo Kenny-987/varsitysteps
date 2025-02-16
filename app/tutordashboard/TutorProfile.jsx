@@ -1,21 +1,17 @@
 'use client'
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPhone,faEnvelope,faBookOpen,faLocationDot, faUserAlt, faGraduationCap, faInfoCircle,faChalkboardTeacher,faDollarSign,faUser, faCamera,faClose, faDotCircle, faMinus, faListSquares, faCaretRight, faCircle, faGlobe, faRibbon, faCircleCheck} from '@fortawesome/free-solid-svg-icons';
+import {faEnvelope,faBookOpen,faLocationDot,faGraduationCap,faCircle, faInfoCircle,faChalkboardTeacher,faDollarSign,faUser, faCamera, faCircleCheck, faStar} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image'
-import EditTutorProfile from './EditTutorProfile';
 import EditImage from '../dashboard/ImageEdit';
 import Link from 'next/link';
-import PremiumModal from './PremiumModal';
-
+import './css/premium.css'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 
 const TutorProfile = ({user}) => {
     const [showEditForm,setShowEditForm] = useState(false)
     const [editImage,setEditImage]=useState(false)
-    const [showPremiumModal,setShowPremiumModal]=useState(false)
-    console.log(user);
-    
 
   return (
     <section className="profile">
@@ -49,10 +45,12 @@ const TutorProfile = ({user}) => {
       <p>{user.email} {user.is_verified ?<span className='verified-email'>email verified <FontAwesomeIcon icon={faCircleCheck}/></span>:<Link href='/auth/verify-email' className='verify-email-link'>verify email <FontAwesomeIcon icon={faCircleCheck}/></Link>}</p>
       </div>
 
+      {user.is_premium ? "":<button className='premium-cta-btn'><Link href='/tutordashboard/premium-checkout'><FontAwesomeIcon icon={faStar}/> Boost your profile, Get Premium for $4/month</Link></button>}
       
-
+      
       <div className="edit-btn">
-        <button onClick={()=> setShowEditForm(true)}>Edit Profile</button>
+        <button><Link style={{color:'#fff'}} href='tutordashboard/editprofile'>Edit Profile</Link></button>
+        <button><Link style={{color:'#fff'}}href= {`/tutoring/tutorprofile/${user.id}`}>View my profile</Link></button>
         {user.role_name.includes('student') && <button><Link href={'/dashboard'} style={{color:'#fff'}}>Back to student dashboard</Link></button> }
       </div>
       
@@ -65,29 +63,37 @@ const TutorProfile = ({user}) => {
         <div>
         <p><FontAwesomeIcon icon={faInfoCircle}/> Bio</p>
         <div className="user-detail">
-        {user.bio?<p>{user.bio}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Bio</button>}
+        {user.bio?<p>{user.bio}</p>:<button><Link href='tutordashboard/editprofile#bio'>Add Bio</Link></button>}
         </div>
       </div>
       
       <div className="user-details">
       <div className="user-detail">
         <p>Minimum Charge/month:</p>
-        {user.base_charge?<p><FontAwesomeIcon icon={faDollarSign}/> {user.base_charge}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Charge</button>}
+        {user.base_charge?<p><FontAwesomeIcon icon={faDollarSign}/> {user.base_charge}</p>:<button>
+          <Link href='/tutordashboard/editprofile#charge'>Add Charge</Link></button>}
       
       </div>
       <div className="user-detail">
         <p>Location:</p>
-        {user.location?<p><FontAwesomeIcon icon={faLocationDot}/> {user.location}</p>:<button onClick={()=> setShowEditForm(true)}>Edit location</button>}
+        {user.location?<p><FontAwesomeIcon icon={faLocationDot}/> {user.location}</p>:<button><Link href='/tutordashboard/editprofile#location'>Add location</Link></button>}
       </div>
 
+      {user.is_premium ? 
       <div className="user-detail">
-      <p>Phone:</p>
-      {user.phone?<p><FontAwesomeIcon icon={faPhone}/> {user.phone}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Phone</button>}
-      </div>
+      <p>WhatsApp number:</p>
+      {user.phone?<button>
+        <Link href={`https://wa.me/+${user.phone}`}><FontAwesomeIcon icon={faWhatsapp}/> +{user.phone}</Link></button>
+          :<button><Link href='/tutordashboard/editprofile#phone'>Add Number</Link></button>}
+      </div>:<div className="user-detail">
+      <p>WhatsApp number:</p>
+      {<button><FontAwesomeIcon icon={faStar}/> <Link href='/tutordashboard/premium-checkout'>Get premium and include a direct link to your WhatsApp</Link></button>}
+      </div> }
+      
 
       <div className="user-detail">
         <p>Email:</p>
-        {user.email?<p><FontAwesomeIcon icon={faEnvelope}/> {user.email}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Email</button>}
+        {<p><FontAwesomeIcon icon={faEnvelope}/> {user.email}</p>}
       </div>
       <div className="user-detail">
         <p><FontAwesomeIcon icon={faBookOpen}/> Subjects/Modules you teach</p>
@@ -97,7 +103,7 @@ const TutorProfile = ({user}) => {
             <li><FontAwesomeIcon icon={faCircle} style={{fontSize:'8px'}}/> {sub}</li>
           </ul>
         </div>
-      }):<button onClick={()=> setShowEditForm(true)}>Edit Subjects</button>}
+      }):<button><Link href='/tutordashboard/editprofile#teaches'>Add Subjects</Link></button>}
       </div>
       <div className="user-detail">
         <p><FontAwesomeIcon icon={faGraduationCap}/> Qaulifications:</p>
@@ -107,13 +113,13 @@ const TutorProfile = ({user}) => {
             <li><FontAwesomeIcon icon={faCircle} style={{fontSize:'8px'}}/> {qualy}</li>
           </ul>
         </div>
-        }):<button onClick={()=> setShowEditForm(true)}>Edit Qualifications</button>}
+        }):<button><Link href='/tutordashboard/editprofile#qualifications'>Add Qualifications</Link></button>}
       
       </div>
       
       <div className="user-detail">
         <p><FontAwesomeIcon icon={faChalkboardTeacher}/> Teaching Method</p>
-        {user.teaching_method?<p>{user.teaching_method}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Method</button>}
+        {user.teaching_method?<p>{user.teaching_method}</p>:<button><Link href='/tutordashboard/editprofile#method'>Add Method</Link></button>}
         
       </div>
       {/* here is an option for premium users to add direct links to their social media */}
@@ -123,20 +129,19 @@ const TutorProfile = ({user}) => {
         
       </div> */}
       </div>
-      {/* <div className="premium-cta">
+      {user.is_premium?'':<div className="premium-cta">
       <p><span>Become a Premium Member</span></p>
       <ul>
-        <li>Boost your profile</li>
-        <li>Priority Listing & Increased Visibility</li>
-        <li>Exclusive Advertising</li>
-        <li>Share social media links</li>
-        <li>Unlock detailed analysis</li>
+        <li><FontAwesomeIcon icon={faStar}/> Upgrade to Premium for Priority Listing and Enhanced Visibility to Boost Your Profile!</li>
+        <li><FontAwesomeIcon icon={faStar}/> Make your contact details visible with a direct link to your WhatsApp – no need for students to connect first to start chatting with you!</li>
+        <li><FontAwesomeIcon icon={faStar}/> Unlimited subjects</li>
+        <li><FontAwesomeIcon icon={faStar}/> Get Priority support and assistance</li>
+        <li><FontAwesomeIcon icon={faStar}/> Remove this ad</li>
       </ul>
-      <button onClick={()=>setShowPremiumModal(true)}>Get Premium</button>
-      </div> */}
+      <button><Link href='/tutordashboard/premium-checkout'>Get Premium for $4/month</Link></button>
+      </div>}
         </div>
       
-      {showPremiumModal && <PremiumModal/>}
       {showEditForm && <EditTutorProfile setShowEditForm={setShowEditForm} user={user}/> }
     </section>
   )

@@ -2,55 +2,59 @@
 import React,{useState,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose,faInfoCircle} from '@fortawesome/free-solid-svg-icons';
-import './dashboadcss/edit.css'
-import '../globals.css'
-import { useContextUser } from '../hooks/Context';
+import '../dashboadcss/edit.css'
+import '../../globals.css'
+import { useContextUser } from '../../hooks/Context';
+import { useRouter } from 'next/navigation';
 
-
-const EditProfile = ({setShowEditForm,user,creatorData}) => {
+const EditProfile = () => {
+    const {setUserData,userData,setCreatorData} = useContextUser()
     const [username,setUsername]=useState('')
-    const [bio,setBio]=useState(user.bio||'')
+    const [bio,setBio]=useState(userData.bio||'')
     const [location,setLocation]=useState('') 
     const [email,setEmail]=useState('')
-    const [phone,setPhone]=useState('')
+    // const [phone,setPhone]=useState('')
     const [programme,setProgramme]=useState('')
     const [institution,setInstitution]=useState('')
     const [loading,setLoading]=useState(false)
     const [message, setMessage] = useState('')
     const [showMessage, setShowMessage] = useState(false)
-    const {setUserData,userData,setCreatorData} = useContextUser()
-    const userId = user.id
-    const [field,setField]=useState('')
-    const [specializations,setSpecialization]=useState(creatorData?.specializations||[])
-    const [skills,setSkills]=useState(creatorData?.skills||[])
-    const [tempSpecialization,setTempSpecialization] = useState('')
-    const [tempSkills,setTempSkills]=useState('')
+    const userId = userData.id
+    const router = useRouter()
+    // const [field,setField]=useState('')
+    // const [specializations,setSpecialization]=useState(creatorData?.specializations||[])
+    // const [skills,setSkills]=useState(creatorData?.skills||[])
+    // const [tempSpecialization,setTempSpecialization] = useState('')
+    // const [tempSkills,setTempSkills]=useState('')
  
+    
+
+
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
      
-    const addSpecializations=()=>{
-      const updatedSpecialization = [...specializations,tempSpecialization]
-      setSpecialization(updatedSpecialization)
-      setTempSpecialization("")
-    }
-    const removeFromList=(index)=>{
-      const updatedSpecialization = [...specializations]
-      updatedSpecialization.splice(index,1)
-      setSpecialization(updatedSpecialization)
-    }
+    // const addSpecializations=()=>{
+    //   const updatedSpecialization = [...specializations,tempSpecialization]
+    //   setSpecialization(updatedSpecialization)
+    //   setTempSpecialization("")
+    // }
+    // const removeFromList=(index)=>{
+    //   const updatedSpecialization = [...specializations]
+    //   updatedSpecialization.splice(index,1)
+    //   setSpecialization(updatedSpecialization)
+    // }
     
-    const addSkills=()=>{
-      const updatedSkills = [...skills,tempSkills]
-      setSkills(updatedSkills)
-      setTempSkills("")
-    }
-    const removeSkill=(index)=>{
-      const updatedSkills = [...skills]
-      updatedSkills.splice(index,1)
-      setSkills(updatedSkills)
-    }
+    // const addSkills=()=>{
+    //   const updatedSkills = [...skills,tempSkills]
+    //   setSkills(updatedSkills)
+    //   setTempSkills("")
+    // }
+    // const removeSkill=(index)=>{
+    //   const updatedSkills = [...skills]
+    //   updatedSkills.splice(index,1)
+    //   setSkills(updatedSkills)
+    // }
 
     
     
@@ -63,20 +67,20 @@ const updateInfo = async(e)=>{
       username,
       location,
       email,
-      phone,
+      // phone,
       programme,
       institution,
-      bio,
-      field,
-      skills,
-      specializations
+      // bio,
+      // field,
+      // skills,
+      // specializations
     }
   }else{
     updatedData={
       username,
       location,
       email,
-      phone,
+      // phone,
       programme,
       institution,
       bio
@@ -111,18 +115,18 @@ try {
     console.log(data);
     
     if(data){
-      console.log(data.creator);
+      // console.log(data.creator);
       
       const updatedData = {...userData,...data.user}
       setUserData(updatedData)
       
-      if(data.creator ){
-        const updatedCreatorData = {...creatorData,...data.creator}
-        setCreatorData(updatedCreatorData)
-      }
+      // if(data.creator ){
+      //   const updatedCreatorData = {...creatorData,...data.creator}
+      //   setCreatorData(updatedCreatorData)
+      // }
     }
     setLoading(false)
-     setShowEditForm(false)
+    window.location.href = '/dashboard'
   }else{
        setShowMessage(true)
         setMessage('update failed');
@@ -141,7 +145,7 @@ try {
     <div className='edit-profile'>
       <div className='edit-profile-content'>
       <form onSubmit={updateInfo} >
-        <h3>Edit Your Profile <FontAwesomeIcon onClick={()=>setShowEditForm(false)} icon={faClose}/></h3>
+        <h3>Edit Your Profile <FontAwesomeIcon onClick={()=>router.back()} icon={faClose}/></h3>
       <div className="form-group">
           <label htmlFor="name">Fullname</label>
           <input 
@@ -149,7 +153,7 @@ try {
           id="name" 
           name="name"
           value={username}
-          placeholder ={user.username}
+          placeholder ={userData.username}
           onChange={(e) => setUsername(e.target.value)} 
            />
         </div>
@@ -171,7 +175,7 @@ try {
           id="location" 
           name="location" 
           value={location}
-          placeholder ={user.location}
+          placeholder ={userData.location}
           onChange={(e) => setLocation(e.target.value)}
            />
         </div>
@@ -182,12 +186,12 @@ try {
            id="email" 
            name="email"
            value={email}
-           placeholder ={user.email}
+           placeholder ={userData.email}
           onChange={(e) => setEmail(e.target.value)} 
             />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="phone">Phone</label>
           <input type='phone'
            id="phone" 
@@ -196,7 +200,7 @@ try {
            placeholder ={user.phone}
           onChange={(e) => setPhone(e.target.value)} 
             />
-        </div>
+        </div> */}
 
         
 
@@ -207,7 +211,7 @@ try {
           id="programme" 
           name="programme" 
           value={programme}
-          placeholder ={user.programme}
+          placeholder ={userData.programme}
           onChange={(e) => setProgramme(e.target.value)}
            />
         </div>
@@ -219,7 +223,7 @@ try {
           id="institute" 
           name="institute" 
           value={institution}
-          placeholder ={user.institution}
+          placeholder ={userData.institution}
           onChange={(e) => setInstitution(e.target.value)}
            />
         </div>
@@ -278,7 +282,7 @@ try {
             </div>} */}
         {loading?<div className='btn-loader'></div>:<div className='form-btns'>
           <button >Save</button>
-          <button onClick={()=>setShowEditForm(false)}>Cancel</button>
+          <button onClick={()=>router.back()}>Cancel</button>
           </div>}
       </form>
       {showMessage && <div className='authmessage'>

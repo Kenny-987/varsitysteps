@@ -312,6 +312,12 @@ background-color: var(--primary-color);
   color: #fff;
   border-radius: 4px;
 }
+.user-detail button svg{
+  color: #ffd700;
+}
+.user-detail button a{
+  color: #fff;
+}
 .user-detail p{
   margin-bottom: 4px
 }
@@ -476,29 +482,7 @@ background-color: var(--primary-color);
   color: #fff;
 
 }
-.premium-cta{
-  /* border: 1px solid red; */
-  /* text-align: center; */
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 8px;
-  border-radius: 4px;
-}
-.premium-cta p span{
-  font-size: 18px;
-  color: #fff;
-  font-weight: 700;
-}
-.premium-cta li{
-  color: #fff;
-  font-size: 14px;
-}
-.premium-cta button{
-  margin-top: 8px;
-  padding: 4px;
-  font-size: 16px;
-  border-radius: 4px;
-}
+
 @media (min-width: 768px) and (max-width:1024px){
   .edit-profile form{
     width: 70%;
@@ -541,6 +525,9 @@ background-color: var(--primary-color);
       /* border: 1px solid red; */
    }
    .navitem{
+    font-size: 18px;
+   }
+   .navitem a{
     font-size: 18px;
    }
    /* ---------------------------------------------------------------------
@@ -594,6 +581,9 @@ background-color: var(--primary-color);
   }
   .user-details{
     grid-template-columns: repeat(1,1fr);
+  }
+  .user-detail button{
+    font-size: 14px;
   }
   .requests li{
     display: block;
@@ -656,5 +646,9 @@ background-color: var(--primary-color);
   padding: 8px;
   font-size: 14px;
   margin-top: 10px;
+}
+.premium-cta-btn{
+  font-size: 15px;
+  margin: 8px auto;
 }
   }

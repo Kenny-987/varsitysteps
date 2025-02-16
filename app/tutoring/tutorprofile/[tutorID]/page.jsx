@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowAltCircleLeft, faUser,faClose, faStar, faStarHalf, faCircle, faShareFromSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import Messages from "../../../dashboard/messages"
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 
 const TutorProfile =()=>{
 const [tutor,setTutor] = useState({})
@@ -173,7 +174,7 @@ return <section className='tutor-profile-container'>
     <div className="profile-wrapper">
         {/* This div will align to left on desktop view and shows basic info */}
         <div className="tutor-basic-info">
-        {tutor.is_premium  &&<p className='feature-icon'>Featured</p>}
+        {tutor.is_premium  &&<p className='feature-icon'><FontAwesomeIcon icon={faStar} color="purple"/> Featured</p>}
             <div className="tutor-image">
                 {tutor.profile_image ? <Image alt="profile-image" src={tutor.profile_image} priority={true} width={200} height={200}/> : <div className="tutor-profile-icon"><FontAwesomeIcon className='placeholder' icon={faUser}/></div> }
                 
@@ -203,8 +204,12 @@ return <section className='tutor-profile-container'>
                 <span>{Math.round(Number(tutor.average_rating)* 10)/10} ({tutor.total_ratings} ratings)</span>
             </div>
             <p>Minimum Fee: <span>${tutor.base_charge}/month</span></p>
-            {tutor.phone  &&
-            <p>Phone: {tutor.phone}</p>
+            {tutor.phone  &&<>
+                <button className="whatsapp-link"><Link href={`https://wa.me/+${tutor.phone}`}><FontAwesomeIcon icon={faWhatsapp}/> Message Tutor</Link></button>
+                <button className="basic-info-btn" onClick={requestConnection}>Connect</button>
+            </>
+            
+            
             }
             {loading ? <div className='btn-loader'></div> :<> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn" onClick={()=>setShowChats(true)}>Chat</button> : connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
             {/* --------------div to rate tutor--------------- */}

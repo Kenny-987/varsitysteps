@@ -1,0 +1,55 @@
+.achievement-popup-container{
+    margin: auto;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 90%;
+    z-index: 1000;
+}
+
+
+.achievement-popup{
+    border-radius: 6px;
+    background-color:#fff ;
+    padding: 8px;
+    box-shadow: 0px 0px 10px 2px silver;
+    margin-top: 10px
+}
+.achievement-popup h3{
+    text-align: center;
+    color: var(--primary-color);
+}
+.close-popup{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    color: crimson;
+    margin: 10px;
+}
+.achievement-popup p{
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+}
+.achievement-popup p svg{
+    font-size: 20px;
+    color: #ffd700;
+}
+.achievement-popup span{
+    display: block;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    color: var(--primary-color);
+}
+.achievement-popup span a{
+    color: var(--primary-color);
+    font-size: 16px;
+}
+@media (min-width:768px){
+    .achievement-popup-container{ 
+        width: 40%;
+    }
+}

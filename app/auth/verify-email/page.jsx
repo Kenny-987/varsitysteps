@@ -85,7 +85,7 @@ const checkOtp = async()=>{
 
   return (
     <section className='verify'>
-        <h3>Verify your email: <span className='email'>{userData.email} </span>to confirm your identity and strengthen you account security, and recieve email notifications.</h3>
+        <h3>Verify your email: <span className='email'>{userData.email} </span>to confirm your identity and strengthen your account security, and recieve email notifications.</h3>
         {step1 &&
         <>{loading?<div className='btn-loader'></div>:<button onClick={verifyEmail}>Click here to verify</button>}
         {showMessage && <div className='authmessage'>

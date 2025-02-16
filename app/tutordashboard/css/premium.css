@@ -1,0 +1,117 @@
+.premium-cta{
+    /* border: 1px solid red; */
+    /* text-align: center; */
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  .premium-cta p span{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+  }
+  .premium-cta li{
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 8px
+  }
+  .premium-cta li svg{
+    color: #ffd700;
+  }
+  .premium-cta button{
+    margin-top: 8px;
+    padding: 4px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .premium-cta-btn{
+    padding: 4px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+  }
+  .premium-cta-btn a{
+    color: #fff;
+  }
+  .premium-cta-btn svg{
+    color: #ffd700;
+  }
+  .premium-checkout{
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+    height: fit-content;
+  }
+  
+  .premium-checkout h4{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+  }
+  .benefits{
+    /* border: 1px solid red; */
+    padding: 10px;
+    position: relative;
+  }
+  .benefit{
+    padding: 10px;
+    background-color: #eeeeee;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .benefit p{
+    font-weight: 500;
+    color: #333
+  }
+  .benefit span{
+    font-size: 14px;
+    color: #8d8d8d;
+    font-weight: 500;
+  }
+  .premium-checkout button{
+    padding: 10px;
+    display: block;
+    margin:10px auto;
+    color: #fff;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+  }
+  .steps-modal{
+    padding: 10px;
+  }
+  .steps-modal .notice{
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .steps-modal .notice svg{
+    color: var(--primary-color);
+  }
+  .step{
+    background-color: #eee;
+    padding: 10px;
+    margin: 16px 0;
+    padding: 10px;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .step span{
+    color: var(--primary-color);
+  }
+
+/* form{
+  border: 1px solid red;
+} */
+@media (min-width:1080px){
+  .premium-checkout{
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+    /* border: 1px solid black; */
+    background-color: #fff;
+    position: relative;
+  }
+}

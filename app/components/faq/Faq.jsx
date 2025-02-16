@@ -20,6 +20,10 @@ const Faq = () => {
           answer: "You can sign up on the platform, complete your profile, and apply to be listed as a tutor.",
         },
         {
+          question: "I'm having trouble signing up or logging in",
+          answer: "Make sure to allow cookies in your browser settings and allow cross-site tracking.",
+        },
+        {
           question: "Is VarsitySteps free to use?",
           answer: "The platform offers free resources, but certain services may come with a fee such as premium membership for tutors.",
         },

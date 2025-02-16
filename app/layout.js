@@ -9,8 +9,9 @@ import React, {useState} from 'react'
 import { SocketProvider } from "./hooks/SocketContext";
 import Footer from "./components/footer/Footer";
 import Script from "next/script";
-// import AchievementPopup from "./components/achievement/page";
+import AchievementPopup from "./components/achievement/page";
 import { useContextUser } from "./hooks/Context";
+import Announcements from "./components/announcements/Announcements";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,7 +47,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>VarsitySteps</title>
         <meta name="description" content="VarsitySteps - Empowering your academic journey" />
-        <meta name="keywords" content="Tutors, Zimbabwean Tutors, online learning education, tutors in zimbabwe"/>
+        <meta name="keywords" content="tutors, zimbabwean tutors, online learning education, tutors in zimbabwe, varsitysteps, varsity steps, varsity steps zimbabawe, tutors, quizzes, quiz, zimbabwe, edtech, zimbabwe edtech, online tutors"/>
         <meta name="google-site-verification" content="fMW3BqKc0Ey8Fkh-h3XYLIII87T08fonaxx6L3LBrXE" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -65,12 +66,13 @@ export default function RootLayout({ children }) {
 }
 
 function ContentWrapper({ children }) {
-  // const { showAchPopup} = useContextUser();
+  const { showAchPopup} = useContextUser();
 
   return (
     <>
       <Navbar />
-      {/* {showAchPopup && <AchievementPopup />} */}
+      <Announcements/>
+      {showAchPopup && <AchievementPopup />}
       {children}
       <Footer />
     </>

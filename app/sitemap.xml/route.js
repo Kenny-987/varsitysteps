@@ -6,9 +6,9 @@ export async function GET() {
   // Manually add static URLs
   const staticUrls = [
     { loc: `${baseUrl}/`, lastmod: new Date().toISOString(), priority: 1.0 },
+    { loc: `${baseUrl}/about`, lastmod: new Date().toISOString(), priority: 0.8 },
     { loc: `${baseUrl}/tutoring`, lastmod: new Date().toISOString(), priority: 0.8 },
     { loc: `${baseUrl}/institutions`, lastmod: new Date().toISOString(), priority: 0.5 },
-    { loc: `${baseUrl}/about`, lastmod: new Date().toISOString(), priority: 0.5 },
   ];
 
   const urls = [...staticUrls];

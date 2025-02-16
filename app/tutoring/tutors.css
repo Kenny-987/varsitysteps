@@ -100,7 +100,10 @@
    border-radius: 50%;
 }
 .feature-icon{
-    color: #ffd900;
+    color: transparent;
+  background-clip: text;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
     font-weight: 600!important;
 }
 .tutor-profile-icon{
@@ -339,6 +342,17 @@ margin-bottom: 4px;
   }
   .off {
     color: #ffd90073;
+  }
+  .whatsapp-link{
+    font-size: 18px;
+    padding: 4px 10px;
+    background-color:#25D366 ;
+    border-radius: 6px;
+    display: block;
+    margin: auto;
+  }
+  .whatsapp-link svg{
+    font-size: 20px;
   }
 @media (max-width: 700px){
     .tutors-intro{

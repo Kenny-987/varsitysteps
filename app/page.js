@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faDotCircle } from "@fortawesome/free-solid-svg-icons";
 import Faq from "./components/faq/Faq";
+import Feedback from "./components/feedbackform/Feedback";
 // import FeaturedTutors from "./tutoring/FeaturedTutors";
 
 
@@ -59,46 +60,27 @@ export default function Home() {
           </div>
           {/* feature card */}
           {/* feature card */}
-          {/* <div className="feature-card">
+          <div className="feature-card">
           <div className="feature-img">
-            <Image alt='feature-img' src='/images/worker.svg' width={150} height={150}/>
+            <Image alt='feature-img' src='/images/Gaming-amico.svg' width={150} height={150}/>
           </div>
-          <h4>Career Guidance</h4>
-          <p>Explore a variety of different careers across different industries</p>
-          <p>Get personalized career guidance and recommendations on the steps to achieve your goals.</p>
+          <h4>The Arena</h4>
+          <p>Join the competition on educational quizzes and challenges</p>
+          <p>Earn points and climb up the leaderboard, become the VarsitySteps Champion.</p>
           <div className="feature-cta">
-            <button><Link href='/careers'>Explore Careers</Link></button>
+            <button><Link href='/thearena'>Take me to the Arena</Link></button>
           </div>
-          </div> */}
-          {/* feature card */}
-          {/* feature card */}
-          {/* <div className="feature-card">
-          <div className="feature-img">
-            <Image alt='feature-img' src='/images/worker.svg' width={150} height={150}/>
           </div>
-          <h4>Turor Recommendations</h4>
-          <p>Need help finding a tutor for yourself or your child?</p>
-          <p>Let VarsitySteps offer tailored recommendations based on your needs.</p>
-          <div className="feature-cta">
-            <button><Link href='/careers'>Get recommendations</Link></button>
-          </div>
-          </div> */}
           {/* feature card */}
         </div>
       </section>
       {/* end of features */}
-      
-      
-
-      {/* <section className="explore">
-        <h2>Explore</h2>
-        <p>Explore a diverse range of projects, ideas, and creations shared by fellow users.</p>
-        <Link href='/posts'>
-        <button>Explore</button></Link>
-      </section> */}
 
       {/* section for faq */}
         <Faq/>
+      
+      {/* section for feedback */}
+      <Feedback/>
 {/* <Contact/> */}
     </main>
   );

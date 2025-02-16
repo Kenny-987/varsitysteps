@@ -1,0 +1,211 @@
+.arena-dashboard{
+    width: 90%;
+    margin: auto;
+    /* border: 1px solid red; */
+    min-height: 70vh;
+}
+.arena-stats{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    margin-top: 20px;
+}
+.arena-stats .stat p{
+color: #333333b3;
+}
+.arena-stats .stat.points{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.arena-stats .stat h4 {
+  color: transparent;
+  background-clip: text;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+}
+.arena-stats.grid{
+    /* border: 1px solid red; */
+    gap: 10px;
+    border: none;
+}
+.arena-stats.grid .stat{
+    border: 1px solid #333333b3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    width: 50%;
+    text-align: center;
+    min-height: 100px;
+    border-radius: 6px;
+    /* background:#333;
+    color: #fff; */
+}
+/* .arena-stats.grid .stat p,.arena-stats.grid .stat h4{
+    color: #fff;
+} */
+
+ .tier-progress{
+    margin-top: 20px;
+ }
+ .tier-progress-bar{
+    border: 1px solid #C850C0;
+    border-radius: 4px;
+    height: 10px;
+    position: relative;
+ }
+ .tierprogress{
+  border-radius: 2px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  position: absolute;
+  top: 0;
+  left: 0; 
+  height: 100%;
+ }
+
+ .arena-achievements{
+   /* border:1px solid red ; */
+   margin-top: 20px;
+   position: relative;
+}
+.arena-achievements-container{
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #eee;
+  padding: 10px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+.arena-achievements .achievement{
+   margin-top: 8px;
+   /* border: 1px solid#C850C0 ; */
+   background-color: #fff;
+   padding:10px 4px;
+   border-radius: 8px;
+   width: 48%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   cursor: pointer;
+   margin-bottom: 10px;
+}
+.progress-stats{
+   margin-top: auto;
+}
+ .achievement_progress{
+    border: 1px solid #C850C0 ;
+    width: 100px;
+    height: 10px;
+    border-radius: 6px;
+    position: relative;
+ }
+
+ .bar{
+    height: 100%;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    z-index: -100;
+    border-radius: 6px;
+ }
+ .achievement-details-container{
+   /* border: 1px solid red; */
+   border: 1px solid #C850C0;
+   border-radius: 6px;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   width: 90%;
+   background-color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px 10px;
+   z-index: 100;
+
+ }
+ .achievement-details{
+   background-color: #fff;
+   /* border: 1px solid red; */
+   width: 80%;
+
+ }
+ .achievement-details .title, .achievement-details .description{
+   text-align: center;
+ }
+ .achievement-details .title{
+  color: transparent;
+  background-clip: text;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+ }
+ .achievement-details .badge{
+   /* border: 1px solid red; */
+   width: fit-content;
+   margin: 20px auto;
+ }
+ .achievement-details .difficulty{
+   /* border: 1px solid blue; */
+   text-align: center;
+   margin-top: 10px;
+ }
+ .achievement-details .difficulty p{
+   font-weight: 600;
+ }
+ .achievement-details .progress-stats{
+   width: fit-content;
+   margin: auto;
+ }
+ .date_unlocked{
+  color: transparent;
+  background-clip: text;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+  padding: 6px;
+  font-weight: 600;
+  width: fit-content;
+  margin: auto;
+  border-radius: 4px;
+ }
+ .achievement-badge img{
+  object-fit: cover;
+ }
+ .arena-link{
+  margin-top: 20px;
+  padding: 4px;
+  border: 1px solid var(--primary-color);
+  width: fit-content;
+  border-radius: 4px;
+}
+.arena-link a{
+   color: var(--primary-color);
+ }
+ .showall{
+  margin: 10px auto;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+ }
+ @media (min-width:768px){
+  .arena-dashboard{
+    width: 80%;
+    padding: 20px;
+  }
+  .arena-achievements .achievement{
+     width: 30%;
+  }
+  .achievement-details-container{
+    width: 50%;
+  }
+ }

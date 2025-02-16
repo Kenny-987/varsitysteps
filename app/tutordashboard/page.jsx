@@ -10,8 +10,9 @@ import DeleteAccount from '../dashboard/DeleteAccount';
 import PasswordSettings from '../dashboard/PasswordSettings';
 import Requests from './Requests'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCaretDown, faCaretUp,faEnvelope,faLink,faLock,faPeopleGroup,faSignOut,faUser,faWarning,faClose} from '@fortawesome/free-solid-svg-icons';
+import {faCaretDown, faCaretUp,faEnvelope,faLink,faLock,faPeopleGroup,faSignOut,faUser,faWarning,faClose, faGamepad} from '@fortawesome/free-solid-svg-icons';
 import StudentsList from './StudentsList';
+import Link from 'next/link';
 
 const TutorDashboard = ()=>{
     const {userData,isAuthenticated,loading,showDash, setShowDash,tutoringData} = useContextUser()
@@ -103,7 +104,7 @@ const logout = async()=>{
           <li className="navitem" onClick={()=>{setShowChats(true),setShowDash(!showDash)}}><FontAwesomeIcon icon={faEnvelope}/> Messages</li>
           <li className="navitem" onClick={()=>{setContent("Students");setShowDash(!showDash);setShowChats(false)}}><FontAwesomeIcon icon={faPeopleGroup}/> My Students</li>
           <li className="navitem" onClick={()=>{setContent("Requests");setShowDash(!showDash);setShowChats(false)}}><FontAwesomeIcon icon={faLink}/> Connection Requests <span>{requests.length?requests.length:0}</span></li>
-
+          <li className="navitem"><Link href='/myarena'><FontAwesomeIcon icon={faGamepad}/> My Arena</Link></li>
           <div className="logout navitem">
             <p onClick={()=>setShowLogoutOptions(!showLogoutOptions)}><FontAwesomeIcon icon={faSignOut}/> Logout {showLogoutOptions?<FontAwesomeIcon icon={faCaretUp}/>:<FontAwesomeIcon icon={faCaretDown}/>}</p>
             {showLogoutOptions && <div className="logout-options">

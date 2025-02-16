@@ -1,35 +1,63 @@
 'use client'
 import React,{useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose,faInfoCircle} from '@fortawesome/free-solid-svg-icons';
-import '../dashboard/dashboadcss/edit.css'
-import { useContextUser } from '../hooks/Context';
+import { faClose,faInfoCircle,faStar} from '@fortawesome/free-solid-svg-icons';
+import '../../dashboard/dashboadcss/edit.css'
+import { useContextUser } from '../../hooks/Context';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css'
 
-const EditTutorProfile = ({setShowEditForm,user}) => {
+const EditTutorProfile = () => {
+    const {setUserData,userData,isAuthenticated} = useContextUser()
+    const router= useRouter()
+
+    if(!isAuthenticated){
+      return router.push('/auth/login') 
+    }
+
     const [username,setUsername]=useState('')
     const [location,setLocation]=useState('')
     const [email,setEmail]=useState('')
     const [phone,setPhone]=useState('')
-    const [qualifications,setQualifications]=useState(user.qualifications||[])
+    const [valid,setValid] = useState(false)
+    const [qualifications,setQualifications]=useState(userData.qualifications||[])
     const [tempQualifications,setTempQualifications] = useState("")
-    const [teaches,setTeaches]=useState(user.teaches||[])
+    const [teaches,setTeaches]=useState(userData.teaches||[])
     const [tempSubject,setTempSubject]=useState("")
-    const [bio,setBio]=useState(user.bio||'')
-    const [teaching_method,setTeachingMethod]=useState(user.teaching_method||'')
+    const [bio,setBio]=useState(userData.bio||'')
+    const [teaching_method,setTeachingMethod]=useState(userData.teaching_method||'')
     const [loading,setLoading]=useState(false)
     const [message, setMessage] = useState('')
     const [showMessage, setShowMessage] = useState(false)
-    const [base_charge,setBaseCharge]= useState(user.base_charge||'')
-    const {setUserData,userData} = useContextUser()
-    const userId =user.id
-    //the teaches variable means subject, i just used teaches to match the db
+    const [base_charge,setBaseCharge]= useState(userData.base_charge||'')
+    const [upgrade,setUpgrade]=useState(false)
+    const userId =userData.id
+   
+
+    if(!isAuthenticated){
+      return router.push('/auth/login') 
+    }
 
 //function to add data in array format
-    const addtolist=()=>{
+console.log(tempSubject.length);
+
+const addtolist=()=>{
+  if(userData.is_premium == false){
+    if(teaches.length<2){
       const updatedSubjects = [...teaches,tempSubject]
       setTeaches(updatedSubjects)
-      setTempSubject("")
+    }else if(teaches.length>=2){
+      setUpgrade(true)
+    }  
+    }else if(userData.is_premium){
+      const updatedSubjects = [...teaches,tempSubject]
+      setTeaches(updatedSubjects)
     }
+  
+  setTempSubject("")
+}
     const removeFromList=(index)=>{
       const updatedSubjects = [...teaches]
       updatedSubjects.splice(index,1)
@@ -51,7 +79,7 @@ const EditTutorProfile = ({setShowEditForm,user}) => {
 //fuction to update info
 const updateInfo = async(e)=>{
   e.preventDefault();
-  // setLoading(true)
+  setLoading(true)
 const updatedData={
   username,
   location,
@@ -72,9 +100,6 @@ Object.keys(updatedData).forEach((key)=>{
 console.log(newUserData, 'and ID ',userId)
 
 try {
-
-
-
   if(Object.keys(newUserData).length ===0 || Object.values(newUserData).every(value=>Array.isArray(value) && value.length === 0)){
     setShowMessage(true)
     setLoading(false)
@@ -94,7 +119,7 @@ try {
     if(data){
       const updatedData = {...userData,...data.user}
       setUserData(updatedData)
-     window.location.reload()
+     window.location.href = '/tutordashboard'
     }
     setLoading(false)
   }else{
@@ -117,7 +142,7 @@ try {
     <div className='edit-profile'>
       <div className='edit-profile-content'>
       <form onSubmit={updateInfo} >
-      <h3>Edit Your Profile <FontAwesomeIcon onClick={()=>setShowEditForm(false)} icon={faClose}/></h3>
+      <h3>Edit Your Profile <FontAwesomeIcon onClick={()=>router.back()} icon={faClose}/></h3>
       <div className="form-group">
           <label htmlFor="name">Fullname</label>
           <input 
@@ -125,10 +150,11 @@ try {
           id="name" 
           name="name"
           value={username}
-          placeholder ={user.username}
+          placeholder ={userData.username}
           onChange={(e) => setUsername(e.target.value)} 
            />
         </div>
+
         <div className="form-group">
           <label htmlFor="charge">Your minimum charge/month</label>
           <input 
@@ -140,6 +166,7 @@ try {
           onChange={(e) => setBaseCharge(e.target.value)} 
            />
         </div>
+
         <div className="form-group">
           <label htmlFor="location">Location</label>
           <input 
@@ -147,7 +174,7 @@ try {
           id="location" 
           name="location" 
           value={location}
-          placeholder ={user.location}
+          placeholder ={userData.location}
           onChange={(e) => setLocation(e.target.value)}
            />
         </div>
@@ -158,20 +185,27 @@ try {
            id="email" 
            name="email"
            value={email}
-           placeholder ={user.email}
+           placeholder ={userData.email}
           onChange={(e) => setEmail(e.target.value)} 
             />
         </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone</label>
-          <input type='tel'
+
+        {userData.is_premium? <div className="form-group">
+          <label htmlFor="phone">WhatsApp Number</label>
+          <PhoneInput
+          country={'zw'}
            id="phone" 
-           name="phone"
            value={phone}
-           placeholder ={user.phone||'0712345678'}
-          onChange={(e) => setPhone(e.target.value)} 
+           onChange={(newValue) => {
+            setPhone(newValue); // Use the parameter passed by onChange
+          }}
+        
             />
-        </div>
+        </div> : <div className="form-group">
+        <label htmlFor="phone">WhatsApp Number</label>
+        <button><FontAwesomeIcon icon={faStar}/> <Link href='/tutordashboard/premium-checkout'>Get premium and include a direct link to your WhatsApp</Link></button>
+          </div> }
+        
 
      
         <div className="form-group">
@@ -183,6 +217,7 @@ try {
           value={tempSubject}
           placeholder ='eg mathematics'
           onChange={(e)=> setTempSubject(e.target.value)}
+          readOnly ={teaches.length >= 2 && !userData.is_premium ? true:false }
            />
            {tempSubject!=='' &&<button type='button' onClick={addtolist}>Add</button> }
            <div className="form-list">
@@ -193,6 +228,8 @@ try {
               </div>
             })}
            </div>
+           {teaches.length >= 2 && !userData.is_premium && <p className='upgrade'><Link href='/tutordashboard/premium-checkout'><FontAwesomeIcon icon={faStar}/> Upgrade to premium and add unlimited subjects</Link></p> }
+            
         </div>
         
         <div className="form-group">
@@ -237,9 +274,9 @@ try {
           
           />
         </div>
-        {loading?<div className='loading'>...loading</div>:<div className='form-btns'>
+        {loading?<div className='btn-loader'></div>:<div className='form-btns'>
           <button type="submit">Save</button>
-          <button onClick={()=>setShowEditForm(false)}>Cancel</button>
+          <button onClick={()=>router.back()}>Cancel</button>
           </div>}
       </form>
       {showMessage && <div className='authmessage'>

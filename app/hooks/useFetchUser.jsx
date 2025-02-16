@@ -9,8 +9,7 @@ const useFetchUser =  () => {
     const [tutoringData,setTutoringData]=useState(null)
     const [notificationCount,setNotificationCount] = useState(0)
     const [notifications,setNotifications]=useState([])
-
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+   
 
     
     useEffect(()=>{
@@ -24,8 +23,6 @@ const useFetchUser =  () => {
                     setUserData(data.user)
                     setCreatorData(data.creative)
                     setTutoringData(data.tutoring)
-                    console.log(data);
-                    
                     setIsAuthenticated(true)
                     setLoading(false)
                 }else{
@@ -47,8 +44,6 @@ const useFetchUser =  () => {
                 })
                 if(response.ok){
                     const data = await response.json()
-                    console.log(data);
-                    
                     setNotifications(data)
                     const unread = data.filter(notification=>notification.is_read==false)
                     setNotificationCount(unread.length);

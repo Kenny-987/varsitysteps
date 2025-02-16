@@ -1,45 +1,79 @@
-import React from 'react'
-import './footer.css'
+import React, { useState } from 'react';
+import './footer.css';
 import '../../globals.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook,faInstagram,faXTwitter,faWhatsapp,faLinkedin} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faXTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { useContextUser } from '../../hooks/Context';
 
 const Footer = () => {
-  return (
-      <footer>
-        {/* <h3>Quick Links</h3> */}
-        <div className="quicklinks">
-        <div className="primary-links a">
-                <ul>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/about">About</Link></li>
-        {/* <li><Link href="">Support Us</Link></li> */}
-        <li><Link href="/terms-and-conditions">Terms and Policies</Link></li>
-        {/* <li><Link href="">FAQ</Link></li> */}
-        {/* <li><Link href="">Blog</Link></li> */}
-        {/* <li><Link href="">Advertise</Link></li> */}
-                </ul>
-            </div>
-            <div className="secondary-links">
-                <p>Call us <Link href='tel:+263789644097'>: +263789644097</Link></p>
-                <p><FontAwesomeIcon icon={faEnvelope}/> <Link href='mailto:varsitysteps@gmail.com'>varsitysteps@gmail.com</Link></p>
-            </div>
-        </div>
-        
-        <div className="socials">
-            <Link href="https://wa.me/+263789644097"><FontAwesomeIcon icon={faWhatsapp}/></Link>
-            <Link href="https://www.instagram.com/varsitysteps/"><FontAwesomeIcon icon={faInstagram}/></Link>
-            <Link href="https://web.facebook.com/profile.php?id=61569642848335"><FontAwesomeIcon icon={faFacebook}/></Link>
-            <Link href="https://x.com/varsitysteps"><FontAwesomeIcon icon={faXTwitter}/></Link>
-            {/* <Link href=""><FontAwesomeIcon icon={faLinkedin}/></Link> */}
-        </div>
-        <div className="copyright">
-            © VarsitySteps - 2024
-        </div>
-    </footer>
-  )
-}
+    const {setShowAchPopup,setGlobalAchievement}=useContextUser()
+  const followed = async (socialApp) => {
+    try {
+      const response = await fetch(`https://varsitysteps-server.onrender.com/gamedata/follower`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ socialApp }),
+      });
 
-export default Footer
+      if (response.ok) {
+        const data = await response.json();
+        if(data.length>0){
+            setGlobalAchievement(data)
+        setShowAchPopup(true)
+        }
+        
+      } else {
+        console.log(error);
+        
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <footer>
+      <div className="quicklinks">
+        <div className="primary-links">
+          <ul>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/thearena">Play</Link></li>
+            <li><Link href="/about">About</Link></li>
+            <li><Link href="/terms-and-conditions">Terms and Policies</Link></li>
+          </ul>
+        </div>
+        <div className="secondary-links">
+          <p>Call us: <Link href="tel:+263789644097">+263789644097</Link></p>
+          <p><FontAwesomeIcon icon={faEnvelope} /> <Link href="mailto:varsitysteps@gmail.com">varsitysteps@gmail.com</Link></p>
+        </div>
+      </div>
+
+      <div className="socials">
+        <Link href="https://wa.me/+263789644097" target="_blank"><FontAwesomeIcon icon={faWhatsapp} /></Link>
+
+        <span onClick={() => followed('Instagram Explorer')}>
+          <Link href="https://www.instagram.com/varsitysteps/" target="_blank"><FontAwesomeIcon icon={faInstagram} /></Link>
+        </span>
+
+        <span onClick={() => followed('Facebook Follower')}>
+          <Link href="https://web.facebook.com/profile.php?id=61569642848335" target="_blank"><FontAwesomeIcon icon={faFacebook} /></Link>
+        </span>
+
+        <span onClick={() => followed('X (Twitter) Supporter')}>
+          <Link href="https://x.com/varsitysteps" target="_blank"><FontAwesomeIcon icon={faXTwitter} /></Link>
+        </span>
+      </div>
+
+      <div className="copyright">
+        © VarsitySteps - 2025
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

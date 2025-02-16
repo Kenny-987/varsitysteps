@@ -1,7 +1,7 @@
 .edit-profile{
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
     width: 100%;
     min-height: 100%;
     /* display: flex;
@@ -91,15 +91,28 @@ input {
     gap: 10px;
     flex-wrap: wrap;
    }
+   .form-group button a{
+    color: #fff;
+   }
+   .form-group button svg {
+    color:#ffd700
+   }
    .form-group .form-list .item{
     /* border: 1px solid red; */
-    background-color: #4158D0;
+    background-color: #333;
     color: #fff;
     padding: 4px;
     border-radius: 4px;
+    gap: 4px;
     display: flex;
     align-items: center;
    }
+
+   .remove-item{
+    color: #fff;
+    font-size: 14px;
+  }
+
    input:focus{
    outline: none;
    border: 1px solid #007bff77;
@@ -273,7 +286,22 @@ input {
   font-size: 14px;
 
 }
-
+.upgrade{
+  /* border: 1px solid red; */
+  width: fit-content;
+  padding:4px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 4px;
+  margin: 4px 0 ;
+  font-size: 14px;
+}
+.upgrade a{
+  color: #fff;
+}
+.upgrade svg{
+  color: #ffd700;
+}
 
 /* -----------------------------------------------------------------------------
 -----------------------edit password---------------------------------------

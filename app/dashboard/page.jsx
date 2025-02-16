@@ -8,9 +8,9 @@ import DeleteAccount from './DeleteAccount';
 import { useContextUser } from '../hooks/Context';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCaretDown, faCaretUp, faChalkboardTeacher, faEnvelope, faLock, faSignOut, faUser, faWarning,faClose} from '@fortawesome/free-solid-svg-icons';
+import {faCaretDown, faCaretUp, faChalkboardTeacher, faEnvelope, faLock, faSignOut, faUser, faWarning,faClose, faGamepad} from '@fortawesome/free-solid-svg-icons';
 import MyTutors from './MyTutors';
-import { faArtstation } from '@fortawesome/free-brands-svg-icons';
+import Link from 'next/link';
 import CreatorPanel from '../creatorPanel/CreatorPanel';
 
 const Dashboard = () => {
@@ -22,6 +22,7 @@ const Dashboard = () => {
   const [myTutors,setMyTutors] = useState([])
  const [tutor_id,setTutor_id]=useState(null)
  const [showChats,setShowChats] = useState(false)
+
 
    useEffect(() => {
       console.log('useffect runnng')
@@ -98,6 +99,7 @@ if(loading){
           <li className="navitem" onClick={()=>{setShowChats(true),setShowDash(!showDash)}}><FontAwesomeIcon icon={faEnvelope}/> Messages</li>
           <li className="navitem" onClick={()=>{setContent("Password");setShowDash(!showDash)}}><FontAwesomeIcon icon={faLock}/> Change Password</li>
           {myTutors.length > 0 && <li className="navitem" onClick={()=>{setContent('Tutors'),setShowDash(!showDash)}}> <FontAwesomeIcon icon={faChalkboardTeacher}/> My Tutors</li>}
+          <li className="navitem"><Link href='/myarena'><FontAwesomeIcon icon={faGamepad}/> My Arena</Link> </li>
           <div className="logout navitem">
             <p onClick={()=>setShowLogoutOptions(!showLogoutOptions)}><FontAwesomeIcon icon={faSignOut} /> Logout {showLogoutOptions?<FontAwesomeIcon icon={faCaretUp}/>:<FontAwesomeIcon icon={faCaretDown}/>}</p>
             {showLogoutOptions && <div className="logout-options">
