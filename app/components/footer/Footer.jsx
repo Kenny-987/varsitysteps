@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './footer.css';
 import '../../globals.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
