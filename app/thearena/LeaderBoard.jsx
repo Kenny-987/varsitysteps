@@ -19,7 +19,6 @@ useEffect(()=>{
       const response = await fetch(`https://varsitysteps-server.onrender.com/gamedata/leaderboard`)
       if(response.ok){
         const data = await response.json()
-        console.log(data);
         setLeaderBoard(data)
         setLoading(false)
       }else{
@@ -46,8 +45,6 @@ useEffect(()=>{
        if(response.ok){
         const data = await response.json()
         seUserPosition(data)
-        console.log(data);
-        
        }else{
         console.log('cannot get position');
         
