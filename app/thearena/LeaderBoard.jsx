@@ -129,9 +129,9 @@ if(loading){
         {userPosition && userPosition.position>20 &&
         <div className="leaderboard-list-item highlight">
           <div className="position-name">
-          <p className="position">{userPosition.positio<10?`${'0'}${userPosition.position}`:userPosition.position}</p>
+          <p className="position">{userPosition.position<10?`${'0'}${userPosition.position}`:userPosition.position}</p>
           <div className="name-image">
-          {userPosition.profile_image?<Image src='/images/kenny.jpg' alt='image' width={70} height={70}/>:<div className='placeholder-image'>
+          {userPosition.profile_image?<Image src={userPosition.profile_image} alt='image' width={70} height={70}/>:<div className='placeholder-image'>
           {userPosition.username.slice(0,1)}</div>}
           <p className='name'>{userPosition.username} (You)</p>
           </div>
