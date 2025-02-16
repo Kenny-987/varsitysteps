@@ -115,7 +115,7 @@ if(loading){
           <div className="position-name">
           <p className="position">{board.position<10?`${'0'}${board.position}`:board.position}</p>
           <div className="name-image">
-          {board.profile_image?<Image src={board.profile_image}alt='image' width={70} height={70}/>:<div className='placeholder-image'>
+          {board.profile_image?<Image src={board.profile_image}alt='image' width={40} height={40}/>:<div className='placeholder-image'>
           {board.username.slice(0,1)}</div>}
           <p className='name'>{board.username} {board.id==userData.id?'(You)':''}</p>
           </div>
@@ -128,7 +128,7 @@ if(loading){
           <div className="position-name">
           <p className="position">{userPosition.position<10?`${'0'}${userPosition.position}`:userPosition.position}</p>
           <div className="name-image">
-          {userPosition.profile_image?<Image src={userPosition.profile_image} alt='image' width={70} height={70}/>:<div className='placeholder-image'>
+          {userPosition.profile_image?<Image src={userPosition.profile_image} alt='image' width={40} height={40}/>:<div className='placeholder-image'>
           {userPosition.username.slice(0,1)}</div>}
           <p className='name'>{userPosition.username} (You)</p>
           </div>
