@@ -12,7 +12,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Create socket connection
-    const newSocket = io.connect('/api');
+    const newSocket = io.connect('/api/');
     setSocket(newSocket);
 
     // Cleanup the socket connection when the component unmounts
