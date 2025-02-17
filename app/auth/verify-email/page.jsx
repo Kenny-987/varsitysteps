@@ -27,7 +27,7 @@ const email = userData.email
 const verifyEmail = async()=>{
 setLoading(true)
 try {
-    const response = await fetch(`https://varsitysteps-server.onrender.com/auth/verify`,{
+    const response = await fetch(`/api/auth/verify`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const checkOtp = async()=>{
     }
     setLoading(true)
     try {
-        const response = await fetch(`https://varsitysteps-server.onrender.com/auth/otp`,{
+        const response = await fetch(`/api/auth/otp`,{
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',

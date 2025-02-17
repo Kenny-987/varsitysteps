@@ -24,7 +24,7 @@ const PremiumModal = () => {
   formData.append('proof', proof);
  
     try {
-      const response = await fetch(`https://varsitysteps-server.onrender.com/pay/uploadproof`,{
+      const response = await fetch(`/api/pay/uploadproof`,{
         method:'POST',
         body: formData,
         credentials: 'include', 

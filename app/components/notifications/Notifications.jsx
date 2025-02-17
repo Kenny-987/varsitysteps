@@ -12,7 +12,7 @@ useEffect(()=>{
     const markAsRead = async()=>{
         console.log('click')
         try {
-            const response = await fetch(`https://varsitysteps-server.onrender.com/api/markread`,{
+            const response = await fetch(`/api/api/markread`,{
                 method:'PATCH',
                 credentials:'include',
                 headers: {

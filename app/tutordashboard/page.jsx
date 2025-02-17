@@ -45,7 +45,7 @@ const TutorDashboard = ()=>{
       const fetchRequests = async()=>{
       const userId = userData.id
         try {
-            const response = await fetch(`https://varsitysteps-server.onrender.com/api/requests/${userId}`,{
+            const response = await fetch(`/api/api/requests/${userId}`,{
                 credentials:'include'
             })
             if(response.ok){
@@ -76,7 +76,7 @@ if(loading){
  }
 const logout = async()=>{
   try {
-   const response = await fetch(`https://varsitysteps-server.onrender.com/auth/logout`,{
+   const response = await fetch(`/api/auth/logout`,{
     method:'POST',
     credentials:'include'
    })

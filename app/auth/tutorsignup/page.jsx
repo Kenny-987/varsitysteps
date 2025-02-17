@@ -39,7 +39,7 @@ const Tutorsignup = () => {
       return;
     }
     try {
-      const response = await fetch('https://varsitysteps-server.onrender.com/auth/register', {
+      const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

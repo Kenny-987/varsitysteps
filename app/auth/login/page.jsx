@@ -31,7 +31,7 @@ const Login = () => {
     return null;
   }
 
-  const api = 'https://varsitysteps-server.onrender.com/auth/login'
+  const api = '/api/auth/login'
   const login= async(e)=>{
     setLoading(true)
     e.preventDefault();

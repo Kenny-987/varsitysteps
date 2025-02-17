@@ -30,7 +30,7 @@ useEffect(()=>{
     const fetchTutor = async ()=>{
         // setLoading(true)
         try {
-            const response  = await fetch(`https://varsitysteps-server.onrender.com/tutors/tutorprofile/${tutorID}`)
+            const response  = await fetch(`/api/tutors/tutorprofile/${tutorID}`)
             const data = await response.json()
             if (response.ok){
                 console.log('this is user profile: ',data)
@@ -52,7 +52,7 @@ if(isAuthenticated){
     console.log('sending request')
     setLoading(true)
     try {
-        const response = await fetch(`https://varsitysteps-server.onrender.com/api/connectionrequest`, {
+        const response = await fetch(`/api/api/connectionrequest`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ if(isAuthenticated){
 //function to check if user is connected
     const checkConnection = async()=>{
         try {
-            const response = await fetch( 'https://varsitysteps-server.onrender.com/api/connectionstatus',{
+            const response = await fetch( '/api/api/connectionstatus',{
                 method:'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ if(isAuthenticated){
 //function to check for existing chats between tutor and student
     const checkChatStatus = async()=>{
         try {
-           const response = await fetch(`https://varsitysteps-server.onrender.com/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
+           const response = await fetch(`/api/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
                credentials:'include'
            })
            if(response){
@@ -119,7 +119,7 @@ if(isAuthenticated){
 //function to check if user has rated 
     const checkHasRated = async () => {
         try {
-            const response = await fetch(`https://varsitysteps-server.onrender.com/tutors/checkrate/${tutorID}`,{
+            const response = await fetch(`/api/tutors/checkrate/${tutorID}`,{
                 credentials:'include'
             })
             if(response.ok){
@@ -146,7 +146,7 @@ useEffect(()=>{
 //function to rate a tutor
 const rateTutor = async (tutor_id,rater_id) => {
     try {
-        const response = await fetch(`https://varsitysteps-server.onrender.com/tutors/rate`,{
+        const response = await fetch(`/api/tutors/rate`,{
             method:'POST',
             credentials:'include',
             headers: {

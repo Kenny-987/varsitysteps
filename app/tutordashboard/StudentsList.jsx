@@ -20,7 +20,7 @@ const [receiver,setReceiver]=useState(null)
     useEffect(()=>{
         const fetchStudents = async()=>{
             try {
-                const response = await fetch(`https://varsitysteps-server.onrender.com/user/mystudents`,{
+                const response = await fetch(`/api/user/mystudents`,{
                     credentials:'include'
                 })
                 if(response.ok){
@@ -45,7 +45,7 @@ useEffect(() => {
       // Create an array of promises for each student's chat status check
       const studentPromises = students.map(async (student) => {
         const response = await fetch(
-          `https://varsitysteps-server.onrender.com/messages/checkchats?user1=${userData.id}&user2=${student.user_id}`,
+          `/api/messages/checkchats?user1=${userData.id}&user2=${student.user_id}`,
           { credentials: 'include' }
         );
 
@@ -124,7 +124,7 @@ export default StudentsList
 //     try {
 //       const studentPromises = students.map(async (student) => {
 //         const response = await fetch(
-//           `https://varsitysteps-server.onrender.com/messages/chats?user1=<span class="math-inline">\{userData\.id\}&user2\=</span>{student.user_id}`,
+//           `/api/messages/chats?user1=<span class="math-inline">\{userData\.id\}&user2\=</span>{student.user_id}`,
 //           { credentials: 'include' }
 //         );
 

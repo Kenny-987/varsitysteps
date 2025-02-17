@@ -28,7 +28,7 @@ const ResetPassword =()=>{
         }
         setLoading(true)
         try {
-            const response = await fetch(`https://varsitysteps-server.onrender.com/auth/reset`,{
+            const response = await fetch(`/api/auth/reset`,{
             method:'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const ResetPassword =()=>{
     
     const checkOtp = async()=>{
         try {
-            const response =await fetch(`https://varsitysteps-server.onrender.com/auth/otp`,{
+            const response =await fetch(`/api/auth/otp`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -85,7 +85,7 @@ const ResetPassword =()=>{
     }
 const newPassword = async()=>{
     try {
-        const response = await fetch('https://varsitysteps-server.onrender.com/auth/newpassword',{
+        const response = await fetch('/api/auth/newpassword',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

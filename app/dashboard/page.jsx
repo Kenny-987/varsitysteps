@@ -41,7 +41,7 @@ const Dashboard = () => {
 useEffect(()=>{
   const getTutors = async()=>{
     try {
-    const response = await fetch(`https://varsitysteps-server.onrender.com/user/mytutors`,{
+    const response = await fetch(`/api/user/mytutors`,{
       credentials:'include'
     })
     if(response.ok){
@@ -59,7 +59,7 @@ useEffect(()=>{
 
  const logout = async()=>{
 try {
- const response = await fetch(`https://varsitysteps-server.onrender.com/auth/logout`,{
+ const response = await fetch(`/api/auth/logout`,{
   method:'POST',
   credentials:'include'
  })

@@ -20,7 +20,7 @@ const DeleteAccount = () => {
     }
     setLoading(true)
     try {
-      const response = await fetch('https://varsitysteps-server.onrender.com/auth/delete-account',{
+      const response = await fetch('/api/auth/delete-account',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',

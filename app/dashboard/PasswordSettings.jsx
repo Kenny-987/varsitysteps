@@ -27,7 +27,7 @@ const userId = userData.id
           return;
         }
         try {
-            const response = await fetch(`https://varsitysteps-server.onrender.com/user/update/password/${userId}`,{
+            const response = await fetch(`/api/user/update/password/${userId}`,{
                 method:'PUT',
                 headers: {
                 'Content-Type': 'application/json',

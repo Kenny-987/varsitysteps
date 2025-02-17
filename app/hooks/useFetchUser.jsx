@@ -15,7 +15,7 @@ const useFetchUser =  () => {
     useEffect(()=>{
         const fetchUser=async()=>{
             try {
-                const response = await fetch('https://varsitysteps-server.onrender.com/user/info',{
+                const response = await fetch('/api/user/info',{
                     credentials:'include'
                 })
                 if(response.ok){
@@ -39,7 +39,7 @@ const useFetchUser =  () => {
         }
         const fetchNotifications = async()=>{
             try {
-                const response = await fetch(`https://varsitysteps-server.onrender.com/api/notifications`,{
+                const response = await fetch(`/api/api/notifications`,{
                     credentials:'include'
                 })
                 if(response.ok){
