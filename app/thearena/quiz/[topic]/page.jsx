@@ -25,6 +25,7 @@ const QuizComponent = () => {
     const [playedStatus,setPlayedStatus] =useState(false)
     const [unlocked,setUnlocked] = useState([])
     const [showPopup,setShowPopup] = useState(false)
+    const [checkingPlayedStatus, setCheckingPlayedStatus] = useState(true); 
     ///getting quiz questions
     useEffect(()=>{
       const fetchQuiz = async()=>{
@@ -71,6 +72,8 @@ const QuizComponent = () => {
           }
         } catch (error) {
           console.error(error)
+        }finally{
+          setCheckingPlayedStatus(false)
         }
       }
       hasPlayed()
@@ -153,6 +156,9 @@ const QuizComponent = () => {
         }
       },[questions,questionCounter])
 
+      if (checkingPlayedStatus) {
+        return <div className='btn-loader'></div>; // Replace this with a better UI loader if needed
+      }
   
       let completeMessage = "";
       let textColor = ''
