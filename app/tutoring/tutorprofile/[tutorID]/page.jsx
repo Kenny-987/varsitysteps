@@ -204,7 +204,7 @@ return <section className='tutor-profile-container'>
                 <span>{Math.round(Number(tutor.average_rating)* 10)/10} ({tutor.total_ratings} ratings)</span>
             </div>
             <p>Minimum Fee: <span>${tutor.base_charge}/month</span></p>
-            {tutor.phone  &&
+            {tutor.phone  && tutor.is_premium &&
                 <button className="whatsapp-link"><Link href={`https://wa.me/+${tutor.phone}`}><FontAwesomeIcon icon={faWhatsapp}/> Message Tutor</Link></button>
             }
             {loading ? <div className='btn-loader'></div> :<> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn" onClick={()=>setShowChats(true)}>Chat</button> : connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
