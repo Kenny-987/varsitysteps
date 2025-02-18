@@ -30,7 +30,7 @@ const QuizComponent = () => {
     useEffect(()=>{
       const fetchQuiz = async()=>{
         try {
-          const response = await fetch(`https://varsitysteps-server.onrender.com/quiz/getquiz?query=${topic}`)
+          const response = await fetch(`/api/quiz/getquiz?query=${topic}`)
           if(response.ok){
             const data = await response.json()
             setQuestions(data)
@@ -56,7 +56,7 @@ const QuizComponent = () => {
         const quiz_id = questions.map(question => question.quiz_id)[0]
          const hasPlayed=async()=>{
         try {
-          const response = await fetch(`https://varsitysteps-server.onrender.com/quiz/hasplayed`,{
+          const response = await fetch(`/api/quiz/hasplayed`,{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify({quiz_id}),
@@ -127,7 +127,7 @@ const QuizComponent = () => {
     const addPoints=async()=>{
       const percentage = (points / 10) * 100
         try {
-          const response = await fetch(`https://varsitysteps-server.onrender.com/quiz/addpoints`,{
+          const response = await fetch(`/api/quiz/addpoints`,{
             method:'PATCH',
             headers: {
               'Content-Type': 'application/json',
