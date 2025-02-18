@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 import './navbar.css';
 import '../../globals.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faCaretUp, faCaretDown, faBell, faUser,faGears, faSignIn, faInfo, faInfoCircle, faArchive, faLayerGroup, faChalkboardTeacher, faUniversity } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCaretUp, faCaretDown, faBell, faUser,faGears, faSignIn, faInfo, faInfoCircle, faArchive, faLayerGroup, faChalkboardTeacher, faUniversity, faGamepad } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useContextUser } from '../../hooks/Context';
 import Notifications from '../notifications/Notifications';
@@ -36,6 +36,12 @@ const BottomNavbar = () => {
             <span>Institutions</span>
           </Link>
         </li>
+        <li>
+          <Link href="/thearena" onClick={() => setDropdown(false)}>
+            <FontAwesomeIcon icon={faGamepad} />
+            <span>Play</span>
+          </Link>
+        </li>
         {/* <li className='mobile-tools' onClick={() => setDropdown(!dropdown)}>
         <button>
             <FontAwesomeIcon icon={faGears} />
@@ -62,7 +68,7 @@ const BottomNavbar = () => {
         </Link>
       </li> */}
         {userData && isAuthenticated ? <>
-        <li>
+        {/* <li>
         <button onClick={() => setShowNotifications(!showNotifications)}>
           <FontAwesomeIcon icon={faBell} />
           <span>Notifications</span>
@@ -71,7 +77,7 @@ const BottomNavbar = () => {
         <div className="mobile-notifications">
           <Notifications setShowNotifications={setShowNotifications}/>
           </div>}
-      </li>
+      </li> */}
       <li onClick={()=>{setShowDash(!showDash);setShowNotifications(false)}}>
         <Link href={userData?.role_name.includes("student") ? "/dashboard" : "/tutordashboard"}>
           <FontAwesomeIcon icon={faUser} />
