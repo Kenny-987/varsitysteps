@@ -96,9 +96,9 @@ const Navbar = () => {
         <button className="showdash-widescreen" onClick={()=>setShowDash(!showDash)} >
         {userData.role_name.includes("student")?<Link href="/dashboard"><FontAwesomeIcon icon={faUser}/></Link>:<Link href="/tutordashboard"><FontAwesomeIcon icon={faUser}/></Link>}
       </button>
-      <button className="showdash-widescreen" onClick={()=>setShowNotifications(true)} >
+      {/* <button className="showdash-widescreen" onClick={()=>setShowNotifications(true)} >
         <FontAwesomeIcon icon={faBell}/>
-      </button>
+      </button> */}
       {isAuthenticated == true && userData && <button onClick={()=>setShowNotifications(true)} className='notification-icon'><FontAwesomeIcon icon={faBell}/><span>{notificationCount>0?notificationCount:''}</span></button>}
 
         </div> : <div className="login-btn">
