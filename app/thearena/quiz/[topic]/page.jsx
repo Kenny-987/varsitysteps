@@ -170,7 +170,7 @@ const QuizComponent = () => {
 
       const handleShare = () => {
         const shareText = `I just scored ${points} points in the ${currentTopic} quiz on VarsitySteps! 🏆 Try to beat my score!`;
-        const shareUrl = `http://172.20.10.5:3001/thearena/quiz/${topic}`; 
+        const shareUrl = `/api/thearena/quiz/${topic}`; 
       
         if (navigator.share) {
           navigator.share({
