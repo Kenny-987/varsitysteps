@@ -97,7 +97,7 @@ const RandomQuizComponent = () => {
 
       const handleShare = () => {
         const shareText = `I just scored ${points} points in the ${currentTopic} quiz on VarsitySteps! 🏆 Try to beat my score!`;
-        const shareUrl = `/api/thearena/quiz/${topic}`; 
+        const shareUrl = `/thearena/randmoquizzes/quiz/${topic}`; 
       
         if (navigator.share) {
           navigator.share({
