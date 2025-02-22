@@ -1,15 +1,15 @@
 'use client'
 import React,{useState,useEffect} from 'react'
 import { useParams } from "next/navigation"
-import '../quiz.css'
+import '../../../quiz/quiz.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretRight, faClose, faFaceSmile, faFrown, faLightbulb, faRepeat, faRunning, faSmile, faTrophy,faShareAlt, faX } from '@fortawesome/free-solid-svg-icons'
+import { faCaretRight,  faFaceSmile, faFrown, faLightbulb, faRepeat, faRunning, faSmile, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
-import { useContextUser } from '../../../hooks/Context'
+import { useContextUser } from '../../../../hooks/Context'
 import Image from 'next/image'
 import { faFacebook, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons'
 
-const QuizComponent = () => {
+const RandomQuizComponent = () => {
   const {userData} = useContextUser()
     const {topic} = useParams()
     const [showInfo,setShowInfo]=useState(false)
@@ -22,25 +22,17 @@ const QuizComponent = () => {
     const [warning,setWarning] = useState(false)
     const [questions,setQuestions] = useState([])
     const [loading,setLoading] =useState(true)
-    const [playedStatus,setPlayedStatus] =useState(false)
-    const [unlocked,setUnlocked] = useState([])
-    const [showPopup,setShowPopup] = useState(false)
     const [showFallback,setShowFallback]=useState(false)
-    let currentTopic
 
-    if(topic == 'general%20knowledge'){
-      currentTopic ='General Knowledge'
-    }else if(topic == 'nature'){
-      currentTopic = 'Nature and Animals'
-    }else{
-      currentTopic = topic.charAt(0).toUpperCase() + topic.slice(1)
-    }
+    let currentTopic = 'Random'
+
+   
     
     ///getting quiz questions
     useEffect(()=>{
       const fetchQuiz = async()=>{
         try {
-          const response = await fetch(`/api/quiz/getquiz?query=${topic}`)
+          const response = await fetch(`http://localhost:3000/quiz/getrandomquiz?query=${topic}`)
           if(response.ok){
             const data = await response.json()
             setQuestions(data)        
@@ -58,41 +50,7 @@ const QuizComponent = () => {
      
     },[])
 
-    //chaecking and updating if player has played the quiz
-    useEffect(()=>{
 
-      if(questions.length>0){
-        const quiz_id = questions.map(question => question.quiz_id)[0]
-         const hasPlayed=async()=>{
-          setLoading(true)
-        try {
-          const response = await fetch(`/api/quiz/hasplayed`,{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({quiz_id}),
-            credentials:'include'
-          })
-          if(response.ok){
-            const data = await response.json()
-            const status = data.message
-            if(status === 'played'){
-              setPlayedStatus(true)
-            }
-            
-          }
-        } catch (error) {
-          console.error(error)
-        }finally{
-          setLoading(false)
-        }
-      }
-      if(userData){
-        hasPlayed()
-      } 
-      }
-    
-    },[questions])
-   
     //timer for the quiz
     useEffect(()=>{
         let interval
@@ -117,11 +75,11 @@ const QuizComponent = () => {
             setShowInfo(true)
             setPoints((prev)=>prev+1)
             setIsRunning(false)
-            setMessage('correct')
+            setMessage('Correct')
         }else{
             setIsCorrect(false)
             setIsRunning(false)
-            setMessage('oops incorrect')
+            setMessage('So close')
             setShowInfo(true)
             return index
         }
@@ -135,38 +93,7 @@ const QuizComponent = () => {
         setQuestionCounter((prev)=>prev+1)
       }
 
-    //functon to add points
-    const addPoints=async()=>{
-      const percentage = (points / 10) * 100
-        try {
-          const response = await fetch(`/api/quiz/addpoints`,{
-            method:'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({points,percentage}),
-            credentials:'include'
-          })
-          if(response.ok){
-            const data = await response.json()
-            setUnlocked(data)  
-            if(data.length > 0){
-              setShowPopup(true)
-            }
-          }
-
-        } catch (error) {
-          console.error(error)
-        }
-      }
-      useEffect(()=>{
-        if(questions.length>0){
-          if(questionCounter>questions.length-1 && userData && !playedStatus){
-            addPoints()
-          }
-        }
-      },[questions,questionCounter])
-
+ 
 
       const handleShare = () => {
         const shareText = `I just scored ${points} points in the ${currentTopic} quiz on VarsitySteps! 🏆 Try to beat my score!`;
@@ -209,22 +136,6 @@ const QuizComponent = () => {
       }
   return (
     <div className='quizcomponent'>
-
-    {/* achievement popup goes here */}
-    {unlocked.length>0 &&showPopup && <div className='popupbox'>
-      {unlocked.map((ach,index)=>{
-        return <div className='achievement-popup' key={index}>
-          <FontAwesomeIcon icon={faClose} onClick={()=>setShowPopup(false)}/>
-      <h3>Congratulations</h3>
-      <p> <FontAwesomeIcon icon={faTrophy}/> {ach.message}</p>
-      <button><Link href='/myarena'>View more Achievements</Link></button>
-      </div>
-      })}
-    </div>
-
-        }
-      
-
       {questionCounter>questions.length-1?<div className='quiz_complete' >
         <Image src='/images/confetti-ball-svgrepo-com.svg' alt='celebrate' width={200} height={200}/>
           <h2>Quiz Complete</h2>
@@ -245,7 +156,7 @@ const QuizComponent = () => {
   )}
 
           <span className='quiz_complete_btn'>
-            <Link href='/thearena/quizzes'>New questions tomorrow! Check out more quizzes in the arena</Link></span>
+            <Link href='/thearena'>Check out more quizzes in the arena</Link></span>
           {userData && 
           <div>
             <p>-Or-</p>
@@ -260,7 +171,8 @@ const QuizComponent = () => {
               setIsRunning(true);         
               setShowInfo(false);         
               setMessage('');  
-              }}>Try again <FontAwesomeIcon icon={faRepeat}/> <br />{userData&& '(No points will be added to your achievements this time)'}</span>
+              }}>Try again <FontAwesomeIcon icon={faRepeat}/></span>
+              <p onClick={()=>{window.location.reload()}}>Get new random questions</p>
           </div>:
         <>
         <div className="username-points">
@@ -288,8 +200,9 @@ const QuizComponent = () => {
 
     {showInfo && <div className='quizinfo'>
         <div className="quizinfo-child">
+          {/* remember to embbed gyphy */}
         <div className="emote">
-        {isCorrect?<Image src='/images/happybear.gif' alt='gif'width={150} height={150}/>:<Image src='/images/sadbear.gif' alt='gif' width={150} height={150}/>}
+            {isCorrect?<Image src='/images/happybear.gif' alt='gif'width={150} height={150}/>:<Image src='/images/sadbear.gif' alt='gif' width={150} height={150}/>}
         </div>
         <p className='result' style={isCorrect?{backgroundColor:"green"}:{backgroundColor:'red'}}>{isCorrect?`${message}`:`${message}, the correct answer is ${questions[questionCounter].answer_options[questions[questionCounter].correct_answer]}`}</p>
         <p className='bonus-info'><FontAwesomeIcon icon={faLightbulb} color='green'/> {questions[questionCounter].extra_info}</p>
@@ -304,7 +217,7 @@ const QuizComponent = () => {
         
          <p>The clock is still ticking<span style={timer<=10?{backgroundColor:'red'}:{backgroundColor:'green'}}>{timer}s</span> </p>
 
-        <button className='quit-btn'><Link href='/thearena'>Quit</Link><FontAwesomeIcon icon={faRunning}/></button>
+        <button className='quit-btn'><Link href='/thearena/randomquizzes'>Quit</Link><FontAwesomeIcon icon={faRunning}/></button>
         <button onClick={()=>setWarning(false)}>Continue <FontAwesomeIcon icon={faSmile}/></button>
         </div>
         </div> }
@@ -315,4 +228,4 @@ const QuizComponent = () => {
   )
 }
 
-export default QuizComponent
+export default RandomQuizComponent

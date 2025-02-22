@@ -68,7 +68,7 @@ export default function Home() {
           <p>Join the competition on educational quizzes and challenges</p>
           <p>Earn points and climb up the leaderboard, become the VarsitySteps Champion.</p>
           <div className="feature-cta">
-            <button><Link href='/thearena'>Take me to the Arena</Link></button>
+            <button><Link href='/thearena'>Play a Quiz</Link></button>
           </div>
           </div>
           {/* feature card */}

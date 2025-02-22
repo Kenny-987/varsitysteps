@@ -1,6 +1,5 @@
 import { faClose, faFireFlameCurved, faLock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Data } from '@react-google-maps/api'
 import Image from 'next/image'
 import React from 'react'
 

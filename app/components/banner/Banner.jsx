@@ -8,7 +8,7 @@ import { useContextUser } from '../../hooks/Context';
 const Banner = () => {
   const{isAuthenticated} = useContextUser()
   return (
-    <section className="banner">
+    <header className="banner">
     <div className="banner-content">
       <h1 className="headline">Empower Your Academic Journey with VarsitySteps</h1>
       <p className="subheadline">Discover an array of tutors to help you with your academic journey.</p>
@@ -17,9 +17,10 @@ const Banner = () => {
       <Link href="/tutoring" className="cta-button">Find Tutors</Link>
       <Link href="/auth/tutorsignup" className="cta-button">Become a tutor</Link>
       </div>
+      <Link href="/thearena" className="cta-button startquiz">Play a Quiz</Link>
       
     </div>
-    </section>
+    </header>
   )
 }
 

@@ -71,7 +71,7 @@ if(loading){
       <div className="top-card">
         <p className='position'>#2
         <span>
-        {leaderboard.length>1&&userData.id == leaderboard[1].id && leaderboard?'(You)':''}
+        {leaderboard.length>1&&userData?.id == leaderboard[1].id && leaderboard?'(You)':''}
         </span>
         </p>
         <div className="top_image">
@@ -85,7 +85,7 @@ if(loading){
 
       <div className="top-card first">
         <p className='position'>#1<span>
-        {leaderboard.length>0&&userData.id == leaderboard[0].id?'(You)':''}
+        {leaderboard.length>0&&userData?.id == leaderboard[0].id?'(You)':''}
         </span>
         </p>
         <div className="top_image">
@@ -98,7 +98,7 @@ if(loading){
       </div><div className="top-card">
         <p className='position'>#3
         <span>
-        {leaderboard.length>2&&userData.id == leaderboard[2].id?'(You)':''}</span></p>
+        {leaderboard.length>2&&userData?.id == leaderboard[2].id?'(You)':''}</span></p>
         <div className="top_image">
       {leaderboard.length>2 &&leaderboard[2].profile_image?<Image src={leaderboard[2].profile_image} alt='image' width={70} height={70}/>:<div className='placeholder-image'>
             {leaderboard.length>2 &&leaderboard[2].username.slice(0,1)}</div>}
@@ -110,14 +110,14 @@ if(loading){
 
       <div className="leaderboard-list">
         {leaderboard.length>0 &&leaderboard.slice(3,20).map((board,index)=>{
-          return <div className={board.id==userData.id? 'leaderboard-list-item highlight': 'leaderboard-list-item'} key={index}>
+          return <div className={board.id==userData?.id? 'leaderboard-list-item highlight': 'leaderboard-list-item'} key={index}>
             
           <div className="position-name">
           <p className="position">{board.position<10?`${'0'}${board.position}`:board.position}</p>
           <div className="name-image">
           {board.profile_image?<Image src={board.profile_image}alt='image' width={40} height={40}/>:<div className='placeholder-image'>
           {board.username.slice(0,1)}</div>}
-          <p className='name'>{board.username} {board.id==userData.id?'(You)':''}</p>
+          <p className='name'>{board.username} {board.id==userData?.id?'(You)':''}</p>
           </div>
           </div>
           <p className='points'>{board.points} points</p>

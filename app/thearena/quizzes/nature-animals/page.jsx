@@ -2,13 +2,12 @@
 import React,{useState} from 'react'
 import Link from 'next/link'
 import '../../arena.css'
-import '../quiz.css'
+import '../../quiz/quiz.css'
 import { useContextUser } from '../../../hooks/Context'
 
 const Nature = () => {
     const {isAuthenticated,userData}=useContextUser()
 const [loginPrompt,setLoginPrompt]=useState(false)
-const [showMessage,setShowMessage]=useState(false)
 const topic = 'nature'
 
 const startGame =()=>{
@@ -22,22 +21,30 @@ const startGame =()=>{
     <section className="quiz-page ">
       <div className="heading">
       <div className="navsection">
-                <p><span><Link href='/theareana'>the arena</Link></span>/<span><Link href='/thearena/quiz'>quizzes</Link></span>/nature</p>
+                <p><span><Link href='/thearena'>the arena</Link></span>/<span><Link href='/thearena/quizzes'>quizzes</Link></span>/natureandanimals</p>
             </div>
         <h3>Nature</h3>
       </div>
         <div className="section-intro">
         <p>The Nature section is designed to test your knowledge on animals, ecosytems and environmental facts, and the natural wonders of our planet. 
         </p>
+        <div className="theme">
+          <h4>This Week’s Theme: The Wild World of Classification</h4>
+          <p>Can you classify the creatures of the wild and the wonders of nature? This week, we’re diving into the intricate world of animal and plant classification. </p>
+        </div>
         </div>
         
         <button className='quiz-start-btn' onClick={startGame}>Start Quiz</button>
         {loginPrompt && 
-          <button className='login_to_play'>
-          <Link href={`/auth/login?redirect=${`/thearena/quiz/geography`}`}>Login to start playing</Link>
-          </button> }
-        {showMessage && 
-        <p>You have already played today's General Knowledge quiz, check out other topics for more daily quizzes <Link href='/thearena/quiz'>More Topics</Link> </p>
+          <div className='login_to_play'>
+          <button>
+            <Link href={`/auth/login?redirect=${`/thearena/quiz/general-knowledge`}`}>Login or Sign up to unlock achievements and compete in the leaderboard</Link>
+            </button>
+            <p>-or-</p>
+            <button>
+            <Link href={`/thearena/quiz/${topic}`}>Continue as guest</Link>
+            </button>
+          </div>
         }
         
     </section>

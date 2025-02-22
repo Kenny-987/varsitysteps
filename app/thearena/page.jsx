@@ -23,15 +23,15 @@ const Arena = () => {
         </div>
         <div className="arena-content">
             {content === 'challenges' && <div className='challenges'>
-                <Link href='/thearena/quiz'><div className="challenge">
+                <Link href='/thearena/quizzes'><div className="challenge">
                     <p><Image src="/images/quizzes.svg" width={30} height={20} alt='icon'/>Daily Quizzes</p>
                     <FontAwesomeIcon icon={faCaretRight}/>
                 </div></Link>
 
-                {/* <Link href='/thearena/quiz'><div className="challenge">
-                    <p>Guess the Occupation</p>
+                <Link href='/thearena/randomquizzes'><div className="challenge">
+                    <p> <Image src="/images/random.svg" width={30} height={20} alt='icon'/>Random Quizzes</p>
                     <FontAwesomeIcon icon={faCaretRight}/>
-                </div></Link> */}
+                </div></Link>
                 </div>}
                 
             {content === 'leaderboard' && <LeaderBoard/>}
