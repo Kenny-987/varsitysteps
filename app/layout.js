@@ -45,22 +45,6 @@ export default function RootLayout({ children }) {
           }}
         />
 
-      <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
-        <Script
-          id="google-ads"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-5395588748904287", 
-                enable_page_level_ads: true
-              });
-            `,
-          }}
-        />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>VarsitySteps</title>
@@ -71,6 +55,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest"/>
+        <meta name="google-adsense-account" content="ca-pub-5395588748904287"/>
        
       </head>
       <body >
