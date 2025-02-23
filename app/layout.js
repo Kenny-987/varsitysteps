@@ -12,6 +12,7 @@ import Script from "next/script";
 import AchievementPopup from "./components/achievement/page";
 import { useContextUser } from "./hooks/Context";
 import Announcements from "./components/announcements/Announcements";
+import CookieConsentPopup from "./components/cookieconsent/CookieConsent";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
@@ -74,6 +75,7 @@ function ContentWrapper({ children }) {
       <Announcements/>
       {showAchPopup && <AchievementPopup />}
       {children}
+      <CookieConsentPopup/>
       <Footer />
     </>
   );

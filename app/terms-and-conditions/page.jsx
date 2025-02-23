@@ -23,15 +23,22 @@ const Terms = () => {
         <h4>1.5 Limitation of Liability</h4>
         <p>VarsitySteps is not liable for:</p>
         <ul>
-            <li>Any direct, indirect, incidental, or consequential damages arising from your use of the platform. It is up to the user to practice caution and to ensure their safety.</li>
+            <li>Any direct, indirect, incidental, or consequential damages arising from your use of the platform. It is up to the user to practice caution and to ensure their safety, although we will implement a vetting system but its is essential that users exercise caution</li>
             <li>Any disputes between users, including tutors and clients.</li>
         </ul>
        
-        <h2>2. Privacy Policy</h2>
+        <h2>2. Privacy Policy and Cookie Policy</h2>
         <h4>2.1 User Data</h4>
         <p>VarsitySteps stores and has access to supplied user information including username, email, location, phone, except for the user pasword which is encrypted.</p>
         <p>We do not share user information with anyone it is strictly confindential unless required to do so by the law.</p>
-
+        <h4>2.2 Cookies</h4>
+        <p>We use cookies to ensure you get the best user experience.</p>
+        <p>Cookies we use:</p>
+        <ul>
+            <li>Analytics: we use these to track and analyze user behavior on our platform.</li>
+            <li>Functional: These include authentication cookies which ensure you have access to user specific pages such as dashboards.</li>
+        </ul>
+        
         <h2>3. Refund policy</h2>
         <p>We have a strict no refund policy on premium subscriptions, this is to prevent abuse and ill treatment of the platform. However we are will to go above and beyond to solve any issues you may be facing.</p>
     </section>
