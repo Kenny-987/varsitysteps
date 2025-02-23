@@ -22,12 +22,8 @@ const startGame =()=>{
         <h3>Geography</h3>
       </div>
         <div className="section-intro">
-        <p>The Geography section is designed to challenge your understanding of the Zimbabwean and African landscape. 
-        </p>
-        <div className="theme">
         <p>Random Geography questions: No themes, No subtopics, they might be easy, or might be hard, be ready for a anything
         </p>
-        </div>
         </div>
         
         <button className='quiz-start-btn' onClick={startGame}>Start Quiz</button>

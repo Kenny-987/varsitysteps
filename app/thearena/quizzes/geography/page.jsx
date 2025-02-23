@@ -26,7 +26,7 @@ const startGame =()=>{
         <h3>Geography</h3>
       </div>
         <div className="section-intro">
-        <p>The Geography section is designed to challenge your understanding of the Zimbabwean and African landscape. 
+        <p>The Geography section is designed to challenge your understanding of the different parts of the world inlding countires, continents, weather and basically anything Geography. 
         </p>
         <div className="theme">
           <h4>World Capitals Showdown! This Week’s Theme: Test Your Global Knowledge</h4>
