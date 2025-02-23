@@ -170,7 +170,7 @@ const QuizComponent = () => {
 
       const handleShare = () => {
         const shareText = `I just scored ${points} points in the ${currentTopic} quiz on VarsitySteps! 🏆 Try to beat my score!`;
-        const shareUrl = `/thearena/quizzes/${topic}`; 
+        const shareUrl = `/thearena/quiz/${topic}`; 
       
         if (navigator.share) {
           navigator.share({
@@ -245,7 +245,7 @@ const QuizComponent = () => {
   )}
 
           <span className='quiz_complete_btn'>
-            <Link href='/thearena/quizzes'>New questions tomorrow! Check out more quizzes in the arena</Link></span>
+            <Link href='/thearena'>New questions tomorrow! Check out more quizzes in the arena</Link></span>
           {userData && 
           <div>
             <p>-Or-</p>
