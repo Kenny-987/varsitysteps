@@ -8,7 +8,7 @@ const AddStudent = ({students,setContent,class_id}) => {
 
     const addStudent = async(student_id)=>{
         try {
-            const response = await fetch(`/testing/tutors/addstudent`,{
+            const response =  await fetch(`http:localhost:3000/tutors/addstudent`,{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',

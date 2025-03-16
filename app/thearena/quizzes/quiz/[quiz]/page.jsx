@@ -34,10 +34,10 @@ const QuizComponent = () => {
       }
       const fetchQuestions = async()=>{
         try {
-          const response = await fetch(`/testing/quiz/getquestions?query=${quiz_id}`)
+          const response =  await fetch(`http:localhost:3000/quiz/getquestions?query=${quiz_id}`)
           
           if(response.ok){
-            const data = await response.json()
+            const data =  await response.json()
             setQuestions(data)          
           setLoading(false)
           }else{
@@ -239,9 +239,9 @@ export default QuizComponent
 //     useEffect(()=>{
 //       const fetchQuiz = async()=>{
 //         try {
-//           const response = await fetch(`/testing/quiz/getquiz?query=${topic}`)
+//           const response =  await fetch(`http:localhost:3000/quiz/getquiz?query=${topic}`)
 //           if(response.ok){
-//             const data = await response.json()
+//             const data =  await response.json()
 //             setQuestions(data)        
 //           setLoading(false)
 //           }else{
@@ -265,14 +265,14 @@ export default QuizComponent
 //          const hasPlayed=async()=>{
 //           setLoading(true)
 //         try {
-//           const response = await fetch(`/testing/quiz/hasplayed`,{
+//           const response =  await fetch(`http:localhost:3000/quiz/hasplayed`,{
 //             method:'POST',
 //             headers:{'Content-Type':'application/json'},
 //             body: JSON.stringify({quiz_id}),
 //             credentials:'include'
 //           })
 //           if(response.ok){
-//             const data = await response.json()
+//             const data =  await response.json()
 //             const status = data.message
 //             if(status === 'played'){
 //               setPlayedStatus(true)
@@ -338,7 +338,7 @@ export default QuizComponent
 //     const addPoints=async()=>{
 //       const percentage = (points / 10) * 100
 //         try {
-//           const response = await fetch(`/testing/quiz/addpoints`,{
+//           const response =  await fetch(`http:localhost:3000/quiz/addpoints`,{
 //             method:'PATCH',
 //             headers: {
 //               'Content-Type': 'application/json',
@@ -347,7 +347,7 @@ export default QuizComponent
 //             credentials:'include'
 //           })
 //           if(response.ok){
-//             const data = await response.json()
+//             const data =  await response.json()
 //             setUnlocked(data)  
 //             if(data.length > 0){
 //               setShowPopup(true)

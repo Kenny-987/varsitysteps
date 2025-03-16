@@ -22,11 +22,11 @@ const receiver_id = searchParams.get('receiver_id')
 
 const fetchChats = async ()=>{
   try {
-    const response = await fetch(`/testing/messages/chats`,{
+    const response =  await fetch(`http:localhost:3000/messages/chats`,{
       credentials:'include'
     })
     if(response.ok){
-      const data = await response.json()
+      const data =  await response.json()
       const sortedChats = data.sort((a, b) => {
         const timeA = new Date(a.last_message_time).getTime();
         const timeB = new Date(b.last_message_time).getTime();

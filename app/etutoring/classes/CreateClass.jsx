@@ -9,7 +9,7 @@ const [message,setMessage]=useState('')
     const createClass = async (e)=>{
         e.preventDefault()
         try {
-          const response = await fetch(`/testing/tutors/createclass`,{
+          const response =  await fetch(`http:localhost:3000/tutors/createclass`,{
             method:'POST',
             credentials:'include',
             headers: {
@@ -19,7 +19,7 @@ const [message,setMessage]=useState('')
           })
           if(response.ok){
             alert('class created')
-            const data = await response.json()
+            const data =  await response.json()
             setClasses((prevClass)=>[...prevClass,...data])
             setCreateModal(false)
           }

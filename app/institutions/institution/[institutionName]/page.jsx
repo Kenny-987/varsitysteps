@@ -40,8 +40,8 @@ console.log(institution)
         const fetchInstitute = async ()=>{
             setLoading(true)
             try {
-                const response = await fetch(`/testing/institutes/institute?query=${encodeURIComponent(institutionName.replace(/-/g," "))}`)
-                const data = await response.json()
+                const response =  await fetch(`http:localhost:3000/institutes/institute?query=${encodeURIComponent(institutionName.replace(/-/g," "))}`)
+                const data =  await response.json()
                 if(response.ok){
                     // console.log(data)
                     setInstitution(data.institute)

@@ -25,7 +25,7 @@ const PremiumModal = () => {
   formData.append('proof', proof);
  
     try {
-      const response = await fetch(`/testing/pay/uploadproof`,{
+      const response =  await fetch(`http:localhost:3000/pay/uploadproof`,{
         method:'POST',
         body: formData,
         credentials: 'include', 

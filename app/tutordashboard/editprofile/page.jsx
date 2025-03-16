@@ -104,7 +104,7 @@ try {
     return setMessage('Update at least 1 field'); 
   }
 
-  const response = await fetch(`/testing/user/update/${userId}`,{
+  const response =  await fetch(`http:localhost:3000/user/update/${userId}`,{
     method:'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ try {
     credentials: 'include',
   })
   if(response.status == 200){
-    const data = await response.json()
+    const data =  await response.json()
     if(data){
       const updatedData = {...userData,...data.user}
       setUserData(updatedData)

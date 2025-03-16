@@ -31,12 +31,12 @@ const Login = () => {
     return null;
   }
 
-  const api = '/testing/auth/login'
+  const api = 'http:localhost:3000/auth/login'
   const login= async(e)=>{
     setLoading(true)
     e.preventDefault();
     try {
-      const response = await fetch(api, {
+      const response =  await fetch(api, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const Login = () => {
         credentials: 'include', 
       });
       if (response.ok) {
-        const roles = await response.json()
+        const roles =  await response.json()
         setIsAuthenticated(true)
         setLoading(false)
         
@@ -63,7 +63,7 @@ const Login = () => {
         }
       
       } else {
-        const  errMsg = await response.json()
+        const  errMsg =  await response.json()
         setShowMessage(true)
         setMessage(errMsg.message);
         setLoading(false)

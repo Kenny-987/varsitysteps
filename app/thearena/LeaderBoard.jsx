@@ -16,9 +16,9 @@ useEffect(()=>{
   const getLeaderboard = async()=>{
     setLoading(true)
     try {
-      const response = await fetch(`/testing/gamedata/leaderboard`)
+      const response =  await fetch(`http:localhost:3000/gamedata/leaderboard`)
       if(response.ok){
-        const data = await response.json()
+        const data =  await response.json()
         setLeaderBoard(data)
         setLoading(false)
       }else{
@@ -39,11 +39,11 @@ useEffect(()=>{
   if(isAuthenticated){
     const getPosition = async ()=>{
       try {
-       const response = await fetch(`/testing/gamedata/position`,{
+       const response =  await fetch(`http:localhost:3000/gamedata/position`,{
         credentials:'include'
        })
        if(response.ok){
-        const data = await response.json()
+        const data =  await response.json()
         seUserPosition(data)
        }else{
         console.log('cannot get position');

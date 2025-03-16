@@ -26,7 +26,7 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
           message,
           sent_at
         }
-        await socket.emit('chatMessage',chatMessage)
+         await socket.emit('chatMessage',chatMessage)
         setMessage('');
       }
     };
@@ -36,11 +36,11 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
   useEffect(()=>{
     const fetchMessages = async()=>{
       try {
-        const response = await fetch(`/testing/messages/conversation/${chat_id}`,{
+        const response =  await fetch(`http:localhost:3000/messages/conversation/${chat_id}`,{
           credentials:'include'
         })
         if (response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           setMessages(data)
        
         }else{

@@ -17,7 +17,7 @@ const Feedback = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const response = await fetch(`/testing/feedback/send`,{
+      const response =  await fetch(`http:localhost:3000/feedback/send`,{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const Feedback = () => {
         body: JSON.stringify({name,feedback})
       })
       if(response.ok){
-        const data = await response.json();
+        const data =  await response.json();
         if(data.length>0){
             setGlobalAchievement(data)
         setShowAchPopup(true)

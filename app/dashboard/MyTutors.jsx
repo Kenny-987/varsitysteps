@@ -24,13 +24,13 @@
 //       try {
 //         // Create an array of promises for each student's chat status check
 //         const studentPromises = myTutors.map(async (student) => {
-//           const response = await fetch(
-//             `/testing/messages/checkchats?user1=${userData.id}&user2=${student.user_id}`,
+//           const response =  await fetch(
+//             `http:localhost:3000/messages/checkchats?user1=${userData.id}&user2=${student.user_id}`,
 //             { credentials: 'include' }
 //           );
   
 //           if (response.ok) {
-//             const data = await response.json();
+//             const data =  await response.json();
 //             return { [student.user_id]: data }; // Return object with student ID as key
 //           } else {
 //             console.log('Failed to check chat status for student', student.user_id);
@@ -39,7 +39,7 @@
 //         });
   
 //         // Wait for all promises to resolve and merge into a single object
-//         const resolvedStatuses = await Promise.all(studentPromises);
+//         const resolvedStatuses =  await Promise.all(studentPromises);
 //         setChatStatuses(Object.assign({}, ...resolvedStatuses)); // Merge statuses into one object
 //       } catch (error) {
 //         console.error(error);

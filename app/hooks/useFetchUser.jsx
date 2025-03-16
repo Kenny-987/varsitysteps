@@ -13,11 +13,11 @@ const useFetchUser =  () => {
     useEffect(()=>{
         const fetchUser=async()=>{
             try {
-                const response = await fetch('/testing/user/info',{
+                const response =  await fetch('http:localhost:3000/user/info',{
                     credentials:'include'
                 })
                 if(response.ok){
-                    const data = await response.json()
+                    const data =  await response.json()
                     setUserData(data.user)
                     setTutoringData(data.tutoring)
                     setIsAuthenticated(true)
@@ -33,11 +33,11 @@ const useFetchUser =  () => {
         }
         // const fetchNotifications = async()=>{
         //     try {
-        //         const response = await fetch(`/testing/notifications`,{
+        //         const response =  await fetch(`http:localhost:3000/notifications`,{
         //             credentials:'include'
         //         })
         //         if(response.ok){
-        //             const data = await response.json()
+        //             const data =  await response.json()
         //             setNotifications(data)
         //             const unread = data.filter(notification=>notification.is_read==false)
         //             setNotificationCount(unread.length);

@@ -39,7 +39,7 @@ const Tutorsignup = () => {
       return;
     }
     try {
-      const response = await fetch('/testing/auth/register', {
+      const response =  await fetch('http:localhost:3000/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,10 +47,10 @@ const Tutorsignup = () => {
         body: JSON.stringify({ username, email, role, password }),
         credentials: 'include', 
       });
-      // const data = await response.json();
+      // const data =  await response.json();
   
       if (response.ok) {
-        const roles = await response.json();
+        const roles =  await response.json();
         setIsAuthenticated(true)
         setLoading(false)
         if(roles.includes('tutor')){

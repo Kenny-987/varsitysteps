@@ -27,7 +27,7 @@ const userId = userData.id
           return;
         }
         try {
-            const response = await fetch(`/testing/user/update/password/${userId}`,{
+            const response =  await fetch(`http:localhost:3000/user/update/password/${userId}`,{
                 method:'PUT',
                 headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const userId = userData.id
                 console.log('password changed')
                 setLoading(false);
             }else{
-                const message = await response.json()
+                const message =  await response.json()
                 console.log("could not change password")
                 setShowMessage(true)
                 setMessage(message.message)

@@ -20,7 +20,7 @@ const DeleteAccount = () => {
     }
     setLoading(true)
     try {
-      const response = await fetch('/testing/auth/delete-account',{
+      const response =  await fetch('http:localhost:3000/auth/delete-account',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const DeleteAccount = () => {
         console.log('account deleted');
         window.location.href = '/auth/login'
       }else{
-        const  errMsg = await response.json()
+        const  errMsg =  await response.json()
         setShowMessage(true)
         setLoading(false)
         setMessage(errMsg.message)

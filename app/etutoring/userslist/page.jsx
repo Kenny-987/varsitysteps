@@ -12,17 +12,17 @@ const role = localStorage.getItem('role')
 let url
 
 if(role=='tutor'){
-  url = `/testing/user/mystudents`
+  url = `http:localhost:3000/user/mystudents`
 }else{
-  url = `/testing/user/mytutors`
+  url = `http:localhost:3000/user/mytutors`
 }
 const fetchUsers = async()=>{
   try {
-      const response = await fetch(url,{
+      const response =  await fetch(url,{
           credentials:'include'
       })
       if(response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           setUsers(data)
           console.log(data);
           

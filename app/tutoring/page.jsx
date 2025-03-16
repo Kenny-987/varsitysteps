@@ -17,8 +17,8 @@ useEffect(()=>{
   const fetchTutors = async()=>{
     setLoading(true)
     try{
-      const response = await fetch('/testing/tutors')
-      const data =  await response.json()
+      const response =  await fetch('http:localhost:3000/tutors')
+      const data =   await response.json()
       if(response.ok){
         setTutors(data.tutors)
         setLoading(false)

@@ -30,13 +30,13 @@ setLoading(true)
   formData.append('profilePicture', image);
   formData.append('userId', userId);
 try {
-  const response = await fetch(`/testing/user/profile-picture`,{
+  const response =  await fetch(`http:localhost:3000/user/profile-picture`,{
     method:'POST',
     credentials:'include',
     body:formData
   })
   if(response.ok){
-    const data = await response.json(); 
+    const data =  await response.json(); 
     const updatedData = {...userData,...data.user}
     setUserData(updatedData)
     setEditImage(false)
@@ -64,12 +64,12 @@ const deleteImage = async ()=>{
 
   setLoading(true)
   try {
-    const response = await fetch(`/testing/user/delete-picture/${userId}`,{
+    const response =  await fetch(`http:localhost:3000/user/delete-picture/${userId}`,{
       method:'DELETE',
       credentials:'include',
     })
     if(response.ok){
-      const data = await response.json(); 
+      const data =  await response.json(); 
     const updatedData = {...userData,...data.user}
     setUserData(updatedData)
       setLoading(false)

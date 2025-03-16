@@ -27,11 +27,11 @@ const Class = () => {
    
     const fetchClass = async ()=>{
       try {
-        const response = await fetch(`/testing/tutors/classdetails/${classid}`,{
+        const response =  await fetch(`http:localhost:3000/tutors/classdetails/${classid}`,{
           credentials:'include',
         })
         if(response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           console.log(data);
           setClassDetails(data.classDetails[0])
           setClassStudent(data.classStudents)
@@ -43,11 +43,11 @@ const Class = () => {
 
     const fetchUsers = async()=>{
         try {
-            const response = await fetch(`/testing/user/mystudents`,{
+            const response =  await fetch(`http:localhost:3000/user/mystudents`,{
                 credentials:'include'
             })
             if(response.ok){
-                const data = await response.json()
+                const data =  await response.json()
                 setStudents(data)
                 console.log(data);
                 

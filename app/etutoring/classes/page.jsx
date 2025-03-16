@@ -22,11 +22,11 @@ const Classes = () => {
     },[])
 const fetchClasses = async()=>{
   try {
-    const response  = await fetch(`/testing/tutors/getclasses`,{
+    const response  =  await fetch(`http:localhost:3000/tutors/getclasses`,{
       credentials:'include'
     })
     if(response.ok){
-      const data = await response.json()
+      const data =  await response.json()
       setClasses(data)
       console.log(data);
       

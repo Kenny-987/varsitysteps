@@ -37,9 +37,9 @@ const exit=()=>{
    const answerCall = async () => {
     if (callTimeout) clearTimeout(callTimeout)
 
-    await peerRef.current.setRemoteDescription(new RTCSessionDescription(callIncoming.offer));
-    const answer = await peerRef.current.createAnswer();
-    await peerRef.current.setLocalDescription(new RTCSessionDescription(answer));
+     await peerRef.current.setRemoteDescription(new RTCSessionDescription(callIncoming.offer));
+    const answer =  await peerRef.current.createAnswer();
+     await peerRef.current.setLocalDescription(new RTCSessionDescription(answer));
     stopAudio()
     socket.emit('make-answer', {
       answer,
@@ -59,7 +59,7 @@ const exit=()=>{
        stopAudio()
           
           if (data.answer) {
-            await peerRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
+             await peerRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
         }
     });
 

@@ -69,14 +69,14 @@ const Dropzone = ({setFileOptions,user_id,setFiles}) => {
     formData.append('tutor_id', tutor_id);
    
     try {
-      const response = await fetch('/testing/tutors/fileupload', {
+      const response =  await fetch('http:localhost:3000/tutors/fileupload', {
         method: 'POST',
         body: formData,
         credentials:'include'
       });
 
       if (response.ok) {
-        const data = await response.json()
+        const data =  await response.json()
        setFiles(data)
        setFileOptions('view')
        setFilesUpload([])

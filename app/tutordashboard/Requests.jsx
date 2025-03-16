@@ -14,7 +14,7 @@ const Requests = ({requests,setContent}) => {
 
     const requestResponse =async(requestId)=>{
         try {
-          const response = await  fetch(`/testing/api/connectionresponse/${requestId}`,{
+          const response =  await  fetch(`http:localhost:3000/api/connectionresponse/${requestId}`,{
             method:'POST',
             headers: {
               'Content-Type': 'application/json',

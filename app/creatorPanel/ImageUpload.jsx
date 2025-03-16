@@ -89,13 +89,13 @@ const handleImageUpload = (e) => {
       formData.append('existingImages', imageUrl); // Keep these in the post without overriding
     });
       try {
-        const response = await fetch(`/testing/posts/editpost`,{
+        const response =  await fetch(`http:localhost:3000/posts/editpost`,{
           method:'PATCH',
           credentials:'include',
           body:formData
         })
         if(response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           setPosts((posts) =>
             posts.map((post) => (post.post_id === data.post_id ? data : post))
           );
@@ -116,13 +116,13 @@ const handleImageUpload = (e) => {
       }
     }else{
       try {
-        const response = await fetch('/testing/posts/savepost', {
+        const response =  await fetch('http:localhost:3000/posts/savepost', {
           method: 'POST',
           credentials:'include',
           body: formData, 
         });
         if(response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           setPosts((posts)=>[data,...posts])
           setPanelContent("Posts")
         }else{

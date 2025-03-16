@@ -10,9 +10,9 @@ const PreviewBlock = ({topic}) => {
 useEffect(()=>{
   const fetchQuizzes = async()=>{
     try {
-      const response = await fetch(`/testing/quiz/getquizzes?query=${topic}`)
+      const response =  await fetch(`http:localhost:3000/quiz/getquizzes?query=${topic}`)
       if(response.ok){
-        const data = await response.json()
+        const data =  await response.json()
         setQuizzes(data.slice(0,5))  
       }else{
         console.log('error');

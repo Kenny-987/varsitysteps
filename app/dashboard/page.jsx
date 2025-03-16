@@ -39,11 +39,11 @@ const Dashboard = () => {
 useEffect(()=>{
   const getTutors = async()=>{
     try {
-    const response = await fetch(`/testing/user/mytutors`,{
+    const response =  await fetch(`http:localhost:3000/user/mytutors`,{
       credentials:'include'
     })
     if(response.ok){
-      const data = await response.json()
+      const data =  await response.json()
       if(data){
         setMyTutors(data)
       }
@@ -57,7 +57,7 @@ useEffect(()=>{
 
  const logout = async()=>{
 try {
- const response = await fetch(`/testing/auth/logout`,{
+ const response =  await fetch(`http:localhost:3000/auth/logout`,{
   method:'POST',
   credentials:'include'
  })

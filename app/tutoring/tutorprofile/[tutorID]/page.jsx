@@ -27,8 +27,8 @@ useEffect(()=>{
     const fetchTutor = async ()=>{
         // setLoading(true)
         try {
-            const response  = await fetch(`/testing/tutors/tutorprofile/${tutorID}`)
-            const data = await response.json()
+            const response  =  await fetch(`http:localhost:3000/tutors/tutorprofile/${tutorID}`)
+            const data =  await response.json()
             if (response.ok){
                 console.log('this is user profile: ',data)
                 setTutor(data)
@@ -49,7 +49,7 @@ if(isAuthenticated){
     console.log('sending request')
     setLoading(true)
     try {
-        const response = await fetch(`/testing/api/connectionrequest`, {
+        const response =  await fetch(`http:localhost:3000/api/connectionrequest`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ if(isAuthenticated){
 //function to check if user is connected
     const checkConnection = async()=>{
         try {
-            const response = await fetch( '/testing/testing/connectionstatus',{
+            const response =  await fetch( 'http:localhost:3000http:localhost:3000/connectionstatus',{
                 method:'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ if(isAuthenticated){
                 credentials: 'include', 
               })
               if(response.ok){
-                const data = await response.json()
+                const data =  await response.json()
                 setConnectionStatus(data.status)
                   console.log('checking connection status', data)
               }else{
@@ -98,11 +98,11 @@ if(isAuthenticated){
 //function to check if user has rated 
     const checkHasRated = async () => {
         try {
-            const response = await fetch(`/testing/tutors/checkrate/${tutorID}`,{
+            const response =  await fetch(`http:localhost:3000/tutors/checkrate/${tutorID}`,{
                 credentials:'include'
             })
             if(response.ok){
-                const data = await response.json()
+                const data =  await response.json()
                 setHasRated(data)
             }else{
                 console.log('oops');
@@ -124,7 +124,7 @@ useEffect(()=>{
 //function to rate a tutor
 const rateTutor = async (tutor_id,rater_id) => {
     try {
-        const response = await fetch(`/testing/tutors/rate`,{
+        const response =  await fetch(`http:localhost:3000/tutors/rate`,{
             method:'POST',
             credentials:'include',
             headers: {

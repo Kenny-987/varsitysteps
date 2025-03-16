@@ -49,7 +49,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await fetch('/testing/auth/register', {
+      const response =  await fetch('http:localhost:3000/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const Signup = () => {
       });
       
       if (response.ok) {
-        const roles = await response.json();
+        const roles =  await response.json();
         
         setIsAuthenticated(true)
         setLoading(false)
@@ -78,7 +78,7 @@ const Signup = () => {
         }
       } else {
         setLoading(false)
-        const errMsg = await response.json()
+        const errMsg =  await response.json()
         setShowMessage(true)
         setMessage(errMsg.message ||'Signup failed');
       }

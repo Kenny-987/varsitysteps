@@ -196,7 +196,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     setLoading(true)
     if(selectedPost){
       try {
-        const response = await fetch(`/testing/posts/editpost`,{
+        const response =  await fetch(`http:localhost:3000/posts/editpost`,{
           method:'PATCH',
           credentials:'include',
           headers: {
@@ -207,7 +207,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
         if(response.ok){
           console.log('post edited')
           setLoading(false)
-          const data = await response.json()
+          const data =  await response.json()
           setPosts((posts) =>
             posts.map((post) => (post.post_id === data.post_id ? data : post))
           );
@@ -226,7 +226,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     } else{
       try {
         const type ='text'
-        const response = await fetch(`/testing/posts/savepost`,{
+        const response =  await fetch(`http:localhost:3000/posts/savepost`,{
           method:'POST',
           credentials:'include',
           headers: {
@@ -235,7 +235,7 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
           body: JSON.stringify({title,tags,content,type} )
         })
         if(response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           setPosts((posts)=>[data,...posts])
           setPanelContent("Posts")
           setLoading(false)

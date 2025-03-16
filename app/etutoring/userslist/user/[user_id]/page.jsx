@@ -20,18 +20,18 @@ const Student = () => {
     let url
 
     if(role=='tutor'){
-      url=`/testing/user/studentprofile/${user_id}`
+      url=`http:localhost:3000/user/studentprofile/${user_id}`
     }else{
-      url=`/testing/tutors/tutorprofile/${user_id}`
+      url=`http:localhost:3000/tutors/tutorprofile/${user_id}`
     }
     
     useEffect(()=>{
       const fetchUser = async()=>{
         setLoading(true)
         try {
-          const response = await fetch(url)
+          const response =  await fetch(url)
           if(response.ok){
-            const data = await response.json()
+            const data =  await response.json()
             setUser(data)
             
           }

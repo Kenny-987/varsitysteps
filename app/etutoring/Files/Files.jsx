@@ -16,9 +16,9 @@ const Files = ({setContent,user_id}) => {
   let url
 
   if(role=='tutor'){
-    url=`/testing/tutors/myfiles`
+    url=`http:localhost:3000/tutors/myfiles`
   }else{
-    url=`/testing/tutors/sharedfiles/${user_id}`
+    url=`http:localhost:3000/tutors/sharedfiles/${user_id}`
   }
 
   useEffect(()=>{
@@ -28,11 +28,11 @@ const Files = ({setContent,user_id}) => {
   const fetchFiles = async()=>{
     setLoading(true)
     try {
-      const response = await fetch(url,{
+      const response =  await fetch(url,{
         credentials:'include'
       })
       if(response.ok){
-        const data = await response.json()
+        const data =  await response.json()
         setFiles(data)
         console.log(data);
         

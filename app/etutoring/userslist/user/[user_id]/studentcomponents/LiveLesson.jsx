@@ -131,7 +131,7 @@ const cleanWebRTC = () => {
             if (peerRef.current) {
               if (peerRef.current.remoteDescription) {
                 try {
-                  await peerRef.current.addIceCandidate(new RTCIceCandidate(data.candidate));
+                   await peerRef.current.addIceCandidate(new RTCIceCandidate(data.candidate));
                 } catch (error) {
                   console.error("Error adding ICE candidate:", error);
                 }
@@ -179,7 +179,7 @@ const cleanWebRTC = () => {
      stopAudio()
         
         if (peerRef.current && data.answer) {
-          await peerRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
+           await peerRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
       }
   });
 
@@ -204,8 +204,8 @@ const cleanWebRTC = () => {
     setCallStatus('Ringing...')
     dialingRef.current.play(); 
     // Create an offer
-    const offer = await peerRef.current.createOffer();
-    await peerRef.current.setLocalDescription(new RTCSessionDescription(offer));
+    const offer =  await peerRef.current.createOffer();
+     await peerRef.current.setLocalDescription(new RTCSessionDescription(offer));
   
     socket.emit('call-user', {
       offer,  
@@ -239,7 +239,7 @@ const processPendingCandidates = async () => {
     while (pendingCandidates.current.length > 0) {
       const candidate = pendingCandidates.current.shift(); // Remove from queue
       try {
-        await peerRef.current.addIceCandidate(new RTCIceCandidate(candidate));
+         await peerRef.current.addIceCandidate(new RTCIceCandidate(candidate));
       } catch (error) {
         console.error("Error adding queued ICE candidate:", error);
       }
@@ -276,11 +276,11 @@ if (!peerRef.current) {
   };
 }
 try {
-  await peerRef.current.setRemoteDescription(new RTCSessionDescription(callIncoming.offer));
+   await peerRef.current.setRemoteDescription(new RTCSessionDescription(callIncoming.offer));
   console.log("Remote description set successfully.");
-  await processPendingCandidates(); 
-  const answer = await peerRef.current.createAnswer();
-  await peerRef.current.setLocalDescription(new RTCSessionDescription(answer));
+   await processPendingCandidates(); 
+  const answer =  await peerRef.current.createAnswer();
+   await peerRef.current.setLocalDescription(new RTCSessionDescription(answer));
   stopAudio();
   socket.emit('make-answer', {
     answer,

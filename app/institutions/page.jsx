@@ -28,8 +28,8 @@ const Institutions = () => {
     const fetchInstitutes = async () => {
       try {
         // Fetch institutions with pagination params
-        const response = await fetch(`/testing/institutes?page=${currentPage}&limit=${itemsPerPage}`)
-        const data = await response.json()
+        const response =  await fetch(`http:localhost:3000/institutes?page=${currentPage}&limit=${itemsPerPage}`)
+        const data =  await response.json()
         if (response.ok) {
           // console.log('institutes', data)
           setInstitutions(data)
@@ -46,8 +46,8 @@ const Institutions = () => {
   const search = async () => {
     if (query.length > 0) {
       try {
-        const response = await fetch(`/testing/institutes/search?query=${query}`)
-        const data = await response.json()
+        const response =  await fetch(`http:localhost:3000/institutes/search?query=${query}`)
+        const data =  await response.json()
         setSearchResult(data)
       } catch (error) {
         console.error(error)
