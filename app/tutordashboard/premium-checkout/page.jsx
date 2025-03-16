@@ -11,6 +11,7 @@ const PremiumModal = () => {
   const [phone,setPhone] = useState('')
   const [proof,setProof]=useState(null)
   const [message,setMessage] =useState('')
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0]; // Get the selected file
     if (file) {
@@ -24,7 +25,7 @@ const PremiumModal = () => {
   formData.append('proof', proof);
  
     try {
-      const response = await fetch(`/api/pay/uploadproof`,{
+      const response = await fetch(`/testing/pay/uploadproof`,{
         method:'POST',
         body: formData,
         credentials: 'include', 

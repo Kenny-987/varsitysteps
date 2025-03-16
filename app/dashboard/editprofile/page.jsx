@@ -84,7 +84,7 @@ try {
     return setMessage('Update at least 1 field'); 
   }
   
-  const response = await fetch(`/api/user/update/${userId}`,{
+  const response = await fetch(`/testing/user/update/${userId}`,{
     method:'PATCH',
     headers: {
       'Content-Type': 'application/json',

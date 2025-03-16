@@ -49,7 +49,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch('/testing/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,13 +64,16 @@ const Signup = () => {
         setIsAuthenticated(true)
         setLoading(false)
         if(roles.includes('student')){
+          localStorage.setItem('role','student')
           const redirectUrl = searchParams.get("redirect") || "/dashboard";
           window.location.href=redirectUrl
         }else if(roles.includes('tutor')){
+          localStorage.setItem('role','tutor')
           const redirectUrl = searchParams.get("redirect") || "/tutordashboard";
            window.location.href=redirectUrl
            window.location.href='/tutordashboard'
         }else if(roles.includes('student') && roles.includes('tutor')){
+          localStorage.setItem('role','student')
           window.location.href='/dashboard'
         }
       } else {

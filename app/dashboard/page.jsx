@@ -2,7 +2,6 @@
 import React, {useState,useEffect} from 'react'
 import './dashboadcss/dash.css'
 import Profile from './profile';
-import Messages from './messages'
 import PasswordSettings from './PasswordSettings';
 import DeleteAccount from './DeleteAccount';
 import { useContextUser } from '../hooks/Context';
@@ -11,17 +10,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCaretUp, faChalkboardTeacher, faEnvelope, faLock, faSignOut, faUser, faWarning,faClose, faGamepad} from '@fortawesome/free-solid-svg-icons';
 import MyTutors from './MyTutors';
 import Link from 'next/link';
-import CreatorPanel from '../creatorPanel/CreatorPanel';
 
 const Dashboard = () => {
   const[content,setContent]=useState("Profile")
-  const {userData,creatorData,isAuthenticated,setIsAuthenticated,loading, showDash, setShowDash,} = useContextUser()
+  const {userData,isAuthenticated,loading, showDash, setShowDash} = useContextUser()
   const [isEffectCompleted, setIsEffectCompleted] = useState(false);
   const router = useRouter()
   const [showLogoutOptions,setShowLogoutOptions] = useState(false)
   const [myTutors,setMyTutors] = useState([])
- const [tutor_id,setTutor_id]=useState(null)
- const [showChats,setShowChats] = useState(false)
+
 
 
    useEffect(() => {
@@ -31,7 +28,8 @@ const Dashboard = () => {
       } else if (isAuthenticated && !userData.role_name.includes('student')) {
         router.push('/tutordashboard');
       }else{
-        setIsEffectCompleted(true);
+        localStorage.setItem('role','student')
+        setIsEffectCompleted(true)
       }
       
     }, [isAuthenticated,  loading, router, userData]);
@@ -41,7 +39,7 @@ const Dashboard = () => {
 useEffect(()=>{
   const getTutors = async()=>{
     try {
-    const response = await fetch(`/api/user/mytutors`,{
+    const response = await fetch(`/testing/user/mytutors`,{
       credentials:'include'
     })
     if(response.ok){
@@ -59,7 +57,7 @@ useEffect(()=>{
 
  const logout = async()=>{
 try {
- const response = await fetch(`/api/auth/logout`,{
+ const response = await fetch(`/testing/auth/logout`,{
   method:'POST',
   credentials:'include'
  })
@@ -95,29 +93,31 @@ if(loading){
         <FontAwesomeIcon icon={faClose} className='close-dashlinks' onClick={()=>setShowDash(!showDash)}/>
       </div>
           <li className="navitem" onClick={()=>{setContent("Profile");setShowDash(!showDash)}}><FontAwesomeIcon icon={faUser}/> Profile</li>
-          {/* {creatorData && <li className="navitem" onClick={()=>{setContent("Creator");setShowDash(!showDash)}}><FontAwesomeIcon icon={faArtstation}/> Creator Panel</li>} */}
-          <li className="navitem" onClick={()=>{setShowChats(true),setShowDash(!showDash)}}><FontAwesomeIcon icon={faEnvelope}/> Messages</li>
+          {/* <li className="navitem"><Link href='/learning-center'><FontAwesomeIcon icon={faChalkboardTeacher}/> Lesson Center</Link></li> */}
+          <li className="navitem"><Link href='/etutoring'><FontAwesomeIcon icon={faChalkboardTeacher}/> eTutoring</Link></li>
+
           <li className="navitem" onClick={()=>{setContent("Password");setShowDash(!showDash)}}><FontAwesomeIcon icon={faLock}/> Change Password</li>
-          {myTutors.length > 0 && <li className="navitem" onClick={()=>{setContent('Tutors'),setShowDash(!showDash)}}> <FontAwesomeIcon icon={faChalkboardTeacher}/> My Tutors</li>}
-          <li className="navitem"><Link href='/myarena'><FontAwesomeIcon icon={faGamepad}/> My Arena</Link> </li>
+
+          {/* {myTutors.length > 0 && <li className="navitem" onClick={()=>{setContent('Tutors'),setShowDash(!showDash)}}> <FontAwesomeIcon icon={faChalkboardTeacher}/> My Tutors</li>} */}
+          <li className="navitem"><Link href='/myarena'><FontAwesomeIcon icon={faGamepad}/> My Arena</Link> </li> 
           <div className="logout navitem">
             <p onClick={()=>setShowLogoutOptions(!showLogoutOptions)}><FontAwesomeIcon icon={faSignOut} /> Logout {showLogoutOptions?<FontAwesomeIcon icon={faCaretUp}/>:<FontAwesomeIcon icon={faCaretDown}/>}</p>
+
             {showLogoutOptions && <div className="logout-options">
               <button className="logout-yes" onClick={logout}>Yes</button>
               <button className="logout-cancel" onClick={()=>setShowLogoutOptions(false)}>Cancel</button>
             </div> }
+            
           </div>
           <li className="navitem delete-account-link" onClick={()=>{setContent("Delete");setShowDash(!showDash)}}><FontAwesomeIcon icon={faWarning}/> Delete Account</li>
           </ul>
         
      <div className="dash-content">
-      {isEffectCompleted && content === 'Profile' && userData && <Profile userData={userData} creatorData={creatorData} setContent={setContent}/>}
-      {content === 'Creator' && <CreatorPanel setContent={setContent}/>}
+      {isEffectCompleted && content === 'Profile' && userData && <Profile userData={userData} />}
       {content === 'Tutors' && <MyTutors myTutors={myTutors} setContent={setContent}/>}
       {content === 'Password' && <PasswordSettings userData={userData} setContent={setContent}/>}
       {content === 'Delete' && <DeleteAccount/>}
      </div>
-     {showChats && <Messages setShowChats={setShowChats} userData={userData}/>}
     </section>
     )
 }

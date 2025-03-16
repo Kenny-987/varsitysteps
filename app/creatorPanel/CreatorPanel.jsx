@@ -18,7 +18,7 @@ const CreatorPanel = () => {
     setfetching(true)
     const fetchPosts = async ()=>{
   try {
-    const response = await fetch(`/api/posts/post`,{
+    const response = await fetch(`/testing/posts/post`,{
       credentials:'include'
     })
     if(response.ok){

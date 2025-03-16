@@ -3,6 +3,10 @@
       {
         "source": "/api/:path*",
         "destination": "https://varsitysteps-server.onrender.com/:path*"
+      },
+      {
+        "source": "/testing/:path*",
+        "destination": "https://87f0-102-128-76-150.ngrok-free.app/:path*"
       }
     ]
   }

@@ -15,7 +15,7 @@ const StudentProfile = () => {
     useEffect(()=>{
         const fetchStudent = async ()=>{
             try {
-                const response  = await fetch(`/api/user/studentprofile/${studentID}`)
+                const response  = await fetch(`/testing/user/studentprofile/${studentID}`)
                 const data = await response.json()
                 if (response.ok){
                     console.log('this is user profile: ',data)

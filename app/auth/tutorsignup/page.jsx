@@ -39,7 +39,7 @@ const Tutorsignup = () => {
       return;
     }
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch('/testing/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,6 +54,7 @@ const Tutorsignup = () => {
         setIsAuthenticated(true)
         setLoading(false)
         if(roles.includes('tutor')){
+          localStorage.setItem('role','tutor')
           window.location.href='/tutordashboard'
         }else if(roles.includes('student')){
            window.location.href='/dashboard'

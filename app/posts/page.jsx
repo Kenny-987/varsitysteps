@@ -20,7 +20,7 @@ const Posts = () => {
   //function to get all posts
   const fetchPosts = async()=>{
     try {
-      const response = await fetch('/api/posts/allposts')
+      const response = await fetch('/testing/posts/allposts')
       if(response.ok){
         const data = await response.json()
         setPosts(data)
@@ -106,7 +106,7 @@ const formatDate = (timestamp) => {
 ///functionality for liking a post 
 const likeAction =async(post_id)=>{
   try {
-    const response = await fetch(`/api/posts/like/${post_id}`,{
+    const response = await fetch(`/testing/posts/like/${post_id}`,{
       credentials:'include',
       method:'POST'
     })

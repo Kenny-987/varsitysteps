@@ -16,7 +16,7 @@ useEffect(()=>{
   const getLeaderboard = async()=>{
     setLoading(true)
     try {
-      const response = await fetch(`/api/gamedata/leaderboard`)
+      const response = await fetch(`/testing/gamedata/leaderboard`)
       if(response.ok){
         const data = await response.json()
         setLeaderBoard(data)
@@ -39,7 +39,7 @@ useEffect(()=>{
   if(isAuthenticated){
     const getPosition = async ()=>{
       try {
-       const response = await fetch(`/api/gamedata/position`,{
+       const response = await fetch(`/testing/gamedata/position`,{
         credentials:'include'
        })
        if(response.ok){

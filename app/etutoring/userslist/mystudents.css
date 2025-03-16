@@ -1,0 +1,42 @@
+.mystudents-container{
+    margin-top: 20px;
+}
+/* .studentlist{
+    border: 1px solid red;
+} */
+.users{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow:  0px 4px 10px 1px #9f9f9f78;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.users .profile-image img{
+border-radius: 50%;
+object-fit: cover;
+}
+.users .initials{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: #fff;
+}
+.student:hover{
+    background-color: #d3d3d3
+} 
+.student-info{
+    /* border: 1px solid red; */
+    margin-top: 20px;
+}
+.student-info p{
+    font-style: italic;
+}

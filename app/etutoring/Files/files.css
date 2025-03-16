@@ -1,0 +1,168 @@
+.showmain{
+    background-color: var(--primary-color);
+    padding: 4px;
+    width: fit-content;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+.filesystem{
+    /* border: 1px solid red; */
+    margin-bottom: 50px;
+    position: relative;
+}
+.filesystem h4{
+    margin-top: 10px;
+}
+.filesystem .info{
+    background-color: #f9f9f9;
+    padding: 4px;
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 15px;
+    margin:  10px 0;
+}
+
+
+.addfilebtn{
+    color: #fff;
+    background-color: var(--secondary-color);
+    padding: 4px 6px;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+.filesdisplay {
+    margin: auto;
+  }
+  .file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .file-card {
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* border: 1px solid red; */
+  }
+  
+  .file-info {
+    margin-bottom: 10px;
+  }
+  
+  .file-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .file-info p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .file-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .download-btn,
+  .delete-btn {
+    padding: 4px 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    text-align: center;
+  }
+  
+  .download-btn {
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+  }
+  
+  .download-btn:hover {
+    background: #2980b9;
+  }
+  
+  .delete-btn {
+    background: #e74c3c;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background: #c0392b;
+  }
+
+.uploadfile form .file-actions{
+    margin-top: 20px;
+
+}
+.removefile{
+background-color: #333;
+color: #fff;
+padding: 4px;
+font-size: 14px;
+border-radius: 4px;
+}
+.filestoupload ul li{
+border-bottom: 1px solid #333;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 8px;
+}
+
+
+.deletefilemodal{
+    /* border: 1px solid red; */
+    position: fixed;
+    height: 250px;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   width: 90%;
+   background-color: #f8f8f8;
+   padding: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 4px;
+   box-shadow: 0 0 10px 4px rgba(253, 2, 2, 0.5);
+}
+.deletefilemodal .file-actions{
+    margin-top: 20px;
+}
+.deletefilemodal svg{
+    display: block;
+    margin: auto;
+}
+@media (min-width:768px){
+    .filesystem .filesdisplay .file{
+        width: 50%;
+    }    
+    .file-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* justify-content: center; */
+      }
+      .file-card {
+        padding: 20px;
+        width: 20%;
+      }
+      /* .file-actions {
+        align-self: ;
+      } */
+      
+}

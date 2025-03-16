@@ -7,7 +7,6 @@ import { useContextUser } from "../../../hooks/Context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowAltCircleLeft, faUser,faClose, faStar, faStarHalf, faCircle, faShareFromSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
-import Messages from "../../../dashboard/messages"
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 
 const TutorProfile =()=>{
@@ -16,9 +15,7 @@ const {userData,isAuthenticated} = useContextUser()
 const {tutorID} = useParams()
 const [connectonStatus,setConnectionStatus] = useState(null)
 const [notSignedInWarning,setNotSignedInWarning] = useState(false)
-const [chatStatus,setChatStatus]= useState(null)
 const [loading,setLoading] = useState(false)
-const [showChats,setShowChats] = useState(false)
 const [rateScore,setRateScore]=useState(0)
 const [hover, setHover] = useState(0);
 const [showRating,setShowRating]=useState(false)
@@ -30,7 +27,7 @@ useEffect(()=>{
     const fetchTutor = async ()=>{
         // setLoading(true)
         try {
-            const response  = await fetch(`/api/tutors/tutorprofile/${tutorID}`)
+            const response  = await fetch(`/testing/tutors/tutorprofile/${tutorID}`)
             const data = await response.json()
             if (response.ok){
                 console.log('this is user profile: ',data)
@@ -52,7 +49,7 @@ if(isAuthenticated){
     console.log('sending request')
     setLoading(true)
     try {
-        const response = await fetch(`/api/api/connectionrequest`, {
+        const response = await fetch(`/testing/api/connectionrequest`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -79,7 +76,7 @@ if(isAuthenticated){
 //function to check if user is connected
     const checkConnection = async()=>{
         try {
-            const response = await fetch( '/api/api/connectionstatus',{
+            const response = await fetch( '/testing/testing/connectionstatus',{
                 method:'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -98,28 +95,10 @@ if(isAuthenticated){
             console.error(error)
         }
     }
-//function to check for existing chats between tutor and student
-    const checkChatStatus = async()=>{
-        try {
-           const response = await fetch(`/api/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
-               credentials:'include'
-           })
-           if(response){
-               const data = await response.json()
-               setChatStatus(data)
-               console.log('chats status in tutor page', data);
-               
-           }else{
-               console.log('cant check status')
-           }
-       } catch (error) {
-           console.error(error)
-       }
-   }
 //function to check if user has rated 
     const checkHasRated = async () => {
         try {
-            const response = await fetch(`/api/tutors/checkrate/${tutorID}`,{
+            const response = await fetch(`/testing/tutors/checkrate/${tutorID}`,{
                 credentials:'include'
             })
             if(response.ok){
@@ -136,7 +115,6 @@ if(isAuthenticated){
 
 useEffect(()=>{
     if(isAuthenticated){
-        checkChatStatus()
         checkConnection()
         checkHasRated()
     }
@@ -146,7 +124,7 @@ useEffect(()=>{
 //function to rate a tutor
 const rateTutor = async (tutor_id,rater_id) => {
     try {
-        const response = await fetch(`/api/tutors/rate`,{
+        const response = await fetch(`/testing/tutors/rate`,{
             method:'POST',
             credentials:'include',
             headers: {
@@ -207,7 +185,11 @@ return <section className='tutor-profile-container'>
             {tutor.phone  && tutor.is_premium &&
                 <button className="whatsapp-link"><Link href={`https://wa.me/+${tutor.phone}`}><FontAwesomeIcon icon={faWhatsapp}/> Message Tutor</Link></button>
             }
-            {loading ? <div className='btn-loader'></div> :<> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn" onClick={()=>setShowChats(true)}>Chat</button> : connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
+            {loading ? <div className='btn-loader'></div> :
+            <> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn"><Link href=''>Chat</Link></button> : 
+            connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : 
+            <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
+
             {/* --------------div to rate tutor--------------- */}
             {connectonStatus==='connected' && !hasRated && <p style={{textAlign:'center',marginTop:'10px'}} onClick={()=>setShowRating(!showRating)}>Click here to rate tutor</p>}
             {showRating && <div className="rate-tutor">
@@ -278,10 +260,7 @@ return <section className='tutor-profile-container'>
                 <p>{tutor.teaching_method?tutor.teaching_method:'Nothing to show yet'}</p>
             </div>
         </div>
-    </div>  
-
-    {/* this section is for the messages section */}
-    {showChats &&  <Messages setShowChats={setShowChats} chatStatus={chatStatus} receiver={tutor}/>}    
+    </div>   
 </section>
 }
 export default TutorProfile

@@ -3,22 +3,19 @@ import React, {useState,useEffect } from 'react';
 import '../dashboard/dashboadcss/dash.css'
 import { useContextUser} from '../hooks/Context';
 import { useRouter } from 'next/navigation';
-import Messages from '../dashboard/messages';
 import TutorProfile from './TutorProfile';
 import DeleteAccount from '../dashboard/DeleteAccount';
 import PasswordSettings from '../dashboard/PasswordSettings';
 import Requests from './Requests'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCaretDown, faCaretUp,faEnvelope,faLink,faLock,faPeopleGroup,faSignOut,faUser,faWarning,faClose, faGamepad} from '@fortawesome/free-solid-svg-icons';
-import StudentsList from './StudentsList';
+import {faCaretDown, faCaretUp,faLink,faLock,faSignOut,faUser,faWarning,faClose, faGamepad, faChalkboardTeacher} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
 const TutorDashboard = ()=>{
-    const {userData,isAuthenticated,loading,showDash, setShowDash,tutoringData} = useContextUser()
+    const {userData,isAuthenticated,showDash, setShowDash,tutoringData,seteTutoringRole} = useContextUser()
     const[content,setContent]=useState("Profile")
     const router = useRouter()
     const [showLogoutOptions,setShowLogoutOptions] = useState(false)
-    const [showChats,setShowChats] = useState(false)
     const [requests,setRequests] = useState([])
    
     
@@ -28,9 +25,12 @@ const TutorDashboard = ()=>{
         router.push('/auth/login');
       } else if (isAuthenticated && !userData.role_name.includes('tutor')) {
         router.push('/dashboard');
+      }else{
+        localStorage.setItem('role','tutor')
       }
-    }, [isAuthenticated, userData, loading, router]);
+    }, [isAuthenticated, userData,  router]);
   
+
 
   
   let user
@@ -45,7 +45,7 @@ const TutorDashboard = ()=>{
       const fetchRequests = async()=>{
       const userId = userData.id
         try {
-            const response = await fetch(`/api/api/requests/${userId}`,{
+            const response = await fetch(`/testing/api/requests/${userId}`,{
                 credentials:'include'
             })
             if(response.ok){
@@ -71,12 +71,12 @@ if (!isAuthenticated || !userData) {
   return null; 
 }
 
-if(loading){
-  return <div>...loading</div>
- }
+// if(loading){
+//   return <div>...loading</div>
+//  }
 const logout = async()=>{
   try {
-   const response = await fetch(`/api/auth/logout`,{
+   const response = await fetch(`/testing/auth/logout`,{
     method:'POST',
     credentials:'include'
    })
@@ -98,11 +98,11 @@ const logout = async()=>{
         <h1>{userData.username}</h1>
         <FontAwesomeIcon icon={faClose} className='close-dashlinks' onClick={()=>setShowDash(!showDash)}/>
       </div>
-          <li className="navitem" onClick={()=>{setContent("Profile");setShowDash(!showDash);setShowChats(false)}}><FontAwesomeIcon icon={faUser}/> Profile</li>
-          <li className="navitem" onClick={()=>{setContent("Password");setShowDash(!showDash);setShowChats(false)}}><FontAwesomeIcon icon={faLock}/>  Change Password</li>
-          <li className="navitem" onClick={()=>{setShowChats(true),setShowDash(!showDash)}}><FontAwesomeIcon icon={faEnvelope}/> Messages</li>
-          <li className="navitem" onClick={()=>{setContent("Students");setShowDash(!showDash);setShowChats(false)}}><FontAwesomeIcon icon={faPeopleGroup}/> My Students</li>
-          <li className="navitem" onClick={()=>{setContent("Requests");setShowDash(!showDash);setShowChats(false)}}><FontAwesomeIcon icon={faLink}/> Connection Requests <span>{requests.length?requests.length:0}</span></li>
+          <li className="navitem" onClick={()=>{setContent("Profile");setShowDash(!showDash)}}><FontAwesomeIcon icon={faUser}/> Profile</li>
+          <li className="navitem" onClick={()=>{setContent("Password");setShowDash(!showDash)}}><FontAwesomeIcon icon={faLock}/>  Change Password</li>
+        
+          <li className="navitem"><Link href='/etutoring'><FontAwesomeIcon icon={faChalkboardTeacher}/> eTutoring</Link></li>
+          <li className="navitem" onClick={()=>{setContent("Requests");setShowDash(!showDash)}}><FontAwesomeIcon icon={faLink}/> Connection Requests <span>{requests.length?requests.length:0}</span></li>
           <li className="navitem"><Link href='/myarena'><FontAwesomeIcon icon={faGamepad}/> My Arena</Link></li>
           <div className="logout navitem">
             <p onClick={()=>setShowLogoutOptions(!showLogoutOptions)}><FontAwesomeIcon icon={faSignOut}/> Logout {showLogoutOptions?<FontAwesomeIcon icon={faCaretUp}/>:<FontAwesomeIcon icon={faCaretDown}/>}</p>
@@ -121,7 +121,6 @@ const logout = async()=>{
       {content === 'Requests' && <Requests requests={requests} setContent={setContent}/>}
       {content === 'Delete' && <DeleteAccount/>}
      </div>
-      {showChats && <Messages userData={userData} setShowChats={setShowChats} />}
 </section>
 
 }

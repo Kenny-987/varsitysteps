@@ -8,8 +8,9 @@ const DashContext = createContext();
 export const ContextProvider = ({ children }) => {
   const [showDash, setShowDash] = useState(false);
   const [showAchPopup,setShowAchPopup]=useState(false)
+  const [showCalling,setShowCalling]=useState(false)
+  const {userData,setUserData,isAuthenticated,setIsAuthenticated,loading,notifications,notificationCount,setNotificationCount,tutoringData} = useFetchUser();
 
-  const {userData,setUserData,creatorData,setCreatorData,isAuthenticated,setIsAuthenticated,loading,error,notifications,notificationCount,setNotificationCount,tutoringData} = useFetchUser();
   const [globalAchievement,setGlobalAchievement]=useState([])
 
  
@@ -21,7 +22,7 @@ if(loading){
 }
 
   return (
-    <DashContext.Provider value={{ showDash, setShowDash, userData,setUserData,creatorData,setCreatorData,isAuthenticated,setIsAuthenticated,loading,error,notifications,notificationCount,setNotificationCount,tutoringData,setShowAchPopup,showAchPopup,globalAchievement,setGlobalAchievement}}>
+    <DashContext.Provider value={{ showDash, setShowDash, userData,setUserData,isAuthenticated,setIsAuthenticated,notifications,notificationCount,setNotificationCount,tutoringData,setShowAchPopup,showAchPopup,globalAchievement,setGlobalAchievement}}>
       {children}
     </DashContext.Provider>
   );

@@ -5,14 +5,15 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Navbar from "./components/navbar/Navbar";
 import { ContextProvider } from "./hooks/Context";
-import React, {useState} from 'react'
-import { SocketProvider } from "./hooks/SocketContext";
+import React, {useEffect} from 'react'
+import { SocketProvider, useSocket } from "./hooks/SocketContext";
 import Footer from "./components/footer/Footer";
 import Script from "next/script";
 import AchievementPopup from "./components/achievement/page";
 import { useContextUser } from "./hooks/Context";
 import Announcements from "./components/announcements/Announcements";
 import CookieConsentPopup from "./components/cookieconsent/CookieConsent";
+import IncomingCall from "./components/incomingCall/IncomingCall";
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
@@ -71,11 +72,24 @@ export default function RootLayout({ children }) {
 
 function ContentWrapper({ children }) {
   const { showAchPopup} = useContextUser();
+  const socket = useSocket()
+  const {userData}=useContextUser()
 
+  let userId
+  if(userData){
+    userId = userData.id
+
+  }
+  useEffect(() => {
+    if (userId) {
+      socket.emit('register', { userId });
+    }
+  }, [userId]);
   return (
     <>
       <Navbar />
-      <Announcements/>
+      <IncomingCall/>
+      {/* <Announcements/> */}
       {showAchPopup && <AchievementPopup />}
       {children}
       <CookieConsentPopup/>

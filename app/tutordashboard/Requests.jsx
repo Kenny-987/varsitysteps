@@ -14,7 +14,7 @@ const Requests = ({requests,setContent}) => {
 
     const requestResponse =async(requestId)=>{
         try {
-          const response = await  fetch(`/api/api/connectionresponse/${requestId}`,{
+          const response = await  fetch(`/testing/api/connectionresponse/${requestId}`,{
             method:'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -23,7 +23,8 @@ const Requests = ({requests,setContent}) => {
             credentials: 'include',
           })
           if(response.ok){
-            setContent('Students')
+            
+            console.log('accepted');
             
           }else{
             console.log('response not sent successfully')

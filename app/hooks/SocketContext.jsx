@@ -12,7 +12,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Create socket connection
-    const newSocket = io.connect('https://varsitysteps-server.onrender.com');
+    const newSocket = io.connect('/testing');
     setSocket(newSocket);
 
     // Cleanup the socket connection when the component unmounts

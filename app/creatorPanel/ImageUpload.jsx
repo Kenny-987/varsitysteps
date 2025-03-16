@@ -89,7 +89,7 @@ const handleImageUpload = (e) => {
       formData.append('existingImages', imageUrl); // Keep these in the post without overriding
     });
       try {
-        const response = await fetch(`/api/posts/editpost`,{
+        const response = await fetch(`/testing/posts/editpost`,{
           method:'PATCH',
           credentials:'include',
           body:formData
@@ -116,7 +116,7 @@ const handleImageUpload = (e) => {
       }
     }else{
       try {
-        const response = await fetch('/api/posts/savepost', {
+        const response = await fetch('/testing/posts/savepost', {
           method: 'POST',
           credentials:'include',
           body: formData, 

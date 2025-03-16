@@ -31,7 +31,7 @@ const Login = () => {
     return null;
   }
 
-  const api = '/api/auth/login'
+  const api = '/testing/auth/login'
   const login= async(e)=>{
     setLoading(true)
     e.preventDefault();
@@ -50,12 +50,15 @@ const Login = () => {
         setLoading(false)
         
         if(roles.includes('student')){
+          localStorage.setItem('role','student')
           const redirectUrl = searchParams.get("redirect") || "/dashboard";
           window.location.href=redirectUrl
         }else if(roles.includes('tutor')){
+          localStorage.setItem('role','tutor')
           const redirectUrl = searchParams.get("redirect") || "/tutordashboard";
            window.location.href=redirectUrl
-        }else if(roles.includes('student') && roles.includes('tutor')){
+          }else if(roles.includes('student') && roles.includes('tutor')){
+          localStorage.setItem('role','student')
           window.location.href='/dashboard'
         }
       

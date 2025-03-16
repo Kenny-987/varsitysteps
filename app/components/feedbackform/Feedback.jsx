@@ -17,7 +17,7 @@ const Feedback = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const response = await fetch(`/api/feedback/send`,{
+      const response = await fetch(`/testing/feedback/send`,{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',

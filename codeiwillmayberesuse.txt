@@ -1,0 +1,63 @@
+ {/* modal for creative signup */}
+    {showCreative && <div className="creative-signup">
+      <div className="creative-info"> 
+        <h3>Discover the Creative Section <FontAwesomeIcon icon={faClose} onClick={()=>setShowCreative(false)}/></h3>
+        <p>The Creative Section on VarsitySteps is your space to showcase, explore, and celebrate creativity in all its forms. Whether you're an artist, designer, writer, journalist, or an innovator in any field, this is where you share your work with a community that values expression and originality. From art to stories, designs to innovations, the Creative Section is where ideas come to life, talents are discovered, and collaboration thrives. Share your passion, get inspired, and connect with like-minded creatives today.</p>
+        <div className="edit-btn ">
+        <button className='creatives'onClick={()=> setShowSubmitForm(true)}>Get Started</button>
+        <button className='creatives' onClick={()=> setShowCreative(false)}>Maybe Later</button>
+        </div>
+        {/* sub modal to submit basic creator info  */}
+        {showSubmitForm && <div className="basic-creator-info">
+          <CreativeForm setShowCreative={setShowCreative}/>
+        </div> }
+        {/* sub modal to submit basic creator info  */}
+      </div>
+    </div>}
+    {/* modal for creative signup */}
+
+
+
+    {/* {!creatorData ? <button onClick={()=> setShowCreative(true)} className="creative"><FontAwesomeIcon icon={faStar}/> Showcase your talent</button>:<button onClick={()=> setContent('Creator')} className="creative"><FontAwesomeIcon icon={faStar}/> Creator Panel</button>}
+        {!userData.role_name.includes('tutor') ?
+        <div className="tutor-option">
+        <button style={{borderRadius:"50%"}} onClick={()=>{setTutorOption(!tutorOption)}}><FontAwesomeIcon icon={faEllipsis}/></button>
+        {tutorOption &&<button onClick={()=> setShowTutorModal(true)} className='tutor'>Become a tutor</button> }
+        </div> : <p><Link href='/tutordashboard'>Tutor Dashboard</Link></p>} */}
+        
+
+
+            {/* creator data section */}
+        {/* {creatorData && 
+        <>
+        <h3>Creator Info</h3>
+        <div className="user-details">
+          <div className="user-detail">
+        <p>Field:</p>
+        {creatorData.field?<p><FontAwesomeIcon icon={faLocationDot}/> {creatorData.field}</p>:<button onClick={()=> setShowEditForm(true)}>Edit Field</button>}
+      </div>
+      <div className="user-detail">
+        <p><FontAwesomeIcon icon={faBriefcase}/> Specializations:</p>
+        {creatorData.specializations&& creatorData.specializations.length>0?creatorData.specializations.map((spec,index)=>{
+        return <div key={index}>
+          <ul>
+            <li>{spec}</li>
+          </ul>
+        </div>
+      }):<button onClick={()=> setShowEditForm(true)}>Add Skills</button>}
+      </div>
+      <div className="user-detail">
+      <p><FontAwesomeIcon icon={faGears}/> Skills:</p>
+      {creatorData.skills&& creatorData.skills.length>0?creatorData.skills.map((skill,index)=>{
+        return <div key={index}>
+          <ul>
+            <li>{skill}</li>
+          </ul>
+        </div>
+      }):<button onClick={()=> setShowEditForm(true)}>Add Skills</button>}
+      </div>
+  
+          </div>
+        </>
+        } */}
+      {/* {showEditForm && <EditProfile setShowEditForm={setShowEditForm} creatorData={creatorData} user={userData}/> } */}

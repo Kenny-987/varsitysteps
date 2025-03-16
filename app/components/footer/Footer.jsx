@@ -11,7 +11,7 @@ const Footer = () => {
     const {setShowAchPopup,setGlobalAchievement}=useContextUser()
   const followed = async (socialApp) => {
     try {
-      const response = await fetch(`/api/gamedata/follower`, {
+      const response = await fetch(`/testing/gamedata/follower`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
