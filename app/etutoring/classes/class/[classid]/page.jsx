@@ -13,6 +13,7 @@ import AddStudent from '../../AddStudent'
 import ClassStudents from '../../ClassStudents'
 import EditClass from './EditClass'
 import { useRouter } from 'next/navigation'
+import LiveLesson from '../../../../components/livelesson/LiveLesson'
 
 const Class = () => {
     const [content,setContent]=useState("dashboard")

@@ -95,7 +95,6 @@ if(loading){
         
      <div className="dash-content">
       {isEffectCompleted && content === 'Profile' && userData && <Profile userData={userData} />}
-      {content === 'Tutors' && <MyTutors myTutors={myTutors} setContent={setContent}/>}
       {content === 'Password' && <PasswordSettings userData={userData} setContent={setContent}/>}
       {content === 'Delete' && <DeleteAccount/>}
      </div>
