@@ -8,7 +8,7 @@ import { useContextUser } from '../hooks/Context';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCaretUp, faChalkboardTeacher, faEnvelope, faLock, faSignOut, faUser, faWarning,faClose, faGamepad} from '@fortawesome/free-solid-svg-icons';
-import MyTutors from './MyTutors';
+// import MyTutors from './MyTutors';
 import Link from 'next/link';
 
 const Dashboard = () => {
@@ -35,25 +35,6 @@ const Dashboard = () => {
     }, [isAuthenticated,  loading, router, userData]);
 
  
-//check if student has a tutor or tutors
-useEffect(()=>{
-  const getTutors = async()=>{
-    try {
-    const response =  await fetch(`http:localhost:3000/user/mytutors`,{
-      credentials:'include'
-    })
-    if(response.ok){
-      const data =  await response.json()
-      if(data){
-        setMyTutors(data)
-      }
-    }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  getTutors()
-},[])
 
  const logout = async()=>{
 try {
