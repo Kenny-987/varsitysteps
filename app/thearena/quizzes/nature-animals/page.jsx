@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import '../../arena.css'
-import '../../quiz/quiz.css'
+import '../quiz.css'
 
 const Nature = () => {
 const topic = 'nature'
