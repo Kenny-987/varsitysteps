@@ -38,7 +38,7 @@ const TutorForm = ({setShowTutorModal}) => {
         e.preventDefault()
         setLoading(true)
       try {
-        const response =  await fetch(`http:localhost:3000/user/tutor-account`,{
+        const response =  await fetch(`/api/user/tutor-account`,{
           method:'POST',
           credentials:'include',
           headers: {

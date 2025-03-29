@@ -30,7 +30,7 @@ setLoading(true)
   formData.append('profilePicture', image);
   formData.append('userId', userId);
 try {
-  const response =  await fetch(`http:localhost:3000/user/profile-picture`,{
+  const response =  await fetch(`/api/user/profile-picture`,{
     method:'POST',
     credentials:'include',
     body:formData
@@ -64,7 +64,7 @@ const deleteImage = async ()=>{
 
   setLoading(true)
   try {
-    const response =  await fetch(`http:localhost:3000/user/delete-picture/${userId}`,{
+    const response =  await fetch(`/api/user/delete-picture/${userId}`,{
       method:'DELETE',
       credentials:'include',
     })

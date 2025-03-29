@@ -21,7 +21,7 @@ const Tutors = () => {
         const fetchTutors = async()=>{
             if(query.trim()!==''){
             try {
-              const response =  await fetch(`http:localhost:3000/tutors/search?query=${query}`)
+              const response =  await fetch(`/api/tutors/search?query=${query}`)
               if(response.ok){
                 const data =  await response.json()
                 setTutors(data)

@@ -27,7 +27,7 @@ const userId = userData.id
           return;
         }
         try {
-            const response =  await fetch(`http:localhost:3000/user/update/password/${userId}`,{
+            const response =  await fetch(`/api/user/update/password/${userId}`,{
                 method:'PUT',
                 headers: {
                 'Content-Type': 'application/json',

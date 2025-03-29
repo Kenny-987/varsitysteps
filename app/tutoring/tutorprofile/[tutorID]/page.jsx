@@ -29,7 +29,7 @@ useEffect(()=>{
     const fetchTutor = async ()=>{
         // setLoading(true)
         try {
-            const response  =  await fetch(`http:localhost:3000/tutors/tutorprofile/${tutorID}`)
+            const response  =  await fetch(`/api/tutors/tutorprofile/${tutorID}`)
             const data =  await response.json()
             if (response.ok){
                 setTutor(data)
@@ -75,7 +75,7 @@ if(isAuthenticated){
 //function to check if user is connected
     const checkConnection = async()=>{
         try {
-            const response =  await fetch( 'http:localhost:3000http:localhost:3000/connectionstatus',{
+            const response =  await fetch( '/api/connectionstatus',{
                 method:'POST',
                 headers: {
                   'Content-Type': 'application/json',
