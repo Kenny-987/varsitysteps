@@ -28,7 +28,7 @@ const ResetPassword =()=>{
         }
         setLoading(true)
         try {
-            const response = await fetch(`/api/auth/reset`,{
+            const response =  await fetch(`http:localhost:3000/auth/reset`,{
             method:'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const ResetPassword =()=>{
                 setLoading(false)
 
             }else{
-                const errMsg = await response.json()
+                const errMsg =  await response.json()
                 setShowMessage(true)
                 setMessage(errMsg.message);
                 setLoading(false)
@@ -58,7 +58,7 @@ const ResetPassword =()=>{
     
     const checkOtp = async()=>{
         try {
-            const response =await fetch(`/api/auth/otp`,{
+            const response = await fetch(`http:localhost:3000/auth/otp`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -70,7 +70,7 @@ const ResetPassword =()=>{
                 setShowStep2(false)
                 setLoading(false)
             }else{
-                const errMsg = await response.json()
+                const errMsg =  await response.json()
                 console.log(errMsg);
                 setShowMessage(true)
                 setMessage(errMsg.message);
@@ -85,7 +85,7 @@ const ResetPassword =()=>{
     }
 const newPassword = async()=>{
     try {
-        const response = await fetch('/api/auth/newpassword',{
+        const response =  await fetch('http:localhost:3000/auth/newpassword',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -96,7 +96,7 @@ const newPassword = async()=>{
             console.log('new password active');  
             window.location.href='/auth/login'
         }else{
-            const errMsg = await response.json()
+            const errMsg =  await response.json()
                 console.log(errMsg);
                 setShowMessage(true)
                 setMessage(errMsg.message);

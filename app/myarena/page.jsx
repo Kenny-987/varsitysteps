@@ -31,12 +31,12 @@ const MyArena = () => {
   useEffect(()=>{
     const fetchData=async()=>{
       try {
-        const response = await fetch(`/api/gamedata/data`,{
+        const response =  await fetch(`http:localhost:3000/gamedata/data`,{
           method:'GET',
           credentials:'include'
         })
         if(response.ok){
-          const data = await response.json()
+          const data =  await response.json()
           setGameData(data)
           if(data.unlockedAchievements.length>0){
             setGlobalAchievement(data.unlockedAchievements)
@@ -54,12 +54,12 @@ const MyArena = () => {
 useEffect(()=>{
   const fetchAchievements=async()=>{
     try {
-      const response = await fetch(`/api/gamedata/challenges`,{
+      const response =  await fetch(`http:localhost:3000/gamedata/challenges`,{
         method:'GET',
         credentials:'include'
       })
       if(response.ok){
-        const data = await response.json()
+        const data =  await response.json()
         setAchievements(data.achievements)
         setTierProgress(data.tierProgress)
         setQuizProgress(data.quizProgress)

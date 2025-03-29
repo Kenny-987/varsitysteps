@@ -18,11 +18,11 @@ const CreatorPanel = () => {
     setfetching(true)
     const fetchPosts = async ()=>{
   try {
-    const response = await fetch(`/api/posts/post`,{
+    const response =  await fetch(`http:localhost:3000/posts/post`,{
       credentials:'include'
     })
     if(response.ok){
-      const data = await response.json()
+      const data =  await response.json()
       // const f = data[0].tiptap_content
       console.log(data);
       setPosts(data)
