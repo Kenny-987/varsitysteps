@@ -77,7 +77,7 @@
     color: #333;
     margin-top: 10px;
 }
-input {
+.edit-profile input {
     border: 1px solid #ccc;
     padding: 14px;
     font-size: 1em;
@@ -319,6 +319,23 @@ input {
   padding: 10px;
   background-color: #fff;
   border-radius: 4px;
+}
+.edit-password-content form{
+  width: 100%;
+}
+.edit-password-content form input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+.edit-password-content form input:focus{
+  outline: 1px solid var(--secondary-color);
+  border: none;
+}
+
+.edit-password-content #showpassword{
+  width: 10px;
 }
 .edit-password h3{
   display: flex;

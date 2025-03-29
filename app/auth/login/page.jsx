@@ -36,7 +36,7 @@ const Login = () => {
     setLoading(true)
     e.preventDefault();
     try {
-      const response = await fetch(api, {
+      const response =  await fetch(api, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,22 +45,25 @@ const Login = () => {
         credentials: 'include', 
       });
       if (response.ok) {
-        const roles = await response.json()
+        const roles =  await response.json()
         setIsAuthenticated(true)
         setLoading(false)
         
         if(roles.includes('student')){
+          localStorage.setItem('role','student')
           const redirectUrl = searchParams.get("redirect") || "/dashboard";
           window.location.href=redirectUrl
         }else if(roles.includes('tutor')){
+          localStorage.setItem('role','tutor')
           const redirectUrl = searchParams.get("redirect") || "/tutordashboard";
            window.location.href=redirectUrl
-        }else if(roles.includes('student') && roles.includes('tutor')){
+          }else if(roles.includes('student') && roles.includes('tutor')){
+          localStorage.setItem('role','student')
           window.location.href='/dashboard'
         }
       
       } else {
-        const  errMsg = await response.json()
+        const  errMsg =  await response.json()
         setShowMessage(true)
         setMessage(errMsg.message);
         setLoading(false)

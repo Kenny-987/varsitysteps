@@ -1,0 +1,232 @@
+.class-list{
+    /* border: 1px solid red; */
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.classcard{
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    background: #f9f9f9;  
+    box-shadow:  0px 0px 10px #bebebe,
+                 -0px 0px 20px #ffffff;
+    margin-bottom: 20px; 
+}
+.classcard button{
+    padding: 4px ;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+.classcard .classdetails p{
+    margin-bottom: 10px;
+}
+.classcard .classdetails span{
+font-weight: 600;
+}
+.classcard.add{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+.classcard.add button{
+    display: inline;
+    margin: 0;
+    background-color: transparent;
+    color: #333;
+}
+.classcard.add svg{
+    font-size: 40px;
+    color: #333;
+}
+.createclass{
+   width: 90%;
+   background-color: #f8f8f8;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 4px;
+}
+
+.createclass form{
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.createclass form .classformfield input{
+width: 100%;
+border: 1px solid var(--secondary-color);
+padding: 4px 8px;
+border-radius: 4px;
+}
+.createclass form .classformfield input:focus,.createclass form .classformfield textarea:focus{
+    outline: none;
+}
+.createclass form .classformfield textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 4px 8px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+}
+.createclass .createactions{
+  display: flex;
+  gap: 10px;
+}
+.createclass .createactions button{
+    padding: 4px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+.createclass .createactions .save{
+    background-color: var(--primary-color);
+}
+.createclass .createactions .cancel{
+    background-color: red;
+}
+.class-actions{
+    display: flex;
+    gap: 10px;
+    margin:20px 0;
+}
+.class-actions .class-action{
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    background-color: var(--secondary-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+.class-actions .class-action.delete{
+    background-color: red;
+    color: #fff;
+}
+.addstudents{
+    margin-top: 10px;
+}
+.addstudents-header{
+    margin-bottom: 10px;
+}
+.addstudents-header svg{
+    cursor: pointer;
+}
+.addstudent{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #33333355;
+}
+.addstudent button{
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    background-color: var(--secondary-color);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+.addstudents p{
+    margin-top: 10px;
+}
+.students-inclass{
+    position: relative;
+
+}
+.class-students{
+/* border: 1px solid red; */
+display: flex;
+justify-content: space-between;
+padding: 4px !important;
+} 
+.classstudent-user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.student-action{
+    background-color: red;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.removestudentmodal{
+    /* border: 1px solid red; */
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 10px #0000006b;
+}
+.removestudentmodal .remove-options{
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-top: 20px;
+}
+.removestudentmodal .remove-options button{
+    color: #fff;
+    font-size: 18px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.removestudentmodal .remove-options button:nth-child(1){
+    background-color: var(--primary-color);
+}
+.removestudentmodal .remove-options button:nth-child(2){
+    background-color: red;
+}
+.students-message{
+    animation: slideDown 0.5s ease-in-out;
+    padding: 6px;
+    background-color:#80ef80;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+}
+@keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+@media (min-width:768px){
+    .class-list{
+        gap: 20px;
+    }
+    .classcard{
+        width: 30%;
+        /* height: 200px; */
+    }
+    .createclass{
+        width: 50%;
+    }
+    /* .removestudentmodal{
+        width: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+    } */
+}

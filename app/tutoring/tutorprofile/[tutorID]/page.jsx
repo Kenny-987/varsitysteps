@@ -7,8 +7,8 @@ import { useContextUser } from "../../../hooks/Context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowAltCircleLeft, faUser,faClose, faStar, faStarHalf, faCircle, faShareFromSquare } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
-import Messages from "../../../dashboard/messages"
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+
 
 const TutorProfile =()=>{
 const [tutor,setTutor] = useState({})
@@ -16,13 +16,12 @@ const {userData,isAuthenticated} = useContextUser()
 const {tutorID} = useParams()
 const [connectonStatus,setConnectionStatus] = useState(null)
 const [notSignedInWarning,setNotSignedInWarning] = useState(false)
-const [chatStatus,setChatStatus]= useState(null)
 const [loading,setLoading] = useState(false)
-const [showChats,setShowChats] = useState(false)
-const [rateScore,setRateScore]=useState(0)
-const [hover, setHover] = useState(0);
-const [showRating,setShowRating]=useState(false)
-const [hasRated,setHasRated]=useState(false)
+
+// const [rateScore,setRateScore]=useState(0)
+// const [hover, setHover] = useState(0);
+// const [showRating,setShowRating]=useState(false)
+// const [hasRated,setHasRated]=useState(false)
 const router = useRouter()
 
 //fuction to fetch tutor profile details
@@ -33,7 +32,6 @@ useEffect(()=>{
             const response  = await fetch(`/api/tutors/tutorprofile/${tutorID}`)
             const data = await response.json()
             if (response.ok){
-                console.log('this is user profile: ',data)
                 setTutor(data)
             }else{
                 console.log('error fetching profile')
@@ -44,7 +42,6 @@ useEffect(()=>{
     }
     fetchTutor()
 },[])
-console.log(tutor);
 
 //function to request a connection with a tutor
 const requestConnection =async()=>{
@@ -52,7 +49,7 @@ if(isAuthenticated){
     console.log('sending request')
     setLoading(true)
     try {
-        const response = await fetch(`/api/api/connectionrequest`, {
+        const response =  await fetch(`/api/api/connectionrequest`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -61,7 +58,6 @@ if(isAuthenticated){
             credentials: 'include', 
           });
           if (response.ok){
-            console.log('request sent successfully')
             setConnectionStatus('pending')
             setLoading(false)
           }
@@ -90,7 +86,6 @@ if(isAuthenticated){
               if(response.ok){
                 const data = await response.json()
                 setConnectionStatus(data.status)
-                  console.log('checking connection status', data)
               }else{
                   console.log('could not fetch connection')
               }
@@ -98,75 +93,56 @@ if(isAuthenticated){
             console.error(error)
         }
     }
-//function to check for existing chats between tutor and student
-    const checkChatStatus = async()=>{
-        try {
-           const response = await fetch(`/api/messages/checkchats?user1=${tutorID}&user2=${userData.id}`,{
-               credentials:'include'
-           })
-           if(response){
-               const data = await response.json()
-               setChatStatus(data)
-               console.log('chats status in tutor page', data);
-               
-           }else{
-               console.log('cant check status')
-           }
-       } catch (error) {
-           console.error(error)
-       }
-   }
 //function to check if user has rated 
-    const checkHasRated = async () => {
-        try {
-            const response = await fetch(`/api/tutors/checkrate/${tutorID}`,{
-                credentials:'include'
-            })
-            if(response.ok){
-                const data = await response.json()
-                setHasRated(data)
-            }else{
-                console.log('oops');
+    // const checkHasRated = async () => {
+    //     try {
+    //         const response =  await fetch(`/api/tutors/checkrate/${tutorID}`,{
+    //             credentials:'include'
+    //         })
+    //         if(response.ok){
+    //             const data =  await response.json()
+    //             setHasRated(data)
+    //         }else{
+    //             console.log('oops');
                 
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    //         }
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // }
 
 useEffect(()=>{
     if(isAuthenticated){
-        checkChatStatus()
         checkConnection()
-        checkHasRated()
+        // checkHasRated()
     }
 },[])
 
 
 //function to rate a tutor
-const rateTutor = async (tutor_id,rater_id) => {
-    try {
-        const response = await fetch(`/api/tutors/rate`,{
-            method:'POST',
-            credentials:'include',
-            headers: {
-                'Content-Type': 'application/json',
-              },
-            body: JSON.stringify({rateScore,tutor_id,rater_id})
-        })
-        if(response.ok){
-            setShowRating(false)
-            setHasRated(true)
-            window.location.reload()
-        }else{
-            console.log('oops');
-             setShowRating(false)
-        }
-    } catch (error) {
-        console.error(error)
-    }
+// const rateTutor = async (tutor_id,rater_id) => {
+//     try {
+//         const response =  await fetch(`/api/tutors/rate`,{
+//             method:'POST',
+//             credentials:'include',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//               },
+//             body: JSON.stringify({rateScore,tutor_id,rater_id})
+//         })
+//         if(response.ok){
+//             setShowRating(false)
+//             setHasRated(true)
+//             window.location.reload()
+//         }else{
+//             console.log('oops');
+//              setShowRating(false)
+//         }
+//     } catch (error) {
+//         console.error(error)
+//     }
     
-}
+// }
 return <section className='tutor-profile-container'>
     <div className="route"> 
             <p onClick={()=>router.back()}><FontAwesomeIcon icon={faArrowAltCircleLeft}/></p>
@@ -207,9 +183,13 @@ return <section className='tutor-profile-container'>
             {tutor.phone  && tutor.is_premium &&
                 <button className="whatsapp-link"><Link href={`https://wa.me/+${tutor.phone}`}><FontAwesomeIcon icon={faWhatsapp}/> Message Tutor</Link></button>
             }
-            {loading ? <div className='btn-loader'></div> :<> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn" onClick={()=>setShowChats(true)}>Chat</button> : connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
+            {loading ? <div className='btn-loader'></div> :
+            <> {userData !== null && userData.id == tutorID ? "" :connectonStatus === 'connected' ? <button className="basic-info-btn"><Link href={`/messages?receiver_id=${tutorID}`}>Chat</Link></button> : 
+            connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : 
+            <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
+
             {/* --------------div to rate tutor--------------- */}
-            {connectonStatus==='connected' && !hasRated && <p style={{textAlign:'center',marginTop:'10px'}} onClick={()=>setShowRating(!showRating)}>Click here to rate tutor</p>}
+            {/* {connectonStatus==='connected' && !hasRated && <p style={{textAlign:'center',marginTop:'10px'}} onClick={()=>setShowRating(!showRating)}>Click here to rate tutor</p>}
             {showRating && <div className="rate-tutor">
                 <div className="stars">
                     {[...Array(5)].map((star,index)=>{
@@ -228,7 +208,7 @@ return <section className='tutor-profile-container'>
                 <button className="basic-info-btn" onClick={()=>rateTutor(tutorID,userData.id)}>submit</button>
                 <button className="basic-info-btn" onClick={()=>{setShowRating(false)}}>cancel</button>
                 </div>
-            </div>}
+            </div>} */}
             {/* --------------div to rate tutor--------------- */}
           </div>
         </div>
@@ -239,7 +219,7 @@ return <section className='tutor-profile-container'>
         {/*--------------------------------------------------------------
          modal to show warning if user wants to connect without signing in
          ----------------------------------------------------------- */}
-        {notSignedInWarning && <div className="warning-modal">
+        {notSignedInWarning && <div className="overlay">
             <div className="prompt">
                 <div className="close-prompt"><FontAwesomeIcon onClick={()=>{setNotSignedInWarning(!notSignedInWarning)}} icon={faClose}/></div>
             <p><Link href={`/auth/login?redirect=${`/tutoring/tutorprofile/${tutor.id}`}`}>Login</Link> to connect with tutor</p>
@@ -278,10 +258,7 @@ return <section className='tutor-profile-container'>
                 <p>{tutor.teaching_method?tutor.teaching_method:'Nothing to show yet'}</p>
             </div>
         </div>
-    </div>  
-
-    {/* this section is for the messages section */}
-    {showChats &&  <Messages setShowChats={setShowChats} chatStatus={chatStatus} receiver={tutor}/>}    
+    </div>   
 </section>
 }
 export default TutorProfile

@@ -8,11 +8,13 @@ const DashContext = createContext();
 export const ContextProvider = ({ children }) => {
   const [showDash, setShowDash] = useState(false);
   const [showAchPopup,setShowAchPopup]=useState(false)
-
-  const {userData,setUserData,creatorData,setCreatorData,isAuthenticated,setIsAuthenticated,loading,error,notifications,notificationCount,setNotificationCount,tutoringData} = useFetchUser();
+  const [showCalling,setShowCalling]=useState(false)
+  const {userData,setUserData,isAuthenticated,setIsAuthenticated,loading,notifications,notificationCount,setNotificationCount,tutoringData} = useFetchUser();
+  const [callerDetails,setCallerDetails]=useState(null)
   const [globalAchievement,setGlobalAchievement]=useState([])
-
- 
+  const [answerCallFunction,setAnswerCallFunction]=useState(null)
+  const [showVideoCall,setShowVideoCall]=useState(false)
+  const [showNotifyPopup,setShowNotifyPopup]=useState(false)
 
 if(loading){
   return <div className='page-loader-parent'>
@@ -21,7 +23,7 @@ if(loading){
 }
 
   return (
-    <DashContext.Provider value={{ showDash, setShowDash, userData,setUserData,creatorData,setCreatorData,isAuthenticated,setIsAuthenticated,loading,error,notifications,notificationCount,setNotificationCount,tutoringData,setShowAchPopup,showAchPopup,globalAchievement,setGlobalAchievement}}>
+    <DashContext.Provider value={{ showDash, setShowDash, userData,setUserData,isAuthenticated,setIsAuthenticated,notifications,notificationCount,setNotificationCount,tutoringData,setShowAchPopup,showAchPopup,globalAchievement,setGlobalAchievement,showCalling,setShowCalling,callerDetails,setCallerDetails,answerCallFunction,setAnswerCallFunction,showVideoCall,setShowVideoCall,showNotifyPopup,setShowNotifyPopup}}>
       {children}
     </DashContext.Provider>
   );

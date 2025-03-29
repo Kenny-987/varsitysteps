@@ -26,6 +26,25 @@
     background-color: var(--primary-color);
     color: #fff;
 }
+.notify-popup{
+    /* border: 1px solid red; */
+    position: fixed;
+    z-index: 20000;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 4px;
+}
+.notify-popup p{
+    color: #fff;
+}
+.notify-popup svg{
+    float: right;
+    margin-left:10px;
+    /* border: 1px solid red; */
+    font-size: 20px;
+    color: red;
+}
 @media (min-width:800px){
     .notifications{
         /* left: 50%; */
@@ -33,5 +52,10 @@
         box-shadow: 0px 0px 4px 1px #ccc;
         border-radius: 4px;
     }
-    
+    .notify-popup{
+        /* border: 1px solid red; */
+        width: 50%;
+        left: 50%;
+        transform: translate(-50%);
+    }
 }

@@ -39,7 +39,7 @@ const Tutorsignup = () => {
       return;
     }
     try {
-      const response = await fetch('/api/auth/register', {
+      const response =  await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,13 +47,14 @@ const Tutorsignup = () => {
         body: JSON.stringify({ username, email, role, password }),
         credentials: 'include', 
       });
-      // const data = await response.json();
+      // const data =  await response.json();
   
       if (response.ok) {
-        const roles = await response.json();
+        const roles =  await response.json();
         setIsAuthenticated(true)
         setLoading(false)
         if(roles.includes('tutor')){
+          localStorage.setItem('role','tutor')
           window.location.href='/tutordashboard'
         }else if(roles.includes('student')){
            window.location.href='/dashboard'

@@ -1,6 +1,7 @@
 .tutors{
     width: 80%;
     margin: auto;
+    min-height: 67vh;
 }
 .tutor-nav{
      padding: 20px;
@@ -25,6 +26,7 @@
 }
 .search-bar input:focus{
     outline: none;
+    border: none;
     /* border: 1px solid var(--secondary-color); */
 }
 .search-bar .search-icon{
@@ -155,10 +157,11 @@
     color: var(--primary-color);
     font-size: 12px;
     font-weight: 700;
-    /* border: 1px solid red; */
     
 }
-
+.tutor-profile-container {
+    min-height: 66vh;
+}
 .tutor-profile-container .route{
     width: 80%;
     margin: auto;
@@ -264,9 +267,9 @@ margin-bottom: 4px;
     left: 0;
 }
 .prompt{
-    width: 90%;
+    width: 40%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 300px;
     background-color: #fff;
     padding: 0px 20px 20px;
     border-radius: 4px;
@@ -355,6 +358,9 @@ margin-bottom: 4px;
     font-size: 20px;
   }
 @media (max-width: 700px){
+.prompt{
+    width: 90%;
+}
     .tutors-intro{
         width: 100%;
         background-color: var(--nuetral); 

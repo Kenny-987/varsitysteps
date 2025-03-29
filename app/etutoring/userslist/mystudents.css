@@ -1,0 +1,75 @@
+.mystudents-container{
+    margin-top: 20px;
+}
+/* .studentlist{
+    border: 1px solid red;
+} */
+.mystudents-container h3{
+    margin-bottom: 10px;
+}
+.users{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #f3f4f6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.users:hover{
+    background-color: var(--secondary-color);
+}
+.users p{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    font-weight: 600;
+
+}
+.users p small{
+    background-color: var(--secondary-color);
+    padding: 4px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+}
+.users .profile-image img{
+border-radius: 50%;
+object-fit: cover;
+}
+.users .initials{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: #fff;
+}
+.users .users-name{
+/* border: 1px solid red; */
+display: flex;
+flex-direction: column;
+}
+.users .users-name small{
+    font-style: italic;
+}
+.student:hover{
+    background-color: #d3d3d3
+} 
+.student-info{
+    /* border: 1px solid red; */
+    margin-top: 20px;
+}
+.student-info p{
+    font-style: italic;
+}
+@media (min-width:768px){
+    .users{
+        width: 60%;
+    }
+}
