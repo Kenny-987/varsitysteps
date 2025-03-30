@@ -239,7 +239,8 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         <video
           ref={localVideoRef}
           autoPlay
-          muted 
+          muted
+          playsInline
         ></video> 
         </div>
 
@@ -260,6 +261,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
           ref={ remoteVideoRef}
           muted={callStatus == '' ? true:false}
           autoPlay
+          playsInline
         ></video>
       </div> 
     }
