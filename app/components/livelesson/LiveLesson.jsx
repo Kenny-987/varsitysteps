@@ -33,12 +33,22 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   };
   
   const cleanWebRtc = async()=>{
+    if (peerRef.current) {
+      peerRef.current.onicecandidate = null;
+      peerRef.current.ontrack = null;
+      peerRef.current.close();
+      peerRef.current = null;
+    }
     if (localVideoRef.current && localVideoRef.current.srcObject) {
       const stream = localVideoRef.current.srcObject;
     stream.getTracks().forEach((track) => {
         track.stop();
         console.log('Stopping track:', track.kind);
       });
+    }
+  
+    if (remoteVideoRef.current) {
+      remoteVideoRef.current.srcObject = null;
     }
     if(ringingRef) ringingRef.current.pause()
     if(dialingRef)dialingRef.current.pause(); 
