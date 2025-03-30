@@ -102,9 +102,10 @@ useEffect(()=>{
       setShowNotifyPopup(false);
     }, 5000);
 });
-  socket.on("calling-user",(data)=>{
+  socket.on("incoming-call",(data)=>{
     console.log('incoming call');
     ringingRef.current.play()
+    ringingRef.current.loop=true
     setShowCalling(true);
     setCallerDetails(data)
 

@@ -8,6 +8,7 @@ import { useContextUser } from '../../hooks/Context';
 import { useRouter } from 'next/navigation';
 
 const EditProfile = () => {
+  const router = useRouter()
     const {setUserData,userData,isAuthenticated} = useContextUser()
     const [username,setUsername]=useState('')
     const [bio,setBio]=useState(userData.bio||'')
