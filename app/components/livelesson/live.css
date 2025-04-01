@@ -159,6 +159,82 @@ background-color: orange;
 .floating-video{
   position: fixed;
 }
+
+.recording{
+  border: 1px solid white;
+  font-size: 14px;
+}
+.recording-options {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #ffffff77;
+  padding: 10px;
+  border-radius: 4px;
+}
+.recording-options p{
+  font-weight: 600;
+}
+.recording-options button{
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #fff;
+}
+.record-btns{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.record-btns .save{
+  background-color: var(--light-green);
+}
+.record-btns .discard{
+  background-color: red;
+}
+.save-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+}
+.save-modal input:focus{
+  outline: none;
+  border: 1px solid var(--secondary-color);
+}
+.savemodal-btns{
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  margin: auto;
+}
+.savemodal-btns button{
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #fff;
+}
+.savemodal-btns .save{
+  background-color: var(--light-green);
+}
+.save-modal .discard{
+  background-color:transparent;
+  cursor: pointer;
+  color: red;
+  float: right;
+  font-size: 16px;
+}
+.success-message.calls{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
 /* @media (min-height:700px){
   .remotevideo{
     margin-top: 60px;

@@ -46,13 +46,12 @@ const Student = () => {
       fetchUser()
     },[user_id])
    
-if(loading){
-  return <p>...loading</p>
-}
 
   return (
     <section className='etutoring'>
         <Navbar/>
+        {loading ? <div className='btn-loader'></div>:
+        <>
         {user && <div className="student-info">
           <div className="users">
           <div className="profile-image">
@@ -93,7 +92,7 @@ if(loading){
           <div className="dashboard-card">
             <h3>{role=='tutor'?'Student Submissions':"My Submissions"}</h3> 
             <p>{role=='tutor'?"View assignments and tasks sent by your student":"Manage your submisssions such as homework or assignments you send to your tutor"}</p>
-            <button onClick={()=>setContent('submissions')}>View submissions</button>
+            <button onClick={()=>setContent('submissions')}>{role=='tutor'?'Student Submissions':"My Submissions"}</button>
           </div>
         </div> }
         {content === 'livelesson' && <LiveLesson receiver={user_id} setContent={setContent} user={user}/>}
@@ -101,6 +100,9 @@ if(loading){
         {content === 'submissions' && <StudentSubmissions setContent={setContent} user_id={user_id}/>}
 
         </div>
+        </>
+        }
+        
         
 
          

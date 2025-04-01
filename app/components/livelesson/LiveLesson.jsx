@@ -4,7 +4,7 @@ import { useSocket } from '../../hooks/SocketContext'
 import { useContextUser } from '../../hooks/Context'
 import './live.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMicrophone, faMicrophoneSlash, faPhone, faPhoneSlash, faRecordVinyl, faSignOut, faVideo, faVideoSlash } from '@fortawesome/free-solid-svg-icons'
+import { faClose, faMicrophone, faMicrophoneSlash, faPauseCircle, faPhone, faPhoneSlash, faPlayCircle, faRecordVinyl, faSignOut, faStopCircle, faVideo, faVideoSlash } from '@fortawesome/free-solid-svg-icons'
 
 const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   const socket = useSocket()
@@ -19,7 +19,14 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   const [isCallInitiator, setIsCallInitiator] = useState(false);
   const [isMicOn, setIsMicOn] = useState(true);
   const [isCameraOn, setIsCameraOn] = useState(true);
-
+  const [recording, setRecording] = useState(false); 
+  const [videoURL, setVideoURL] = useState(null); 
+  const mediaRecorderRef = useRef(null); 
+  const recordedChunksRef = useRef([]); 
+  const streamRef = useRef(null);
+  const callTimeoutRef = useRef(null)
+  const role = localStorage.getItem('role')
+  const [paused, setPaused] = useState(false);
 
   const configuration = {
     iceServers: [
@@ -57,7 +64,19 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
 
   const setUpWebRtc = async()=>{
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      const constraints = {
+        video: {
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          facingMode: 'user'
+        },
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true
+        }
+      };
+      
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       if (localVideoRef.current) {
         localVideoRef.current.srcObject = stream;
       }
@@ -107,8 +126,11 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     }
 
     const handleCallAnswered = async (data)=>{
-      console.log(data);
-      console.log(peerRef.current);
+      if (callTimeoutRef.current) {
+        clearTimeout(callTimeoutRef.current);
+        callTimeoutRef.current = null;
+        console.log('clearing timeout');  
+    }
       
        if (peerRef.current && data.answer) {
         setCallStatus('Connected');
@@ -145,16 +167,28 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       }
     }
 
+    const handleUserOffline=async(data)=>{
+      if (callTimeoutRef.current) {
+        clearTimeout(callTimeoutRef.current);
+        callTimeoutRef.current = null;
+        console.log('clearing timeout');  
+    }
+      alert(data.message)
+      cleanWebRtc()
+    }
+
     socket.on('ice-candidate',handleIceCandidates)
     socket.on('call-cancelled', handleCallCancelled);
     socket.on('call-rejected',handleCallCancelled);
-    socket.on('call-answered',handleCallAnswered)
+    socket.on('call-answered',handleCallAnswered);
+    socket.on('user-offline',handleUserOffline)
     
     return () => {
       socket.off('call-cancelled')
       socket.off('call-rejected')
       socket.off('call-answered')
       socket.off('ice-candidate')
+      socket.off('user-offline')
     };
   },[])
 
@@ -164,6 +198,11 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     setIsCallInitiator(true);
     const offer =  await peerRef.current.createOffer();
     await peerRef.current.setLocalDescription(offer);
+
+    callTimeoutRef.current = setTimeout(() => {
+      cancelCall();
+      alert("Call timed out. No answer.");
+  }, 30000);
 
     setCallStatus('Ringing...')
     dialingRef.current.play(); 
@@ -182,7 +221,11 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       console.error('No incoming call or offer available');
       return;
     }
-    
+    if (callTimeoutRef.current) {
+      clearTimeout(callTimeoutRef.current);
+      callTimeoutRef.current = null;
+      console.log('clearing timeout');  
+  }
     try {
       await peerRef.current.setRemoteDescription(new RTCSessionDescription(callerDetails.offer))
       const answer =  await peerRef.current.createAnswer();
@@ -201,17 +244,29 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
 
   const exit = async()=>{
     cleanWebRtc()
+    discardRecording()
   }
 
   const cancelCall = async()=>{
+    if (callTimeoutRef.current) {
+      clearTimeout(callTimeoutRef.current);
+      callTimeoutRef.current = null;
+      console.log('clearing timeout');  
+  }
     socket.emit('cancel-call', {
       fromUserId: userId,
       toUserId: targetUserId,
     });
     cleanWebRtc()
+    discardRecording()
   }
 
   const rejectCall = async()=>{
+    if (callTimeoutRef.current) {
+      clearTimeout(callTimeoutRef.current);
+      callTimeoutRef.current = null;
+      console.log('clearing timeout');  
+  }
     socket.emit('reject-call', {
       fromUserId: userId,
       toUserId: targetUserId,
@@ -242,9 +297,146 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     }
   };
 
+  const startRecording = async () => {
+    try {
+      recordedChunksRef.current = [];
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      streamRef.current = stream; // Store the stream in the ref
+      
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          recordedChunksRef.current.push(event.data); // Push data into chunks
+        }
+      };
+      
+   
+      
+      mediaRecorderRef.current.start();
+      setRecording(true); 
+      setPaused(false);
+      setRecordingTime(0)
+    } catch (error) {
+      console.error('Error starting recording: ', error);
+    }
+  };
+
+  const pauseRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+      mediaRecorderRef.current.pause();
+      setPaused(true);
+    }
+  };
+
+  const resumeRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "paused") {
+      mediaRecorderRef.current.resume();
+      setPaused(false);
+    }
+  };
+
+  const discardRecording = () => {
+    // setVideoURL(null);
+   
+    recordedChunksRef.current = [];
+    if(mediaRecorderRef.current != null && streamRef.current != null){
+      mediaRecorderRef.current.stop();
+      streamRef.current.getTracks().forEach((track) => track.stop()); 
+    } 
+    clearInterval(timerRef.current); 
+    setRecording(false);
+    setPaused(false)
+    setShowSaveModal(false)
+  };
+
+  const [loading,setLoading]=useState(false)
+  const [videoTitle,setVideoTitle]=useState('')
+  const [showSaveModal,setShowSaveModal]=useState(false)
+  const [message,setMessage]=useState(null)
+
+
+  const saveRecording = async(e) =>{
+    e.preventDefault()
+    setLoading(true)
+    await new Promise((resolve) => {
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          recordedChunksRef.current.push(event.data);
+        }
+        resolve();
+      };
+  
+      mediaRecorderRef.current.stop();
+    });
+    await streamRef.current.getTracks().forEach((track) => track.stop());
+  
+    if (recordedChunksRef.current.length === 0) return;
+    
+    const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
+    const filename = videoTitle.trim() ? `${videoTitle}.webm` : "recording.webm"
+    const file = new File([blob], filename, { type: "video/webm" });
+    const formData = new FormData();
+    formData.append("files", file);   
+    formData.append('student_id', receiver || callerDetails.callerUserId);
+    formData.append('file_type', 'tutorfile');
+    formData.append('format', 'video');
+
+    try {
+      const response =  await fetch('http://localhost:3000/tutors/fileupload', {
+        method: 'POST',
+        body: formData,
+        credentials:'include'
+      });
+      if(response.ok){
+       setMessage('File uploaded successfully')
+       setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+        setPaused(false)
+        clearInterval(timerRef.current); 
+    setRecording(false);
+      }
+    } catch (error) {
+      console.error(error)
+    }finally{
+      setLoading(false)
+      clearInterval(timerRef.current); 
+    setRecording(false);
+    setShowSaveModal(false)
+    }
+
+  }
+
+  const [recordingTime, setRecordingTime] = useState(0);
+  const timerRef = useRef(null);
+  useEffect(() => {
+    if (recording && !paused) {
+      // Start the timer
+      timerRef.current = setInterval(() => {
+        setRecordingTime((prev) => prev + 1);
+      }, 1000);
+    } else {
+      // Pause or stop timer
+      clearInterval(timerRef.current);
+    }
+
+    return () => clearInterval(timerRef.current); // Cleanup on unmount
+  }, [recording, paused]);
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60).toString().padStart(2, "0");
+    const secs = (seconds % 60).toString().padStart(2, "0");
+    return `${mins}:${secs}`;
+  };
 
   return (
     <div className='video-call-container'>
+      <h3>{user?.username || callerDetails.callerName}
+      {recording && 
+      <p className='recording'><FontAwesomeIcon color='red' fade icon={faStopCircle}/> {paused ? "Paused":"Recording"} <span>{formatTime(recordingTime)}</span></p>}
+      </h3>
+      
       <div  className={`localvideo ${callStatus === "Connected" ? "small-preview" : ""}`}>
         <video
           ref={localVideoRef}
@@ -269,19 +461,47 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       <div className="remotevideo">
       <video 
           ref={ remoteVideoRef}
-          muted={callStatus == '' ? true:false}
+          muted={callStatus !== 'Connected'}
           autoPlay
           playsInline
         ></video>
       </div> 
     }
+{paused && <div className='recording-options'>
+        <p>Recording paused</p>
+        <div className="record-btns">
+            <button className='save'  onClick={()=>setShowSaveModal(true)}>Save</button>
+            <button className='discard' onClick={()=>discardRecording()}>Discard</button>
+          </div>
+        </div>} 
+        
+  {showSaveModal && <div className="save-modal">
+    <button className='discard' onClick={()=>discardRecording()}><FontAwesomeIcon icon={faClose}/></button>
+        <form onSubmit={saveRecording}>
+        <label htmlFor="file_name">Video Title</label>
+          <input type="text" 
+          id='file_name' 
+          value={videoTitle}
+          required
+          onChange={(e)=>setVideoTitle(e.target.value)}
+          />
+          {loading ? <div className='btn-loader'></div>:
+          <div className="savemodal-btns">
+            <button className="save" type='submit'>Save</button>
+          </div>
+          }
+        </form>
+      </div>}
+      
+      {message && <p className='success-message calls'>
+        {message}
+        </p>}
 
       <div className="call-controls">
-
       {callStatus == 'Ringing...' && 
       <button className='cancelcall-btn control-btn' onClick={()=>{cancelCall()}}>
           <FontAwesomeIcon icon={faPhoneSlash}/>Cancel Call
-        </button> }
+      </button> }
 
 
 {/* if no calling is taking show these buttons */}
@@ -321,9 +541,25 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         <FontAwesomeIcon icon={isCameraOn ? faVideo : faVideoSlash} />
       </button>
 
-      <button className='record-btn control-btn'>
+      {role=='tutor' && 
+      <>
+      {!recording?<button className='record-btn control-btn' onClick={startRecording}>
         <FontAwesomeIcon icon={faRecordVinyl}/> 
+      </button>:
+      <>
+      {paused ? 
+      <button className='record-btn control-btn' onClick={resumeRecording}>
+        <FontAwesomeIcon icon={faPlayCircle}/>  Resume
+      </button>:
+      <button className='record-btn control-btn' onClick={pauseRecording}>
+        <FontAwesomeIcon icon={faPauseCircle}/> Pause
       </button>
+    }
+      </>
+      }
+      </>}
+        
+      
 
       <button className='endcall-btn control-btn' onClick={()=>cancelCall()}>
         <FontAwesomeIcon icon={faPhoneSlash}/> 

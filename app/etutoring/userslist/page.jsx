@@ -8,6 +8,7 @@ import Image from 'next/image'
 
 const MyStudents = () => {
 const [users,setUsers]=useState([]) //user here are either students or tutors
+const [loading,setLoading]=useState(false)
 const role = localStorage.getItem('role')
 let url
 
@@ -17,6 +18,7 @@ if(role=='tutor'){
   url = `/api/user/mytutors`
 }
 const fetchUsers = async()=>{
+  setLoading(true)
   try {
       const response =  await fetch(url,{
           credentials:'include'
@@ -32,6 +34,8 @@ const fetchUsers = async()=>{
       }
   } catch (error) {
       console.error(error)
+  }finally{
+    setLoading(false)
   }
 }
 useEffect(()=>{
@@ -42,6 +46,7 @@ fetchUsers()
   return (
     <section  className='etutoring'>
         <Navbar/>
+        {loading?<div className='btn-loader'></div>:
         <div className="mystudents-container">
         <h3>{role=='tutor'?'Your Students':'Your Tutors'}</h3>
         <div className="studentlist">
@@ -59,6 +64,8 @@ fetchUsers()
           
         </div>
         </div>
+        }
+        
     </section>
   )
 }
