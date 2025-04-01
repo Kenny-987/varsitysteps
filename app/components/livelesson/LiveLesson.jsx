@@ -441,7 +441,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         <video
           ref={localVideoRef}
           autoPlay
-          muted
+          muted={callStatus !== 'Connected'}
           playsInline
         ></video> 
         </div>
