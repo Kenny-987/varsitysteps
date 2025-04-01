@@ -63,15 +63,11 @@ export default function RootLayout({ children }) {
        
       </head>
       <body >
-        <SocketProvider>
        <ContextProvider>
-       {/* <LiveSessionProvider> */}
-
+        <SocketProvider>
       <ContentWrapper>{children}</ContentWrapper>
-      {/* </ParentListenerSocket> */}
-
-        </ContextProvider>
         </SocketProvider>
+        </ContextProvider>
         </body>
     </html>
   );
@@ -89,41 +85,44 @@ function ContentWrapper({ children }) {
   }
 
   useEffect(() => {
-    if (userId) {
+    if (socket && userId) {
       socket.emit('register', { userId });
     }
   }, [userId]);
 
 useEffect(()=>{
-  socket.on("notification", (data) => {
-    setShowNotifyPopup(true)
-    setNotifyMsg(data.message)
-    setTimeout(() => {
-      setShowNotifyPopup(false);
-    }, 5000);
-});
-  socket.on("incoming-call",(data)=>{
-    console.log('incoming call');
-    ringingRef.current.play()
-    ringingRef.current.loop=true
-    setShowCalling(true);
-    setCallerDetails(data)
+  if(socket){
+    socket.on("notification", (data) => {
+      setShowNotifyPopup(true)
+      setNotifyMsg(data.message)
+      setTimeout(() => {
+        setShowNotifyPopup(false);
+      }, 5000);
+  });
+    socket.on("incoming-call",(data)=>{
+      console.log('incoming call');
+      ringingRef.current.play()
+      ringingRef.current.loop=true
+      setShowCalling(true);
+      setCallerDetails(data)
+  
+      // alert('incoming call')
+    })
+    socket.on('call-cancelled',()=>{
+      ringingRef.current.pause()
+      ringingRef.current.loop = true
+      console.log('call cancelled');
+      setShowCalling(false)
+    })
+  return () => {
+    // stopAudio()
+    socket.off('calling-user');
+    socket.off('notification');
+    socket.off('call-cancelled')
+  }
+  }
 
-    // alert('incoming call')
-  })
-  socket.on('call-cancelled',()=>{
-    ringingRef.current.pause()
-    ringingRef.current.loop = true
-    console.log('call cancelled');
-    setShowCalling(false)
-  })
-return () => {
-  // stopAudio()
-  socket.off('calling-user');
-  socket.off('notification');
-  socket.off('call-cancelled')
-}
-},[])
+},[socket,userData])
  
 
 

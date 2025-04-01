@@ -76,7 +76,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         }
       };
       
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       if (localVideoRef.current) {
         localVideoRef.current.srcObject = stream;
       }

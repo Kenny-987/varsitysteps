@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { useContextUser } from './Context';
 
 const SocketContext = createContext();
 
@@ -9,10 +10,18 @@ export const useSocket = () => {
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
+  const {userData}=useContextUser()
 
   useEffect(() => {
+  let newSocket
     // Create socket connection
-    const newSocket = io.connect('https://varsitysteps-server.onrender.com');
+    if(userData){
+      newSocket = io.connect('https://varsitysteps-server.onrender.com',{
+        query:{userId:userData.id}
+      });
+    }else {
+      console.log("User is not logged in, not connecting to WebSocket.");
+  }
     setSocket(newSocket);
 
     // Cleanup the socket connection when the component unmounts
