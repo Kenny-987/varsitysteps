@@ -383,7 +383,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     formData.append('format', 'video');
 
     try {
-      const response =  await fetch('http://localhost:3000/tutors/fileupload', {
+      const response =  await fetch('/api/tutors/fileupload', {
         method: 'POST',
         body: formData,
         credentials:'include'
