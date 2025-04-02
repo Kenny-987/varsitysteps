@@ -64,7 +64,7 @@
 }
 .call-controls{
     position: absolute;
-    bottom: 40px;
+    bottom: 80px;
     border-radius: 20px;
     left: 50%;
     transform: translateX(-50%);
