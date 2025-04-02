@@ -59,7 +59,7 @@ const fetchClasses = async()=>{
         </div>
       })}
         </>
-        :<p>You have not been added to any classes.</p>}
+        :<p>{role=='tutor' ? "":"You have not been added to any classes"}</p>}
       
         
 
