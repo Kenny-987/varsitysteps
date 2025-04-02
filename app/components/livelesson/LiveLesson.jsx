@@ -123,6 +123,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     const handleCallCancelled =async(data)=>{
       alert(data.message)
       cleanWebRtc()
+      window.location.reload()
     }
 
     const handleCallAnswered = async (data)=>{
