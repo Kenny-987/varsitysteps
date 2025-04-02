@@ -260,6 +260,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     });
     cleanWebRtc()
     discardRecording()
+    window.location.reload()
   }
 
   const rejectCall = async()=>{
