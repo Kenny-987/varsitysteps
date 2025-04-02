@@ -44,7 +44,7 @@ const TutorDashboard = ()=>{
   const fetchRequests = async()=>{
     const userId = userData.id
       try {
-          const response =  await fetch(`/api/api/requests/${userId}`,{
+          const response =  await fetch(`/api/requests/${userId}`,{
               credentials:'include'
           })
           if(response.ok){
@@ -67,11 +67,11 @@ const TutorDashboard = ()=>{
 },[userData,isAuthenticated])
 
 useEffect(()=>{
-  socket.on('requests',(data)=>{
-    fetchRequests()
-    console.log(data);
-    
-  })
+  if(socket){
+    socket.on('requests',(data)=>{
+      fetchRequests()
+    })
+  }
 },[])
 
 if (!isAuthenticated || !userData) {
@@ -83,7 +83,7 @@ if (!isAuthenticated || !userData) {
 //  }
 const logout = async()=>{
   try {
-   const response =  await fetch(`/api/auth/logout`,{
+   const response =  await fetch(`/api/3000/auth/logout`,{
     method:'POST',
     credentials:'include'
    })
