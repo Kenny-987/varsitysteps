@@ -44,7 +44,7 @@ const TutorDashboard = ()=>{
   const fetchRequests = async()=>{
     const userId = userData.id
       try {
-          const response =  await fetch(`/api/requests/${userId}`,{
+          const response =  await fetch(`/api/api/requests/${userId}`,{
               credentials:'include'
           })
           if(response.ok){
