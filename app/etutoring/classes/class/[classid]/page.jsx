@@ -14,7 +14,7 @@ import ClassStudents from '../../ClassStudents'
 import EditClass from './EditClass'
 import { useRouter } from 'next/navigation'
 import LiveLesson from '../../../../components/livelesson/LiveLesson'
-import GroupLiveLesson from '../../../../components/livelesson/groupCalls'
+// import GroupLiveLesson from '../../../../components/livelesson/groupCalls'
 
 const Class = () => {
     const [content,setContent]=useState("dashboard")
@@ -163,7 +163,7 @@ const Class = () => {
         
         }
         {content === 'livelesson' && <LiveLesson/>}
-        {content === 'groupcall' && <GroupLiveLesson/>}
+        {/* {content === 'groupcall' && <GroupLiveLesson/>} */}
         {content === 'files' && <Files setContent={setContent} flag={'classfiles'} classid={classid}/>}
         {content === 'submissions' && <StudentSubmissions setContent={setContent} classid={classid} flag="class"/>}
         {content === 'classtudents' && <ClassStudents setContent={setContent} classStudents={classStudents} classid={classid} setClassStudent={setClassStudent} classDetails={classDetails}/>}
