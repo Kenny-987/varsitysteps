@@ -134,7 +134,7 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
         
       </div>
     <h4>{currentChat.recipient_name||currentChat.group_name}<span className='last-active'>
-    {currentChat.is_online ? <>Active now <FontAwesomeIcon icon={faCircle} color='#4af24a'/></>:
+    {currentChat.is_online && !currentChat.is_group  ? <>Active now <FontAwesomeIcon icon={faCircle} color='#4af24a'/></>:
     `${lastActive(currentChat.last_active)}`
     }
       </span></h4>
