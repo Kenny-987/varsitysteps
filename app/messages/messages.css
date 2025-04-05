@@ -104,11 +104,12 @@ white-space: nowrap;
 }
 .inbound{
      color: #fff;
-   background-color: var(--secondary-color);
+     background-color: #4158D0;
     align-self: flex-end;
   }
 .outbound{
-    background-color: #333;
+    background-color: #C850C0;
+   
     color: #fff;
   }
 .sendmessage{
@@ -137,11 +138,7 @@ white-space: nowrap;
     font-size: 18px;
     background-color: transparent;
 }
-.sharefiles{
-    /* border: 1px solid red; */
-    color: var(--secondary-color);
-    font-size: 15px;
-}
+
 .placeholder-img{
     border-radius:50%;
     background-color:var(--secondary-color);
@@ -154,6 +151,46 @@ white-space: nowrap;
 }
 .clickchat{
     display: none;
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+}
+.clickchat p{
+    color: transparent;
+    background-clip: text;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+    font-weight: 600;
+}
+.no-chats{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.no-chats p {
+    color: transparent;
+    background-clip: text;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+    font-weight: 600;
+    font-size: 20px;
+}
+.start-chat{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.start-chat p{
+    color: transparent;
+    background-clip: text;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+    font-weight: 600;
 }
 @media (min-width:768px){
     .messages-page{
@@ -195,7 +232,7 @@ white-space: nowrap;
         height: 60%;
       }
       .clickchat{
-        display: block;
+        display: flex;
     }
 }
 

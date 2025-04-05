@@ -40,8 +40,8 @@ const EditClass = ({setClassDetails,classDetails,setEditClass}) => {
 
         
   return (
-    <div className='createclass'>
-        <div className='a'>
+    <div className="overlay">
+      <div className='createclass'> 
         <h3>Edit class details</h3>
         {message && <p className='success-message' style={{background:'red'}}>{message}</p>}
         <form onSubmit={editClass}>
@@ -71,9 +71,10 @@ const EditClass = ({setClassDetails,classDetails,setEditClass}) => {
             }
      
         </form>
-        </div>
        
     </div>
+    </div>
+    
   )
 }
 

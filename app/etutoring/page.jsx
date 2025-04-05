@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faClose, faEnvelope, faHamburger, faSchool, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope,faSchool, faUsers } from '@fortawesome/free-solid-svg-icons'
 import './etutoring.css'
 import Link from 'next/link'
 import Navbar from './Navbar'
@@ -20,22 +20,31 @@ const eTutoring = () => {
         <div className="dashboard-grid">
           {/* Quick Access Links */}
           <div className="dashboard-card">
-            <h3>My {role=='tutor'?'Students':'Tutors'}</h3>
-            {role=='tutor'?<p>Manage your students and track their progress.</p>:<p>View your tutors, start lessons and view resources and assignments</p>}
+            <div className="dash-cardheader">
+              <span className='dash-icon'><FontAwesomeIcon icon={faUsers}/></span>
+            <p className='dash-title'>My {role=='tutor'?'Students':'Tutors'}</p>
+            </div>
+           <p className='dash-desc'>  {role=='tutor'?"Manage your students and track their progress":"View your tutors, start lessons and view resources and assignments"}</p>
             
-            <button><Link href='/etutoring/userslist'>{role=='tutor'?'View Students':'View Tutors'}</Link> </button>
+           <Link href='/etutoring/userslist'><button>{role=='tutor'?'View Students':'View Tutors'}</button></Link> 
           </div>
 
           <div className="dashboard-card">
-            <h3>{role=='tutor'?"Group Classes":"My Classes"}</h3>
-            <p>{role=='tutor'?'Schedule,manage and send files to several students in one place,and manage your classes':'Open and view classes you have been added to by your tutors'}.</p>
-            <button><Link href='/etutoring/classes'>View Classes</Link></button>
+            <div className="dash-cardheader">
+            <span className='dash-icon'><FontAwesomeIcon icon={faSchool}/></span>
+            <p className='dash-title'>{role=='tutor'?"Group Classes":"My Classes"}</p>
+            </div>
+            <p className='dash-desc'>{role=='tutor'?'Schedule,manage and send files to several students in one place,and manage your classes':'Open and view classes you have been added to by your tutors'}.</p>
+           <Link href='/etutoring/classes'><button>View Classes</button></Link>
           </div>
 
           <div className="dashboard-card">
-            <h3>Messages</h3>
-            <p>Communicate with your {role=='tutor'?'students':'tutors'} using our messaging system. No need to share external contacts if you don't have to.</p>
-            <button><Link href='/messages'>Go to Messages</Link></button>
+            <div className="dash-cardheader">
+            <span className='dash-icon'><FontAwesomeIcon icon={faEnvelope}/></span>
+            <p className='dash-title'>Messages</p>
+            </div>
+            <p className='dash-desc'>Communicate with your {role=='tutor'?'students':'tutors'} using our messaging system. No need to share external contacts if you don't have to.</p>
+            <Link href='/messages'><button>Go to Messages</button></Link>
           </div>
 
           {/* Upcoming Lessons */}

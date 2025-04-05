@@ -11,9 +11,6 @@ const Dropzone = ({setFileOptions,user_id,setFiles,flag,classid}) => {
     const maxFiles = 10; 
     const maxSize = 5 * 1024 * 1024; 
     const role = localStorage.getItem('role')
-
-    console.log(flag);
-    console.log(classid);
     
     let file_type,student_id,tutor_id
     if(role =='tutor' && !flag){
@@ -52,7 +49,7 @@ const Dropzone = ({setFileOptions,user_id,setFiles,flag,classid}) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     multiple: true,
-    accept: '.jpg, .jpeg, .png, .pdf, .docx, .xlsx, .pptx', 
+    accept: '.jpg, .jpeg, .png, .pdf, .docx, .xlsx, .pptx, .txt', 
     maxSize
   });
 
@@ -82,13 +79,16 @@ const Dropzone = ({setFileOptions,user_id,setFiles,flag,classid}) => {
 
       if (response.ok) {
         const data =  await response.json()
+        
+        let filteredFiles;
         if(flag=='classfiles'){
-          setFiles(data.filter(data=>data.file_type =='classfiles'))
-        }else if(data.file_type=='tutorfile'){
-          setFiles(data.filter(data=>data.file_type=='tutorfile'))
+          filteredFiles = data.filter(file => file.file_type === 'classfiles');
+        }else if(file_type=='tutorfile'){
+          filteredFiles = data.filter(file => file.file_type === 'tutorfile');
         }else{
-          setFiles(data.filter(data=>data.file_type=='studentfile'))
+          filteredFiles = data.filter(file => file.file_type === 'studentfile');
         }
+        setFiles(filteredFiles);
        setFileOptions('view')
        setFilesUpload([])
       } else {

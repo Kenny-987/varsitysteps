@@ -11,7 +11,7 @@ import Files from '../../../Files/Files'
 import Image from 'next/image'
 import '../../mystudents.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faEnvelope, faFolder, faFolderOpen, faStream, faVideo } from '@fortawesome/free-solid-svg-icons'
 
 const Student = () => {
     const {user_id} = useParams()
@@ -34,8 +34,7 @@ const Student = () => {
           const response =  await fetch(url)
           if(response.ok){
             const data =  await response.json()
-            setUser(data)
-            
+            setUser(data) 
           }
         } catch (error) {
           console.error(error)
@@ -46,6 +45,28 @@ const Student = () => {
       fetchUser()
     },[user_id])
    
+    const lastActive = (timestamp)=>{
+      const now = new Date();
+      const lastActive = new Date(timestamp);
+      const diffMs = now - lastActive;
+    
+      const diffSecs = Math.floor(diffMs / 1000);
+      const diffMins = Math.floor(diffSecs / 60);
+      const diffHours = Math.floor(diffMins / 60);
+      const diffDays = Math.floor(diffHours / 24);
+    
+      if (diffSecs < 60) {
+        return `Last active ${diffSecs} second${diffSecs !== 1 ? 's' : ''} ago`;
+      } else if (diffMins < 60) {
+        return `Last active ${diffMins} minute${diffMins !== 1 ? 's' : ''} ago`;
+      } else if (diffHours < 24) {
+        return `Last active ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+      } else if (diffDays < 7) {
+        return `Last active ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+      } else {
+        return `Last active on ${lastActive.toLocaleDateString()}`;
+      }
+    }
 
   return (
     <section className='etutoring'>
@@ -53,14 +74,13 @@ const Student = () => {
         {loading ? <div className='btn-loader'></div>:
         <>
         {user && <div className="student-info">
-          <div className="users">
+          <div className="users user-page">
           <div className="profile-image">
                             {user?.profile_image?<Image alt='person-image' src={user.profile_image} width={50} height={50}/>: <div className='initials'>{user.username.slice(0,1)}</div>}
                         </div>
           <div className="users-name">
-          <h3>{user?user.username:'loading'} </h3>
-          {/* <small> Active 5 mins ago</small> */}
-          {/* <FontAwesomeIcon icon={faCircle} color='grey'/> */}
+          <h4>{user?user.username:'loading'} </h4>
+          <small>{user.is_online? <>Active now <FontAwesomeIcon icon={faCircle} color='#4af24a'/></>: `${lastActive(user.last_active)}`}</small>
           </div>
           </div>
           
@@ -70,29 +90,42 @@ const Student = () => {
         {content === "dashboard"  && <div className="dashboard-grid">
           {/* Quick Access Links */}
           <div className="dashboard-card">
-            <h3>Message</h3>
-            <p>Chat with your {role=='tutor'?'student':'tutor'} using our chat system.</p>
-            {user && <button><Link href={`/messages?receiver_id=${user.id}`}>Open Chat</Link></button>}
+          <div className="dash-cardheader">
+            <span className='dash-icon'><FontAwesomeIcon icon={faEnvelope}/></span>
+            <p className='dash-title'>Messages</p>
+            </div>
+            <p className='dash-desc'>Chat with your {role=='tutor'?'student':'tutor'} using our chat system.</p>
+            {user && <Link href={`/messages?receiver_id=${user.id}`}><button className="dash-btn">Open Chat</button></Link>}
             
           </div>
 
           <div className="dashboard-card">
-            <h3>Start Live Lesson</h3>
-            <p>{role=='tutor'?"Start a live video calling session with your student for real-time teaching":"Join a live video call session with tutor for realtime learning."} </p>
-            <button onClick={()=>setContent('livelesson')}>Start Live Lessons</button>
+          <div className="dash-cardheader">
+            <span className='dash-icon'><FontAwesomeIcon icon={faVideo}/></span>
+            <p className='dash-title'>Video Call</p>
+          </div>
+            <p className='dash-desc'>{role=='tutor'?"Start a live video calling session with your student for real-time teaching":"Join a live video call session with tutor for realtime learning."} </p>
+            <button className="dash-btn" onClick={()=>setContent('livelesson')}>Start Video Call</button>
           </div>
 
           <div className="dashboard-card">
-            <h3>Files and resources</h3>
-            <p> {role =='tutor'?'Share files and resources such as notes and assignments for your student to access.':'Access, view and download files such as note, resources or assignments shared by your tutor'}</p>
-            <button onClick={()=>setContent('files')}>{role == 'tutor'?'Upload files':'View Files'}</button>
+            <div className="dash-cardheader">
+              <span className="dash-icon"><FontAwesomeIcon icon={faFolderOpen}/></span>
+              <p className='dash-title'>Files and resources</p>
+            </div>
+            
+            <p className='dash-desc'>{role =='tutor'?'Share files and resources such as notes and assignments for your student to access.':'Access, view and download files such as note, resources or assignments shared by your tutor'}</p>
+            <button className="dash-btn" onClick={()=>setContent('files')}>{role == 'tutor'?'Upload files':'View Files'}</button>
           </div>
 
           {/* Upcoming Lessons */}
           <div className="dashboard-card">
-            <h3>{role=='tutor'?'Student Submissions':"My Submissions"}</h3> 
-            <p>{role=='tutor'?"View assignments and tasks sent by your student":"Manage your submisssions such as homework or assignments you send to your tutor"}</p>
-            <button onClick={()=>setContent('submissions')}>{role=='tutor'?'Student Submissions':"My Submissions"}</button>
+          <div className="dash-cardheader">
+              <span className="dash-icon"><FontAwesomeIcon icon={faFolderOpen}/></span>
+              <p className='dash-title'>{role=='tutor'?'Student Submissions':"My Submissions"}</p>
+            </div>
+            <p className='dash-desc'>{role=='tutor'?"View assignments and tasks sent by your student":"Manage your submisssions such as homework or assignments you send to your tutor"}</p>
+            <button className="dash-btn" onClick={()=>setContent('submissions')}>{role=='tutor'?'Student Submissions':"My Submissions"}</button>
           </div>
         </div> }
         {content === 'livelesson' && <LiveLesson receiver={user_id} setContent={setContent} user={user}/>}

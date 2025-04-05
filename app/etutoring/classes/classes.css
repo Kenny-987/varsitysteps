@@ -6,24 +6,50 @@
     gap: 10px;
 }
 .classcard{
-    border-radius: 4px;
-    padding: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 16px;
+    display:flex ;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    background: #f9f9f9;  
-    box-shadow:  0px 0px 10px #bebebe,
-                 -0px 0px 20px #ffffff;
-    margin-bottom: 20px; 
+}
+.classcard .classheader{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.classcard .class-title{
+    font-weight: 600;
+}
+.classcard .class-icon{
+    background-color: var(--secondary-color);
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 1);
+}
+.classcard .class-desc{
+    margin-top: 16px;
+  margin-bottom: 10px;
+  color:#494949;
 }
 .classcard button{
-    padding: 4px ;
-    background-color: var(--primary-color);
+    background: var(--secondary-color);
+    display: block;
+    width: 50%;
+    margin: auto;
+    padding: 8px;
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
+    font-weight: 600;
 }
-.classcard .classdetails p{
-    margin-bottom: 10px;
-}
+
 .classcard .classdetails span{
 font-weight: 600;
 }
@@ -31,6 +57,7 @@ font-weight: 600;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 .classcard.add button{
@@ -38,10 +65,19 @@ font-weight: 600;
     margin: 0;
     background-color: transparent;
     color: #333;
+    font-size: 18px;
 }
 .classcard.add svg{
     font-size: 40px;
     color: #333;
+}
+
+.no-class p{
+    color: transparent;
+    background-clip: text;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+    font-weight: 600;
 }
 .createclass{
    width: 90%;
@@ -149,7 +185,6 @@ border-radius: 4px;
 
 }
 .class-students{
-/* border: 1px solid red; */
 display: flex;
 justify-content: space-between;
 padding: 4px !important;
@@ -221,9 +256,17 @@ margin-top: 20px;
         width: 30%;
         /* height: 200px; */
     }
+    .classcard button{
+        margin: 0;
+    }
     .createclass{
         width: 50%;
     }
+    .users.class-students{
+        flex-direction: row;
+    }
+       
+        
     /* .removestudentmodal{
         width: 50%;
         left: 50%;

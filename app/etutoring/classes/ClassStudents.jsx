@@ -47,7 +47,7 @@ const removeStudent =async ()=>{
             <div className="profile-image">
                             {student?.profile_image?<Image alt='person-image' src={student.profile_image} width={50} height={50}/>: <div className='initials'>{student.username.slice(0,1).toUpperCase()}</div>}
                         </div>
-          <h3>{student?student.username:'loading'}</h3>
+          <h4>{student?student.username:'loading'}</h4>
             </div>
             {role=='tutor'?<div className="student-action" onClick={()=>{setShowModal(true),setStudent_id(student.student_id)}}>
             remove

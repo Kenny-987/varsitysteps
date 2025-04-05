@@ -1,7 +1,7 @@
 "use client"
 import React ,{useState,useEffect,useRef}from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleLeft,faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft,faPaperPlane,faCircle } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useContextUser } from '../hooks/Context'
@@ -17,7 +17,7 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
   const user_id = userData.id
   const conversationRef = useRef(null);
   const router = useRouter();
-  
+  const [loading,setLoading]=useState(false)
 
 
   const handleSendMessage = async() => {
@@ -48,6 +48,7 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
  
   useEffect(()=>{
     const fetchMessages = async()=>{
+      setLoading(true)
       try {
         const response = await fetch(`/api/messages/conversation/${chat_id}`,{
           credentials:'include'
@@ -55,12 +56,13 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
         if (response.ok){
           const data = await response.json()
           setMessages(data)
-       
         }else{
           console.log('could not fetch messages');
         }
       } catch (error) {
         console.error(error)
+      }finally{
+        setLoading(false)
       }
     }
     fetchMessages()
@@ -74,17 +76,12 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
     const handleIncomingMessage = (data) => {
       if (data.chat_id === chat_id) {
         setMessages((prevMessages) => [...prevMessages, data]);
-        console.log(data);
-        
         fetchChats()
       }
     };
     if(currentChat.is_group){
       socket.on('groupMessage',handleIncomingMessage)
-      console.log('its a group');
-      
     }else{
-
       socket.on('chatMessage', handleIncomingMessage);
     }
           return () => {
@@ -92,19 +89,42 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
       socket.off('groupMessage', handleIncomingMessage);
     };
   },[chat_id])
-console.log(messages);
+
 
   const ClearSearchParams = () => {
     const currentPath = window.location.pathname; // Get current path without query params
     router.replace(currentPath, { scroll: false }); // Update the URL without reload
   }; 
-  console.log(currentChat);
+  const lastActive = (timestamp)=>{
+    const now = new Date();
+    const lastActive = new Date(timestamp);
+    const diffMs = now - lastActive;
+  
+    const diffSecs = Math.floor(diffMs / 1000);
+    const diffMins = Math.floor(diffSecs / 60);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+  
+    if (diffSecs < 60) {
+      return `Last active ${diffSecs} second${diffSecs !== 1 ? 's' : ''} ago`;
+    } else if (diffMins < 60) {
+      return `Last active ${diffMins} minute${diffMins !== 1 ? 's' : ''} ago`;
+    } else if (diffHours < 24) {
+      return `Last active ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+    } else if (diffDays < 7) {
+      return `Last active ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+    } else {
+      return `Last active on ${lastActive.toLocaleDateString()}`;
+    }
+  }
   if(!currentChat){
     return <p>..loading</p>
   }
   return (
     <>
-    <div className="chat-header">
+    {loading?<div className='btn-loader'></div>:
+    <>
+        <div className="chat-header">
       <div className="chat-name">
       <FontAwesomeIcon icon={faArrowCircleLeft} className='back-arrow' onClick={()=>{setOpenChats(false);
       ClearSearchParams()
@@ -114,7 +134,9 @@ console.log(messages);
         
       </div>
     <h4>{currentChat.recipient_name||currentChat.group_name}<span className='last-active'>
-    Active: 2 mins ago
+    {currentChat.is_online ? <>Active now <FontAwesomeIcon icon={faCircle} color='#4af24a'/></>:
+    `${lastActive(currentChat.last_active)}`
+    }
       </span></h4>
       </div>
   </div>
@@ -126,7 +148,10 @@ console.log(messages);
          {currentChat.is_group && <span>{message.sender_name}</span>}
          {message.message}
          <span>{formatedDate(message.sent_at)}</span></p>
-    }):"Send a message and get the converstion started"}
+    }):<div className='start-chat'>
+      <Image alt="send" src='images/send.svg' width={100} height={100}/>
+      <p>Send a message and get the converstion started</p>
+      </div>}
     
  
   </div>
@@ -145,6 +170,8 @@ console.log(messages);
         </div>    
   </div>
   {/* <Link href='' className='sharefiles'>Click here to share files</Link> */}
+    </>
+    }
   </>
 
   )

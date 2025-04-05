@@ -85,37 +85,39 @@
 }
 
 .tutor-list{
-    /* border: 1px solid red; */
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 20px;
     font-size: 14px;
+    margin-bottom: 50px;
 }
 .tutor:hover{
     cursor: pointer;
     box-shadow: 0px 0px 10px 1px #767676;
 }
 
-.tutor-image{
-   /* border: 1px solid  #4158D0; */
-   border-radius: 50%;
-}
+/* .tutor-image{
+   border: 1px solid  #4158D0;
+    border-bottom: 1px solid red
+} */
 .feature-icon{
     color: transparent;
-  background-clip: text;
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
+    background-clip: text;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%);
     font-weight: 600!important;
+    padding: 0 10px;
 }
 .tutor-profile-icon{
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 200px;
     margin: auto;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 1px solid #4158D0
 }
 .tutor-profile-icon svg{
     height: 50%;
@@ -369,8 +371,14 @@ margin-bottom: 4px;
         width: 90%;
         margin-bottom: 70px;
     }
+    .feature-icon{
+        padding: 0;
+    }
     .tutor{
         box-shadow: none;
+    }
+    .tutor-image{
+        border-radius: 50%;
     }
     .tutor-nav{
         padding: 4px;
@@ -406,6 +414,7 @@ margin-bottom: 4px;
 .tutor-profile-icon{
     width: 60px;
     height: 60px;
+    border-bottom: none;
 }
 .tutor-profile-icon .placeholder{
     font-size: 50px;
@@ -474,11 +483,11 @@ margin-bottom: 4px;
 
 @media (min-width:701px) and (max-width:1024px){
     .tutor-list{
-        /* border: 1px solid red; */
-        margin-top: 20px;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        gap: 20px;
-        font-size: 14px;
+        grid-template-columns: repeat(2,1fr);
     }
 }
+@media (min-width:1280px){
+    .tutor-list{
+        grid-template-columns: repeat(4,1fr);
+    }
+} 

@@ -5,45 +5,41 @@ import '../etutoring/etutoring.css'
 import Image from 'next/image'
 import './messages.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ChatPage from './ChatPage'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
 const Messages = () => {
   const searchParams = useSearchParams();
-// const [allChats,setAllChats]=useState([])
 const [chats,setChats]=useState([])
-// const [groupChats,setGroupChats]=useState([])
 const [openChats,setOpenChats]=useState(false)
 const [chat_id,setChat_id] =useState(null)
 const [currentChat,setCurrentChat]=useState(null)
 const router =useRouter()
 const receiver_id = searchParams.get('receiver_id')
-
+const [loading,setLoading]=useState(false)
 
 const fetchChats = async ()=>{
+  setLoading(true)
   try {
     const response = await fetch(`/api/messages/chats`,{
       credentials:'include'
     })
     if(response.ok){
       const data = await response.json()
-      console.log(data);
-      // setChats(data)
       const sortedChats = data.sort((a, b) => {
         const timeA = new Date(a.last_message_time).getTime();
         const timeB = new Date(b.last_message_time).getTime();
         return timeB - timeA; 
       });
       setChats(sortedChats);
-
-      
       }
   } catch (error) {
     console.error(error)
+  }finally{
+    setLoading(false)
   }
-
 }
 useEffect(() => {
   fetchChats();
@@ -60,7 +56,7 @@ useEffect(() => {
       }
   }
 }, [chats]);
-console.log(chats);
+
 
     const formatedDate = (timestamp) => {
       const date = new Date(timestamp);
@@ -82,7 +78,6 @@ console.log(chats);
       }
     };
 
-console.log(chats);
 
   return (
     <section className=' etutoring'>
@@ -90,10 +85,10 @@ console.log(chats);
         <div className='messages-page'>
         <h3><FontAwesomeIcon icon={faArrowLeft} onClick={()=>{router.back()}}/> Messages</h3>
     <div className="messages-div">
-
-    
-    {/* div shows chats allowing user to select one to view full messages */}
-    {chats.length > 0 ? 
+    {loading?<div className='btn-loader'></div>:
+    <>
+        {/* div shows chats allowing user to select one to view full messages */}
+        {chats.length > 0 ? 
         <div className="messages-overview">
           {chats.map((chat,index)=>{
             return <div key={index} className="chat-profile"  onClick={()=>{setChat_id(chat.chat_id);setCurrentChat(chat);setOpenChats(true)}}>
@@ -114,14 +109,23 @@ console.log(chats);
         </div>
           })} 
             
-        </div>:"No chats yet"}
+        </div>:<div className='no-chats'>
+          <Image alt='empty' src="/images/Empty-amico.svg" width={250} height={250}/>
+          <p><FontAwesomeIcon icon={faInfoCircle}/> No chats yet</p>
+          </div>}
         {/* div shows chats allowing user to select one to view full messages */}
 
   {/*this div renders chat content allowing users to exchange messages */}
+  {chats.length > 0 && 
+  <>
   {openChats ? <div className='chatpage'>
       <ChatPage setOpenChats={setOpenChats} chat_id={chat_id} currentChat={currentChat} formatedDate={formatedDate} fetchChats={fetchChats}/>
-    </div>:<div className='clickchat'>Click on a chat</div> }
-    
+    </div>:<div className='clickchat'>
+      <Image alt='click' src="/images/click.svg" width={100} height={100}/>
+      <p>Click on a chat</p>
+    </div> }
+  </>}
+    </>}
      </div>
      </div>
  
