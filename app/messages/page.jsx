@@ -85,8 +85,8 @@ useEffect(() => {
         <div className='messages-page'>
         <h3><FontAwesomeIcon icon={faArrowLeft} onClick={()=>{router.back()}}/> Messages</h3>
     <div className="messages-div">
-    {loading?<div className='btn-loader'></div>:
-    <>
+    {/* {loading?<div className='btn-loader'></div>:
+    <> */}
         {/* div shows chats allowing user to select one to view full messages */}
         {chats.length > 0 ? 
         <div className="messages-overview">
@@ -110,8 +110,11 @@ useEffect(() => {
           })} 
             
         </div>:<div className='no-chats'>
+          {loading?<div className='btn-loader'></div>:
+          <>
           <Image alt='empty' src="/images/Empty-amico.svg" width={250} height={250}/>
-          <p><FontAwesomeIcon icon={faInfoCircle}/> No chats yet</p>
+          <p><FontAwesomeIcon icon={faInfoCircle}/> {loading ? 'loading':''}No chats yet</p>
+          </>}
           </div>}
         {/* div shows chats allowing user to select one to view full messages */}
 
@@ -125,7 +128,7 @@ useEffect(() => {
       <p>Click on a chat</p>
     </div> }
   </>}
-    </>}
+    {/* </>} */}
      </div>
      </div>
  

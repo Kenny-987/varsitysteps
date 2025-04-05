@@ -55,7 +55,7 @@ white-space: nowrap;
 }
 .chat-header{
     width: 100%;   
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 }
 .chat-header{
     padding: 4px;

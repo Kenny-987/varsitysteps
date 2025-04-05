@@ -130,7 +130,7 @@ const ChatPage = ({setOpenChats,chat_id,currentChat,formatedDate,fetchChats}) =>
       ClearSearchParams()
       }}/>
       <div className="chat-image">
-        {currentChat.recipient_profile_image?<Image src={currentChat.recipient_profile_image} alt='image' width={30} height={30}/>:<div className='placeholder-img'>{currentChat.recipient_name?currentChat.recipient_name.slice(0,1):currentChat.group_name.slice(0,1)}</div>}
+        {currentChat.recipient_profile_image?<Image src={currentChat.recipient_profile_image} alt='image' width={50} height={50}/>:<div className='placeholder-img'>{currentChat.recipient_name?currentChat.recipient_name.slice(0,1):currentChat.group_name.slice(0,1)}</div>}
         
       </div>
     <h4>{currentChat.recipient_name||currentChat.group_name}<span className='last-active'>

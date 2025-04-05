@@ -12,7 +12,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   const remoteVideoRef = useRef(null);
   const peerRef = useRef(null);
   const {userData,setShowVideoCall} = useContextUser()
-  const targetUserId = receiver||callerDetails?.callerUserId
+  const targetUserId = receiver||callerDetails.callerUserId
   const userId = userData.id
   const [callStatus,setCallStatus]=useState(callerDetails?"Incoming call...":'')
   const dialingRef = useRef(new Audio('/dialing.mp3'));
@@ -27,14 +27,6 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   const callTimeoutRef = useRef(null)
   const role = localStorage.getItem('role')
   const [paused, setPaused] = useState(false);
-  // Store ice candidates before remote description is set
-  const pendingIceCandidates = useRef([]);
-  const isIOS = useRef(
-    navigator.userAgentData
-      ? navigator.userAgentData.platform === 'iOS'
-      : /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-        (navigator.userAgent.includes("Mac") && navigator.maxTouchPoints > 1)
-  );
 
   const configuration = {
     iceServers: [
@@ -44,10 +36,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         username: 'videocaller',             
         credential: 'connectme4321'
       }
-    ],
-    // Add these for iOS Safari
-    iceTransportPolicy: 'all',
-    iceCandidatePoolSize: 10
+    ]
   };
   
   const cleanWebRtc = async()=>{
@@ -59,7 +48,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     }
     if (localVideoRef.current && localVideoRef.current.srcObject) {
       const stream = localVideoRef.current.srcObject;
-      stream.getTracks().forEach((track) => {
+    stream.getTracks().forEach((track) => {
         track.stop();
         console.log('Stopping track:', track.kind);
       });
@@ -73,27 +62,8 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     setContent?setContent('dashboard'):setShowVideoCall(false)
   }
 
-  // Process any pending ICE candidates we stored
-  const processPendingIceCandidates = async () => {
-    if (peerRef.current && peerRef.current.remoteDescription && pendingIceCandidates.current.length > 0) {
-      console.log(`Processing ${pendingIceCandidates.current.length} pending ICE candidates`);
-      
-      for (const candidate of pendingIceCandidates.current) {
-        try {
-          await peerRef.current.addIceCandidate(new RTCIceCandidate(candidate));
-          console.log('Added pending ICE candidate');
-        } catch (error) {
-          console.error('Error adding pending ICE candidate:', error);
-        }
-      }
-      
-      pendingIceCandidates.current = [];
-    }
-  };
-
   const setUpWebRtc = async()=>{
     try {
-      // iOS-friendly constraints
       const constraints = {
         video: {
           width: { ideal: 1280 },
@@ -106,38 +76,26 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         }
       };
       
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      const stream = await navigator.mediaDevices.getUserMedia({audio:true,video:true});
       if (localVideoRef.current) {
         localVideoRef.current.srcObject = stream;
-        // iOS Safari sometimes requires this explicit play call
-        try {
-          await localVideoRef.current.play();
-        } catch (err) {
-          console.log("Auto-play prevented on local video:", err);
-        }
       }
-      
-      peerRef.current = new RTCPeerConnection(configuration);
+      peerRef.current =  new RTCPeerConnection(configuration)
 
       stream.getTracks().forEach(track => 
         peerRef.current.addTrack(track, stream)
       );
 
       peerRef.current.ontrack = event => {
-        console.log("Remote track received:", event.streams[0]);
         if (remoteVideoRef.current) {
           remoteVideoRef.current.srcObject = event.streams[0];
-          // iOS Safari sometimes requires this explicit play call
-          remoteVideoRef.current.play().catch(err => {
-            console.log("Auto-play prevented on remote video:", err);
-          });
         }
       };
 
       peerRef.current.onicecandidate = event => {
         if (event.candidate) {
           const recipientUserId = callerDetails ? callerDetails.callerUserId : targetUserId;
-          console.log('Sending ICE candidate to user ID:', recipientUserId);
+          console.log('this is recipient id ',recipientUserId);
           
           if (recipientUserId) {
             socket.emit('ice-candidate', {
@@ -148,32 +106,21 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
           }
         }
       };
-      
-      // Add iOS-specific connection state monitoring
-      peerRef.current.oniceconnectionstatechange = () => {
-        console.log("ICE Connection State:", peerRef.current.iceConnectionState);
-        if (peerRef.current.iceConnectionState === 'failed' || 
-            peerRef.current.iceConnectionState === 'disconnected') {
-          console.log("Attempting ICE restart...");
-          if (isCallInitiator) {
-            callUser(); // Retry the call
-          }
-        }
-      };
+  
 
     } catch (error) {
       console.error('Error accessing camera & mic:', error);
       if (error.name === 'NotAllowedError') {
         alert('Please allow camera and microphone access.');
-      } else if (error.name === 'NotFoundError') {
+    } else if (error.name === 'NotFoundError') {
         alert('No webcam found.');
-      }
+    }
     }
   }
 
   useEffect(()=>{
     setUpWebRtc()
-    const handleCallCancelled = async(data)=>{
+    const handleCallCancelled =async(data)=>{
       alert(data.message)
       cleanWebRtc()
       window.location.reload()
@@ -184,9 +131,9 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         clearTimeout(callTimeoutRef.current);
         callTimeoutRef.current = null;
         console.log('clearing timeout');  
-      }
+    }
       
-      if (peerRef.current && data.answer) {
+       if (peerRef.current && data.answer) {
         setCallStatus('Connected');
         console.log('call answered');
         
@@ -194,8 +141,6 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
           console.log('Setting remote description from answer');
           await peerRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
           console.log('Call answered, remote description set');
-          // Process any pending ICE candidates now that we have remote description
-          await processPendingIceCandidates();
           setCallStatus('Connected');
         } catch (error) {
           console.error('Error setting remote description:', error);
@@ -206,26 +151,20 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     }
     
     const handleIceCandidates = async(data)=>{
-      console.log('Received ICE candidate:', data);
+      console.log('ice data ',data);
       try {
         if (peerRef.current && data.candidate) {
           if (peerRef.current.remoteDescription) {
-            try {
+            setTimeout(async () => {
               await peerRef.current.addIceCandidate(new RTCIceCandidate(data.candidate));
-              console.log('Added ICE candidate immediately');
-            } catch (error) {
-              console.error('Error adding ICE candidate immediately:', error);
-              
-              // On failure, store it for later retry
-              pendingIceCandidates.current.push(data.candidate);
-            }
+              console.log('Added ICE candidate after delay');
+            }, 1000);
           } else {
-            console.warn('Remote description not set yet, storing ICE candidate');
-            pendingIceCandidates.current.push(data.candidate);
+            console.warn('Received ICE candidate but remote description not set yet');
           }
         }
       } catch (error) {
-        console.error('Error handling ICE candidate:', error);
+        console.error('Error adding ICE candidate:', error);
       }
     }
 
@@ -234,7 +173,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
         clearTimeout(callTimeoutRef.current);
         callTimeoutRef.current = null;
         console.log('clearing timeout');  
-      }
+    }
       alert(data.message)
       cleanWebRtc()
     }
@@ -244,14 +183,6 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     socket.on('call-rejected',handleCallCancelled);
     socket.on('call-answered',handleCallAnswered);
     socket.on('user-offline',handleUserOffline)
-    
-    // iOS-specific hack: Play a silent sound to activate audio context
-    if (isIOS.current) {
-      document.addEventListener('touchstart', () => {
-        const silentSound = new Audio();
-        silentSound.play().catch(e => console.log('Silent sound play failed:', e));
-      }, { once: true });
-    }
     
     return () => {
       socket.off('call-cancelled')
@@ -266,33 +197,24 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   const callUser=async()=>{
     if(!peerRef.current) return
     setIsCallInitiator(true);
-    
-    try {
-      const offer = await peerRef.current.createOffer({
-        offerToReceiveAudio: true,
-        offerToReceiveVideo: true  // Important for iOS!
-      });
-      await peerRef.current.setLocalDescription(offer);
+    const offer =  await peerRef.current.createOffer();
+    await peerRef.current.setLocalDescription(offer);
 
-      callTimeoutRef.current = setTimeout(() => {
-        cancelCall();
-        alert("Call timed out. No answer.");
-      }, 30000);
+    callTimeoutRef.current = setTimeout(() => {
+      cancelCall();
+      alert("Call timed out. No answer.");
+  }, 30000);
 
-      setCallStatus('Ringing...')
-      dialingRef.current.play(); 
+    setCallStatus('Ringing...')
+    dialingRef.current.play(); 
 
-      socket.emit('call-user', {
-        offer, 
-        fromUserId:userId,
-        toUserId: targetUserId,
-        callerName:userData.username
-      });
-      console.log('calling with offer:', offer);
-    } catch (error) {
-      console.error('Error creating offer:', error);
-      alert('Failed to create call offer. Please try again.');
-    }
+    socket.emit('call-user', {
+      offer, 
+      fromUserId:userId,
+      toUserId: targetUserId,
+      callerName:userData.username
+    });
+    console.log('calling');
   }
 
   const answerCall=async()=>{
@@ -300,35 +222,24 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       console.error('No incoming call or offer available');
       return;
     }
-    
     if (callTimeoutRef.current) {
       clearTimeout(callTimeoutRef.current);
       callTimeoutRef.current = null;
       console.log('clearing timeout');  
-    }
-    
+  }
     try {
-      console.log('Setting remote description from offer');
-      await peerRef.current.setRemoteDescription(new RTCSessionDescription(callerDetails.offer));
-      console.log('Remote description set, creating answer');
-      
-      // Process any pending ICE candidates after setting remote description
-      await processPendingIceCandidates();
-      
-      const answer = await peerRef.current.createAnswer();
+      await peerRef.current.setRemoteDescription(new RTCSessionDescription(callerDetails.offer))
+      const answer =  await peerRef.current.createAnswer();
       await peerRef.current.setLocalDescription(answer);
-      
-      socket.emit('answer-call', {
+      socket.emit('answer-call',{
         answer,
-        fromUserId: userId,
-        toUserId: targetUserId,
-      });
-      
-      if (ringingRef) ringingRef.current.pause();
-      setCallStatus('Connected');
+    fromUserId: userId,
+    toUserId: targetUserId,
+      })
+      ringingRef.current.pause()
+      setCallStatus('Connected')
     } catch (error) {
       console.error("Error handling incoming call:", error);
-      alert("Failed to answer call. Please try again.");
     }
   }
 
@@ -342,7 +253,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       clearTimeout(callTimeoutRef.current);
       callTimeoutRef.current = null;
       console.log('clearing timeout');  
-    }
+  }
     socket.emit('cancel-call', {
       fromUserId: userId,
       toUserId: targetUserId,
@@ -357,7 +268,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       clearTimeout(callTimeoutRef.current);
       callTimeoutRef.current = null;
       console.log('clearing timeout');  
-    }
+  }
     socket.emit('reject-call', {
       fromUserId: userId,
       toUserId: targetUserId,
@@ -365,6 +276,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     cleanWebRtc()
   }
  
+
   const toggleMicrophone = () => {
     const stream = localVideoRef.current?.srcObject;
     if (stream) {
@@ -387,7 +299,6 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     }
   };
 
-  // The rest of your code for recording functionality remains the same
   const startRecording = async () => {
     try {
       recordedChunksRef.current = [];
@@ -401,6 +312,8 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
           recordedChunksRef.current.push(event.data); // Push data into chunks
         }
       };
+      
+   
       
       mediaRecorderRef.current.start();
       setRecording(true); 
@@ -426,6 +339,8 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   };
 
   const discardRecording = () => {
+    // setVideoURL(null);
+   
     recordedChunksRef.current = [];
     if(mediaRecorderRef.current != null && streamRef.current != null){
       mediaRecorderRef.current.stop();
@@ -441,6 +356,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
   const [videoTitle,setVideoTitle]=useState('')
   const [showSaveModal,setShowSaveModal]=useState(false)
   const [message,setMessage]=useState(null)
+
 
   const saveRecording = async(e) =>{
     e.preventDefault()
@@ -469,7 +385,7 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     formData.append('format', 'video');
 
     try {
-      const response =  await fetch('http://localhost:3000/tutors/fileupload', {
+      const response =  await fetch('/api/tutors/fileupload', {
         method: 'POST',
         body: formData,
         credentials:'include'
@@ -481,16 +397,17 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
       }, 3000);
         setPaused(false)
         clearInterval(timerRef.current); 
-        setRecording(false);
+    setRecording(false);
       }
     } catch (error) {
       console.error(error)
     }finally{
       setLoading(false)
       clearInterval(timerRef.current); 
-      setRecording(false);
-      setShowSaveModal(false)
+    setRecording(false);
+    setShowSaveModal(false)
     }
+
   }
 
   const [recordingTime, setRecordingTime] = useState(0);
@@ -515,158 +432,145 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
     return `${mins}:${secs}`;
   };
 
-  // Force autoplay for iOS
-  useEffect(() => {
-    if (callStatus === 'Connected' && remoteVideoRef.current && remoteVideoRef.current.srcObject) {
-      const playPromise = remoteVideoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log('Autoplay prevented:', error);
-          // Show play button or silently activate on next user interaction
-        });
-      }
-    }
-  }, [callStatus]);
-
   return (
     <div className='video-call-container'>
-      <h3>{user?.username || callerDetails?.callerName}
+      <h3>{user?.username || callerDetails.callerName}
       {recording && 
       <p className='recording'><FontAwesomeIcon color='red' fade icon={faStopCircle}/> {paused ? "Paused":"Recording"} <span>{formatTime(recordingTime)}</span></p>}
       </h3>
       
-      <div className={`localvideo ${callStatus === "Connected" ? "small-preview" : ""}`}>
+      <div  className={`localvideo ${callStatus === "Connected" ? "small-preview" : ""}`}>
         <video
           ref={localVideoRef}
           autoPlay
-          playsInline
           muted
+          playsInline
         ></video> 
-      </div>
-
-      {callStatus=='Incoming call...' &&
-        <div className='callstatus'>
-          <div className="call-loader"></div> 
-          <p>{callStatus}</p>
         </div>
+
+    {callStatus=='Incoming call...'&&
+      <div className='callstatus'>
+        <div className="call-loader"></div> 
+        <p>{callStatus}</p>
+      </div>
       }
 
-      {callStatus != 'Connected' && callStatus=='Ringing...' ?
-        <div className='callstatus'>
-          <div className="call-loader"></div> 
-          <p>{callStatus}</p>
-        </div> :
-        <div className="remotevideo">
-          <video 
-            ref={remoteVideoRef}
-            autoPlay
-            playsInline
-            controls={isIOS.current} // Add controls for iOS to help with manual play
-          ></video>
-        </div> 
-      }
-
-      {paused && <div className='recording-options'>
+    {callStatus != 'Connected' && callStatus=='Ringing...' ?
+    <div className='callstatus'>
+      <div className="call-loader"></div> 
+      <p>{callStatus}</p>
+      </div>:
+      <div className="remotevideo">
+      <video 
+          ref={ remoteVideoRef}
+          muted={callStatus !== 'Connected'}
+          autoPlay
+          playsInline
+        ></video>
+      </div> 
+    }
+{paused && <div className='recording-options'>
         <p>Recording paused</p>
         <div className="record-btns">
-          <button className='save' onClick={()=>setShowSaveModal(true)}>Save</button>
-          <button className='discard' onClick={()=>discardRecording()}>Discard</button>
-        </div>
-      </div>} 
+            <button className='save'  onClick={()=>setShowSaveModal(true)}>Save</button>
+            <button className='discard' onClick={()=>discardRecording()}>Discard</button>
+          </div>
+        </div>} 
         
-      {showSaveModal && <div className="save-modal">
-        <button className='discard' onClick={()=>discardRecording()}><FontAwesomeIcon icon={faClose}/></button>
+  {showSaveModal && <div className="save-modal">
+    <button className='discard' onClick={()=>discardRecording()}><FontAwesomeIcon icon={faClose}/></button>
         <form onSubmit={saveRecording}>
-          <label htmlFor="file_name">Video Title</label>
+        <label htmlFor="file_name">Video Title</label>
           <input type="text" 
-            id='file_name' 
-            value={videoTitle}
-            required
-            onChange={(e)=>setVideoTitle(e.target.value)}
+          id='file_name' 
+          value={videoTitle}
+          required
+          onChange={(e)=>setVideoTitle(e.target.value)}
           />
           {loading ? <div className='btn-loader'></div>:
-            <div className="savemodal-btns">
-              <button className="save" type='submit'>Save</button>
-            </div>
+          <div className="savemodal-btns">
+            <button className="save" type='submit'>Save</button>
+          </div>
           }
         </form>
       </div>}
       
       {message && <p className='success-message calls'>
         {message}
-      </p>}
+        </p>}
 
       <div className="call-controls">
-        {callStatus == 'Ringing...' && 
-          <button className='cancelcall-btn control-btn' onClick={()=>{cancelCall()}}>
-            <FontAwesomeIcon icon={faPhoneSlash}/>Cancel Call
-          </button>
-        }
+      {callStatus == 'Ringing...' && 
+      <button className='cancelcall-btn control-btn' onClick={()=>{cancelCall()}}>
+          <FontAwesomeIcon icon={faPhoneSlash}/>Cancel Call
+      </button> }
 
-        {/* if no calling is taking show these buttons */}
-        {callStatus== '' && 
-          <>
-            <button className='call-btn control-btn' onClick={()=>{callUser()}}>
-              <FontAwesomeIcon icon={faPhone}/>Call
-            </button>
 
-            <button className='endcall-btn control-btn' onClick={()=>{exit()}}>
-              <FontAwesomeIcon icon={faSignOut}/> 
-              Exit
-            </button>
-          </>
-        }
+{/* if no calling is taking show these buttons */}
+    {callStatus== '' && 
+    <>
+    <button className='call-btn control-btn' onClick={()=>{callUser()}}>
+      <FontAwesomeIcon icon={faPhone}/>Call
+    </button>
 
-        {/* when call incoming, user sees option to answer or reject */}
-        {callStatus == 'Incoming call...' &&
-          <>
-            <button className='call-btn control-btn' onClick={()=>{answerCall()}}>
-              <FontAwesomeIcon icon={faPhone}/>Accept
-            </button>
+    <button className='endcall-btn control-btn' onClick={()=>{exit()}}>
+        <FontAwesomeIcon icon={faSignOut}/> 
+      Exit
+    </button>
+    </>}
 
-            <button className='endcall-btn control-btn' onClick={()=>{rejectCall()}}>
-              <FontAwesomeIcon icon={faSignOut}/>Reject
-            </button>
-          </>
-        }
+
+{/* when call incoming, user sees option to answer or reject */}
+    {callStatus == 'Incoming call...' &&
+    <>
+      <button className='call-btn control-btn' onClick={()=>{answerCall()}}>
+        <FontAwesomeIcon icon={faPhone}/>Accept
+      </button>
+
+      <button className='endcall-btn control-btn' onClick={()=>{rejectCall()}}>
+        <FontAwesomeIcon icon={faSignOut}/>Reject
+        </button>
+    </>}
+    
+ {/* when bothe user are connected they see these buttons */}
+    {callStatus=='Connected' && 
+      <>
+      <button className='mic-btn control-btn' onClick={toggleMicrophone}>
+        <FontAwesomeIcon icon={isMicOn ? faMicrophone : faMicrophoneSlash} />
+      </button>
+
+      <button className='camera-btn control-btn' onClick={toggleCamera}>
+        <FontAwesomeIcon icon={isCameraOn ? faVideo : faVideoSlash} />
+      </button>
+
+      {role=='tutor' && 
+      <>
+      {!recording?<button className='record-btn control-btn' onClick={startRecording}>
+        <FontAwesomeIcon icon={faRecordVinyl}/> 
+      </button>:
+      <>
+      {paused ? 
+      <button className='record-btn control-btn' onClick={resumeRecording}>
+        <FontAwesomeIcon icon={faPlayCircle}/>  Resume
+      </button>:
+      <button className='record-btn control-btn' onClick={pauseRecording}>
+        <FontAwesomeIcon icon={faPauseCircle}/> Pause
+      </button>
+    }
+      </>
+      }
+      </>}
         
-        {/* when both users are connected they see these buttons */}
-        {callStatus=='Connected' && 
-          <>
-            <button className='mic-btn control-btn' onClick={toggleMicrophone}>
-              <FontAwesomeIcon icon={isMicOn ? faMicrophone : faMicrophoneSlash} />
-            </button>
+      
 
-            <button className='camera-btn control-btn' onClick={toggleCamera}>
-              <FontAwesomeIcon icon={isCameraOn ? faVideo : faVideoSlash} />
-            </button>
+      <button className='endcall-btn control-btn' onClick={()=>cancelCall()}>
+        <FontAwesomeIcon icon={faPhoneSlash}/> 
+      </button>
+      </>
+      }
 
-            {role=='tutor' && 
-              <>
-                {!recording ? 
-                  <button className='record-btn control-btn' onClick={startRecording}>
-                    <FontAwesomeIcon icon={faRecordVinyl}/> 
-                  </button> :
-                  <>
-                    {paused ? 
-                      <button className='record-btn control-btn' onClick={resumeRecording}>
-                        <FontAwesomeIcon icon={faPlayCircle}/>  Resume
-                      </button> :
-                      <button className='record-btn control-btn' onClick={pauseRecording}>
-                        <FontAwesomeIcon icon={faPauseCircle}/> Pause
-                      </button>
-                    }
-                  </>
-                }
-              </>
-            }
-            
-            <button className='endcall-btn control-btn' onClick={()=>cancelCall()}>
-              <FontAwesomeIcon icon={faPhoneSlash}/> 
-            </button>
-          </>
-        }
-      </div>
+        </div>
+        
     </div>
   )
 }
