@@ -117,7 +117,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid #4158D0
 }
 .tutor-profile-icon svg{
     height: 50%;
@@ -312,42 +311,16 @@ margin-bottom: 4px;
 .star:not(.filled) {
     color: lightgray; /* Color for unfilled stars */
 }
-.rate-options{
-    display: flex;
-    width: fit-content;
-    margin: auto;
-    gap: 20px;
-    margin-top: 10px;
-}
-.rate-tutor .basic-info-btn{
-    width: fit-content;
-    margin: 0;
-    font-size: 16px;
-    padding: 6px;
-    background-color: var(--secondary-color);
-}
+
+
 .stars{
     display: flex;
     gap: 10px;
     margin: auto;
     width: fit-content;
 }
-.rate-btn span {
-    background-color: #fff;
-    border: none;
-}
-.rate-btn {
-    font-size: 30px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  .on {
-    color: #ffd900;
-  }
-  .off {
-    color: #ffd90073;
-  }
+
+
   .whatsapp-link{
     font-size: 18px;
     padding: 4px 10px;

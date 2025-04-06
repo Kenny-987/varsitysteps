@@ -17,11 +17,6 @@ const {tutorID} = useParams()
 const [connectonStatus,setConnectionStatus] = useState(null)
 const [notSignedInWarning,setNotSignedInWarning] = useState(false)
 const [loading,setLoading] = useState(false)
-
-// const [rateScore,setRateScore]=useState(0)
-// const [hover, setHover] = useState(0);
-// const [showRating,setShowRating]=useState(false)
-// const [hasRated,setHasRated]=useState(false)
 const router = useRouter()
 
 //fuction to fetch tutor profile details
@@ -93,56 +88,16 @@ if(isAuthenticated){
             console.error(error)
         }
     }
-//function to check if user has rated 
-    // const checkHasRated = async () => {
-    //     try {
-    //         const response =  await fetch(`/api/tutors/checkrate/${tutorID}`,{
-    //             credentials:'include'
-    //         })
-    //         if(response.ok){
-    //             const data =  await response.json()
-    //             setHasRated(data)
-    //         }else{
-    //             console.log('oops');
-                
-    //         }
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-    // }
+
 
 useEffect(()=>{
     if(isAuthenticated){
         checkConnection()
-        // checkHasRated()
     }
 },[])
 
 
-//function to rate a tutor
-// const rateTutor = async (tutor_id,rater_id) => {
-//     try {
-//         const response =  await fetch(`/api/tutors/rate`,{
-//             method:'POST',
-//             credentials:'include',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//               },
-//             body: JSON.stringify({rateScore,tutor_id,rater_id})
-//         })
-//         if(response.ok){
-//             setShowRating(false)
-//             setHasRated(true)
-//             window.location.reload()
-//         }else{
-//             console.log('oops');
-//              setShowRating(false)
-//         }
-//     } catch (error) {
-//         console.error(error)
-//     }
-    
-// }
+
 return <section className='tutor-profile-container'>
     <div className="route"> 
             <p onClick={()=>router.back()}><FontAwesomeIcon icon={faArrowAltCircleLeft}/></p>
@@ -188,28 +143,6 @@ return <section className='tutor-profile-container'>
             connectonStatus === 'pending' ?<button className="basic-info-btn">Pending</button> : 
             <button className="basic-info-btn" onClick={requestConnection}>Connect</button> }</> }
 
-            {/* --------------div to rate tutor--------------- */}
-            {/* {connectonStatus==='connected' && !hasRated && <p style={{textAlign:'center',marginTop:'10px'}} onClick={()=>setShowRating(!showRating)}>Click here to rate tutor</p>}
-            {showRating && <div className="rate-tutor">
-                <div className="stars">
-                    {[...Array(5)].map((star,index)=>{
-                        index +=1;
-                        return <button key={index}
-                        className="rate-btn"
-                        onClick={()=>setRateScore(index)}
-                        onMouseEnter={() => setHover(index)}
-                        onMouseLeave={() => setHover(rateScore)}
-                        >
-                        <span><FontAwesomeIcon className={index <= (hover || rateScore) ? "on" : "off"} icon={faStar}/></span>
-                        </button>
-                    })}
-                </div>
-                <div className="rate-options">
-                <button className="basic-info-btn" onClick={()=>rateTutor(tutorID,userData.id)}>submit</button>
-                <button className="basic-info-btn" onClick={()=>{setShowRating(false)}}>cancel</button>
-                </div>
-            </div>} */}
-            {/* --------------div to rate tutor--------------- */}
           </div>
         </div>
 

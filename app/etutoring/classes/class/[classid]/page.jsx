@@ -132,7 +132,8 @@ const Class = () => {
           </div>
             <p className='dash-desc'>{role == 'tutor'?"Start a live video call with your class for real-time teaching, where multiple students can join.":
             "Join the live video call for real-time learning and interact with your class in the session."}</p>
-            <button className="dash-btn" onClick={()=>setContent('groupcall')}>{role == 'tutor'?'Start Group Call':'Join Video Call'}</button>
+            {/* <button className="dash-btn" onClick={()=>setContent('groupcall')}>{role == 'tutor'?'Start Group Call':'Join Video Call'}</button> */}
+            <button className="dash-btn">Coming soon</button>
           </div>
 
           <div className="dashboard-card">

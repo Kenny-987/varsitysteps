@@ -87,6 +87,91 @@ flex-direction: column;
     margin-top: auto;
     width: 100%;
 }
+.rate-tutor-btn{
+    background: var(--secondary-color);
+    display: block;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+.rate-tutor{
+background-color: #fff;
+padding: 16px;
+border-radius: 4px;
+}
+.rating{
+    display: flex;
+    gap: 10px;
+}
+.star-rating {
+    display: inline-block;
+    font-size: 1.5em; /* Adjust size as needed */
+    color: gold; /* Color for filled stars */
+}
+
+.star {
+    margin-right: 2px; /* Spacing between stars */
+}
+
+.star.filled {
+    color: gold; /* Color for filled stars */
+}
+
+.star:not(.filled) {
+    color: lightgray; /* Color for unfilled stars */
+}
+.rate-options{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    gap: 20px;
+    margin-top: 10px;
+}
+.rate-options button{
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.rate-options .rate-btn {
+    background-color: var(--secondary-color);
+}
+.rate-options .cancel-rate{
+    background-color: red;
+}
+.stars{
+    display: flex;
+    gap: 10px;
+    margin: 10px auto;
+    width: fit-content;
+}
+.rate-btn span {
+    background-color: #fff;
+    border: none;
+}
+.rate-btn {
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .on {
+    color: #ffd900;
+  }
+  .off {
+    color: #ffd90058;
+  }
+  .review textarea{
+    width:300px;
+    height: 150px;
+    resize: none;
+    padding: 4px;
+  }
 @media (min-width:768px){
     .studentlist{
         display: grid;

@@ -185,7 +185,9 @@
     margin-bottom: 0;
     font-weight: 600;
   }
-  
+  .etutoring-header .enavigation .navitem a{
+    font-size: 15px;
+  }
   .hamburger {
     display: none;
   }

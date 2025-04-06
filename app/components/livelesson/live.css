@@ -8,7 +8,7 @@
     background:#333;
     z-index: 100;
   }
-  .video-call-container h3{
+  .video-call-container h4{
     /* border: 1px solid red; */
     width: fit-content;
     text-align: center;
@@ -36,6 +36,9 @@
     width: 100%;
   height: 100%;
   }
+  .localvideo.tutor-cam{
+    height: 60%;
+  }
   .small-preview {
     position: absolute;
       bottom: 150px;
@@ -53,7 +56,12 @@
     object-fit: cover;
     border-radius: 10px;
   }
-  
+  .localvideo.tutor-cam video{
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 .remotevideo{
   height: 100%;
 }

@@ -11,7 +11,8 @@ import Files from '../../../Files/Files'
 import Image from 'next/image'
 import '../../mystudents.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle, faEnvelope, faFolder, faFolderOpen, faStream, faVideo } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faEnvelope, faFolder, faFolderOpen, faStream, faVideo, faWarning } from '@fortawesome/free-solid-svg-icons'
+import RateTutor from './RateTutor'
 
 const Student = () => {
     const {user_id} = useParams()
@@ -85,9 +86,14 @@ const Student = () => {
           </div>
           
         </div>}
-        
+        {role == 'student' && <button className="rate-tutor-btn" onClick={()=>setContent('rate')}>Rate tutor</button>}
+          
+      
         <div className='rendered-content'>
-        {content === "dashboard"  && <div className="dashboard-grid">
+        {content === "dashboard"  && 
+        <>
+        
+        <div className="dashboard-grid">
           {/* Quick Access Links */}
           <div className="dashboard-card">
           <div className="dash-cardheader">
@@ -127,11 +133,16 @@ const Student = () => {
             <p className='dash-desc'>{role=='tutor'?"View assignments and tasks sent by your student":"Manage your submisssions such as homework or assignments you send to your tutor"}</p>
             <button className="dash-btn" onClick={()=>setContent('submissions')}>{role=='tutor'?'Student Submissions':"My Submissions"}</button>
           </div>
-        </div> }
+          
+        </div>
+        {/* <button><FontAwesomeIcon icon={faWarning}/> Disconnect</button> */}
+        </> }
+       
         {content === 'livelesson' && <LiveLesson receiver={user_id} setContent={setContent} user={user}/>}
         {content === 'files' && <Files setContent={setContent} user_id={user_id}/>}
         {content === 'submissions' && <StudentSubmissions setContent={setContent} user_id={user_id}/>}
-
+        {content === 'rate' && <RateTutor setContent={setContent} user={user}/>}
+        
         </div>
         </>
         }

@@ -16,9 +16,11 @@ const Tutors = () => {
     const [filters,setFilters]=useState(false)
     const [city,setCity]=useState('')
     const [sortOption,setSortOption]=useState('')
-
+    const [loading,setLoading]=useState(false)
+    
     useEffect(()=>{
-        const fetchTutors = async()=>{
+      const fetchTutors = async()=>{
+          setLoading(true)
             if(query.trim()!==''){
             try {
               const response =  await fetch(`/api/tutors/search?query=${query}`)
@@ -29,6 +31,8 @@ const Tutors = () => {
               }
             } catch (error) {
               console.error(error)
+            }finally{
+              setLoading(false)
             }
           }
                 }
@@ -118,8 +122,9 @@ const clearFilters = ()=>{
         </div>
         </div>
         <div className="tutor-list">
-      {/* tutor */}
-      {filteredTutors.length > 0 ? filteredTutors.map((tutor)=>{
+          {loading?<div className='btn-loader'></div>:
+          <>
+          {filteredTutors.length > 0 ? filteredTutors.map((tutor)=>{
         return <div className="tutor" key={tutor.id}>
           <Link href= {`/tutoring/tutorprofile/${tutor.id}`}>
           <div className="tutor-image">
@@ -142,6 +147,10 @@ const clearFilters = ()=>{
           </Link>
         </div>
       }) : <p>No tutors found</p>}
+          </>
+          }
+      {/* tutor */}
+      
       {/* tutor */}
     
     </div>

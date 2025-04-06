@@ -434,10 +434,10 @@ const LiveLesson = ({receiver,setContent,user,callerDetails,ringingRef}) => {
 
   return (
     <div className='video-call-container'>
-      <h3>{user?.username || callerDetails.callerName}
+      <h4>{user?.username || callerDetails.callerName}
       {recording && 
       <p className='recording'><FontAwesomeIcon color='red' fade icon={faStopCircle}/> {paused ? "Paused":"Recording"} <span>{formatTime(recordingTime)}</span></p>}
-      </h3>
+      </h4>
       
       <div  className={`localvideo ${callStatus === "Connected" ? "small-preview" : ""}`}>
         <video
