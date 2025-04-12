@@ -16,7 +16,7 @@ export const SocketProvider = ({ children }) => {
   let newSocket
     // Create socket connection
     if(userData){
-      newSocket = io.connect('http://localhost:3000',{
+      newSocket = io.connect('https://varsitysteps-server.onrender.com',{
         query:{userId:userData.id}
       });
     }else {
