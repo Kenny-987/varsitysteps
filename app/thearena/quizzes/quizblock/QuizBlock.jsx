@@ -11,7 +11,7 @@ const [quizzes,setQuizzes]=useState([])
 useEffect(()=>{
   const fetchQuizzes = async()=>{
     try {
-      const response =  await fetch(`http://localhost:3000/quiz/getquizzes?query=${topic}`)
+      const response =  await fetch(`/api/quiz/getquizzes?query=${topic}`)
       if(response.ok){
         const data =  await response.json()
         setQuizzes(data)

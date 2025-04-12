@@ -47,6 +47,11 @@ const Arena = () => {
                     <p>Quizzes</p>
                     <button>play</button>
                 </div></Link> 
+                <Link href='/thearena/zitf'><div className="challenge-card">
+                    <Image src="/images/zitf.jpg" width={80} height={80} alt='icon'/>
+                    <p>ZITF Special</p>
+                    <button>play</button>
+                </div></Link>
                 </div>}
                 
             {content === 'leaderboard' && <LeaderBoard/>}

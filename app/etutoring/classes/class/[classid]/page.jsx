@@ -69,7 +69,7 @@ const Class = () => {
   
     const deleteClass = async()=>{
       try {
-        const response = await fetch(`http://localhost:3000/tutors/deleteclass${classid}`,{
+        const response = await fetch(`/api/tutors/deleteclass${classid}`,{
           method:'DELETE',
           credentials:'include'
         })

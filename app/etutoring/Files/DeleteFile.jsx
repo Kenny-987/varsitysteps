@@ -10,7 +10,7 @@ const DeleteFile = ({file,setFile,setFiles}) => {
     const deleteFile=async()=>{
       setLoading(true)
         try {
-           const response =  await fetch(`http://localhost:3000/tutors/deletefile/${file.id}`,{
+           const response =  await fetch(`/api/tutors/deletefile/${file.id}`,{
             method:"DELETE",
             credentials:'include'
            })

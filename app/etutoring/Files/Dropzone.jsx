@@ -71,7 +71,7 @@ const Dropzone = ({setFileOptions,user_id,setFiles,flag,classid}) => {
     formData.append('class_id',classid)
     formData.append('format',null)
     try {
-      const response =  await fetch('http://localhost:3000/tutors/fileupload', {
+      const response =  await fetch('/api/tutors/fileupload', {
         method: 'POST',
         body: formData,
         credentials:'include'

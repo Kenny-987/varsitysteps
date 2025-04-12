@@ -27,7 +27,7 @@ const Files = ({setContent,user_id,flag,classid}) => {
     uploader_id = user_id
     student_id = myId
   }
- const url=`http://localhost:3000/tutors/sharedfiles?uploader_id=${uploader_id}&student_id=${student_id}&class_id=${classid}`
+ const url=`/api/tutors/sharedfiles?uploader_id=${uploader_id}&student_id=${student_id}&class_id=${classid}`
 
   useEffect(()=>{
       fetchFiles()

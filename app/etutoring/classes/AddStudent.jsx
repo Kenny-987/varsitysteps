@@ -22,7 +22,7 @@ const AddStudent = ({students,classStudents,setContent,class_id,classDetails}) =
     const addStudent = async(student_id)=>{
         setLoading(student_id)
         try {
-            const response =  await fetch(`http://localhost:3000/tutors/addstudent`,{
+            const response =  await fetch(`/api/tutors/addstudent`,{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',

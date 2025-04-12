@@ -44,7 +44,7 @@ const TutorDashboard = ()=>{
   const fetchRequests = async()=>{
     const userId = userData.id
       try {
-          const response =  await fetch(`http://localhost:3000/api/requests/${userId}`,{
+          const response =  await fetch(`/api/api/requests/${userId}`,{
               credentials:'include'
           })
           if(response.ok){
@@ -83,7 +83,7 @@ if (!isAuthenticated || !userData) {
 //  }
 const logout = async()=>{
   try {
-   const response =  await fetch(`http://localhost:3000/auth/logout`,{
+   const response =  await fetch(`/api/auth/logout`,{
     method:'POST',
     credentials:'include'
    })

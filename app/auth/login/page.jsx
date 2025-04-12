@@ -31,7 +31,7 @@ const Login = () => {
     return null;
   }
 
-  const api = 'http://localhost:3000/auth/login'
+  const api = '/api/auth/login'
   const login= async(e)=>{
     setLoading(true)
     e.preventDefault();

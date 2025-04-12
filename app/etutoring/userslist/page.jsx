@@ -13,9 +13,9 @@ const role = localStorage.getItem('role')
 let url
 
 if(role=='tutor'){
-  url = `http://localhost:3000/user/mystudents`
+  url = `/api/user/mystudents`
 }else{
-  url = `http://localhost:3000/user/mytutors`
+  url = `/api/user/mytutors`
 }
 const fetchUsers = async()=>{
   setLoading(true)

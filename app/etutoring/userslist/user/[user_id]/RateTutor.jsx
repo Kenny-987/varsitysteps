@@ -22,7 +22,7 @@ const [loading,setLoading] = useState(false)
 const rateTutor = async (rater_id) => {
     setLoading(true)
     try {
-        const response =  await fetch(`http://localhost:3000/tutors/rate`,{
+        const response =  await fetch(`/api/tutors/rate`,{
             method:'POST',
             credentials:'include',
             headers: {
@@ -50,7 +50,7 @@ const rateTutor = async (rater_id) => {
 // },[])
 //     const checkHasRated = async () => {
 //         try {
-//             const response =  await fetch(`http://localhost:3000/tutors/checkrate/${user.id}`,{
+//             const response =  await fetch(`/api/tutors/checkrate/${user.id}`,{
 //                 credentials:'include'
 //             })
 //             if(response.ok){

@@ -57,7 +57,7 @@ const QuizComponent = () => {
     const addPoints=async()=>{
       const percentage = (points / 10) * 100
         try {
-          const response = await fetch(`http://localhost:3000/quiz/addpoints`,{
+          const response = await fetch(`/api/quiz/addpoints`,{
             method:'PATCH',
             headers: {
               'Content-Type': 'application/json',

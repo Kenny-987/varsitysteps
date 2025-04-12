@@ -12,7 +12,7 @@ useEffect(()=>{
     const markAsRead = async()=>{
         console.log('click')
         try {
-            const response =  await fetch(`http://localhost:3000/markread`,{
+            const response =  await fetch(`/api/markread`,{
                 method:'PATCH',
                 credentials:'include',
                 headers: {

@@ -16,7 +16,7 @@ const role = localStorage.getItem('role')
 const removeStudent =async ()=>{
   setLoading(true)
   try {
-    const response = await fetch(`http://localhost:3000/tutors/remove-student?class_id=${classid}&student_id=${student_id}`,{
+    const response = await fetch(`/api/tutors/remove-student?class_id=${classid}&student_id=${student_id}`,{
       method:'DELETE',
       credentials:'include',
       headers: {
