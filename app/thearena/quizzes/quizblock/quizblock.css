@@ -34,7 +34,6 @@
 display: flex;
 gap: 4px;
 align-items: center;
-padding: 4px;
 border-radius: 2px;
 }
 .quiz-blocks-list .quiz-block img{

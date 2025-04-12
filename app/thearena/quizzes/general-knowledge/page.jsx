@@ -3,6 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import '../../arena.css'
 import '../quiz.css'
+import PreviewBlock from '../previewblocks/PreviewBlock'
+import QuizBlock from '../quizblock/QuizBlock'
 
 
 const General = () => {
@@ -10,25 +12,24 @@ const topic = 'general knowledge'
 
 
 const startGame =()=>{
-      window.location.href = `/thearena/randomquizzes/quiz/${topic}`
+      window.location.href = `/thearena/quizzes/quiz/${topic}`
 }
 
   return (
     <section className="quiz-page">
       <div className="heading">
       <div className="navsection">
-                <p><span><Link href='/thearena'>the arena</Link></span>/<span><Link href='/thearena/randomquizzes'>quizzes</Link></span>/general-knowledge</p>
+                <p><span><Link href='/thearena'>the arena</Link></span>/<span><Link href='/thearena/quizzes'>quizzes</Link></span>/general-knowledge</p>
             </div>
         <h3>General Knowledge</h3>
       </div>
         <div className="section-intro">
-        <p>Random General knowledge questions: No themes, No subtopics, they might be easy, or might be hard, be ready for a anything
-        </p>
+        <p> General quiz questions</p>
+        </div>  
+        <div className="preview">
+            <QuizBlock topic={'general knowledge'}/>
         </div>
-        
-        <button className='quiz-start-btn' onClick={startGame}>Start Quiz</button>   
     </section>
   )
 }
-
 export default General

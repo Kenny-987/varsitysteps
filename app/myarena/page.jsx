@@ -31,7 +31,7 @@ const MyArena = () => {
   useEffect(()=>{
     const fetchData=async()=>{
       try {
-        const response =  await fetch(`http:localhost:3000/gamedata/data`,{
+        const response =  await fetch(`/api/gamedata/data`,{
           method:'GET',
           credentials:'include'
         })
@@ -54,7 +54,7 @@ const MyArena = () => {
 useEffect(()=>{
   const fetchAchievements=async()=>{
     try {
-      const response =  await fetch(`http:localhost:3000/gamedata/challenges`,{
+      const response =  await fetch(`/api/gamedata/challenges`,{
         method:'GET',
         credentials:'include'
       })

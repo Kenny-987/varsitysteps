@@ -27,7 +27,9 @@ const startGame =()=>{
         </p>
         </div>
         
-        <QuizBlock topic={"geography"}/>
+        <div className="preview">
+            <QuizBlock topic={'geography'}/>
+        </div>
         
     </section>
   )

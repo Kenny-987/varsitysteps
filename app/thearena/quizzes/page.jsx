@@ -49,8 +49,8 @@ const RandomQuiz = () => {
             <h4>Geography</h4>
             <PreviewBlock topic={'geography'}/>
             <Link href='/thearena/quizzes/geography' aria-label="General Knowledge Quiz">
-                    <button>More</button>
-                </Link>
+                <button>More</button>
+            </Link>
             </div>
         </div>
         
