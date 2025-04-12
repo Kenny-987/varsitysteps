@@ -23,9 +23,9 @@ const Student = () => {
     let url
 
     if(role=='tutor'){
-      url=`/api/user/studentprofile/${user_id}`
+      url=`http://localhost:3000/user/studentprofile/${user_id}`
     }else{
-      url=`/api/tutors/tutorprofile/${user_id}`
+      url=`http://localhost:3000/tutors/tutorprofile/${user_id}`
     }
     
     useEffect(()=>{

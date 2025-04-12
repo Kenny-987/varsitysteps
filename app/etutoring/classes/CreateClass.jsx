@@ -11,7 +11,7 @@ const [message,setMessage]=useState('')
       setLoading(true)
         e.preventDefault()
         try {
-          const response =  await fetch(`/api/tutors/createclass`,{
+          const response =  await fetch(`http://localhost:3000/tutors/createclass`,{
             method:'POST',
             credentials:'include',
             headers: {

@@ -26,7 +26,11 @@ const Post = () => {
     useEffect(()=>{
         const fetchPost = async () => {
             try {
+<<<<<<< Updated upstream
                 const response =  await fetch(`http:localhost:3000/posts/postdetails/${post_id}`)
+=======
+                const response =  await fetch(`http://localhost:3000/posts/postdetails/${post_id}`)
+>>>>>>> Stashed changes
                 if(response.ok){
                     const data =  await response.json()
                     setPost(data)

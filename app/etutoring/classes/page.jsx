@@ -22,7 +22,7 @@ const Classes = () => {
       fetchClasses()
     },[])
 let url
-role == 'tutor'? url = `/api/tutors/getclasses`:url=`/api/tutors/myclasses`
+role == 'tutor'? url = `http://localhost:3000/tutors/getclasses`:url=`http://localhost:3000/tutors/myclasses`
 const fetchClasses = async()=>{
   setLoading(true)
   try {

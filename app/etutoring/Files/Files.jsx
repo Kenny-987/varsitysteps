@@ -18,7 +18,7 @@ const Files = ({setContent,user_id,flag,classid}) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   //note: user_id is the id of uploader which in this case is the tutor
   let tutor_id,student_id,uploader_id
-console.log(user_id);
+
 
   if(role=='tutor'){
     uploader_id = myId
@@ -27,13 +27,12 @@ console.log(user_id);
     uploader_id = user_id
     student_id = myId
   }
- const url=`/api/tutors/sharedfiles?uploader_id=${uploader_id}&student_id=${student_id}&class_id=${classid}`
+ const url=`http://localhost:3000/tutors/sharedfiles?uploader_id=${uploader_id}&student_id=${student_id}&class_id=${classid}`
 
   useEffect(()=>{
       fetchFiles()
-      
   },[])
-console.log(flag);
+
 
   const fetchFiles = async()=>{
     setLoading(true)
@@ -64,10 +63,9 @@ console.log(flag);
         return (sizeInBytes / 1024).toFixed(2) + " kb"; // Convert to KB
     }
 };
-console.log(files);
 
 const videos = files.filter((file)=>file.mimetype == 'video/webm')
-console.log(videos);
+
 
 
   return (

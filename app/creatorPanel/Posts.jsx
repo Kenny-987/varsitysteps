@@ -71,7 +71,11 @@ const Posts = ({posts,setPosts,setPanelContent,setSelectedPost}) => {
     const deletePost = async (post_id)=>{
       setLoading(true)
       try {
+<<<<<<< Updated upstream
         const response =  await fetch(`http:localhost:3000/posts/deletepost/${post_id}`,{
+=======
+        const response =  await fetch(`http://localhost:3000/posts/deletepost/${post_id}`,{
+>>>>>>> Stashed changes
           method:'DELETE',
           credentials:'include'
         })

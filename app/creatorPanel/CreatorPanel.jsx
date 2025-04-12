@@ -18,7 +18,11 @@ const CreatorPanel = () => {
     setfetching(true)
     const fetchPosts = async ()=>{
   try {
+<<<<<<< Updated upstream
     const response =  await fetch(`http:localhost:3000/posts/post`,{
+=======
+    const response =  await fetch(`http://localhost:3000/posts/post`,{
+>>>>>>> Stashed changes
       credentials:'include'
     })
     if(response.ok){

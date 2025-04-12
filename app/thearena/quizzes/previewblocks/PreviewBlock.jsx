@@ -35,7 +35,7 @@ const slugify = (title) => {
 
   return (
     <div className="quiz-blocks-list">
-    {quizzes.map((quiz,index)=>{
+    {quizzes.length > 0 && quizzes.map((quiz,index)=>{
       const quizSlug = slugify(quiz.title);
       return <Link key={index} href={`/thearena/quizzes/quiz/${quiz.id}-${quizSlug}`}>
         <div key={index} className="quiz-block">

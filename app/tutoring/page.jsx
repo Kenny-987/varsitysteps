@@ -17,7 +17,7 @@ useEffect(()=>{
   const fetchTutors = async()=>{
     setLoading(true)
     try{
-      const response =  await fetch('/api/tutors')
+      const response =  await fetch('http://localhost:3000/tutors')
       const data =   await response.json()
       if(response.ok){
         setTutors(data.tutors)
@@ -43,12 +43,13 @@ window.location.href = `/tutoring/tutors/${query}`
 
 // console.log('these are tutors coming from server ', tutors)
   return (
-    <section className="tutors">
-      <Head>
+    <>
+    <Head>
       <title>Tutors</title>
         <meta name="description" content="Explore tutors from all accross the country" />
         <meta name="keywords" content="zimbabwean tutors, online tutors in zimbabwe, online tutors" />
       </Head>
+      <section className="tutors">
         <div className="tutor-nav">
         <h2>Find a Tutor</h2>
         <div className="tutor-search-filter">
@@ -97,10 +98,10 @@ window.location.href = `/tutoring/tutors/${query}`
       
       {/* tutor */}
     
-    
-    
     </div>
     </section>
+    </>
+    
   )
 }
 

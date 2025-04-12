@@ -104,7 +104,7 @@ try {
     return setMessage('Update at least 1 field'); 
   }
 
-  const response =  await fetch(`/api/user/update/${userId}`,{
+  const response =  await fetch(`http://localhost:3000/user/update/${userId}`,{
     method:'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -117,7 +117,8 @@ try {
     if(data){
       const updatedData = {...userData,...data.user}
       setUserData(updatedData)
-     window.location.href = '/tutordashboard'
+      router.back()
+    //  window.location.href = '/tutordashboard'
     }
     setLoading(false)
   }else{

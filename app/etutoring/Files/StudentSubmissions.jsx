@@ -24,7 +24,7 @@ const StudentSubmissions = ({setContent,user_id,classid,flag}) => {
     uploader_id = myId
     tutor_id = user_id
   }
- const url=`/api/tutors/sharedfiles?uploader_id=${uploader_id}&class_id=${classid}&tutor_id=${tutor_id}`
+ const url=`http://localhost:3000/tutors/sharedfiles?uploader_id=${uploader_id}&class_id=${classid}&tutor_id=${tutor_id}`
 
 
   useEffect(()=>{

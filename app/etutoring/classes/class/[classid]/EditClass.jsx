@@ -15,7 +15,7 @@ const EditClass = ({setClassDetails,classDetails,setEditClass}) => {
         setLoading(true)
           e.preventDefault()
           try {
-            const response =  await fetch(`/api/tutors/editclass`,{
+            const response =  await fetch(`http://localhost:3000/tutors/editclass`,{
               method:'PUT',
               credentials:'include',
               headers: {

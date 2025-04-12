@@ -46,6 +46,45 @@ export default function Home() {
           </div>
           </div>
           {/* feature card */}
+           {/* feature card */}
+           <div className="feature-card">
+          <div className="feature-img">
+            <Image alt='feature-img' src='/images/class.svg' width={150} height={150}/>
+          </div>
+          <h4>Online learning</h4>
+          <p>Teach or learn online within the platform</p>
+            <p>VarsitySteps enables both tutors and students to hold learning sessions within the platform to avoid distractions and navigating to various apps.</p>
+          <div className="feature-cta">
+            <button><Link href='/login'>Get Started</Link></button>
+          </div>
+          </div>
+          {/* feature card */}
+          {/* feature card */}
+          <div className="feature-card">
+          <div className="feature-img">
+            <Image alt='feature-img' src='/images/messaging.svg' width={150} height={150}/>
+          </div>
+          <h4>Messaging</h4>
+          <p>Teach or learn online within the platform</p>
+            <p>VarsitySteps enables both tutors and students to hold learning sessions within the platform to avoid distractions and navigating to various apps.</p>
+          <div className="feature-cta">
+            <button><Link href='/login'>Get Started</Link></button>
+          </div>
+          </div>
+          {/* feature card */}
+          {/* feature card */}
+          <div className="feature-card">
+          <div className="feature-img">
+            <Image alt='feature-img' src='/images/filing.svg' width={150} height={150}/>
+          </div>
+          <h4>File sharing</h4>
+          <p>Teach or learn online within the platform</p>
+            <p>VarsitySteps enables both tutors and students to hold learning sessions within the platform to avoid distractions and navigating to various apps.</p>
+          <div className="feature-cta">
+            <button><Link href='/login'>Get Started</Link></button>
+          </div>
+          </div>
+          {/* feature card */}
           {/* feature card */}
           <div className="feature-card">
           <div className="feature-img">

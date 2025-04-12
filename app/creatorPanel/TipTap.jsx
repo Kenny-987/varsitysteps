@@ -196,7 +196,11 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     setLoading(true)
     if(selectedPost){
       try {
+<<<<<<< Updated upstream
         const response =  await fetch(`http:localhost:3000/posts/editpost`,{
+=======
+        const response =  await fetch(`http://localhost:3000/posts/editpost`,{
+>>>>>>> Stashed changes
           method:'PATCH',
           credentials:'include',
           headers: {
@@ -226,7 +230,11 @@ const Tiptap = ({setPanelContent,setPosts,selectedPost,setSelectedPost}) => {
     } else{
       try {
         const type ='text'
+<<<<<<< Updated upstream
         const response =  await fetch(`http:localhost:3000/posts/savepost`,{
+=======
+        const response =  await fetch(`http://localhost:3000/posts/savepost`,{
+>>>>>>> Stashed changes
           method:'POST',
           credentials:'include',
           headers: {

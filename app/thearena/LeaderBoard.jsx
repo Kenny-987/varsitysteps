@@ -16,7 +16,7 @@ useEffect(()=>{
   const getLeaderboard = async()=>{
     setLoading(true)
     try {
-      const response =  await fetch(`http:localhost:3000/gamedata/leaderboard`)
+      const response =  await fetch(`http://localhost:3000/gamedata/leaderboard`)
       if(response.ok){
         const data =  await response.json()
         setLeaderBoard(data)
@@ -39,7 +39,7 @@ useEffect(()=>{
   if(isAuthenticated){
     const getPosition = async ()=>{
       try {
-       const response =  await fetch(`http:localhost:3000/gamedata/position`,{
+       const response =  await fetch(`http://localhost:3000/gamedata/position`,{
         credentials:'include'
        })
        if(response.ok){
@@ -63,7 +63,7 @@ if(loading){
 
   return (
     <section className='leaderboard'>
-      <h3>Leardboard <FontAwesomeIcon/></h3>
+      <h3>Leardboard</h3>
       {/* filters, weekly, monthly and all time */}
       {/* top three */}
       <div className="top-three">
