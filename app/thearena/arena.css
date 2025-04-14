@@ -68,7 +68,16 @@
     align-items: center;
     font-size: 18px;
 }
-
+.coming-soon{
+    width: fit-content;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+.coming-soon img{
+    width: 300px;
+    height: 300px;
+}
 /* media query */
 @media (max-width:768px){
     .arena,.arena-section{
