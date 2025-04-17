@@ -13,7 +13,9 @@ useEffect(()=>{
       const response =  await fetch(`/api/quiz/getquizzes?query=${topic}`)
       if(response.ok){
         const data =  await response.json()
-        setQuizzes(data.slice(0,5))  
+        const shuffled = data.sort(() => Math.random() - 0.5);
+        setQuizzes(shuffled.slice(0, 2));
+        setQuizzes(data.slice(0,2))  
       }else{
         console.log('error');
         
