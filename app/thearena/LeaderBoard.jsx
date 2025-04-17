@@ -57,13 +57,12 @@ useEffect(()=>{
   }
 },[])
 
-if(loading){
-  return <div>...loading</div>
-}
 
   return (
     <section className='leaderboard'>
       <h3>Leardboard</h3>
+      {loading ? <div className='btn-loader'></div>:
+      <>
       {/* filters, weekly, monthly and all time */}
       {/* top three */}
       <div className="top-three">
@@ -138,6 +137,9 @@ if(loading){
         }
       
       </div>
+      </>
+      }
+      
     </section>
   )
 }
