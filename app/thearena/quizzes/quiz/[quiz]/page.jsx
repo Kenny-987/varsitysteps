@@ -129,14 +129,12 @@ const QuizComponent = () => {
 
  
       if (!quiz) return null;
-      if (loading) {
-        return <div className='btn-loader'></div>; 
-      }
+     
      
   return (
     <div className='quizcomponent'>
-
-
+      {loading ? <div className='btn-loader'></div>:
+      <>
       {questionCounter>questions.length-1? <QuizComplete 
       title={title} 
       points={points}
@@ -215,6 +213,10 @@ const QuizComponent = () => {
         </div> }
       </>
         } 
+      
+      </>
+      }
+
       
     </div>
   )
