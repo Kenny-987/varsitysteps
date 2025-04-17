@@ -6,9 +6,10 @@ import Link from 'next/link'
 
 const PreviewBlock = ({topic}) => {
     const [quizzes,setQuizzes]=useState([])
-
+    const [loading,setLoading] = useState(false)
 useEffect(()=>{
   const fetchQuizzes = async()=>{
+    setLoading(true)
     try {
       const response =  await fetch(`/api/quiz/getquizzes?query=${topic}`)
       if(response.ok){
@@ -22,6 +23,8 @@ useEffect(()=>{
       }
     } catch (error) {
       console.error(error)
+    }finally{
+      setLoading(false)
     }
   }
   fetchQuizzes()
@@ -37,7 +40,9 @@ const slugify = (title) => {
 
   return (
     <div className="quiz-blocks-list">
-    {quizzes.length > 0 && quizzes.map((quiz,index)=>{
+      {loading ? <div className='btn-loader'></div>:
+      <>
+      {quizzes.length > 0 && quizzes.map((quiz,index)=>{
       const quizSlug = slugify(quiz.title);
       return <Link key={index} href={`/thearena/quizzes/quiz/${quiz.id}-${quizSlug}`}>
         <div key={index} className="quiz-block">
@@ -53,6 +58,8 @@ const slugify = (title) => {
   </div> 
       </Link>
     })}
+      </>}
+    
     </div>
   )
 }
