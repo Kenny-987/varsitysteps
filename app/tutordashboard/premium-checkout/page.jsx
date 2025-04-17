@@ -2,8 +2,9 @@
 import React ,{useState}from 'react'
 import '../css/premium.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faBookOpen, faChartLine, faGlobe, faInfoCircle, faLink, faPenNib, faTools, faUser } from '@fortawesome/free-solid-svg-icons'
+import {  faBookOpen, faChartLine, faFolder, faGlobe, faInfoCircle, faLink, faPenNib, faPeopleGroup, faPhone, faTools, faUser, faVideo } from '@fortawesome/free-solid-svg-icons'
 import { useContextUser } from '../../hooks/Context'
+import { faUikit } from '@fortawesome/free-brands-svg-icons'
 
 const PremiumModal = () => {
   const [loading,setLoading]=useState(false)
@@ -47,7 +48,7 @@ const PremiumModal = () => {
   return (
 
       <div className="premium-checkout">
-       <h4>Become a premium member for only $4/month (120/ZWG)</h4>
+       <h4>Become a premium member for only $5/month (135/ZWG)</h4>
        <div className="benefits">
         <div className="benefit">
           <p>Increased Visibility <FontAwesomeIcon icon={faChartLine}/></p>
@@ -64,16 +65,27 @@ const PremiumModal = () => {
           <span>List as many subjects that you teach with no limit. Tutors profiles appear based on searched subjects, the more subjects you teach, the more visible you are.</span>
         </div>
         <div className="benefit">
-          <p>Unlimited bio <FontAwesomeIcon icon={faUser}/></p>
-          <span>No limit on the characters for you bio</span>
+          <p>Unlimited Classes <FontAwesomeIcon icon={faPeopleGroup}/></p>
+          <span>Create as many classes for group discussions as you want with no limits</span>
         </div>
         <div className="benefit">
-          <p>Social Media Promotion <FontAwesomeIcon icon={faGlobe}/></p>
-          <span>Get promoted on our social media platforms</span>
+          <p>Unlimited Call Time <FontAwesomeIcon icon={faPhone}/></p>
+          <span>No monthly time limit on video calls</span>
         </div>
-        
         <div className="benefit">
-          <p>Priority Assistance <FontAwesomeIcon icon={faTools}/></p>
+          <p>Record and save video call <FontAwesomeIcon icon={faVideo}/></p>
+          <span>You can record and share video lessons with your students</span>
+        </div>
+        <div className="benefit">
+          <p>Added Storage <FontAwesomeIcon icon={faFolder}/></p>
+          <span>Send and store as many files as you want on the platform with up to 50GB worth</span>
+        </div>
+        <div className="benefit">
+          <p>New Features <FontAwesomeIcon icon={faUikit}/></p>
+          <span>As the plarform grows, be the first to test and make the most of new features both free and premium</span>
+        </div>
+        <div className="benefit">
+          <p>Priority Support <FontAwesomeIcon icon={faTools}/></p>
           <span>As a premium member you get priority support and assistance on any issues you might be facing!</span>
         </div>
        </div>
@@ -81,7 +93,7 @@ const PremiumModal = () => {
       <div className="steps-modal">
         <div className="steps">
         <p className='notice'><FontAwesomeIcon icon={faInfoCircle}/> We are working on making the process automated and faster for you, but for now please follow the following steps to pay for premium membership. </p>
-        <p className='step'>Step 1: Deposit $4 or 120 ZWG into the following ecocash account: <span>0789644097 | Kenneth P Madondo</span></p>
+        <p className='step'>Step 1: Deposit $5 or 135 ZWG into the following ecocash account: <span>0789644097 | Kenneth P Madondo</span></p>
 
         <p className='step'>step 2: Send proof of payment</p>
         <form onSubmit={submitProof} className='step'>
