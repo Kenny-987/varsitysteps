@@ -205,11 +205,11 @@ const QuizComponent = () => {
     
     {warning && <div className='quizinfo'>
         <div className="quizinfo-child quit">
-          {userData? <p>If you quit this quiz will be counted as complete, but you will not be awarded any points</p>:<p>Don't give up maybe it'll get easier ahead</p>}
+          {userData? <p>If you quit no points will be added towards achievements or the leaderboard.</p>:<p>Don't give up maybe it'll get easier ahead</p>}
         
          <p>The clock is still ticking<span style={timer<=10?{backgroundColor:'red'}:{backgroundColor:'green'}}>{timer}s</span> </p>
 
-        <button className='quit-btn'><Link href='/thearena/quizzes'>Quit</Link><FontAwesomeIcon icon={faRunning}/></button>
+        <button className='quit-btn'><Link href='/thearena/quizzes'>Quit </Link><FontAwesomeIcon icon={faRunning}/></button>
         <button onClick={()=>setWarning(false)}>Continue <FontAwesomeIcon icon={faSmile}/></button>
         </div>
         </div> }

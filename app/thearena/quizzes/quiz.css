@@ -61,8 +61,10 @@ font-weight: 500;
     background-color: var(--secondary-color);
     padding: 4px;
     border-radius: 4px;
-    margin-top:10px;
+    margin:10px 0;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
 }
 .previewquizzes .preview{
     margin-bottom: 20px;
@@ -70,6 +72,7 @@ font-weight: 500;
 }
 .previewquizzes .preview h4{
     margin-bottom: 10px;
+    font-size: 18px;
 }
 .quiz-page{
     width: 100%;
@@ -85,9 +88,9 @@ font-weight: 500;
 }
 
 .quizcomponent{
-    /* border: 1px solid black; */
     background-color: #fff;
     width:100%;
+    min-height: 66vh;
     margin: auto;
     padding: 20px;
     position: relative;
@@ -262,11 +265,23 @@ font-weight: 500;
     display: block;
     margin-top: 0;
 }
-.quiz_complete span a{
-    color: var(--primary-color);
-    text-decoration: underline;
+.post-quiz-options{
+    display: flex;
+    gap: 10px;
+    margin: auto;
     margin-top: 10px;
- 
+    width: fit-content;
+}
+.quiz_complete_btn{
+    /* border: 1px solid red; */
+    padding: 4px;
+    background-color: var(--secondary-color);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.quiz_complete_btn a{
+    color: #333
 }
 .tryagain{
     cursor: pointer;
@@ -306,8 +321,14 @@ font-weight: 500;
     border-radius: 4px;
     color: #fff;
 }
+.quit p{
+    text-align: center;
+}
 .quizinfo-child .quit-btn{
     background-color: red;
+}
+.quit button{
+    font-size: 16px;
 }
 .quit button a{
     color: #fff;

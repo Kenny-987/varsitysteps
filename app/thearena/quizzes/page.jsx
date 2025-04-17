@@ -26,7 +26,7 @@ const RandomQuiz = () => {
                 <Link href='/thearena/quizzes/geography' aria-label="General Knowledge Quiz">
                     <p className="tag">Geography</p>
                 </Link>
-                <Link href='/thearena/quizzes/general-knowledge' aria-label="General Knowledge Quiz">
+                {/* <Link href='/thearena/quizzes/general-knowledge' aria-label="General Knowledge Quiz">
                     <p className="tag">Technology</p>
                 </Link>
                 <Link href='/thearena/quizzes/general-knowledge' aria-label="General Knowledge Quiz">
@@ -34,7 +34,7 @@ const RandomQuiz = () => {
                 </Link>
                 <Link href='/thearena/quizzes/general-knowledge' aria-label="General Knowledge Quiz">
                     <p className="tag">Science</p>
-                </Link>
+                </Link> */}
         </div>
         
         <div className="previewquizzes">

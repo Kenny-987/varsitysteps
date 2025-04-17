@@ -11,10 +11,10 @@ const QuizComplete = ({title,points,questionCounter,setIsRunning,setMessage,setP
 const {userData}=useContextUser()
     let completeMessage = "";
     let textColor = ''
-    if (points >= 8) {
+    if ((points / questionCounter) * 100 >= 80) {
       completeMessage = "🎉 Excellent! You did great!";
       textColor='green'
-    } else if (points >= 5) {
+    } else if ((points / questionCounter) * 100 >= 50) {
       completeMessage = "👍 Good job! Keep improving!";
       textColor='orange'
     } else {
@@ -29,15 +29,14 @@ const {userData}=useContextUser()
           <p>{completeMessage}</p>
           <ShareResult title={title} points={points}/>
 
-          <button className='quiz_complete_btn'>
-            <Link href='/thearena'>Check out more quizzes</Link></button>
+          <div className="post-quiz-options">
+          <button className='quiz_complete_btn more-quizzes'>
+            <Link href='/thearena'>More quizzes</Link>
+          </button>
           {userData && 
-          <div>
-            <p>-Or-</p>
-            <span className='quiz_complete_btn'><Link href='/myarena'>Visit your arena dashboard</Link></span>
-          </div>
+            <button className='quiz_complete_btn'><Link href='/myarena'>Visit your arena dashboard</Link></button>
            } 
-           <span className='quiz_complete_btn tryagain'
+           <button className='quiz_complete_btn tryagain'
             onClick={()=>{
               setQuestionCounter(0);      
               setTimer(30);               
@@ -45,7 +44,12 @@ const {userData}=useContextUser()
               setIsRunning(true);         
               setShowInfo(false);         
               setMessage('');  
-              }}>Try again <FontAwesomeIcon icon={faRepeat}/></span>
+              }}>Try again <FontAwesomeIcon icon={faRepeat}/>
+              </button>
+          </div>
+          
+          
+           
           </div>
   )
 }

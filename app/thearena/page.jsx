@@ -27,13 +27,12 @@ const Arena = () => {
     </Head>
    
     <section className="arena">
-        <div className="coming-soon">
-            <h1>Under Maintenance</h1>
-            <p>Arena section will be live soon</p>
-            <Image src='/images/construction.svg' width={100} height={100}/>
-        </div>
+        {/* <div className="coming-soon">
+            <h1>Coming soon</h1>
+            <p>quizzes are being added</p>
+        </div> */}
         
-        {/* <div className="heading">
+        <div className="heading">
             <h3>Welcome to the Arena</h3>
             <p>Complete challenges and climb up the Leaderboard</p>
         </div>
@@ -48,15 +47,15 @@ const Arena = () => {
                     <p>Quizzes</p>
                     <button>play</button>
                 </div></Link> 
-                <Link href='/thearena/zitf'><div className="challenge-card">
+                {/* <Link href='/thearena/zitf'><div className="challenge-card">
                     <Image src="/images/zitf.jpg" width={80} height={80} alt='icon'/>
                     <p>ZITF Special</p>
                     <button>play</button>
-                </div></Link>
+                </div></Link> */}
                 </div>}
                 
             {content === 'leaderboard' && <LeaderBoard/>}
-        </div> */}
+        </div>
     </section>
     </>
   )

@@ -28,49 +28,49 @@ const MyArena = () => {
   }, [isAuthenticated]);
 
   //function to fetch data
-  // useEffect(()=>{
-  //   const fetchData=async()=>{
-  //     try {
-  //       const response =  await fetch(`/api/gamedata/data`,{
-  //         method:'GET',
-  //         credentials:'include'
-  //       })
-  //       if(response.ok){
-  //         const data =  await response.json()
-  //         setGameData(data)
-  //         if(data.unlockedAchievements.length>0){
-  //           setGlobalAchievement(data.unlockedAchievements)
-  //           setShowAchPopup(true)
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error(error)
-  //     }
-  //   }
-  //   fetchData()
-  // },[isAuthenticated])
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const response =  await fetch(`/api/gamedata/data`,{
+          method:'GET',
+          credentials:'include'
+        })
+        if(response.ok){
+          const data =  await response.json()
+          setGameData(data)
+          if(data.unlockedAchievements.length>0){
+            setGlobalAchievement(data.unlockedAchievements)
+            setShowAchPopup(true)
+          }
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchData()
+  },[isAuthenticated])
 
 //fetch challenges
-// useEffect(()=>{
-//   const fetchAchievements=async()=>{
-//     try {
-//       const response =  await fetch(`/api/gamedata/challenges`,{
-//         method:'GET',
-//         credentials:'include'
-//       })
-//       if(response.ok){
-//         const data =  await response.json()
-//         setAchievements(data.achievements)
-//         setTierProgress(data.tierProgress)
-//         setQuizProgress(data.quizProgress)
+useEffect(()=>{
+  const fetchAchievements=async()=>{
+    try {
+      const response =  await fetch(`/api/gamedata/challenges`,{
+        method:'GET',
+        credentials:'include'
+      })
+      if(response.ok){
+        const data =  await response.json()
+        setAchievements(data.achievements)
+        setTierProgress(data.tierProgress)
+        setQuizProgress(data.quizProgress)
         
-//       }
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-//   fetchAchievements()
-// },[isAuthenticated])
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  fetchAchievements()
+},[isAuthenticated])
 
 if (!isAuthenticated) {
   return null; 
@@ -92,13 +92,8 @@ const setProps = (achievement) => {
   return (
     <section className='arena-dashboard'>
     <h3>My Arena</h3>
-    <div className="coming-soon">
-            <h1>Under Maintenance</h1>
-            <p>Arena section will be live soon</p>
-            <Image src='/images/construction.svg' width={100} height={100}/>
-        </div>
     {/* arena stats to show user stats */}
-    {/* <div className="arena-stats">
+    <div className="arena-stats">
       <div className="stat">
         <h4>{userData.username}</h4>
         <p className='tier'>{gameData.tier?gameData.tier:'Newcomer'}</p>
@@ -108,9 +103,9 @@ const setProps = (achievement) => {
         <h4>{gameData.points}</h4>
         <p>Total points</p>
       </div>
-      </div> */}
+      </div>
 
-      {/* <div className="arena-stats grid">
+      <div className="arena-stats grid">
       <div className="stat">
         <h4>#{gameData.position?gameData.position:'Unranked'}</h4>
         <p>Leaderboard Position</p>
@@ -123,19 +118,19 @@ const setProps = (achievement) => {
         <h4>{gameData.achievements}</h4>
         <p>Achivements Unlocked</p>
       </div>
-      </div>   */}
+      </div>  
   
     {/* tier progress */}
-    {/* <div className="tier-progress">
+    <div className="tier-progress">
       <h4>Tier Progress</h4>
             <p>{gameData.points_left}</p>
             <div className="tier-progress-bar" >
               <div className="tierprogress" style={{width:`${parseInt(gameData.tier_progress)}%`}}></div>
             </div>
-          </div> */}
-    {/* <p className='arena-link'><Link href='/thearena'>Earn more points in the Arena <FontAwesomeIcon icon={faGamepad}/></Link> </p> */}
-  
-      {/* <div className="arena-achievements">
+          </div>
+    <p className='arena-link'><Link href='/thearena'>Earn more points in the Arena <FontAwesomeIcon icon={faGamepad}/></Link> </p>
+      {/* arena challenges*/}
+      <div className="arena-achievements">
         <h4>Achievements</h4>
         {achievements.length>0 &&
         <div className='arena-achievements-container' >
@@ -190,11 +185,11 @@ achievement.type === 'quiz' && quizProgress.length > 0 ? (
         {showAll <= 6?  <button className='showall' onClick={()=>setShowAll(achievements.length)}>show all achievements <FontAwesomeIcon icon={faCaretDown}/></button>:
           <button className='showall' onClick={()=>setShowAll(6)}>show less <FontAwesomeIcon icon={faCaretUp}/></button>}
 
-   
+    {/* achivement details go here */}
     {showDetails && selectedAchievement && <Achievement data={selectedAchievement} setShowDetails={setShowDetails} />}
 
      
-      </div> */}
+      </div>
       
     </section>
   )

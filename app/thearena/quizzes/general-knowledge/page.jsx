@@ -3,17 +3,15 @@ import React from 'react'
 import Link from 'next/link'
 import '../../arena.css'
 import '../quiz.css'
-import PreviewBlock from '../previewblocks/PreviewBlock'
 import QuizBlock from '../quizblock/QuizBlock'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from 'next/navigation'
 
 const General = () => {
 const topic = 'general knowledge'
+const router = useRouter()
 
-
-const startGame =()=>{
-      window.location.href = `/thearena/quizzes/quiz/${topic}`
-}
 
   return (
     <section className="quiz-page">
@@ -21,7 +19,7 @@ const startGame =()=>{
       <div className="navsection">
                 <p><span><Link href='/thearena'>the arena</Link></span>/<span><Link href='/thearena/quizzes'>quizzes</Link></span>/general-knowledge</p>
             </div>
-        <h3>General Knowledge</h3>
+        <h3><FontAwesomeIcon icon={faArrowCircleLeft} color='black' onClick={()=>router.back()}/> General Knowledge</h3>
       </div>
         <div className="section-intro">
         <p> General quiz questions</p>
