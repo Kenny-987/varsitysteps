@@ -9,7 +9,6 @@ import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 
 const General = () => {
-const topic = 'general knowledge'
 const router = useRouter()
 
 
