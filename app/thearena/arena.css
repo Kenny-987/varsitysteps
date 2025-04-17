@@ -8,6 +8,7 @@
 .arena-section{
     width: 80%;
     margin: auto;
+    min-height: 66vh;
 }
 .arena .heading{
     text-align: center;
