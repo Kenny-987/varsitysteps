@@ -7,7 +7,7 @@ import {faRepeat} from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image';
 
 
-const QuizComplete = ({title,points,questionCounter,setIsRunning,setMessage,setPoints,setQuestionCounter,setShowInfo,setTimer}) => {
+const QuizComplete = ({title,points,questionCounter,setIsRunning,setMessage,setPoints,setQuestionCounter,setShowInfo,setTimer,quiz}) => {
 const {userData}=useContextUser()
     let completeMessage = "";
     let textColor = ''
@@ -27,7 +27,7 @@ const {userData}=useContextUser()
           <h2>Quiz Complete</h2>
           <p className='quiz-points'>You got <span style={{color:textColor}}>{points}/{questionCounter}</span> points.</p>
           <p>{completeMessage}</p>
-          <ShareResult title={title} points={points}/>
+          <ShareResult title={title} quiz={quiz} points={points}/>
 
           <div className="post-quiz-options">
           <button className='quiz_complete_btn more-quizzes'>

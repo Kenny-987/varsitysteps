@@ -4,12 +4,12 @@ import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons'
 
 
-const ShareResult = ({title,points}) => {
+const ShareResult = ({title,points,quiz}) => {
     const [showFallback,setShowFallback]=useState(false)
 
          const handleShare = () => {
         const shareText = `I just scored ${points} points in the ${title} quiz on VarsitySteps! 🏆 Try to beat my score!`;
-        const shareUrl = `/thearena/randomquizzes/quiz/${title}`; 
+        const shareUrl = `/thearena/quizzes/quiz/${quiz}`; 
       
         if (navigator.share) {
           navigator.share({

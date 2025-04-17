@@ -137,6 +137,7 @@ const QuizComponent = () => {
       <>
       {questionCounter>questions.length-1? <QuizComplete 
       title={title} 
+      quiz={quiz}
       points={points}
       questionCounter={questionCounter}
       setQuestionCounter={setQuestionCounter}      
