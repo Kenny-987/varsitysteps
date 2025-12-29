@@ -1,5 +1,5 @@
 
-#VarsitySteps - Tutoring Marketplace
+# VarsitySteps - Tutoring Marketplace
 VarsitySteps is a full-stack web application designed to bridge the gap between tutors and students in the Zimbabwean market. As a comprehensive EdTech marketplace, it provides a suite of tools to facilitate online learning, including real-time communication, class management, and resource sharing.
 
 This project was my official attemp at being a saas entreprenuer. As with many saas projects, this one did not make the cut, however I credit that to the state of the economy in my country, **solid product**, **wrong economy**.
